@@ -26,6 +26,7 @@ class Login: UIViewController {
     @IBAction func submit(_ sender: Any)
     {
         self.webRequest(mobileNumber: self.mobileNumber.text!)
+        print("test")
     }
     
     func webRequest (mobileNumber:String)
