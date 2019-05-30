@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                 
                 print("Permission granted: \(granted)")
                 guard granted else { return }
-                self?.getNotificationSettings()
+                self?.getNotificationSettings()   
         }
     }
     
