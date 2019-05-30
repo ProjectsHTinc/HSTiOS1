@@ -27,7 +27,7 @@
 		6BB34540229FD93700547817 /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB3453D229FD93700547817 /* ReachabilityManager.swift */; };
 		6BB34541229FD93700547817 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB3453E229FD93700547817 /* Alert.swift */; };
 		6BB34542229FD93700547817 /* AFWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB3453F229FD93700547817 /* AFWrapper.swift */; };
-		BB8903C60C07BBABFFEF2A73 /* Pods_SkilEx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F476B13F4C3C10C05F4253 /* Pods_SkilEx.framework */; };
+		A5FB4AF5D1E4468EFDCBA3D0 /* Pods_SkilEx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA5A2FBB866188814D440C8 /* Pods_SkilEx.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,8 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		154CC18E076E6AFA993CEC53 /* Pods-SkilEx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkilEx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SkilEx/Pods-SkilEx.debug.xcconfig"; sourceTree = "<group>"; };
-		44F476B13F4C3C10C05F4253 /* Pods_SkilEx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SkilEx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EA5A2FBB866188814D440C8 /* Pods_SkilEx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SkilEx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		600C1635506C4CBD9FEDCE75 /* Pods-SkilEx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkilEx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SkilEx/Pods-SkilEx.debug.xcconfig"; sourceTree = "<group>"; };
 		6B5FE6EB227BFB19007A4F32 /* SkilEx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkilEx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B5FE6EE227BFB19007A4F32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6B5FE6F3227BFB19007A4F32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -77,7 +77,7 @@
 		6BB3453D229FD93700547817 /* ReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		6BB3453E229FD93700547817 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		6BB3453F229FD93700547817 /* AFWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWrapper.swift; sourceTree = "<group>"; };
-		81DCB935A1733703E0B06F1A /* Pods-SkilEx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkilEx.release.xcconfig"; path = "Pods/Target Support Files/Pods-SkilEx/Pods-SkilEx.release.xcconfig"; sourceTree = "<group>"; };
+		A65E81E0DFC045B2BDEF59EF /* Pods-SkilEx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkilEx.release.xcconfig"; path = "Pods/Target Support Files/Pods-SkilEx/Pods-SkilEx.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB8903C60C07BBABFFEF2A73 /* Pods_SkilEx.framework in Frameworks */,
+				A5FB4AF5D1E4468EFDCBA3D0 /* Pods_SkilEx.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,11 +106,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		516108A1596DE8F36CEE5F82 /* Pods */ = {
+		0A5810CFC7C8CE7D8B871FCC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				154CC18E076E6AFA993CEC53 /* Pods-SkilEx.debug.xcconfig */,
-				81DCB935A1733703E0B06F1A /* Pods-SkilEx.release.xcconfig */,
+				600C1635506C4CBD9FEDCE75 /* Pods-SkilEx.debug.xcconfig */,
+				A65E81E0DFC045B2BDEF59EF /* Pods-SkilEx.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -118,7 +118,7 @@
 		537E5EC7406834A1C3329339 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				44F476B13F4C3C10C05F4253 /* Pods_SkilEx.framework */,
+				4EA5A2FBB866188814D440C8 /* Pods_SkilEx.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -141,8 +141,8 @@
 				6B5FE702227BFB24007A4F32 /* SkilExTests */,
 				6B5FE70D227BFB24007A4F32 /* SkilExUITests */,
 				6B5FE6EC227BFB19007A4F32 /* Products */,
-				516108A1596DE8F36CEE5F82 /* Pods */,
 				537E5EC7406834A1C3329339 /* Frameworks */,
+				0A5810CFC7C8CE7D8B871FCC /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -237,11 +237,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6B5FE713227BFB24007A4F32 /* Build configuration list for PBXNativeTarget "SkilEx" */;
 			buildPhases = (
-				4AC52D3EBB6C1AC95C08C78B /* [CP] Check Pods Manifest.lock */,
+				91C2ACDEE7B07E0954818D72 /* [CP] Check Pods Manifest.lock */,
 				6B5FE6E7227BFB19007A4F32 /* Sources */,
 				6B5FE6E8227BFB19007A4F32 /* Frameworks */,
 				6B5FE6E9227BFB19007A4F32 /* Resources */,
-				BF2B60E097334FE1788EAAD6 /* [CP] Embed Pods Frameworks */,
+				3F3F169C1F45CF4FA1C50BA4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -368,25 +368,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4AC52D3EBB6C1AC95C08C78B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SkilEx-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BF2B60E097334FE1788EAAD6 /* [CP] Embed Pods Frameworks */ = {
+		3F3F169C1F45CF4FA1C50BA4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -410,6 +392,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SkilEx/Pods-SkilEx-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91C2ACDEE7B07E0954818D72 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SkilEx-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -605,7 +605,7 @@
 		};
 		6B5FE714227BFB24007A4F32 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 154CC18E076E6AFA993CEC53 /* Pods-SkilEx.debug.xcconfig */;
+			baseConfigurationReference = 600C1635506C4CBD9FEDCE75 /* Pods-SkilEx.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SkilEx/SkilEx.entitlements;
@@ -628,7 +628,7 @@
 		};
 		6B5FE715227BFB24007A4F32 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81DCB935A1733703E0B06F1A /* Pods-SkilEx.release.xcconfig */;
+			baseConfigurationReference = A65E81E0DFC045B2BDEF59EF /* Pods-SkilEx.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SkilEx/SkilEx.entitlements;
