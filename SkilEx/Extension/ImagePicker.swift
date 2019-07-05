@@ -88,6 +88,7 @@ extension ImagePicker: UIImagePickerControllerDelegate {
     }
 }
 
-extension ImagePicker: UINavigationControllerDelegate {
+extension ImagePicker: UINavigationControllerDelegate
+{
     
 }

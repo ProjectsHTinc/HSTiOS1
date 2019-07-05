@@ -14,7 +14,7 @@ class AFWrapper: NSObject {
     
 //MARK: API URL
     
-static let BASE_URL = "http://happysanz.net/skilex/apicustomer/"
+static let BASE_URL = "http://skilex.in/development/apicustomer/"
     
     class func cancelAllRequests() {
         let sessionManager = Alamofire.SessionManager.default

@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white
         registerForPushNotifications()
         ReachabilityManager.shared.startMonitoring()
         return true
@@ -74,6 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let device_Token = tokenParts.joined()
+        UserDefaults.standard.saveDeviceToken(deviceToken: device_Token)
         print("Device Token: \(String(describing: device_Token))")
     }
     
