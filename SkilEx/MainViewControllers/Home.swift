@@ -16,17 +16,19 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         
     }
     
-   
     var bannerImage = [UIImage]()
     var index = 0
     var inForwardDirection = true
     var timer: Timer?
     var categoeryArr = [Categories]()
+    var subcategoeryArr = [String]()
+    var subcategoeryID = [String]()
+    var cat_id = String()
     
     var filtered = [Categories]()
     var searchActive : Bool = false
     let searchController = UISearchController(searchResultsController: nil)
-
+    
     
     @IBOutlet var bannerCollectionView: UICollectionView!
     @IBOutlet var categoryCollectionView: UICollectionView!
@@ -84,7 +86,6 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         searchController.searchBar.placeholder = "Search"
         searchController.searchBar.clipsToBounds = true
         self.definesPresentationContext = true
-        self.searchBar.backgroundImage = UIImage(named: "search_box.png")
         searchController.searchBar.sizeToFit()
         searchController.searchBar.becomeFirstResponder()
 
@@ -93,8 +94,8 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
             textfield.backgroundColor = UIColor.white
             
         }
-        
-        //self.hideKeyboardWhenTappedAround()
+        self.categoryCollectionView.isUserInteractionEnabled = true
+        self.hideKeyboardWhenTappedAround()
         bannerImage = [UIImage(named: "physiotherapy-1.png"),UIImage(named: "physiotherapy-2.png"),UIImage(named: "physiotherapy-3.png")] as! [UIImage]
         startTimer()
     }
@@ -185,7 +186,6 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                     }
                 }
             }
-            
             return cell
         }
         else
@@ -208,20 +208,69 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                     }
                 }
             }
-            
             return cell
         }
     }
     
-    private  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView == categoryCollectionView
         {
             guard let cell = categoryCollectionView.cellForItem(at: indexPath as IndexPath) else { return }
-            
-            performSegue(withIdentifier: "showDetail", sender: cell)
+            let index = categoeryArr[indexPath.row]
+            cat_id = index.cat_id!
+            let url = AFWrapper.BASE_URL + "view_subcategory"
+            let parameters = ["main_cat_id": cat_id]
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            DispatchQueue.global().async
+                {
+                    do
+                    {
+                        try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
+                            (JSONResponse) -> Void in
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                            print(JSONResponse)
+                            let json = JSON(JSONResponse)
+                            let msg = json["msg"].stringValue
+                            let status = json["status"].stringValue
+                            if msg == "View Sub Category" && status == "success"
+                            {
+                                if json["sub_categories"].count > 0 {
+                                    
+                                    for i in 0..<json["sub_categories"].count {
+                                        
+                                        let subCategoery = SubCategories.init(json: json["sub_categories"][i])
+                                        UserDefaults.standard.saveSubCategoery(subcategories: subCategoery)
+                                        let subCategoeryName = subCategoery.sub_cat_name
+                                        let subCategoeryID = subCategoery.sub_cat_id
+                                        self.subcategoeryArr.append(subCategoeryName!)
+                                        self.subcategoeryID.append(subCategoeryID!)
+                                        
+                                    }
+                                    
+                                    self.performSegue(withIdentifier: "serviceDetail", sender: cell)
+
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
+                                    
+                                }
+                            }
+                        }) {
+                            (error) -> Void in
+                            print(error)
+                        }
+                    }
+                    catch
+                    {
+                        print("Unable to load data: \(error)")
+                    }
+            }
         }
     }
+
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -292,16 +341,13 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        switch segue.identifier {
-        case "showDetail":
-            guard let indexPath = (sender as? UIView)?.findCollectionViewIndexPath() else { return }
-            guard let vc = segue.destination as? ServiceDetail else { return }
-            
-            let categoery = categoeryArr[indexPath.row]
-            vc.main_cat_id = categoery.cat_id!
-            
-        default: return
+        if (segue.identifier == "serviceDetail") {
+            let nav = segue.destination as! UINavigationController
+            let vc = nav.topViewController as! ServiceDetail
+            vc.subcategoeryNameArr = self.subcategoeryArr
+            vc.subcategoeryIDArr = self.subcategoeryID
+            vc.main_cat_id = self.cat_id
         }
-    }
 
+    }
 }

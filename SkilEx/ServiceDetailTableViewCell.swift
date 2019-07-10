@@ -9,7 +9,14 @@
 import UIKit
 
 class ServiceDetailTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var serviceImageView: UIImageView!
+    @IBOutlet weak var serviceName: UILabel!
+    @IBOutlet weak var addImage: UIImageView!
+    @IBOutlet weak var tickImage: UIImageView!
+    @IBOutlet weak var selectionBackgroundView: UIView!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var addLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

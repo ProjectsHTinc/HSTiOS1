@@ -51,6 +51,31 @@ extension UserDefaults
         return nil
     }
     
+    func saveSubCategoery(subcategories: SubCategories)
+    {
+        
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(subcategories) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: UserDefaultsKey.userSessionKey.rawValue)
+        }
+    }
+    
+    func getSubCategoery()-> SubCategories? {
+        
+        if data(forKey: UserDefaultsKey.userSessionKey.rawValue) != nil
+        {
+            let decodedData = UserDefaults.standard.data(forKey: UserDefaultsKey.userSessionKey.rawValue)
+            var subcategories: SubCategories?
+            if decodedData != nil {
+                subcategories = try! JSONDecoder().decode(SubCategories.self, from: decodedData!)
+            }
+            return subcategories
+        }
+        
+        return nil
+    }
+    
     func clearUserData()
     {
         UserDefaults.standard.removeObject(forKey: UserDefaultsKey.userSessionKey.rawValue)

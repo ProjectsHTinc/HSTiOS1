@@ -28,6 +28,9 @@
 		6B6AECEB22CC664E00192683 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6AECEA22CC664E00192683 /* CategoryCollectionViewCell.swift */; };
 		6B6AECED22CC736000192683 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6AECEC22CC736000192683 /* Categories.swift */; };
 		6B6D04F422C4DB4700393676 /* TextFieldShadowColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6D04F322C4DB4700393676 /* TextFieldShadowColor.swift */; };
+		6B709F9422D5EA67003E22EB /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B709F9322D5EA67003E22EB /* Services.swift */; };
+		6B709F9622D601B7003E22EB /* ServiceDescripition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B709F9522D601B7003E22EB /* ServiceDescripition.swift */; };
+		6B709F9822D606AA003E22EB /* ServicesDescripition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B709F9722D606AA003E22EB /* ServicesDescripition.swift */; };
 		6B710D2922CB6618009AB70B /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B710D2822CB6618009AB70B /* BannerCollectionViewCell.swift */; };
 		6BB3452C229FD89E00547817 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB34527229FD89E00547817 /* UserDefault.swift */; };
 		6BB3452D229FD89E00547817 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB34528229FD89E00547817 /* ImagePicker.swift */; };
@@ -43,6 +46,7 @@
 		6BB34540229FD93700547817 /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB3453D229FD93700547817 /* ReachabilityManager.swift */; };
 		6BB34541229FD93700547817 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB3453E229FD93700547817 /* Alert.swift */; };
 		6BB34542229FD93700547817 /* AFWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB3453F229FD93700547817 /* AFWrapper.swift */; };
+		6BF8FB2022D3527A005DB209 /* SubCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF8FB1F22D3527A005DB209 /* SubCategories.swift */; };
 		A5FB4AF5D1E4468EFDCBA3D0 /* Pods_SkilEx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA5A2FBB866188814D440C8 /* Pods_SkilEx.framework */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +99,9 @@
 		6B6AECEA22CC664E00192683 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		6B6AECEC22CC736000192683 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		6B6D04F322C4DB4700393676 /* TextFieldShadowColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldShadowColor.swift; sourceTree = "<group>"; };
+		6B709F9322D5EA67003E22EB /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		6B709F9522D601B7003E22EB /* ServiceDescripition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDescripition.swift; sourceTree = "<group>"; };
+		6B709F9722D606AA003E22EB /* ServicesDescripition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesDescripition.swift; sourceTree = "<group>"; };
 		6B710D2822CB6618009AB70B /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		6BB34527229FD89E00547817 /* UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		6BB34528229FD89E00547817 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -110,6 +117,7 @@
 		6BB3453D229FD93700547817 /* ReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		6BB3453E229FD93700547817 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		6BB3453F229FD93700547817 /* AFWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWrapper.swift; sourceTree = "<group>"; };
+		6BF8FB1F22D3527A005DB209 /* SubCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategories.swift; sourceTree = "<group>"; };
 		A65E81E0DFC045B2BDEF59EF /* Pods-SkilEx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkilEx.release.xcconfig"; path = "Pods/Target Support Files/Pods-SkilEx/Pods-SkilEx.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,19 +175,13 @@
 			path = IntialViewControllers;
 			sourceTree = "<group>";
 		};
-		6B44C8A122CE1BF90084A5AB /* SwipeableMenu */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SwipeableMenu;
-			sourceTree = "<group>";
-		};
 		6B4B51CF22C5D96E00D73166 /* MainViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				6B4B51DE22C5F5F900D73166 /* Tabbarcontroller.swift */,
 				6B4B51D822C5E5ED00D73166 /* Home.swift */,
 				6B44C89D22CE14200084A5AB /* ServiceDetail.swift */,
+				6B709F9522D601B7003E22EB /* ServiceDescripition.swift */,
 				6B4B51DA22C5E5FA00D73166 /* Service.swift */,
 				6B4B51DC22C5E60600D73166 /* UserProfile.swift */,
 				6B4B51D222C5D9C400D73166 /* MainView.storyboard */,
@@ -272,7 +274,6 @@
 		6BB34543229FD95200547817 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
-				6B44C8A122CE1BF90084A5AB /* SwipeableMenu */,
 			);
 			path = Utilites;
 			sourceTree = "<group>";
@@ -282,6 +283,9 @@
 			children = (
 				6BB34533229FD8C100547817 /* UserData.swift */,
 				6B6AECEC22CC736000192683 /* Categories.swift */,
+				6BF8FB1F22D3527A005DB209 /* SubCategories.swift */,
+				6B709F9322D5EA67003E22EB /* Services.swift */,
+				6B709F9722D606AA003E22EB /* ServicesDescripition.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -452,6 +456,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SkilEx/Pods-SkilEx-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -460,6 +465,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -501,6 +507,7 @@
 				6BB3452C229FD89E00547817 /* UserDefault.swift in Sources */,
 				6BB3452E229FD89E00547817 /* Toolbar.swift in Sources */,
 				6BB34540229FD93700547817 /* ReachabilityManager.swift in Sources */,
+				6B709F9822D606AA003E22EB /* ServicesDescripition.swift in Sources */,
 				6BB34541229FD93700547817 /* Alert.swift in Sources */,
 				6BB34542229FD93700547817 /* AFWrapper.swift in Sources */,
 				6B44C8A022CE143D0084A5AB /* ServiceDetailTableViewCell.swift in Sources */,
@@ -510,12 +517,15 @@
 				6B44C89E22CE14200084A5AB /* ServiceDetail.swift in Sources */,
 				6B4B51DD22C5E60600D73166 /* UserProfile.swift in Sources */,
 				6B5FE6EF227BFB19007A4F32 /* AppDelegate.swift in Sources */,
+				6B709F9422D5EA67003E22EB /* Services.swift in Sources */,
 				6BB3453B229FD8D000547817 /* OTP.swift in Sources */,
 				6B4B51DF22C5F5F900D73166 /* Tabbarcontroller.swift in Sources */,
+				6B709F9622D601B7003E22EB /* ServiceDescripition.swift in Sources */,
 				6B4B51E622C61F4200D73166 /* ViewShadowColor.swift in Sources */,
 				6B6AECEB22CC664E00192683 /* CategoryCollectionViewCell.swift in Sources */,
 				6B6AECED22CC736000192683 /* Categories.swift in Sources */,
 				6BB34530229FD89E00547817 /* RoundedCornerImageView.swift in Sources */,
+				6BF8FB2022D3527A005DB209 /* SubCategories.swift in Sources */,
 				6B1E0B8522C4A2C4006A0EF5 /* RoundCornerButtons.swift in Sources */,
 				6BB34532229FD8B000547817 /* LocalizationSystem.swift in Sources */,
 				6B6D04F422C4DB4700393676 /* TextFieldShadowColor.swift in Sources */,
@@ -716,7 +726,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "SkilEx/Extension/SkilEx-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -741,7 +751,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SkilEx/Extension/SkilEx-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

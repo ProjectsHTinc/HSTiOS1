@@ -37,7 +37,6 @@ class Login: UIViewController {
     @IBAction func submit(_ sender: Any)
     {
         self.webRequest(mobileNumber: self.mobileNumber.text!)
-        print("test")
     }
     
     func webRequest (mobileNumber:String)
@@ -48,7 +47,7 @@ class Login: UIViewController {
 //                //Custom action code
 //            }
 //    }
-//        else if mobileNumber.count <= 10
+//        else if mobileNumber.count != 10
 //        {
 //            Alert.defaultManager.showOkAlert("SkilEx", message: "Enter the valid Mobile Number") { (action) in
 //                //Custom action code
@@ -98,6 +97,14 @@ class Login: UIViewController {
         {
             print("YES")
         }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let maxLength = 10
+        let currentString: NSString = textField.text! as NSString
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        return newString.length <= maxLength
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)

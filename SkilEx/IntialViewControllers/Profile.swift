@@ -49,8 +49,10 @@ class Profile: UIViewController
             genderTextfiled.text = ""
             emailTextfiled.text = ""
             addressTextfiled.text = ""
-            self.profileImageView.image = profileImage
-            self.profileImageView.makeRounded()
+            if userdata?.profilePic?.isEmpty == true
+            {
+                self.profileImageView.image = UIImage(named: "user.png")
+            }
             self.submit.setTitle("Submit", for: .normal)
         }
         else
@@ -60,10 +62,25 @@ class Profile: UIViewController
             genderTextfiled.text = userdata?.gender
             emailTextfiled.text = userdata?.email
             addressTextfiled.text = userdata?.address
-            DispatchQueue.main.async{
-            self.profileImageView.image = self.profileImage
-            self.profileImageView.makeRounded()
-            MBProgressHUD.hide(for: self.view, animated: true)
+            if userdata?.profilePic?.isEmpty == true
+            {
+                self.profileImageView.image = UIImage(named: "user.png")
+            }
+            else
+            {
+                let url = URL(string: (userdata?.profilePic)!)
+                DispatchQueue.global().async { [weak self] in
+                    if let data = try? Data(contentsOf: url!) {
+                        if let image = UIImage(data: data) {
+                            DispatchQueue.main.async {
+                                self!.profileImageView.image = image
+                                self!.profileImageView.makeRounded()
+                                MBProgressHUD.hide(for: self!.view, animated: true)
+                            }
+                        }
+                    }
+                }
+                
             }
             self.submit.setTitle("Update", for: .normal)
         }

@@ -20,7 +20,6 @@ class OTP: UIViewController {
     @IBOutlet var textfieldSix: UITextField!
     @IBOutlet var submitOutlet: UIButton!
     
-    var profileImage: UIImage!
     var user_msater_id = String()
     var mobileNumber = String()
     var otp = String()
@@ -160,33 +159,14 @@ class OTP: UIViewController {
 //                    {
 //                        try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "login", params: (parameters), headers: nil, success: {
 //                            (JSONResponse) -> Void in
+//                            MBProgressHUD.hide(for: self.view, animated: true)
 //                            let json = JSON(JSONResponse)
 //                            let msg = json["msg"].stringValue
 //                            let status = json["status"].stringValue
 //                            if msg == "Login Successfully" && status == "success"{
 //                                let userdata = UserData(json: json["userData"])
 //                                UserDefaults.standard.saveUserdata(userdata: userdata)
-//                                let imgUrl = json["userData"]["profile_pic"].string
-//                                if imgUrl?.isEmpty == true
-//                                {
-//                                    self.profileImage = UIImage(named: "user.png")
-//                                }
-//                                else
-//                                {
-//                                    let url = URL(string: imgUrl!)
-//                                    DispatchQueue.global().async { [weak self] in
-//                                        if let data = try? Data(contentsOf: url!) {
-//                                            if let image = UIImage(data: data) {
-//                                                DispatchQueue.main.async {
-//                                                    self?.profileImage = image
-//                                                    MBProgressHUD.hide(for: self!.view, animated: true)
-//                                                    self!.performSegue(withIdentifier: "toDashboard", sender: self)
-//                                                }
-//                                            }
-//                                        }
-//                                    }
-//                                    print(userdata)
-//                                }
+                                self.performSegue(withIdentifier: "toDashboard", sender: self)
 //                            }
 //                            else
 //                            {
@@ -205,8 +185,6 @@ class OTP: UIViewController {
 //                    }
 //            }
 //        }
-        
-        self.performSegue(withIdentifier: "toDashboard", sender: self)
 
     }
     
@@ -215,11 +193,7 @@ class OTP: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if (segue.identifier == "to_Profile") {
-            let vc = segue.destination as! Profile
-            vc.profileImage = profileImage
-        }
-        else if (segue.identifier == "toDashboard"){
+          if (segue.identifier == "toDashboard"){
           let vc = segue.destination as! Tabbarcontroller
             print(vc)
         }

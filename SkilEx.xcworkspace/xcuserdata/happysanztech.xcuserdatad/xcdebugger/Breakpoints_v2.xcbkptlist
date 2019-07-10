@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SkilEx/MainViewControllers/Home.swift"
-            timestampString = "583999722.177821"
+            timestampString = "584451638.9920681"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "16"
@@ -57,14 +57,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SkilEx/MainViewControllers/ServiceDetail.swift"
-            timestampString = "583999722.177914"
+            filePath = "SkilEx/IntialViewControllers/Profile.swift"
+            timestampString = "584367182.551389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SkilEx.Profile.viewDidLoad() -&gt; ()"
+                  moduleName = "SkilEx"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/happysanztech/Documents/HSTiOS1/SkilEx/IntialViewControllers/Profile.swift"
+                  timestampString = "584451639.220863"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "8768">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in SkilEx.Profile.viewDidLoad() -&gt; ()"
+                  moduleName = "SkilEx"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/happysanztech/Documents/HSTiOS1/SkilEx/IntialViewControllers/Profile.swift"
+                  timestampString = "584451639.222299"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "268">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
