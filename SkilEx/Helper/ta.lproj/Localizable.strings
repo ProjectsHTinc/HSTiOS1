@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  SkilEx
+
+  Created by Happy Sanz Tech on 19/07/19.
+  Copyright © 2019 Happy Sanz Tech. All rights reserved.
+*/
+"appname_text" = "ஸ்கில்எக்ஸ்";
+"welcome_text" = "உங்களை வரவேற்கிறது";
+"mobilenumber_text" = "உங்கள் மொபைல் நம்பரை என்டர் செய்யவும் ";
+"mobilenumberplaceholder_text" = "மொபைல் நம்பர்";
+"login_text" = "உள் நுழை";
+"skip_text" = "இப்போதைக்கு தவிர்";
+

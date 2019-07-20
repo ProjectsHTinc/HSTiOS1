@@ -18,6 +18,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
+        if GlobalVariables.shared.user_master_id.isEmpty ==  true
+        {
+           
+            let topWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+            topWindow?.rootViewController = UIViewController()
+            topWindow?.windowLevel = UIWindow.Level.alert + 1
+            let alert: UIAlertController =  UIAlertController(title: "SkilEX \nஸ்கில்எக்ஸ்", message: "Choose your langugae \nஉங்கள்மொழியைத்தேர்வுசெய்க", preferredStyle: .alert)
+            alert.addAction(UIAlertAction.init(title: "தமிழ்", style: .default, handler: { (alertAction) in
+                
+                LocalizationSystem.sharedInstance.setLanguage(languageCode: "ta")
+                let mainStoryboard:UIStoryboard = UIStoryboard(name: "InitialView", bundle: nil)
+                let homePage = mainStoryboard.instantiateViewController(withIdentifier: "login") as! Login
+                self.window?.rootViewController = homePage
+                
+            }))
+            alert.addAction(UIAlertAction.init(title: "English", style: .default, handler: { (alertAction) in
+                
+                LocalizationSystem.sharedInstance.setLanguage(languageCode: "en")
+                let mainStoryboard:UIStoryboard = UIStoryboard(name: "InitialView", bundle: nil)
+                let homePage = mainStoryboard.instantiateViewController(withIdentifier: "login") as! Login
+                self.window?.rootViewController = homePage
+                
+            }))
+            
+            topWindow?.makeKeyAndVisible()
+            topWindow?.rootViewController?.present(alert, animated: true, completion:nil)
+
+        }
+        else
+        {
+            let mainStoryboard:UIStoryboard = UIStoryboard(name: "MainView", bundle: nil)
+            let homePage = mainStoryboard.instantiateViewController(withIdentifier: "tabbarcontroller") as! Tabbarcontroller
+            self.window?.rootViewController = homePage
+        }
+        
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white
         registerForPushNotifications()
         ReachabilityManager.shared.startMonitoring()

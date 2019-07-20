@@ -41,13 +41,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SkilEx/MainViewControllers/Home.swift"
-            timestampString = "584451638.9920681"
+            filePath = "SkilEx/MainViewControllers/ServiceDescripitionTableViewController.swift"
+            timestampString = "585128003.4362791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "updateSearchResults(for:)"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "serviceAddToCart(user_master_id:category_id:sub_category_id:service_id:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SkilEx/MainViewControllers/ViewSummary.swift"
+            timestampString = "585215635.870677"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "webRequestViewCare()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,45 +74,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SkilEx/IntialViewControllers/Profile.swift"
-            timestampString = "584367182.551389"
+            timestampString = "585215635.870749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "profilePictureUpdate(image:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SkilEx/MainViewControllers/UserProfile.swift"
+            timestampString = "585215635.8708121"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SkilEx.Profile.viewDidLoad() -&gt; ()"
-                  moduleName = "SkilEx"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/happysanztech/Documents/HSTiOS1/SkilEx/IntialViewControllers/Profile.swift"
-                  timestampString = "584451639.220863"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "8768">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in SkilEx.Profile.viewDidLoad() -&gt; ()"
-                  moduleName = "SkilEx"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/happysanztech/Documents/HSTiOS1/SkilEx/IntialViewControllers/Profile.swift"
-                  timestampString = "584451639.222299"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "71"
-                  endingLineNumber = "71"
-                  offsetFromSymbolStart = "268">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

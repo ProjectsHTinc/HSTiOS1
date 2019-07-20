@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIViewController: UITextFieldDelegate
+extension UIViewController
 {
     func addToolBar(textField: UITextField){
         let toolBar = UIToolbar()
@@ -22,7 +22,7 @@ extension UIViewController: UITextFieldDelegate
         toolBar.isUserInteractionEnabled = true
         toolBar.sizeToFit()
         
-        textField.delegate = self
+//        textField.delegate = self
         textField.inputAccessoryView = toolBar
     }
     

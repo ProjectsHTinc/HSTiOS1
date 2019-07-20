@@ -12,46 +12,33 @@ import MBProgressHUD
 import HMSegmentedControl
 
 
-class ServiceDetail: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource {
+class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource {
    
-    var scrollView: UIScrollView?
-    var segmentedControl4: HMSegmentedControl?
+    var segmentedControl1: HMSegmentedControl?
     var main_cat_id = String()
+    var sub_cat_id = String()
     var subcategoeryNameArr = [String]()
     var subcategoeryIDArr = [String]()
     var serviceArr = [Services]()
     var service_nameArr = [String]()
-    var cellButtonisSelected = false
     var serviceID = String()
-    var serviceImage = UIImage()
-    
-    var exclusions_ta = String()
-    var is_advance_payment = String()
-    var service_ta_name = String()
-    var rate_card_details_ta = String()
-    var advance_amount = String()
-    var service_procedure = String()
-    var inclusions = String()
-    var service_name = String()
-    var sub_cat_id = String()
-    var others = String()
-    var exclusions = String()
-    var service_procedure_ta = String()
-    var rate_card = String()
-    var service_id = String()
-    var others_ta = String()
-    var inclusions_ta = String()
-    var rate_card_details = String()
-
+    var serviceIDArr = [String]()
+    var isServiceAddButtonIsClicked = false
+    var lastSelectedIndex = Int()
+    var selectedSegementIndex = Int()
+    var selectedRowIndex = -1
+    var indexArray  : [NSIndexPath]?
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var serviceCountLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        self.addBackButton()
         let viewWidth = view.frame.width
-        let segmentedControl1 = HMSegmentedControl(sectionTitles: subcategoeryNameArr)
+        segmentedControl1 = HMSegmentedControl(sectionTitles: subcategoeryNameArr)
         segmentedControl1!.autoresizingMask = [.flexibleRightMargin, .flexibleWidth]
         segmentedControl1?.frame = CGRect(x: 0, y: 0, width: viewWidth, height: 50)
         segmentedControl1?.segmentEdgeInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -61,8 +48,8 @@ class ServiceDetail: UIViewController,UIScrollViewDelegate,UITableViewDelegate,U
         segmentedControl1?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.gray]
         let font = UIFont.systemFont(ofSize: 14)
         segmentedControl1?.titleTextAttributes = [NSAttributedString.Key.font: font]
-        segmentedControl1?.selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 0.0/255, green: 108.0/255, blue: 255.0/255.0, alpha: 1.0)]
-        segmentedControl1?.selectionIndicatorColor = UIColor(red: 0.0/255, green: 108.0/255, blue: 255.0/255.0, alpha: 1.0)
+        segmentedControl1?.selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255.0, alpha: 1.0)]
+        segmentedControl1?.selectionIndicatorColor = UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255.0, alpha: 1.0)
         segmentedControl1?.isVerticalDividerEnabled = false
         segmentedControl1!.verticalDividerColor = UIColor.black
         segmentedControl1!.verticalDividerWidth = 0
@@ -74,8 +61,10 @@ class ServiceDetail: UIViewController,UIScrollViewDelegate,UITableViewDelegate,U
         segmentedControl1?.addTarget(self, action: #selector(segmentedControlChangedValue(_:)), for: .valueChanged)
         view.addSubview(segmentedControl1!)
         
-        let index = self.subcategoeryIDArr[0]
-        self.webRequestwebRequest(Index: index)
+        sub_cat_id = self.subcategoeryIDArr[0]
+        self.webRequestServiceList(Index: sub_cat_id)
+        lastSelectedIndex = 0
+        self.indexArray = []
     }
     
     
@@ -87,41 +76,270 @@ class ServiceDetail: UIViewController,UIScrollViewDelegate,UITableViewDelegate,U
     @objc func segmentedControlChangedValue(_ segmentedControl: HMSegmentedControl?) {
         print(String(format: "Selected index %ld (via UIControlEventValueChanged)", Int(segmentedControl?.selectedSegmentIndex ?? 0)))
         
-        let index = self.subcategoeryIDArr[Int(segmentedControl?.selectedSegmentIndex ?? 0)]
-        self.webRequestwebRequest(Index:index)
+        if (sub_cat_id == "0")
+        {
+            sub_cat_id = self.subcategoeryIDArr[Int(segmentedControl?.selectedSegmentIndex ?? 0)]
+            self.webRequestServiceList(Index:sub_cat_id)
+        }
+        else
+        {
+            
+            if isServiceAddButtonIsClicked == true
+            {
+                let alertController = UIAlertController(title: "SkilEX", message: "If you choose another service ,All the existing added service will be Deleted", preferredStyle: UIAlertController.Style.alert)
+                
+                
+                let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
+                    UIAlertAction in
+                    self.serviceRemoveFromCart(user_master_id: GlobalVariables.shared.user_master_id)
+                    self.selectedSegementIndex = Int(segmentedControl?.selectedSegmentIndex ?? 0)
+                    self.lastSelectedIndex = Int(segmentedControl?.selectedSegmentIndex ?? 0)
+                    self.sub_cat_id = self.subcategoeryIDArr[Int(segmentedControl?.selectedSegmentIndex ?? 0)]
+                    self.webRequestServiceList(Index:self.sub_cat_id)
+
+                }
+                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default) {
+                    UIAlertAction in
+                    self.segmentedControl1?.selectedSegmentIndex = self.lastSelectedIndex
+                }
+                
+                alertController.addAction(okAction)
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+            else
+            {
+                self.sub_cat_id = self.subcategoeryIDArr[Int(segmentedControl?.selectedSegmentIndex ?? 0)]
+                self.webRequestServiceList(Index:self.sub_cat_id)
+
+            }
+        }
     }
     
-    func webRequestwebRequest (Index:String)
+    func webRequestServiceList (Index:String)
     {
-        let url = AFWrapper.BASE_URL + "services_list"
-        let parameters = ["main_cat_id": main_cat_id, "sub_cat_id": Index]
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+            let url = AFWrapper.BASE_URL + "services_list"
+            let parameters = ["main_cat_id": main_cat_id, "sub_cat_id": Index, "user_master_id":GlobalVariables.shared.user_master_id]
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            DispatchQueue.global().async
+                {
+                    do
+                    {
+                        try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
+                            (JSONResponse) -> Void in
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                            print(JSONResponse)
+                            let json = JSON(JSONResponse)
+                            let msg = json["msg"].stringValue
+                            let status = json["status"].stringValue
+                            if msg == "View Services" && status == "success"
+                            {
+                                if json["services"].count > 0 {
+                                    
+                                    self.serviceArr.removeAll()
+                                    self.service_nameArr.removeAll()
+                                    self.serviceIDArr.removeAll()
+                                    
+                                    for i in 0..<json["services"].count {
+                                        
+                                        let services = Services.init(json: json["services"][i])
+                                        self.serviceArr.append(services)
+                                        let service_name = services.service_name
+                                        self.service_nameArr.append(service_name!)
+                                        let service_id = services.service_id
+                                        self.serviceIDArr.append(service_id!)
+                                    }
+                                        self.tableView .reloadData()
+                                }
+                                
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
+                                    
+                                }
+                                self.serviceArr.removeAll()
+                                self.service_nameArr.removeAll()
+                                self.serviceIDArr.removeAll()
+                                self.tableView .reloadData()
+                                self.isServiceAddButtonIsClicked = false
+                            }
+                        }) {
+                            (error) -> Void in
+                            print(error)
+                        }
+                    }
+                    catch
+                    {
+                        print("Unable to load data: \(error)")
+                    }
+            }
+      }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return serviceArr.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ServiceDetailTableViewCell
+        
+        if (self.indexArray?.contains(indexPath as NSIndexPath))!
+        {
+            cell.tickImage.isHidden = false
+            cell.addImage.isHidden = true
+            cell.addLabel.isHidden = true
+            let service = serviceArr[indexPath.row]
+            cell.serviceName.text =  service.service_name
+            let imgUrl = service.service_pic_url
+            if imgUrl!.isEmpty == false
+            {
+                let url = URL(string: imgUrl!)
+                DispatchQueue.global().async {
+                    if let data = try? Data(contentsOf: url!) {
+                        if let image = UIImage(data: data) {
+                            DispatchQueue.main.async {
+                                cell.serviceImageView.image = image
+                            }
+                        }
+                    }
+                }
+            }
+            cell.selectionBackgroundView.backgroundColor =  UIColor(red: 142.0/255, green: 198.0/255, blue: 65.0/255, alpha: 1.0)
+            cell.addButton.tag = indexPath.row
+            cell.addButton.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
+        }
+        else
+        {
+            cell.tickImage.isHidden = true
+            cell.addImage.isHidden = false
+            cell.addLabel.isHidden = false
+            let service = serviceArr[indexPath.row]
+            cell.serviceName.text =  service.service_name
+            let imgUrl = service.service_pic_url
+            if imgUrl!.isEmpty == false
+            {
+                let url = URL(string: imgUrl!)
+                DispatchQueue.global().async {
+                    if let data = try? Data(contentsOf: url!) {
+                        if let image = UIImage(data: data) {
+                            DispatchQueue.main.async {
+                                cell.serviceImageView.image = image
+                            }
+                        }
+                    }
+                }
+            }
+            cell.selectionBackgroundView.backgroundColor =  UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0)
+            cell.addButton.tag = indexPath.row
+            cell.addButton.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
+        }
+        return cell
+    }
+    
+    
+    @objc func buttonSelected(sender: UIButton){
+        print(sender.tag)
+        isServiceAddButtonIsClicked = true
+        let myIndexPath = NSIndexPath(row: sender.tag, section: 0)
+        self.indexArray?.append(myIndexPath as NSIndexPath)
+        print(indexArray as Any)
+        let cell = tableView.cellForRow(at: myIndexPath as IndexPath) as! ServiceDetailTableViewCell
+        self.serviceAddToCart(user_master_id: GlobalVariables.shared.user_master_id, category_id: main_cat_id, sub_category_id: sub_cat_id, service_id: serviceIDArr[myIndexPath.row])
+        cell.selectionBackgroundView.backgroundColor =  UIColor(red: 142.0/255, green: 198.0/255, blue: 65.0/255, alpha: 1.0)
+        cell.addImage.isHidden = true
+        cell.addLabel.isHidden = true
+        cell.tickImage.isHidden = false
+    }
+    
+    func serviceAddToCart(user_master_id: String, category_id: String, sub_category_id: String, service_id:String)
+    {
+        if user_master_id.isEmpty == true
+        {
+            let alertController = UIAlertController(title: "SkilEX", message: "If you want this service you have to login", preferredStyle: UIAlertController.Style.alert)
+            
+            
+            let okAction = UIAlertAction(title: "Login", style: UIAlertAction.Style.default) {
+                UIAlertAction in
+                self.performSegue(withIdentifier: "to_Login", sender: self)
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default) {
+                UIAlertAction in
+            }
+            
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else
+        {
+            let url = AFWrapper.BASE_URL + "add_service_to_cart"
+            let parameters = ["user_master_id": user_master_id, "category_id": category_id, "sub_category_id": sub_category_id, "service_id": service_id]
+            DispatchQueue.global().async
+                {
+                    do
+                    {
+                        try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
+                            (JSONResponse) -> Void in
+                            print(JSONResponse)
+                            let json = JSON(JSONResponse)
+                            let msg = json["msg"].stringValue
+                            let status = json["status"].stringValue
+                            if msg == "Service added to cart" && status == "success"
+                            {
+                                let cart_total = json["cart_total"]
+                                print(cart_total as Any)
+                                let service_count = cart_total["service_count"].stringValue
+                                let total_amt = cart_total["total_amt"].stringValue
+                                MBProgressHUD.showAdded(to: self.view, animated: true)
+                                self.UpdateServiceCountandCost(serviceCount: service_count , amount: total_amt)
+                            }
+                            else
+                            {
+                                    Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
+                                        //Custom action code
+                                    }
+                            }
+                        }) {
+                            (error) -> Void in
+                            print(error)
+                        }
+                    }
+                    catch
+                    {
+                        print("Unable to load data: \(error)")
+                    }
+            }
+        }
+    }
+    
+    func UpdateServiceCountandCost(serviceCount:String, amount:String)
+    {
+        MBProgressHUD.hide(for: self.view, animated: true)
+        self.serviceCountLabel.text = String(format: "%@%@ | %@%@", "Serive :", serviceCount,"Rs.",amount)
+        GlobalVariables.shared.Service_amount = amount
+    }
+    
+    func serviceRemoveFromCart(user_master_id: String)
+    {
+        let url = AFWrapper.BASE_URL + "clear_cart"
+        let parameters = ["user_master_id": user_master_id]
         DispatchQueue.global().async
             {
                 do
                 {
                     try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
                         (JSONResponse) -> Void in
-                        MBProgressHUD.hide(for: self.view, animated: true)
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
                         let status = json["status"].stringValue
-                        if msg == "View Services" && status == "success"
+                        if msg == "All Service removed from cart" && status == "success"
                         {
-                            if json["services"].count > 0 {
-                                
-                                for i in 0..<json["services"].count {
-                                    
-                                    let services = Services.init(json: json["services"][i])
-                                    self.serviceArr.append(services)
-                                    let service_name = services.service_name
-                                    self.service_nameArr.append(service_name!)
-                                }
-                                
-                                self.tableView .reloadData()
-                            }
-                            
+                            MBProgressHUD.showAdded(to: self.view, animated: true)
+                            self.UpdateServiceCountandCost(serviceCount: "0" , amount: "0")
+                            self.indexArray = []
                         }
                     }) {
                         (error) -> Void in
@@ -135,53 +353,13 @@ class ServiceDetail: UIViewController,UIScrollViewDelegate,UITableViewDelegate,U
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        return serviceArr.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ServiceDetailTableViewCell
-        cell.tickImage.isHidden = true
-        cell.addImage.isHidden = false
-        cell.addLabel.isHidden = false
-        let service = serviceArr[indexPath.row]
-        cell.serviceName.text =  service.service_name
-        let imgUrl = service.service_pic_url
-        if imgUrl!.isEmpty == false
-        {
-            let url = URL(string: imgUrl!)
-            DispatchQueue.global().async {
-                if let data = try? Data(contentsOf: url!) {
-                    if let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            cell.serviceImageView.image = image
-                        }
-                    }
-                }
-            }
-        }
-        cell.addButton.tag = indexPath.row
-        cell.addButton.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
-        return cell
-    }
-    
-    @objc func buttonSelected(sender: UIButton){
-        print(sender.tag)
-        cellButtonisSelected = true
-        let myIndexPath = NSIndexPath(row: sender.tag, section: 0)
-        let cell = tableView.cellForRow(at: myIndexPath as IndexPath) as! ServiceDetailTableViewCell
-        cell.selectionBackgroundView.backgroundColor =  UIColor(red: 142.0/255, green: 198.0/255, blue: 65.0/255, alpha: 1.0)
-        cell.addImage.isHidden = true
-        cell.addLabel.isHidden = true
-        cell.tickImage.isHidden = false
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let index = serviceArr[indexPath.row]
         serviceID = index.service_id!
+        GlobalVariables.shared.catServicetID = serviceID
+        GlobalVariables.shared.main_catID = main_cat_id
+        GlobalVariables.shared.sub_catID = sub_cat_id
         if serviceID.isEmpty == false
         {
             let url = AFWrapper.BASE_URL + "service_details"
@@ -200,41 +378,11 @@ class ServiceDetail: UIViewController,UIScrollViewDelegate,UITableViewDelegate,U
                             let status = json["status"].stringValue
                             if msg == "Service Details" && status == "success"
                             {
-                                let serviceDetails = ServicesDescripition(json: json)
-                                let imgUrl = serviceDetails.service_pic_url
-                                self.advance_amount = serviceDetails.advance_amount!
-                                self.exclusions = serviceDetails.exclusions!
-                                self.exclusions_ta = serviceDetails.exclusions_ta!
-                                self.inclusions = serviceDetails.inclusions!
-                                self.inclusions_ta = serviceDetails.inclusions_ta!
-                                self.is_advance_payment = serviceDetails.is_advance_payment!
-                                self.others = serviceDetails.others!
-                                self.others_ta = serviceDetails.others_ta!
-                                self.rate_card = serviceDetails.rate_card!
-                                self.rate_card_details = serviceDetails.rate_card_details!
-                                self.rate_card_details_ta = serviceDetails.rate_card_details_ta!
-                                self.service_id = serviceDetails.service_id!
-                                self.service_name = serviceDetails.service_name!
-                                self.service_procedure = serviceDetails.service_procedure!
-                                self.service_procedure_ta = serviceDetails.service_procedure_ta!
-                                self.service_ta_name = serviceDetails.service_ta_name!
-                                self.sub_cat_id = serviceDetails.sub_cat_id!
-
-                                if imgUrl?.isEmpty == false
-                                {
-                                    let url = URL(string: imgUrl!)
-                                    DispatchQueue.global().async { [weak self] in
-                                        if let data = try? Data(contentsOf: url!) {
-                                            if let image = UIImage(data: data) {
-                                                DispatchQueue.main.async {
-                                                    self?.serviceImage = image
-                                                    self!.performSegue(withIdentifier: "serviceDescrption", sender: self)
-                                                }
-                                            }
-                                        }
-                                     }
-                                 }
-                               }
+                                let servicesdescripition = ServicesDescripition(json: json["service_details"])
+                                UserDefaults.standard.saveServicesDescripition(servicesDescripition: servicesdescripition)
+                                GlobalVariables.shared.Service_amount = servicesdescripition.rate_card!
+                                self.performSegue(withIdentifier: "serviceDescrption", sender: self)
+                            }
                         }) {
                             (error) -> Void in
                             print(error)
@@ -244,16 +392,38 @@ class ServiceDetail: UIViewController,UIScrollViewDelegate,UITableViewDelegate,U
                     {
                         print("Unable to load data: \(error)")
                     }
-            }
+             }
         
         }
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 93
+        return 117
+    }
+    
+    @objc public override func backButtonClick(sender: UIButton) {
+        if isServiceAddButtonIsClicked == true
+        {
+            self.serviceRemoveFromCart(user_master_id: GlobalVariables.shared.user_master_id)
+        }
+        
+         self.navigationController?.popViewController(animated: true)
     }
 
+    @IBAction func viewSummaryButton(_ sender: Any)
+    {
+        if isServiceAddButtonIsClicked == true
+        {
+            self.performSegue(withIdentifier: "viewSummary", sender: self)
+        }
+        else
+        {
+            Alert.defaultManager.showOkAlert("SkilEx", message: "Your Cart is Empty") { (action) in
+                
+            }
+        }
+    }
     
     // MARK: - Navigation
 
@@ -262,26 +432,15 @@ class ServiceDetail: UIViewController,UIScrollViewDelegate,UITableViewDelegate,U
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if (segue.identifier == "serviceDescrption") {
-            let nav = segue.destination as! UINavigationController
-            let vc = nav.topViewController as! ServiceDescripition
-            vc.serviceImage = self.serviceImage
-            vc.advance_amount = self.advance_amount
-            vc.exclusions = self.exclusions
-            vc.exclusions_ta = self.exclusions_ta
-            vc.inclusions = self.inclusions
-            vc.inclusions_ta = self.inclusions_ta
-            vc.is_advance_payment = self.is_advance_payment
-            vc.others = self.others
-            vc.others_ta = self.others_ta
-            vc.rate_card = self.rate_card
-            vc.rate_card_details = self.rate_card_details
-            vc.rate_card_details_ta = self.rate_card_details_ta
-            vc.service_id = self.service_id
-            vc.service_name = self.service_name
-            vc.service_procedure = self.service_procedure
-            vc.service_procedure_ta = self.service_procedure_ta
-            vc.service_ta_name = self.service_ta_name
-            vc.sub_cat_id = self.sub_cat_id
+            let _ = segue.destination as! ServiceDescripition
+        }
+        else if (segue.identifier == "viewSummary")
+        {
+            let _ = segue.destination as! ViewSummary
+        }
+        else if (segue.identifier == "to_Login")
+        {
+            let _ = segue.destination as! Login
         }
     }
 }

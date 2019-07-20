@@ -10,85 +10,138 @@ import UIKit
 import SwiftyJSON
 import MBProgressHUD
 
-class Login: UIViewController {
+class Login: UIViewController,UITextFieldDelegate {
 
+    @IBOutlet weak var appNameLabel: UILabel!
+    @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var enterMobileNumberLabel: UILabel!
+    @IBOutlet weak var skipforNowPotlet: UIButton!
     @IBOutlet var mobileNumber: UITextField!
-    
     @IBOutlet var submitOutlet: UIButton!
+    
+    var user_master_id = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        self.preferedLanguage()
         self.mobileNumber.delegate = self
         self.mobileNumber.tag = 1
         self.addToolBar(textField: mobileNumber)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        view.bindToKeyboard()
         self.hideKeyboardWhenTappedAround()
-        
+       
     }
     
     override func viewWillLayoutSubviews() {
         
-        submitOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: self.submitOutlet.frame.height / 2, backgroundcolor: UIColor(red: 0.0/255, green: 108.0/255, blue: 255.0/255, alpha: 1.0))
+        submitOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
+        
     }
     
-
+    func preferedLanguage()
+    {
+        appNameLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: "")
+        welcomeLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "welcome_text", comment: "")
+        enterMobileNumberLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "mobilenumber_text", comment: "")
+        mobileNumber.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: "mobilenumberplaceholder_text", comment: "")
+        submitOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "login_text", comment: ""), for: .normal)
+        skipforNowPotlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "skip_text", comment: ""), for: .normal)
+    }
+    
     @IBAction func submit(_ sender: Any)
     {
-        self.webRequest(mobileNumber: self.mobileNumber.text!)
+        self.userLogin(mobileNumber: self.mobileNumber.text!)
     }
     
-    func webRequest (mobileNumber:String)
+    @IBAction func skipButton(_ sender: Any)
     {
-//        if mobileNumber.isEmpty{
-//
-//            Alert.defaultManager.showOkAlert("SkilEx", message: "Mobile Number cannot be Empty") { (action) in
-//                //Custom action code
-//            }
-//    }
-//        else if mobileNumber.count != 10
-//        {
-//            Alert.defaultManager.showOkAlert("SkilEx", message: "Enter the valid Mobile Number") { (action) in
-//                //Custom action code
-//            }
-//        }
-//    else
-//    {
-//        let parameters = ["phone_no": mobileNumber]
-//        MBProgressHUD.showAdded(to: self.view, animated: true)
-//        DispatchQueue.global().async
-//            {
-//                do
-//                {
-//                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "mobile_check", params: parameters, headers: nil, success: {
-//                        (JSONResponse) -> Void in
-//                        MBProgressHUD.hide(for: self.view, animated: true)
-//                        print(JSONResponse)
-//                        let json = JSON(JSONResponse)
-//                        let msg = json["msg"].stringValue
-//                        let status = json["status"].stringValue
-//                        if msg == "Mobile OTP" && status == "success"{
-//                            let phone_no = json["phone_no"].stringValue
-//                            let otp = json["otp"].stringValue
-//                            let user_master_id = json["user_master_id"].stringValue
-//                            UserDefaults.standard.set(user_master_id, forKey: "user_master_id")
-//                            UserDefaults.standard.set(phone_no, forKey: "phone_no")
-//                            UserDefaults.standard.set(otp, forKey: "otp_key")
+        self.skipLogin(unique_number: UIDevice.current.identifierForVendor!.uuidString, mobile_key: UserDefaults.standard.getDevicetoken(), mobile_type: "2", user_stat: "Guest")
+    }
+    
+    func userLogin (mobileNumber:String)
+    {
+        if mobileNumber.isEmpty{
+
+            Alert.defaultManager.showOkAlert("SkilEx", message: "Mobile Number cannot be Empty") { (action) in
+                //Custom action code
+            }
+        }
+        else if mobileNumber.count != 10
+        {
+            Alert.defaultManager.showOkAlert("SkilEx", message: "Enter the valid Mobile Number") { (action) in
+                //Custom action code
+            }
+        }
+    else
+    {
+        let parameters = ["phone_no": mobileNumber]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+            {
+                do
+                {
+                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "mobile_check", params: parameters, headers: nil, success: {
+                        (JSONResponse) -> Void in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print(JSONResponse)
+                        let json = JSON(JSONResponse)
+                        let msg = json["msg"].stringValue
+                        let status = json["status"].stringValue
+                        if msg == "Mobile OTP" && status == "success"{
+                            let phone_no = json["phone_no"].stringValue
+                            let otp = json["otp"].stringValue
+                            self.user_master_id = json["user_master_id"].stringValue
+                            UserDefaults.standard.set(self.user_master_id, forKey: "user_master_id")
+                            GlobalVariables.shared.user_master_id = UserDefaults.standard.string(forKey: "user_master_id") ?? ""
+                            UserDefaults.standard.set(phone_no, forKey: "phone_no")
+                            UserDefaults.standard.set(otp, forKey: "otp_key")
                             self.performSegue(withIdentifier: "to_OTP", sender: self)
-//                            print(phone_no)
-//                        }
-//                    }) {
-//                        (error) -> Void in
-//                        print(error)
-//                    }
-//                }
-//                catch
-//                {
-//                    print("Unable to load data: \(error)")
-//                }
-//           }
-//        }
+                            print(phone_no)
+                        }
+                    }) {
+                        (error) -> Void in
+                        print(error)
+                    }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
+           }
+        }
+    }
+    
+    func skipLogin (unique_number: String, mobile_key: String, mobile_type: String, user_stat:String)
+    {
+            let parameters = ["unique_number": unique_number, "mobile_key": mobile_key, "mobile_type": mobile_type, "user_stat": user_stat]
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            DispatchQueue.global().async
+                {
+                    do
+                    {
+                        try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "guest_login", params: parameters, headers: nil, success: {
+                            (JSONResponse) -> Void in
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                            print(JSONResponse)
+                            let json = JSON(JSONResponse)
+                            let msg = json["msg"].stringValue
+                            let status = json["status"].stringValue
+                            if msg == "Success" && status == "success"{
+                              GlobalVariables.shared.user_master_id = "2"
+                              self.performSegue(withIdentifier: "guest_Home", sender: self)
+                            }
+                        }) {
+                            (error) -> Void in
+                            print(error)
+                        }
+                    }
+                    catch
+                    {
+                        print("Unable to load data: \(error)")
+                    }
+            }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField)
@@ -111,16 +164,17 @@ class Login: UIViewController {
     {
         if (segue.identifier == "to_OTP") {
             let vc = segue.destination as! OTP
-            vc.user_msater_id = UserDefaults.standard.string(forKey: "user_master_id") ?? ""
+            vc.user_master_id = GlobalVariables.shared.user_master_id
             vc.mobileNumber = UserDefaults.standard.string(forKey: "phone_no") ?? ""
             vc.otp = UserDefaults.standard.string(forKey: "otp_key") ?? ""
-            print(vc.user_msater_id,vc.otp)
+            print(vc.otp)
+        }
+        else if (segue.identifier == "guest_Home")
+        {
+            let vc = segue.destination as! Tabbarcontroller
+            print(vc)
         }
     }
     
 }
-
-
-
-
 

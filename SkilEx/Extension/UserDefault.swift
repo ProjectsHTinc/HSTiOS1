@@ -11,6 +11,7 @@ import UIKit
 enum UserDefaultsKey : String
 {
       case userSessionKey
+      case userDeviceTokenKey
 }
 
 extension UserDefaults
@@ -18,12 +19,12 @@ extension UserDefaults
     
     func saveDeviceToken(deviceToken: String)
     {
-        set(deviceToken.isEmpty ? nil : deviceToken, forKey:UserDefaultsKey.userSessionKey.rawValue)
+        set(deviceToken.isEmpty ? nil : deviceToken, forKey:UserDefaultsKey.userDeviceTokenKey.rawValue)
     }
     
     func getDevicetoken() -> String
     {
-        return string(forKey: UserDefaultsKey.userSessionKey.rawValue)!
+        return string(forKey: UserDefaultsKey.userDeviceTokenKey.rawValue)!
     }
     
     func saveUserdata(userdata: UserData)
@@ -51,26 +52,26 @@ extension UserDefaults
         return nil
     }
     
-    func saveSubCategoery(subcategories: SubCategories)
+    func saveServicesDescripition(servicesDescripition: ServicesDescripition)
     {
         
         let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(subcategories) {
+        if let encoded = try? encoder.encode(servicesDescripition) {
             let defaults = UserDefaults.standard
             defaults.set(encoded, forKey: UserDefaultsKey.userSessionKey.rawValue)
         }
     }
     
-    func getSubCategoery()-> SubCategories? {
+    func getServicesDescripition()-> ServicesDescripition? {
         
         if data(forKey: UserDefaultsKey.userSessionKey.rawValue) != nil
         {
             let decodedData = UserDefaults.standard.data(forKey: UserDefaultsKey.userSessionKey.rawValue)
-            var subcategories: SubCategories?
+            var servicesdescripition: ServicesDescripition?
             if decodedData != nil {
-                subcategories = try! JSONDecoder().decode(SubCategories.self, from: decodedData!)
+                servicesdescripition = try! JSONDecoder().decode(ServicesDescripition.self, from: decodedData!)
             }
-            return subcategories
+            return servicesdescripition
         }
         
         return nil

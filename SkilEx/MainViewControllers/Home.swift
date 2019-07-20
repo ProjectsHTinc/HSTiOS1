@@ -10,37 +10,83 @@ import UIKit
 import SwiftyJSON
 import MBProgressHUD
 
-class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate
+class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate
 {
-    func updateSearchResults(for searchController: UISearchController) {
-        
-    }
-    
-    var bannerImage = [UIImage]()
+    var bannerImage = [String]()
     var index = 0
     var inForwardDirection = true
     var timer: Timer?
     var categoeryArr = [Categories]()
+    var banner_Image = [BannerImages]()
     var subcategoeryArr = [String]()
     var subcategoeryID = [String]()
     var cat_id = String()
     
-    var filtered = [Categories]()
-    var searchActive : Bool = false
-    let searchController = UISearchController(searchResultsController: nil)
-    
-    
     @IBOutlet var bannerCollectionView: UICollectionView!
     @IBOutlet var categoryCollectionView: UICollectionView!
-    @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet weak var searchTextfield: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        //let userdata = UserDefaults.standard.getUserData()
+        self.addrightButton() 
+        self.viewMainCategoery()
+        self.viewBanners()
+        self.categoryCollectionView.isUserInteractionEnabled = true
+        self.hideKeyboardWhenTappedAround()
+        self.searchTextfield.delegate = self
+        self.searchTextfield.addShadowToTextField(cornerRadius: 5.0)
+        self.searchTextfield.addShadowToTextField(color: UIColor.gray, cornerRadius: 5.0)
+    }
+    
+    func viewBanners()
+    {
+        let url = AFWrapper.BASE_URL + "view_banner_list"
+        let parameters = ["user_master_id": GlobalVariables.shared.user_master_id]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+            {
+                do
+                {
+                    try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
+                        (JSONResponse) -> Void in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print(JSONResponse)
+                        let json = JSON(JSONResponse)
+                        let msg = json["msg"].stringValue
+                        let status = json["status"].stringValue
+                        if msg == "View banner list" && status == "success"
+                        {
+                            if json["banners"].count > 0 {
+                                
+                                for i in 0..<json["banners"].count {
+                                    let banner = BannerImages.init(json: json["banners"][i])
+                                    self.banner_Image.append(banner)
+                                    let bannerImg = banner.banner_img
+                                    self.bannerImage.append(bannerImg!)
+                                }
+                                    self.startTimer()
+                                    self.bannerCollectionView.reloadData()
+                            }
+                            
+                        }
+                    }) {
+                        (error) -> Void in
+                        print(error)
+                    }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
+        }
+    }
+    
+    func viewMainCategoery()
+    {
         let url = AFWrapper.BASE_URL + "view_maincategory"
-        let parameters = ["user_master_id": "1"]
+        let parameters = ["user_master_id": GlobalVariables.shared.user_master_id]
         MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
             {
@@ -62,9 +108,9 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                                     let categoery = Categories.init(json: json["categories"][i])
                                     self.categoeryArr.append(categoery)
                                 }
-                                    self.categoryCollectionView.reloadData()
+                                   self.categoryCollectionView.reloadData()
                             }
-
+                            
                         }
                     }) {
                         (error) -> Void in
@@ -76,35 +122,13 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                     print("Unable to load data: \(error)")
                 }
         }
-        
-        self.searchController.searchResultsUpdater = self
-        self.searchController.delegate = self
-        self.searchController.searchBar.delegate = self
-        self.searchController.hidesNavigationBarDuringPresentation = false
-        self.searchController.dimsBackgroundDuringPresentation = true
-        self.searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search"
-        searchController.searchBar.clipsToBounds = true
-        self.definesPresentationContext = true
-        searchController.searchBar.sizeToFit()
-        searchController.searchBar.becomeFirstResponder()
-
-        if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
-            textfield.textColor = UIColor.white
-            textfield.backgroundColor = UIColor.white
-            
-        }
-        self.categoryCollectionView.isUserInteractionEnabled = true
-        self.hideKeyboardWhenTappedAround()
-        bannerImage = [UIImage(named: "physiotherapy-1.png"),UIImage(named: "physiotherapy-2.png"),UIImage(named: "physiotherapy-3.png")] as! [UIImage]
-        startTimer()
     }
-    
     
     func startTimer() {
         if timer == nil {
-            timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(scrollToNextCell), userInfo: nil, repeats: true);
-        }    }
+            timer = Timer.scheduledTimer(timeInterval: 6.0, target: self, selector: #selector(scrollToNextCell), userInfo: nil, repeats: true);
+        }
+    }
     
     @objc func scrollToNextCell() {
         
@@ -138,21 +162,14 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        if collectionView == self.bannerCollectionView {
-             return bannerImage.count 
+        if collectionView == self.bannerCollectionView
+        {
+             return banner_Image.count 
         }
         else
         {
-            if searchActive
-            {
-                return filtered.count
-            }
-            else
-            {
-                return categoeryArr.count
-            }
+            return categoeryArr.count
         }
-       
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
@@ -161,18 +178,8 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         if collectionView == bannerCollectionView
         {
             let cell = bannerCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! BannerCollectionViewCell
-            cell.bannerImageView.image = bannerImage[indexPath.row]
-            
-            return cell
-        }
-        
-        if searchActive
-        {
-            let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "Categorycell", for: indexPath) as! CategoryCollectionViewCell
-            cell.cellView.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: -1, height: -1), radius: 0, scale: true, cornerradius: 3)
-            let filter = filtered[indexPath.row]
-            cell.categoeryName.text =  filter.cat_name
-            let imgUrl = filter.cat_pic_url
+            let bannerImg = banner_Image[indexPath.row]
+            let imgUrl = bannerImg.banner_img
             if imgUrl!.isEmpty == false
             {
                 let url = URL(string: imgUrl!)
@@ -180,18 +187,19 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                     if let data = try? Data(contentsOf: url!) {
                         if let image = UIImage(data: data) {
                             DispatchQueue.main.async {
-                                cell.categoeryImage.image = image
+                                cell.bannerImageView.image = image
                             }
                         }
                     }
                 }
             }
+            
             return cell
         }
         else
         {
             let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "Categorycell", for: indexPath) as! CategoryCollectionViewCell
-            cell.cellView.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: -1, height: -1), radius: 0, scale: true, cornerradius: 3)
+            cell.cellView.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: -1, height: -1), radius: 0, scale: true, cornerradius: 0)
             let categoery = categoeryArr[indexPath.row]
             cell.categoeryName.text =  categoery.cat_name
             let imgUrl = categoery.cat_pic_url
@@ -216,58 +224,65 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         
         if collectionView == categoryCollectionView
         {
-            guard let cell = categoryCollectionView.cellForItem(at: indexPath as IndexPath) else { return }
+            guard categoryCollectionView.cellForItem(at: indexPath as IndexPath) != nil else { return }
             let index = categoeryArr[indexPath.row]
             cat_id = index.cat_id!
-            let url = AFWrapper.BASE_URL + "view_subcategory"
-            let parameters = ["main_cat_id": cat_id]
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-            DispatchQueue.global().async
+            print(cat_id)
+            self.viewSubCategoery(categoeryId: cat_id)
+        }
+    }
+    
+    func viewSubCategoery (categoeryId: String)
+    {
+        let url = AFWrapper.BASE_URL + "view_subcategory"
+        let parameters = ["main_cat_id": categoeryId]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+            {
+                do
                 {
-                    do
-                    {
-                        try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
-                            (JSONResponse) -> Void in
-                            MBProgressHUD.hide(for: self.view, animated: true)
-                            print(JSONResponse)
-                            let json = JSON(JSONResponse)
-                            let msg = json["msg"].stringValue
-                            let status = json["status"].stringValue
-                            if msg == "View Sub Category" && status == "success"
-                            {
-                                if json["sub_categories"].count > 0 {
+                    try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
+                        (JSONResponse) -> Void in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print(JSONResponse)
+                        let json = JSON(JSONResponse)
+                        let msg = json["msg"].stringValue
+                        let status = json["status"].stringValue
+                        if msg == "View Sub Category" && status == "success"
+                        {
+                            if json["sub_categories"].count > 0 {
+                                
+                                self.subcategoeryArr.removeAll()
+                                self.subcategoeryID.removeAll()
+                                for i in 0..<json["sub_categories"].count {
                                     
-                                    for i in 0..<json["sub_categories"].count {
-                                        
-                                        let subCategoery = SubCategories.init(json: json["sub_categories"][i])
-                                        UserDefaults.standard.saveSubCategoery(subcategories: subCategoery)
-                                        let subCategoeryName = subCategoery.sub_cat_name
-                                        let subCategoeryID = subCategoery.sub_cat_id
-                                        self.subcategoeryArr.append(subCategoeryName!)
-                                        self.subcategoeryID.append(subCategoeryID!)
-                                        
-                                    }
-                                    
-                                    self.performSegue(withIdentifier: "serviceDetail", sender: cell)
-
-                                }
-                            }
-                            else
-                            {
-                                Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
+                                    let subCategoery = SubCategories.init(json: json["sub_categories"][i])
+                                    let subCategoeryName = subCategoery.sub_cat_name
+                                    let subCategoeryID = subCategoery.sub_cat_id
+                                    self.subcategoeryArr.append(subCategoeryName!)
+                                    self.subcategoeryID.append(subCategoeryID!)
                                     
                                 }
-                            }
-                        }) {
-                            (error) -> Void in
-                            print(error)
+                                
+                                self.performSegue(withIdentifier: "serviceDetail", sender: self)
+                                
+                              }
                         }
+                        else
+                        {
+                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
+                                
+                            }
+                        }
+                    }) {
+                        (error) -> Void in
+                        print(error)
                     }
-                    catch
-                    {
-                        print("Unable to load data: \(error)")
-                    }
-            }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
         }
     }
 
@@ -300,54 +315,37 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         return 0
     }
     
-    //MARK: Search Bar
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
-    {
-        if let searchText = searchBar.text {
-            
-            if searchText != "" {
-                searchActive = true
-                filtered = categoeryArr.filter({$0.cat_name!.contains(searchText) || $0.cat_name!.contains(searchText)})
-                categoryCollectionView.reloadData()
-            }
-            else {
-                searchActive = false
-                filtered = categoeryArr
-                categoryCollectionView.reloadData()
-            }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == searchTextfield
+        {
+            self.performSegue(withIdentifier: "search", sender: self)
         }
+        return true
+    }
+    @IBAction func searchFieldCloseButton(_ sender: Any) {
+        
+        searchTextfield.text = ""
+        searchTextfield.resignFirstResponder()
     }
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = false
-        categoryCollectionView.reloadData()
-    }
-    
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-        categoryCollectionView.reloadData()
-    }
-    
-
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if (segue.identifier == "serviceDetail") {
-            let nav = segue.destination as! UINavigationController
-            let vc = nav.topViewController as! ServiceDetail
+            let vc = segue.destination as! ServiceDetail
             vc.subcategoeryNameArr = self.subcategoeryArr
             vc.subcategoeryIDArr = self.subcategoeryID
             vc.main_cat_id = self.cat_id
         }
+        else if (segue.identifier == "search")
+        {
+            let vc = segue.destination as! SearchResult
+            vc.searchtext = self.searchTextfield.text!
+        }
 
     }
 }
+
