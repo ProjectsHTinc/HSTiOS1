@@ -55,7 +55,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Mobile Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yZ-y9-csl">
                                                 <rect key="frame" x="0.0" y="305" width="375" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_mobile" translatesAutoresizingMaskIntoConstraints="NO" id="uwL-X3-EVC">
@@ -229,6 +229,9 @@
                                                 <state key="normal" title="Resend Code">
                                                     <color key="titleColor" red="0.074509803920000006" green="0.35294117650000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="resendButton:" destination="vuU-b0-pNP" eventType="touchUpInside" id="Shu-nK-JQz"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LGR-Vf-akU">
                                                 <rect key="frame" x="140" y="446" width="92" height="1"/>
@@ -266,7 +269,10 @@
                         <viewLayoutGuide key="safeArea" id="cHX-Rp-Y44"/>
                     </view>
                     <connections>
+                        <outlet property="contentLabel" destination="nyo-eF-Swu" id="Wb3-rR-ZZx"/>
+                        <outlet property="enterVerificationCodeLabel" destination="Bde-5h-L19" id="543-SK-dXs"/>
                         <outlet property="mobileNumberLabel" destination="9Tc-oW-ZM6" id="Phw-5b-U01"/>
+                        <outlet property="resendOutlet" destination="3w8-8G-DZo" id="Jy4-TI-D2e"/>
                         <outlet property="submitOutlet" destination="ZBt-KZ-TWp" id="T91-9I-TX1"/>
                         <outlet property="textfieldFour" destination="4aI-kO-qE9" id="gQc-yK-aKQ"/>
                         <outlet property="textfieldThree" destination="7r2-Zh-g2f" id="aPn-Jj-kVi"/>
@@ -432,10 +438,14 @@
                     </view>
                     <connections>
                         <outlet property="addressTextfiled" destination="eNZ-Bw-wjm" id="c5A-ey-oFA"/>
+                        <outlet property="cityLabel" destination="vxH-0G-b0V" id="CNl-B3-UP7"/>
                         <outlet property="emailTextfiled" destination="byq-BJ-37g" id="enf-WZ-zJc"/>
+                        <outlet property="fullNameLabel" destination="f0V-uI-Wf4" id="aUh-lQ-K6c"/>
                         <outlet property="genderTextfiled" destination="RjV-9f-tGs" id="9qf-dQ-Alq"/>
+                        <outlet property="mailIdLabel" destination="PlO-wN-yPD" id="q8y-cW-24u"/>
                         <outlet property="nametTextfiled" destination="90U-u6-pdx" id="ACz-li-lpA"/>
                         <outlet property="profileImageView" destination="ggm-Yr-CuU" id="lcn-Xa-Q3B"/>
+                        <outlet property="registerMobileNumberLabel" destination="QvC-On-XK1" id="7P5-ya-1qY"/>
                         <outlet property="scrollView" destination="5mW-Xf-cXj" id="7a1-eC-Xak"/>
                         <outlet property="showImagePickerOutlet" destination="0Ye-be-qH9" id="gwz-9E-giq"/>
                         <outlet property="submit" destination="yoH-bb-bQg" id="nUr-fC-C5G"/>

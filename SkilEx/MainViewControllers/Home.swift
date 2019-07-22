@@ -30,6 +30,7 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "homenavtitle_text", comment: "")
         self.addrightButton() 
         self.viewMainCategoery()
         self.viewBanners()
@@ -38,6 +39,7 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         self.searchTextfield.delegate = self
         self.searchTextfield.addShadowToTextField(cornerRadius: 5.0)
         self.searchTextfield.addShadowToTextField(color: UIColor.gray, cornerRadius: 5.0)
+        self.searchTextfield.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: "homesearchbar_text", comment: "")
     }
     
     func viewBanners()
@@ -198,25 +200,50 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         }
         else
         {
-            let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "Categorycell", for: indexPath) as! CategoryCollectionViewCell
-            cell.cellView.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: -1, height: -1), radius: 0, scale: true, cornerradius: 0)
-            let categoery = categoeryArr[indexPath.row]
-            cell.categoeryName.text =  categoery.cat_name
-            let imgUrl = categoery.cat_pic_url
-            if imgUrl!.isEmpty == false
+            if LocalizationSystem.sharedInstance.getLanguage() == "en"
             {
-                let url = URL(string: imgUrl!)
-                DispatchQueue.global().async {
-                    if let data = try? Data(contentsOf: url!) {
-                        if let image = UIImage(data: data) {
-                            DispatchQueue.main.async {
-                                cell.categoeryImage.image = image
+                let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "Categorycell", for: indexPath) as! CategoryCollectionViewCell
+                cell.cellView.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: -1, height: -1), radius: 0, scale: true, cornerradius: 0)
+                let categoery = categoeryArr[indexPath.row]
+                cell.categoeryName.text =  categoery.cat_name
+                let imgUrl = categoery.cat_pic_url
+                if imgUrl!.isEmpty == false
+                {
+                    let url = URL(string: imgUrl!)
+                    DispatchQueue.global().async {
+                        if let data = try? Data(contentsOf: url!) {
+                            if let image = UIImage(data: data) {
+                                DispatchQueue.main.async {
+                                    cell.categoeryImage.image = image
+                                }
                             }
                         }
                     }
                 }
+                return cell
             }
-            return cell
+            else
+            {
+                let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "Categorycell", for: indexPath) as! CategoryCollectionViewCell
+                cell.cellView.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: -1, height: -1), radius: 0, scale: true, cornerradius: 0)
+                let categoery = categoeryArr[indexPath.row]
+                cell.categoeryName.text =  categoery.cat_ta_name
+                let imgUrl = categoery.cat_pic_url
+                if imgUrl!.isEmpty == false
+                {
+                    let url = URL(string: imgUrl!)
+                    DispatchQueue.global().async {
+                        if let data = try? Data(contentsOf: url!) {
+                            if let image = UIImage(data: data) {
+                                DispatchQueue.main.async {
+                                    cell.categoeryImage.image = image
+                                }
+                            }
+                        }
+                    }
+                }
+                return cell
+            }
         }
     }
     
@@ -254,14 +281,22 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                                 
                                 self.subcategoeryArr.removeAll()
                                 self.subcategoeryID.removeAll()
-                                for i in 0..<json["sub_categories"].count {
+                                for i in 0..<json["sub_categories"].count
+                                {
                                     
                                     let subCategoery = SubCategories.init(json: json["sub_categories"][i])
-                                    let subCategoeryName = subCategoery.sub_cat_name
                                     let subCategoeryID = subCategoery.sub_cat_id
-                                    self.subcategoeryArr.append(subCategoeryName!)
                                     self.subcategoeryID.append(subCategoeryID!)
-                                    
+                                    if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                                    {
+                                        let subCategoeryName = subCategoery.sub_cat_name
+                                        self.subcategoeryArr.append(subCategoeryName!)
+                                    }
+                                    else
+                                    {
+                                        let subCategoeryName = subCategoery.sub_cat_ta_name
+                                        self.subcategoeryArr.append(subCategoeryName!)
+                                    }
                                 }
                                 
                                 self.performSegue(withIdentifier: "serviceDetail", sender: self)

@@ -5,9 +5,45 @@
   Created by Happy Sanz Tech on 19/07/19.
   Copyright © 2019 Happy Sanz Tech. All rights reserved.
 */
+/* Login text */
 "appname_text" = "SkilEx";
 "welcome_text" = "Welcome !";
 "mobilenumber_text" = "Enter Mobile Number";
 "mobilenumberplaceholder_text" = "Mobile Number";
 "login_text" = "Login";
 "skip_text" = "Skip for Now";
+
+/* Otp text */
+"enterverificationCode_text" = "Enter Verification Code";
+"content_text" = "We have send you a 6 digit verfication code on";
+"resend_text" = "Resend Code";
+
+/* profile text */
+"profilenavtitle_text" = "User Profile";
+"fullname_text" = "Full Name";
+"regmobnum_text" = "Registered Mobile Number";
+"mailid_text" = "Mail ID";
+"city_text" = "City";
+"submit_profile_text" = "Submit";
+
+
+/* tabbarcontroller text */
+"homenavtitle_text" = "SkilEx - User Profile";
+"hometab_text" = "Home";
+"servicetab_text" = "Service";
+"profiletab_text" = "Profile";
+"alerttitle_text" = "SkilEx";
+"homealertmsg_text" = "If you want this service you have to login";
+"homealertbuttonlogin_text" = "Login";
+"homealertbuttoncancel_text" = "Cancel";
+
+/* Home text */
+"homesearchbar_text" = "Search for Service";
+
+/* ServiceDeatil text */
+"servicedetailnav_text" = "Search Detail";
+"servicedetailservice_text" = "Service";
+"servicedetailsummary_text" = "View Summary";
+"servicedetailadd_text" = "Add";
+
+

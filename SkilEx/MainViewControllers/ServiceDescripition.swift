@@ -10,72 +10,44 @@ import UIKit
 import SwiftyJSON
 import MBProgressHUD
 
-class ServiceDescripition: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class ServiceDescripition: UIViewController {
    
-    var serviceImage = UIImage()
-    var exclusions_ta = String()
-    var is_advance_payment = String()
-    var service_ta_name = String()
-    var rate_card_details_ta = String()
-    var advance_amount = String()
-    var service_procedure = String()
-    var inclusions = String()
-    var service_name = String()
-    var sub_cat_id = String()
-    var others = String()
-    var exclusions = String()
-    var service_procedure_ta = String()
-    var rate_card = String()
-    var service_id = String()
-    var others_ta = String()
-    var inclusions_ta = String()
-    var rate_card_details = String()
-
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var servicePicture: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.addBackButton()
+        let serviceDescripition = UserDefaults.standard.getServicesDescripition()
+        let imgurl = serviceDescripition?.service_pic_url!
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        if imgurl?.isEmpty == true
+        {
+            self.servicePicture.image = UIImage(named: "user.png")
+        }
+        else
+        {
+            
+            let url = URL(string: imgurl!)
+            DispatchQueue.global().async { [weak self] in
+                if let data = try? Data(contentsOf: url!) {
+                    if let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            self!.servicePicture.image = image
+                            MBProgressHUD.hide(for: self!.view, animated: true)
+                        }
+                    }
+                }
+            }
+        }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+    @objc public override func backButtonClick(sender: UIButton)
+    {
+        self.navigationController?.popViewController(animated: true)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-//        if indexPath.row == 1
-//        {
-//             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//
-//             return cell
-//        }
-//
-//        if indexPath.row == 2
-//        {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//
-//            return cell
-//        }
-//
-//        if indexPath.row == 3
-//        {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//
-//            return cell
-//        }
-//
-//        if indexPath.row == 4
-//        {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//
-//            return cell
-//        }
-        
-        return 0
-        
-    }
     /*
     // MARK: - Navigation
 

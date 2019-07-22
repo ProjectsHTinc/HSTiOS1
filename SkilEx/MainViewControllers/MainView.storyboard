@@ -542,6 +542,7 @@
                     <connections>
                         <outlet property="serviceCountLabel" destination="RIz-oz-GWC" id="XQ1-yH-eXX"/>
                         <outlet property="tableView" destination="N6L-Bj-eNP" id="mDq-2I-SaJ"/>
+                        <outlet property="viewSummaryLabel" destination="kd0-8c-kgj" id="ZGZ-3L-aHj"/>
                         <segue destination="55w-5V-SKN" kind="show" identifier="serviceDescrption" id="BFb-iT-Ez1"/>
                         <segue destination="9vQ-qD-lpd" kind="show" identifier="viewSummary" id="YJ2-0K-weh"/>
                         <segue destination="XDi-dE-aox" kind="presentation" identifier="to_Login" id="ceN-Hf-uN8"/>
@@ -583,22 +584,22 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ios_icons-16" translatesAutoresizingMaskIntoConstraints="NO" id="Tjk-Qe-4Yt">
-                                <rect key="frame" x="20" y="175" width="24" height="23"/>
+                                <rect key="frame" x="20" y="174" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgb-8V-3kl">
-                                <rect key="frame" x="53" y="175" width="222" height="23"/>
+                                <rect key="frame" x="53" y="174" width="222" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ios_icons-17" translatesAutoresizingMaskIntoConstraints="NO" id="YG9-1f-znR">
-                                <rect key="frame" x="20" y="213" width="24" height="23"/>
+                                <rect key="frame" x="20" y="212" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2G-1K-fBx">
-                                <rect key="frame" x="53" y="213" width="222" height="23"/>
+                                <rect key="frame" x="53" y="212" width="222" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -623,11 +624,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ios_icons-19" translatesAutoresizingMaskIntoConstraints="NO" id="68h-m7-kua">
-                                <rect key="frame" x="20" y="307" width="24" height="23"/>
+                                <rect key="frame" x="20" y="306" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="About SkilEx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ob7-rz-p9U">
-                                <rect key="frame" x="53" y="307" width="222" height="23"/>
+                                <rect key="frame" x="53" y="306" width="222" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                 <nil key="highlightedColor"/>
@@ -654,7 +655,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWS-Ik-TVO">
-                                <rect key="frame" x="121" y="468" width="134" height="32"/>
+                                <rect key="frame" x="121" y="466" width="134" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="logOut:" destination="SJB-eM-Epa" eventType="touchUpInside" id="Xik-5j-FcL"/>
@@ -1761,6 +1762,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="YJ2-0K-weh"/>
         <segue reference="BFb-iT-Ez1"/>
-        <segue reference="LNc-mI-MNU"/>
+        <segue reference="ceN-Hf-uN8"/>
     </inferredMetricsTieBreakers>
 </document>

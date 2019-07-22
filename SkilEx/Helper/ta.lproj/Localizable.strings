@@ -5,10 +5,44 @@
   Created by Happy Sanz Tech on 19/07/19.
   Copyright © 2019 Happy Sanz Tech. All rights reserved.
 */
+
+/* Login text */
 "appname_text" = "ஸ்கில்எக்ஸ்";
 "welcome_text" = "உங்களை வரவேற்கிறது";
 "mobilenumber_text" = "உங்கள் மொபைல் நம்பரை என்டர் செய்யவும் ";
 "mobilenumberplaceholder_text" = "மொபைல் நம்பர்";
 "login_text" = "உள் நுழை";
 "skip_text" = "இப்போதைக்கு தவிர்";
+
+/* Otp text */
+"enterverificationCode_text" = "சரிபார்ப்புக் குறியீட்டை உள்ளிடவும்";
+"content_text" = "உங்கள் மொபைல் எண்ற்கு அனுப்பப்பட்டுள்ள 4 இலக்க கடவுச்சொல்லை என்டர் செய்யவும்";
+"resend_text" = "கடவுச்சொல்லை திரும்பவும் அனுப்புக";
+
+/* profile text */
+"profilenavtitle_text" = "பயனர் சுயவிவர";
+"fullname_text" = "முழு பெயர்";
+"regmobnum_text" = "பதிவு செய்யப்பட்ட மொபைல் எண்";
+"mailid_text" = "மின்னஞ்சல் முகவரி";
+"city_text" = "நகரம்";
+"submit_profile_text" = "உள் நுழை";
+
+/* tabbarcontroller text */
+"homenavtitle_text" = "ஸ்கில்எக்ஸ் - சேவை வழங்குநர்";
+"hometab_text" = "முகப்பு பக்கம்";
+"servicetab_text" = "சேவைகள்";
+"profiletab_text" = "பயனர் சுயவிவரம்";
+"homealerttitle_text" = "ஸ்கில்எக்ஸ்";
+"homealertmsg_text" = "இந்த சேவையை நீங்கள் விரும்பினால் நீங்கள் உள்நுழைய வேண்டும்";
+"homealertbuttonlogin_text" = "உள் நுழை";
+"homealertbuttoncancel_text" = "ரத்து";
+
+/* Home text */
+"homesearchbar_text" = "சேவையைத் தேடுங்கள்";
+
+/* ServiceDeatil text */
+"servicedetailnav_text" = "தேடல் விவரம்";
+"servicedetailservice_text" = "சேவை";
+"servicedetailsummary_text" = "சுருக்கம் காண்க";
+"servicedetailadd_text" = "கூட்டு";
 

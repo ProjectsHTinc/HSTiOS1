@@ -27,12 +27,17 @@ class Profile: UIViewController
     @IBOutlet var addressTextfiled: UITextField!
     @IBOutlet var submit: UIButton!
     @IBOutlet var showImagePickerOutlet: UIButton!
+    @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var registerMobileNumberLabel: UILabel!
+    @IBOutlet weak var mailIdLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.preferedLanguage()
         self.addBackButton()
         view.bindToKeyboard()
         self.nametTextfiled.tag = 1
@@ -51,7 +56,7 @@ class Profile: UIViewController
             {
                 self.profileImageView.image = UIImage(named: "user")
             }
-            self.submit.setTitle("Submit", for: .normal)
+            self.submit.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "submit_profile_text", comment: ""), for: .normal)
         }
         else
         {
@@ -80,9 +85,19 @@ class Profile: UIViewController
                     }
                 }
             }
-            self.submit.setTitle("Update", for: .normal)
+            self.submit.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "submit_profile_text", comment: ""), for: .normal)
         }
         
+    }
+    
+    func preferedLanguage()
+    {
+        self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "profilenavtitle_text", comment: "")
+        fullNameLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "fullname_text", comment: "")
+        registerMobileNumberLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "regmobnum_text", comment: "")
+        mailIdLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "mailid_text", comment: "")
+        cityLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "city_text", comment: "")
+        submit.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "submit_profile_text", comment: ""), for: .normal)
     }
     
     @objc public override func backButtonClick(sender: UIButton) {
@@ -90,7 +105,7 @@ class Profile: UIViewController
     }
     
     override func viewWillLayoutSubviews() {
-        submit.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 190.0/255, blue: 160.0/255, alpha: 1.0))
+        submit.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
     }
     
     @IBAction func submitBtn(_ sender: Any)

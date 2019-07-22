@@ -29,13 +29,14 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
     var selectedRowIndex = -1
     var indexArray  : [NSIndexPath]?
     
+    @IBOutlet weak var viewSummaryLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var serviceCountLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        self.preferedLanguage()
         self.addBackButton()
         let viewWidth = view.frame.width
         segmentedControl1 = HMSegmentedControl(sectionTitles: subcategoeryNameArr)
@@ -65,6 +66,13 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         self.webRequestServiceList(Index: sub_cat_id)
         lastSelectedIndex = 0
         self.indexArray = []
+    }
+    
+    func preferedLanguage()
+    {
+        self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailnav_text", comment: "")
+        serviceCountLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailservice_text", comment: "")
+        viewSummaryLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailsummary_text", comment: "")
     }
     
     
@@ -187,53 +195,113 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         
         if (self.indexArray?.contains(indexPath as NSIndexPath))!
         {
-            cell.tickImage.isHidden = false
-            cell.addImage.isHidden = true
-            cell.addLabel.isHidden = true
-            let service = serviceArr[indexPath.row]
-            cell.serviceName.text =  service.service_name
-            let imgUrl = service.service_pic_url
-            if imgUrl!.isEmpty == false
+            if LocalizationSystem.sharedInstance.getLanguage() == "en"
             {
-                let url = URL(string: imgUrl!)
-                DispatchQueue.global().async {
-                    if let data = try? Data(contentsOf: url!) {
-                        if let image = UIImage(data: data) {
-                            DispatchQueue.main.async {
-                                cell.serviceImageView.image = image
+                cell.tickImage.isHidden = false
+                cell.addImage.isHidden = true
+                cell.addLabel.isHidden = true
+                cell.addLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailadd_text", comment: "")
+                let service = serviceArr[indexPath.row]
+                cell.serviceName.text =  service.service_name
+                let imgUrl = service.service_pic_url
+                if imgUrl!.isEmpty == false
+                {
+                    let url = URL(string: imgUrl!)
+                    DispatchQueue.global().async {
+                        if let data = try? Data(contentsOf: url!) {
+                            if let image = UIImage(data: data) {
+                                DispatchQueue.main.async {
+                                    cell.serviceImageView.image = image
+                                }
                             }
                         }
                     }
                 }
+                cell.selectionBackgroundView.backgroundColor =  UIColor(red: 142.0/255, green: 198.0/255, blue: 65.0/255, alpha: 1.0)
+                cell.addButton.tag = indexPath.row
+                cell.addButton.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
             }
-            cell.selectionBackgroundView.backgroundColor =  UIColor(red: 142.0/255, green: 198.0/255, blue: 65.0/255, alpha: 1.0)
-            cell.addButton.tag = indexPath.row
-            cell.addButton.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
+            else
+            {
+                cell.tickImage.isHidden = false
+                cell.addImage.isHidden = true
+                cell.addLabel.isHidden = true
+                cell.addLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailadd_text", comment: "")
+                let service = serviceArr[indexPath.row]
+                cell.serviceName.text =  service.service_ta_name
+                let imgUrl = service.service_pic_url
+                if imgUrl!.isEmpty == false
+                {
+                    let url = URL(string: imgUrl!)
+                    DispatchQueue.global().async {
+                        if let data = try? Data(contentsOf: url!) {
+                            if let image = UIImage(data: data) {
+                                DispatchQueue.main.async {
+                                    cell.serviceImageView.image = image
+                                }
+                            }
+                        }
+                    }
+                }
+                cell.selectionBackgroundView.backgroundColor =  UIColor(red: 142.0/255, green: 198.0/255, blue: 65.0/255, alpha: 1.0)
+                cell.addButton.tag = indexPath.row
+                cell.addButton.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
+            }
         }
         else
         {
-            cell.tickImage.isHidden = true
-            cell.addImage.isHidden = false
-            cell.addLabel.isHidden = false
-            let service = serviceArr[indexPath.row]
-            cell.serviceName.text =  service.service_name
-            let imgUrl = service.service_pic_url
-            if imgUrl!.isEmpty == false
+            if LocalizationSystem.sharedInstance.getLanguage() == "en"
             {
-                let url = URL(string: imgUrl!)
-                DispatchQueue.global().async {
-                    if let data = try? Data(contentsOf: url!) {
-                        if let image = UIImage(data: data) {
-                            DispatchQueue.main.async {
-                                cell.serviceImageView.image = image
+                cell.tickImage.isHidden = true
+                cell.addImage.isHidden = false
+                cell.addLabel.isHidden = false
+                cell.addLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailadd_text", comment: "")
+                let service = serviceArr[indexPath.row]
+                cell.serviceName.text =  service.service_name
+                let imgUrl = service.service_pic_url
+                if imgUrl!.isEmpty == false
+                {
+                    let url = URL(string: imgUrl!)
+                    DispatchQueue.global().async {
+                        if let data = try? Data(contentsOf: url!) {
+                            if let image = UIImage(data: data) {
+                                DispatchQueue.main.async {
+                                    cell.serviceImageView.image = image
+                                }
                             }
                         }
                     }
                 }
+                cell.selectionBackgroundView.backgroundColor =  UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0)
+                cell.addButton.tag = indexPath.row
+                cell.addButton.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
             }
-            cell.selectionBackgroundView.backgroundColor =  UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0)
-            cell.addButton.tag = indexPath.row
-            cell.addButton.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
+            else
+            {
+                cell.tickImage.isHidden = true
+                cell.addImage.isHidden = false
+                cell.addLabel.isHidden = false
+                cell.addLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailadd_text", comment: "")
+                let service = serviceArr[indexPath.row]
+                cell.serviceName.text =  service.service_ta_name
+                let imgUrl = service.service_pic_url
+                if imgUrl!.isEmpty == false
+                {
+                    let url = URL(string: imgUrl!)
+                    DispatchQueue.global().async {
+                        if let data = try? Data(contentsOf: url!) {
+                            if let image = UIImage(data: data) {
+                                DispatchQueue.main.async {
+                                    cell.serviceImageView.image = image
+                                }
+                            }
+                        }
+                    }
+                }
+                cell.selectionBackgroundView.backgroundColor =  UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0)
+                cell.addButton.tag = indexPath.row
+                cell.addButton.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
+            }
         }
         return cell
     }
@@ -317,7 +385,7 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
     func UpdateServiceCountandCost(serviceCount:String, amount:String)
     {
         MBProgressHUD.hide(for: self.view, animated: true)
-        self.serviceCountLabel.text = String(format: "%@%@ | %@%@", "Serive :", serviceCount,"Rs.",amount)
+        self.serviceCountLabel.text = String(format: "%@%@ | %@%@%@", LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailservice_text", comment: ""),":", serviceCount,"Rs.",amount)
         GlobalVariables.shared.Service_amount = amount
     }
     

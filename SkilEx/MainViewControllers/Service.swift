@@ -21,9 +21,9 @@ class Service: UIViewController{
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "homenavtitle_text", comment: "")
         self.addrightButton()
         self.updateViewBorders()
-        
     }
     
     @objc public override func backButtonClick(sender: UIButton) {

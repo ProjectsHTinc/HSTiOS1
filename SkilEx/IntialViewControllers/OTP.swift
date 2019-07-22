@@ -18,6 +18,9 @@ class OTP: UIViewController,UITextFieldDelegate {
     @IBOutlet var textfieldFour: UITextField!
     @IBOutlet var submitOutlet: UIButton!
     @IBOutlet weak var mobileNumberLabel: UILabel!
+    @IBOutlet weak var enterVerificationCodeLabel: UILabel!
+    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var resendOutlet: UIButton!
     
     var mobileNumber = String()
     var otp = String()
@@ -28,6 +31,7 @@ class OTP: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.preferedLanguage()
         view.bindToKeyboard()
         self.mobileNumberLabel.text = String(format: "%@ %@", "+91", mobileNumber)
         self.textfiledOne.delegate = self
@@ -63,6 +67,13 @@ class OTP: UIViewController,UITextFieldDelegate {
     override func viewWillLayoutSubviews() {
         
         submitOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: self.submitOutlet.frame.height / 2, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
+    }
+    
+    func preferedLanguage()
+    {
+        enterVerificationCodeLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "enterverificationCode_text", comment: "")
+        contentLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "content_text", comment: "")
+        resendOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "resend_text", comment: ""), for: .normal)
     }
     
   
@@ -166,6 +177,8 @@ class OTP: UIViewController,UITextFieldDelegate {
             }
         }
 
+    }
+    @IBAction func resendButton(_ sender: Any) {
     }
     
     // MARK: - Navigation
