@@ -145,21 +145,21 @@
                                             <constraint firstAttribute="height" constant="344" id="Lhm-vt-7Do"/>
                                             <constraint firstAttribute="width" constant="375" id="s0m-S6-gzk"/>
                                         </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZeX-Gn-F5i">
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="ZeX-Gn-F5i">
                                             <size key="itemSize" width="110" height="110"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                            <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Categorycell" id="RJU-Bx-Aot" customClass="CategoryCollectionViewCell" customModule="SkilEx" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="10" width="130" height="130"/>
+                                                <rect key="frame" x="0.0" y="10" width="130" height="130"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdY-QI-jKm">
+                                                        <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdY-QI-jKm">
                                                             <rect key="frame" x="1" y="1" width="129" height="129"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fWB-1m-hBO">
@@ -179,6 +179,23 @@
                                                                 <constraint firstAttribute="height" constant="129" id="Rjd-PS-El6"/>
                                                                 <constraint firstAttribute="width" constant="129" id="ezv-Ix-AXx"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                    <size key="value" width="10" height="10"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                    <color key="value" white="0.79761773767605637" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                    <real key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="3"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
                                                 </view>
@@ -219,12 +236,27 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="icons8-search-50"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="icons8-search"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
                                                 <real key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="horizontalInset">
                                                 <real key="value" value="35"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingRightCustom">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingLeftCustom">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="padding">
+                                                <real key="value" value="9"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="inset">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                                <real key="value" value="32"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
@@ -769,6 +801,7 @@
                                                             </state>
                                                             <connections>
                                                                 <action selector="bookNow:" destination="8Ju-fR-q4O" eventType="touchUpInside" id="RW3-dz-uSq"/>
+                                                                <action selector="bookNowAction:" destination="8Ju-fR-q4O" eventType="touchUpInside" id="hK2-GY-OlM"/>
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Insurance 4" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="2AZ-Yp-0mt">
@@ -795,6 +828,11 @@
                                                         <constraint firstAttribute="width" constant="335" id="28g-Iv-q7M"/>
                                                         <constraint firstAttribute="height" constant="102" id="ewR-0F-hhL"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -844,6 +882,11 @@
                                                         <constraint firstAttribute="width" constant="335" id="a0X-8Q-8Vi"/>
                                                         <constraint firstAttribute="height" constant="102" id="gfZ-DA-zzu"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -893,6 +936,11 @@
                                                         <constraint firstAttribute="width" constant="335" id="X5R-oK-tsB"/>
                                                         <constraint firstAttribute="height" constant="102" id="c1A-fr-kHb"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -942,6 +990,11 @@
                                                         <constraint firstAttribute="height" constant="98" id="W5O-EQ-Zvs"/>
                                                         <constraint firstAttribute="width" constant="335" id="faS-VX-y0M"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -962,15 +1015,11 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="amount" destination="lRw-GH-ina" id="pXv-YS-9Fj"/>
-                        <outlet property="exclusion" destination="F81-Yw-EKY" id="dY9-44-Q3b"/>
-                        <outlet property="exclusionView" destination="jN4-b3-rto" id="U2T-eS-bFj"/>
-                        <outlet property="inclusion" destination="wpR-hh-d5s" id="aky-lN-Mba"/>
-                        <outlet property="inclusionView" destination="mw5-L9-oMe" id="hXP-vM-sX8"/>
-                        <outlet property="procedure" destination="gGz-ps-ynG" id="iFu-VU-Khp"/>
-                        <outlet property="procedureView" destination="tZk-Ka-xvT" id="CRz-51-2Tk"/>
-                        <outlet property="rateCard" destination="2AZ-Yp-0mt" id="cqX-u3-Hiy"/>
-                        <outlet property="rateCardView" destination="t6K-Rd-NQD" id="h7k-zi-Iye"/>
+                        <outlet property="amountLabel" destination="lRw-GH-ina" id="GkR-TW-Tis"/>
+                        <outlet property="exclusionText" destination="F81-Yw-EKY" id="3sW-nQ-73q"/>
+                        <outlet property="inclusionText" destination="wpR-hh-d5s" id="AzL-mH-nNM"/>
+                        <outlet property="procedureText" destination="gGz-ps-ynG" id="F6b-fC-ZlP"/>
+                        <outlet property="serviceName" destination="2AZ-Yp-0mt" id="KdH-S8-VGN"/>
                         <segue destination="9vQ-qD-lpd" kind="show" identifier="viewSummary" id="Rvs-af-qdO"/>
                         <segue destination="XDi-dE-aox" kind="presentation" identifier="to_Login" id="obf-VG-d2E"/>
                     </connections>
@@ -1060,8 +1109,8 @@
                                         <color key="backgroundColor" red="0.92941176469999998" green="0.93333333330000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="cellView" destination="gFQ-WZ-lLZ" id="t9x-gF-htl"/>
-                                            <outlet property="serviceImageView" destination="lBf-aE-lr8" id="Ofu-ad-EJ1"/>
-                                            <outlet property="serviceName" destination="n4M-WU-rGK" id="HRM-S9-Zyg"/>
+                                            <outlet property="serviceImageView" destination="lBf-aE-lr8" id="rbQ-3R-2d5"/>
+                                            <outlet property="serviceName" destination="n4M-WU-rGK" id="dpB-NC-iHC"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1112,7 +1161,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="proceedButton:" destination="9vQ-qD-lpd" eventType="touchUpInside" id="dTc-Kx-kml"/>
+                                    <action selector="proceedAction:" destination="9vQ-qD-lpd" eventType="touchUpInside" id="jAD-oR-QC5"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T38-yX-KLl">
@@ -1128,12 +1177,10 @@
                         <viewLayoutGuide key="safeArea" id="BJa-YW-UrY"/>
                     </view>
                     <connections>
-                        <outlet property="advanceAmount" destination="mjT-sL-pDP" id="rOt-lD-DsQ"/>
-                        <outlet property="advanceAmountTitleLabel" destination="f2u-sX-XPK" id="mvY-HE-xfe"/>
-                        <outlet property="proceedOutlet" destination="nDZ-n0-WcZ" id="pA9-HI-pZZ"/>
-                        <outlet property="tableView" destination="amd-lJ-RNu" id="zcW-wL-8JK"/>
-                        <outlet property="totalAmount" destination="3wY-6f-lRx" id="e3O-s2-KLw"/>
-                        <outlet property="totalCostTitleLabel" destination="Mup-LP-dTY" id="crz-gn-fas"/>
+                        <outlet property="advanceAmount" destination="mjT-sL-pDP" id="GO6-36-oq0"/>
+                        <outlet property="proceedOutlet" destination="nDZ-n0-WcZ" id="c4C-Qd-SCh"/>
+                        <outlet property="tableView" destination="amd-lJ-RNu" id="YJE-E2-9Kt"/>
+                        <outlet property="totalServiceAmount" destination="3wY-6f-lRx" id="hc7-9B-yqe"/>
                         <segue destination="KCa-6R-24n" kind="show" identifier="customerAddress" id="IX6-QL-ZIf"/>
                     </connections>
                 </viewController>
@@ -1234,7 +1281,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="proceedAction:" destination="KCa-6R-24n" eventType="touchUpInside" id="A74-NI-jCw"/>
-                                                    <action selector="proceedButton:" destination="9vQ-qD-lpd" eventType="touchUpInside" id="uVd-ND-uWe"/>
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XxN-jv-YXM">
@@ -1400,6 +1446,11 @@
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.29803921570000003" green="0.71764705880000002" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Requested Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5d1-DE-W2F">
                                                         <rect key="frame" x="85" y="29" width="208" height="21"/>
@@ -1416,11 +1467,37 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="304" id="Suh-ix-NUx"/>
                                                     <constraint firstAttribute="height" constant="79" id="vuA-NB-Sdr"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                        <size key="value" width="2" height="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="opacity">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.29803921570000003" green="0.71764705880000002" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1T3-aB-SPO">
                                                 <rect key="frame" x="36" y="329" width="304" height="79"/>
@@ -1435,6 +1512,11 @@
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.68235294120000001" green="0.51764705879999995" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="OnGoing Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIU-Xn-bJx">
                                                         <rect key="frame" x="85" y="29" width="208" height="21"/>
@@ -1456,6 +1538,32 @@
                                                     <constraint firstAttribute="width" constant="304" id="eKj-PD-5vY"/>
                                                     <constraint firstAttribute="height" constant="79" id="y4a-M4-Z5M"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="opacity">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                        <size key="value" width="2" height="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.68235294117647061" green="0.51764705882352935" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s5e-xZ-kBO">
                                                 <rect key="frame" x="36" y="436" width="304" height="79"/>
@@ -1470,6 +1578,11 @@
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.92549019610000005" green="0.21960784310000001" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Service History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eni-DK-EgI">
                                                         <rect key="frame" x="85" y="29" width="208" height="21"/>
@@ -1491,6 +1604,32 @@
                                                     <constraint firstAttribute="width" constant="304" id="uda-1q-1eu"/>
                                                     <constraint firstAttribute="height" constant="79" id="v3L-f6-4eL"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.94117647058823528" green="0.31764705882352939" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="opacity">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                        <size key="value" width="2" height="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1740,7 +1879,7 @@
         <image name="add" width="24.5" height="24.5"/>
         <image name="dropdown" width="24.5" height="13.5"/>
         <image name="icons8-material-filled" width="24" height="24"/>
-        <image name="icons8-search-50" width="50" height="50"/>
+        <image name="icons8-search" width="30" height="30"/>
         <image name="ios_icons-16" width="24.5" height="24.5"/>
         <image name="ios_icons-17" width="24.5" height="18"/>
         <image name="ios_icons-18" width="24.5" height="24.5"/>
@@ -1762,6 +1901,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="YJ2-0K-weh"/>
         <segue reference="BFb-iT-Ez1"/>
-        <segue reference="ceN-Hf-uN8"/>
+        <segue reference="obf-VG-d2E"/>
     </inferredMetricsTieBreakers>
 </document>

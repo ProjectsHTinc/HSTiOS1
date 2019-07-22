@@ -10,7 +10,6 @@
 		6B1E0B8522C4A2C4006A0EF5 /* RoundCornerButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1E0B8422C4A2C4006A0EF5 /* RoundCornerButtons.swift */; };
 		6B1E0B8922C4C4A2006A0EF5 /* ScrollUpTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1E0B8822C4C4A2006A0EF5 /* ScrollUpTextField.swift */; };
 		6B3E652D22DC828C0098D4C4 /* CustomerAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E652C22DC828C0098D4C4 /* CustomerAddress.swift */; };
-		6B3E652F22DC8B430098D4C4 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E652E22DC8B430098D4C4 /* MapView.swift */; };
 		6B44C89C22CDE23C0084A5AB /* SearchCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B44C89B22CDE23C0084A5AB /* SearchCollectionReusableView.swift */; };
 		6B44C89E22CE14200084A5AB /* ServiceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B44C89D22CE14200084A5AB /* ServiceDetail.swift */; };
 		6B44C8A022CE143D0084A5AB /* ServiceDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B44C89F22CE143D0084A5AB /* ServiceDetailTableViewCell.swift */; };
@@ -20,16 +19,19 @@
 		6B4B51DB22C5E5FA00D73166 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4B51DA22C5E5FA00D73166 /* Service.swift */; };
 		6B4B51DD22C5E60600D73166 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4B51DC22C5E60600D73166 /* UserProfile.swift */; };
 		6B4B51DF22C5F5F900D73166 /* Tabbarcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4B51DE22C5F5F900D73166 /* Tabbarcontroller.swift */; };
-		6B4B51E622C61F4200D73166 /* ViewShadowColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4B51E522C61F4200D73166 /* ViewShadowColor.swift */; };
-		6B59684122D71CBD0061D1CF /* ServiceDescripitionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B59684022D71CBD0061D1CF /* ServiceDescripitionTableViewController.swift */; };
-		6B5D3E8022D8A3A10083600C /* ViewSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D3E7F22D8A3A10083600C /* ViewSummary.swift */; };
-		6B5D3E8222D8B11B0083600C /* CartList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D3E8122D8B11B0083600C /* CartList.swift */; };
 		6B5FE6EF227BFB19007A4F32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5FE6EE227BFB19007A4F32 /* AppDelegate.swift */; };
 		6B5FE6F4227BFB19007A4F32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B5FE6F2227BFB19007A4F32 /* Main.storyboard */; };
 		6B5FE6F6227BFB24007A4F32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B5FE6F5227BFB24007A4F32 /* Assets.xcassets */; };
 		6B5FE6F9227BFB24007A4F32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B5FE6F7227BFB24007A4F32 /* LaunchScreen.storyboard */; };
 		6B5FE704227BFB24007A4F32 /* SkilExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5FE703227BFB24007A4F32 /* SkilExTests.swift */; };
 		6B5FE70F227BFB24007A4F32 /* SkilExUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5FE70E227BFB24007A4F32 /* SkilExUITests.swift */; };
+		6B645A7422E5C04D0039935C /* BannerImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B645A7322E5C04D0039935C /* BannerImages.swift */; };
+		6B645A7622E5C4850039935C /* NavigationButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B645A7522E5C4850039935C /* NavigationButtons.swift */; };
+		6B645A7822E5C7D50039935C /* RoundCornerUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B645A7722E5C7D50039935C /* RoundCornerUIView.swift */; };
+		6B645A7A22E5CECB0039935C /* PlaceHolderImageInTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B645A7922E5CECB0039935C /* PlaceHolderImageInTextfield.swift */; };
+		6B645A7C22E5E4D60039935C /* ServiceDescripitionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B645A7B22E5E4D60039935C /* ServiceDescripitionTableViewController.swift */; };
+		6B645A7E22E5EE6F0039935C /* ViewSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B645A7D22E5EE6F0039935C /* ViewSummary.swift */; };
+		6B645A8022E5F54B0039935C /* CartList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B645A7F22E5F54B0039935C /* CartList.swift */; };
 		6B6AECEB22CC664E00192683 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6AECEA22CC664E00192683 /* CategoryCollectionViewCell.swift */; };
 		6B6AECED22CC736000192683 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6AECEC22CC736000192683 /* Categories.swift */; };
 		6B6D04F422C4DB4700393676 /* TextFieldShadowColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6D04F322C4DB4700393676 /* TextFieldShadowColor.swift */; };
@@ -37,12 +39,7 @@
 		6B709F9622D601B7003E22EB /* ServiceDescripition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B709F9522D601B7003E22EB /* ServiceDescripition.swift */; };
 		6B709F9822D606AA003E22EB /* ServicesDescripition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B709F9722D606AA003E22EB /* ServicesDescripition.swift */; };
 		6B710D2922CB6618009AB70B /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B710D2822CB6618009AB70B /* BannerCollectionViewCell.swift */; };
-		6B972D7322DEE34F00665546 /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B972D7222DEE34F00665546 /* DateFormat.swift */; };
 		6B972D7522DEFF5F00665546 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B972D7422DEFF5F00665546 /* GlobalVariables.swift */; };
-		6B972D7722DF205100665546 /* BannerImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B972D7622DF205000665546 /* BannerImages.swift */; };
-		6B972D7922DF26EC00665546 /* NavigationButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B972D7822DF26EC00665546 /* NavigationButtons.swift */; };
-		6B972D7D22DF369F00665546 /* DesignableUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B972D7C22DF369F00665546 /* DesignableUITextField.swift */; };
-		6B972D8122DF40A300665546 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B972D8022DF40A300665546 /* SearchResult.swift */; };
 		6B9BF3B422DDF2630006F602 /* TimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9BF3B322DDF2630006F602 /* TimeSlot.swift */; };
 		6BB3452C229FD89E00547817 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB34527229FD89E00547817 /* UserDefault.swift */; };
 		6BB3452D229FD89E00547817 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB34528229FD89E00547817 /* ImagePicker.swift */; };
@@ -62,7 +59,7 @@
 		6BF8FB2022D3527A005DB209 /* SubCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF8FB1F22D3527A005DB209 /* SubCategories.swift */; };
 		6BFFE4FB22E19F8E00943263 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFFE4FA22E19F8E00943263 /* AlertController.swift */; };
 		6BFFE50022E1DDC100943263 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6BFFE50222E1DDC100943263 /* Localizable.strings */; };
-		A5FB4AF5D1E4468EFDCBA3D0 /* Pods_SkilEx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA5A2FBB866188814D440C8 /* Pods_SkilEx.framework */; };
+		E9F2030372AE7751922855D1 /* Pods_SkilEx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9943F4BD50EE117E6B2039 /* Pods_SkilEx.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,13 +80,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4EA5A2FBB866188814D440C8 /* Pods_SkilEx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SkilEx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		600C1635506C4CBD9FEDCE75 /* Pods-SkilEx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkilEx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SkilEx/Pods-SkilEx.debug.xcconfig"; sourceTree = "<group>"; };
+		2E62D35FE170816259464C12 /* Pods-SkilEx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkilEx.release.xcconfig"; path = "Pods/Target Support Files/Pods-SkilEx/Pods-SkilEx.release.xcconfig"; sourceTree = "<group>"; };
+		5FFB14252EA2B1678FF07CB1 /* Pods-SkilEx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkilEx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SkilEx/Pods-SkilEx.debug.xcconfig"; sourceTree = "<group>"; };
 		6B1E0B7E22C4A28B006A0EF5 /* SkilEx-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SkilEx-Bridging-Header.h"; sourceTree = "<group>"; };
 		6B1E0B8422C4A2C4006A0EF5 /* RoundCornerButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCornerButtons.swift; sourceTree = "<group>"; };
 		6B1E0B8822C4C4A2006A0EF5 /* ScrollUpTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollUpTextField.swift; sourceTree = "<group>"; };
 		6B3E652C22DC828C0098D4C4 /* CustomerAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAddress.swift; sourceTree = "<group>"; };
-		6B3E652E22DC8B430098D4C4 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		6B44C89B22CDE23C0084A5AB /* SearchCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionReusableView.swift; sourceTree = "<group>"; };
 		6B44C89D22CE14200084A5AB /* ServiceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetail.swift; sourceTree = "<group>"; };
 		6B44C89F22CE143D0084A5AB /* ServiceDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -99,10 +95,6 @@
 		6B4B51DA22C5E5FA00D73166 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		6B4B51DC22C5E60600D73166 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		6B4B51DE22C5F5F900D73166 /* Tabbarcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbarcontroller.swift; sourceTree = "<group>"; };
-		6B4B51E522C61F4200D73166 /* ViewShadowColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewShadowColor.swift; sourceTree = "<group>"; };
-		6B59684022D71CBD0061D1CF /* ServiceDescripitionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDescripitionTableViewController.swift; sourceTree = "<group>"; };
-		6B5D3E7F22D8A3A10083600C /* ViewSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSummary.swift; sourceTree = "<group>"; };
-		6B5D3E8122D8B11B0083600C /* CartList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartList.swift; sourceTree = "<group>"; };
 		6B5FE6EB227BFB19007A4F32 /* SkilEx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkilEx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B5FE6EE227BFB19007A4F32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6B5FE6F3227BFB19007A4F32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,6 +108,13 @@
 		6B5FE70E227BFB24007A4F32 /* SkilExUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkilExUITests.swift; sourceTree = "<group>"; };
 		6B5FE710227BFB24007A4F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B5FE71C227C0DA3007A4F32 /* SkilEx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SkilEx.entitlements; sourceTree = "<group>"; };
+		6B645A7322E5C04D0039935C /* BannerImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerImages.swift; sourceTree = "<group>"; };
+		6B645A7522E5C4850039935C /* NavigationButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtons.swift; sourceTree = "<group>"; };
+		6B645A7722E5C7D50039935C /* RoundCornerUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCornerUIView.swift; sourceTree = "<group>"; };
+		6B645A7922E5CECB0039935C /* PlaceHolderImageInTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderImageInTextfield.swift; sourceTree = "<group>"; };
+		6B645A7B22E5E4D60039935C /* ServiceDescripitionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDescripitionTableViewController.swift; sourceTree = "<group>"; };
+		6B645A7D22E5EE6F0039935C /* ViewSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSummary.swift; sourceTree = "<group>"; };
+		6B645A7F22E5F54B0039935C /* CartList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartList.swift; sourceTree = "<group>"; };
 		6B6AECEA22CC664E00192683 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		6B6AECEC22CC736000192683 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		6B6D04F322C4DB4700393676 /* TextFieldShadowColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldShadowColor.swift; sourceTree = "<group>"; };
@@ -123,12 +122,7 @@
 		6B709F9522D601B7003E22EB /* ServiceDescripition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDescripition.swift; sourceTree = "<group>"; };
 		6B709F9722D606AA003E22EB /* ServicesDescripition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesDescripition.swift; sourceTree = "<group>"; };
 		6B710D2822CB6618009AB70B /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
-		6B972D7222DEE34F00665546 /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
 		6B972D7422DEFF5F00665546 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
-		6B972D7622DF205000665546 /* BannerImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerImages.swift; sourceTree = "<group>"; };
-		6B972D7822DF26EC00665546 /* NavigationButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtons.swift; sourceTree = "<group>"; };
-		6B972D7C22DF369F00665546 /* DesignableUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableUITextField.swift; sourceTree = "<group>"; };
-		6B972D8022DF40A300665546 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		6B9BF3B322DDF2630006F602 /* TimeSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlot.swift; sourceTree = "<group>"; };
 		6BB34527229FD89E00547817 /* UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		6BB34528229FD89E00547817 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -151,7 +145,7 @@
 		6BFFE4FD22E1DD2600943263 /* ta */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ta; path = ta.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		6BFFE50122E1DDC100943263 /* ta */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ta; path = ta.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6BFFE50322E1DDC400943263 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A65E81E0DFC045B2BDEF59EF /* Pods-SkilEx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkilEx.release.xcconfig"; path = "Pods/Target Support Files/Pods-SkilEx/Pods-SkilEx.release.xcconfig"; sourceTree = "<group>"; };
+		AA9943F4BD50EE117E6B2039 /* Pods_SkilEx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SkilEx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,7 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5FB4AF5D1E4468EFDCBA3D0 /* Pods_SkilEx.framework in Frameworks */,
+				E9F2030372AE7751922855D1 /* Pods_SkilEx.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,19 +174,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A5810CFC7C8CE7D8B871FCC /* Pods */ = {
+		61B34F5914B8E9D6545B6560 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				600C1635506C4CBD9FEDCE75 /* Pods-SkilEx.debug.xcconfig */,
-				A65E81E0DFC045B2BDEF59EF /* Pods-SkilEx.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		537E5EC7406834A1C3329339 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				4EA5A2FBB866188814D440C8 /* Pods_SkilEx.framework */,
+				AA9943F4BD50EE117E6B2039 /* Pods_SkilEx.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -215,13 +200,12 @@
 				6B4B51D822C5E5ED00D73166 /* Home.swift */,
 				6B44C89D22CE14200084A5AB /* ServiceDetail.swift */,
 				6B709F9522D601B7003E22EB /* ServiceDescripition.swift */,
-				6B59684022D71CBD0061D1CF /* ServiceDescripitionTableViewController.swift */,
-				6B5D3E7F22D8A3A10083600C /* ViewSummary.swift */,
+				6B645A7B22E5E4D60039935C /* ServiceDescripitionTableViewController.swift */,
 				6B4B51DA22C5E5FA00D73166 /* Service.swift */,
 				6B4B51DC22C5E60600D73166 /* UserProfile.swift */,
 				6B3E652C22DC828C0098D4C4 /* CustomerAddress.swift */,
-				6B972D8022DF40A300665546 /* SearchResult.swift */,
 				6BF7E24922E055F00083FF49 /* AdvancePayment.swift */,
+				6B645A7D22E5EE6F0039935C /* ViewSummary.swift */,
 				6B4B51D222C5D9C400D73166 /* MainView.storyboard */,
 			);
 			path = MainViewControllers;
@@ -245,8 +229,8 @@
 				6B5FE702227BFB24007A4F32 /* SkilExTests */,
 				6B5FE70D227BFB24007A4F32 /* SkilExUITests */,
 				6B5FE6EC227BFB19007A4F32 /* Products */,
-				537E5EC7406834A1C3329339 /* Frameworks */,
-				0A5810CFC7C8CE7D8B871FCC /* Pods */,
+				90922BDD4BFCEAA87AF7C258 /* Pods */,
+				61B34F5914B8E9D6545B6560 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -326,10 +310,10 @@
 				6BF8FB1F22D3527A005DB209 /* SubCategories.swift */,
 				6B709F9322D5EA67003E22EB /* Services.swift */,
 				6B709F9722D606AA003E22EB /* ServicesDescripition.swift */,
-				6B5D3E8122D8B11B0083600C /* CartList.swift */,
 				6B9BF3B322DDF2630006F602 /* TimeSlot.swift */,
 				6B972D7422DEFF5F00665546 /* GlobalVariables.swift */,
-				6B972D7622DF205000665546 /* BannerImages.swift */,
+				6B645A7322E5C04D0039935C /* BannerImages.swift */,
+				6B645A7F22E5F54B0039935C /* CartList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -347,13 +331,20 @@
 				6B1E0B8422C4A2C4006A0EF5 /* RoundCornerButtons.swift */,
 				6B1E0B8822C4C4A2006A0EF5 /* ScrollUpTextField.swift */,
 				6B6D04F322C4DB4700393676 /* TextFieldShadowColor.swift */,
-				6B4B51E522C61F4200D73166 /* ViewShadowColor.swift */,
-				6B3E652E22DC8B430098D4C4 /* MapView.swift */,
-				6B972D7222DEE34F00665546 /* DateFormat.swift */,
-				6B972D7822DF26EC00665546 /* NavigationButtons.swift */,
-				6B972D7C22DF369F00665546 /* DesignableUITextField.swift */,
+				6B645A7522E5C4850039935C /* NavigationButtons.swift */,
+				6B645A7722E5C7D50039935C /* RoundCornerUIView.swift */,
+				6B645A7922E5CECB0039935C /* PlaceHolderImageInTextfield.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		90922BDD4BFCEAA87AF7C258 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5FFB14252EA2B1678FF07CB1 /* Pods-SkilEx.debug.xcconfig */,
+				2E62D35FE170816259464C12 /* Pods-SkilEx.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,11 +354,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6B5FE713227BFB24007A4F32 /* Build configuration list for PBXNativeTarget "SkilEx" */;
 			buildPhases = (
-				91C2ACDEE7B07E0954818D72 /* [CP] Check Pods Manifest.lock */,
+				2661E17A26518B570D55B3F8 /* [CP] Check Pods Manifest.lock */,
 				6B5FE6E7227BFB19007A4F32 /* Sources */,
 				6B5FE6E8227BFB19007A4F32 /* Frameworks */,
 				6B5FE6E9227BFB19007A4F32 /* Resources */,
-				3F3F169C1F45CF4FA1C50BA4 /* [CP] Embed Pods Frameworks */,
+				B2BCB297543F969F27DBCA62 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -498,7 +489,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3F3F169C1F45CF4FA1C50BA4 /* [CP] Embed Pods Frameworks */ = {
+		2661E17A26518B570D55B3F8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SkilEx-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2BCB297543F969F27DBCA62 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -526,24 +535,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SkilEx/Pods-SkilEx-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		91C2ACDEE7B07E0954818D72 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SkilEx-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -551,15 +542,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B645A7A22E5CECB0039935C /* PlaceHolderImageInTextfield.swift in Sources */,
 				6BB3453C229FD8D000547817 /* Profile.swift in Sources */,
-				6B5D3E8022D8A3A10083600C /* ViewSummary.swift in Sources */,
+				6B645A7622E5C4850039935C /* NavigationButtons.swift in Sources */,
 				6BB34539229FD8D000547817 /* Login.swift in Sources */,
 				6B710D2922CB6618009AB70B /* BannerCollectionViewCell.swift in Sources */,
-				6B3E652F22DC8B430098D4C4 /* MapView.swift in Sources */,
 				6BB3452C229FD89E00547817 /* UserDefault.swift in Sources */,
 				6BB3452E229FD89E00547817 /* Toolbar.swift in Sources */,
-				6B972D7D22DF369F00665546 /* DesignableUITextField.swift in Sources */,
-				6B972D7322DEE34F00665546 /* DateFormat.swift in Sources */,
 				6BB34540229FD93700547817 /* ReachabilityManager.swift in Sources */,
 				6B709F9822D606AA003E22EB /* ServicesDescripition.swift in Sources */,
 				6BB34541229FD93700547817 /* Alert.swift in Sources */,
@@ -569,34 +558,33 @@
 				6B44C8A022CE143D0084A5AB /* ServiceDetailTableViewCell.swift in Sources */,
 				6BB3452D229FD89E00547817 /* ImagePicker.swift in Sources */,
 				6BB34534229FD8C100547817 /* UserData.swift in Sources */,
+				6B645A7822E5C7D50039935C /* RoundCornerUIView.swift in Sources */,
 				6B4B51D922C5E5ED00D73166 /* Home.swift in Sources */,
 				6B44C89E22CE14200084A5AB /* ServiceDetail.swift in Sources */,
 				6B972D7522DEFF5F00665546 /* GlobalVariables.swift in Sources */,
 				6B4B51DD22C5E60600D73166 /* UserProfile.swift in Sources */,
 				6B5FE6EF227BFB19007A4F32 /* AppDelegate.swift in Sources */,
+				6B645A7C22E5E4D60039935C /* ServiceDescripitionTableViewController.swift in Sources */,
 				6B709F9422D5EA67003E22EB /* Services.swift in Sources */,
 				6BB3453B229FD8D000547817 /* OTP.swift in Sources */,
-				6B5D3E8222D8B11B0083600C /* CartList.swift in Sources */,
 				6B4B51DF22C5F5F900D73166 /* Tabbarcontroller.swift in Sources */,
-				6B972D7722DF205100665546 /* BannerImages.swift in Sources */,
 				6B709F9622D601B7003E22EB /* ServiceDescripition.swift in Sources */,
-				6B59684122D71CBD0061D1CF /* ServiceDescripitionTableViewController.swift in Sources */,
-				6B4B51E622C61F4200D73166 /* ViewShadowColor.swift in Sources */,
 				6B6AECEB22CC664E00192683 /* CategoryCollectionViewCell.swift in Sources */,
 				6B3E652D22DC828C0098D4C4 /* CustomerAddress.swift in Sources */,
 				6B6AECED22CC736000192683 /* Categories.swift in Sources */,
 				6BB34530229FD89E00547817 /* RoundedCornerImageView.swift in Sources */,
+				6B645A8022E5F54B0039935C /* CartList.swift in Sources */,
 				6BF8FB2022D3527A005DB209 /* SubCategories.swift in Sources */,
 				6B1E0B8522C4A2C4006A0EF5 /* RoundCornerButtons.swift in Sources */,
+				6B645A7E22E5EE6F0039935C /* ViewSummary.swift in Sources */,
 				6BB34532229FD8B000547817 /* LocalizationSystem.swift in Sources */,
-				6B972D8122DF40A300665546 /* SearchResult.swift in Sources */,
 				6B6D04F422C4DB4700393676 /* TextFieldShadowColor.swift in Sources */,
 				6B44C8B522CE1C270084A5AB /* UIViewExtension.swift in Sources */,
 				6B4B51DB22C5E5FA00D73166 /* Service.swift in Sources */,
 				6B44C89C22CDE23C0084A5AB /* SearchCollectionReusableView.swift in Sources */,
-				6B972D7922DF26EC00665546 /* NavigationButtons.swift in Sources */,
 				6BF7E24A22E055F00083FF49 /* AdvancePayment.swift in Sources */,
 				6BB3452F229FD89E00547817 /* TapTodismissKeypad.swift in Sources */,
+				6B645A7422E5C04D0039935C /* BannerImages.swift in Sources */,
 				6B1E0B8922C4C4A2006A0EF5 /* ScrollUpTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -783,7 +771,7 @@
 		};
 		6B5FE714227BFB24007A4F32 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 600C1635506C4CBD9FEDCE75 /* Pods-SkilEx.debug.xcconfig */;
+			baseConfigurationReference = 5FFB14252EA2B1678FF07CB1 /* Pods-SkilEx.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -809,7 +797,7 @@
 		};
 		6B5FE715227BFB24007A4F32 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A65E81E0DFC045B2BDEF59EF /* Pods-SkilEx.release.xcconfig */;
+			baseConfigurationReference = 2E62D35FE170816259464C12 /* Pods-SkilEx.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

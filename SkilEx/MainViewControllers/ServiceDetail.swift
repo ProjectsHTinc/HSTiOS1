@@ -385,7 +385,7 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
     func UpdateServiceCountandCost(serviceCount:String, amount:String)
     {
         MBProgressHUD.hide(for: self.view, animated: true)
-        self.serviceCountLabel.text = String(format: "%@%@ | %@%@%@", LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailservice_text", comment: ""),":", serviceCount,"Rs.",amount)
+        self.serviceCountLabel.text = String(format: "%@%@%@ | %@%@", LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailservice_text", comment: ""),":", serviceCount,"Rs.",amount)
         GlobalVariables.shared.Service_amount = amount
     }
     
@@ -470,12 +470,12 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         return 117
     }
     
-    @objc public override func backButtonClick(sender: UIButton) {
+    @objc public override func backButtonClick() {
         if isServiceAddButtonIsClicked == true
         {
             self.serviceRemoveFromCart(user_master_id: GlobalVariables.shared.user_master_id)
         }
-        
+
          self.navigationController?.popViewController(animated: true)
     }
 

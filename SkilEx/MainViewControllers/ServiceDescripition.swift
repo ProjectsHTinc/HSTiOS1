@@ -28,7 +28,7 @@ class ServiceDescripition: UIViewController {
         }
         else
         {
-            
+
             let url = URL(string: imgurl!)
             DispatchQueue.global().async { [weak self] in
                 if let data = try? Data(contentsOf: url!) {
@@ -43,7 +43,7 @@ class ServiceDescripition: UIViewController {
         }
     }
     
-    @objc public override func backButtonClick(sender: UIButton)
+    @objc public override func backButtonClick()
     {
         self.navigationController?.popViewController(animated: true)
     }

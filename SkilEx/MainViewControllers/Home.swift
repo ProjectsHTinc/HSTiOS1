@@ -31,7 +31,7 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
 
         // Do any additional setup after loading the view.
         self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "homenavtitle_text", comment: "")
-        self.addrightButton() 
+        self.addrightButton()
         self.viewMainCategoery()
         self.viewBanners()
         self.categoryCollectionView.isUserInteractionEnabled = true
@@ -203,7 +203,7 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
             if LocalizationSystem.sharedInstance.getLanguage() == "en"
             {
                 let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "Categorycell", for: indexPath) as! CategoryCollectionViewCell
-                cell.cellView.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: -1, height: -1), radius: 0, scale: true, cornerradius: 0)
+              //  cell.cellView.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: -1, height: -1), radius: 0, scale: true, cornerradius: 0)
                 let categoery = categoeryArr[indexPath.row]
                 cell.categoeryName.text =  categoery.cat_name
                 let imgUrl = categoery.cat_pic_url
@@ -225,7 +225,7 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
             else
             {
                 let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "Categorycell", for: indexPath) as! CategoryCollectionViewCell
-                cell.cellView.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: -1, height: -1), radius: 0, scale: true, cornerradius: 0)
+              //  cell.cellView.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: -1, height: -1), radius: 0, scale: true, cornerradius: 0)
                 let categoery = categoeryArr[indexPath.row]
                 cell.categoeryName.text =  categoery.cat_ta_name
                 let imgUrl = categoery.cat_pic_url
@@ -377,8 +377,8 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         }
         else if (segue.identifier == "search")
         {
-            let vc = segue.destination as! SearchResult
-            vc.searchtext = self.searchTextfield.text!
+//            let vc = segue.destination as! SearchResult
+//            vc.searchtext = self.searchTextfield.text!
         }
 
     }

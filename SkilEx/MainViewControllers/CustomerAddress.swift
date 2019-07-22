@@ -12,7 +12,7 @@ import CoreLocation
 import MBProgressHUD
 import SwiftyJSON
 
-class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate,MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var address: UITextField!
@@ -75,7 +75,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         }
     }
     
-    @objc public override func backButtonClick(sender: UIButton) {
+    @objc public override func backButtonClick() {
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -397,7 +397,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         else
         {
             let date = Date()
-            self.webRequest(user_master_id: GlobalVariables.shared.user_master_id,contact_person_name: self.name.text!,contact_person_number: self.phoneNumber.text!, service_latlon: String(format: "%@%@%@", lat_,",",long_), service_location: self.location, service_address: self.address.text!, order_date: date.formattedDateFromString(dateString: self.dateTextField.text!, withFormat:"yyyy-MM-dd")!, order_timeslot_id: timeslotID)
+//            self.webRequest(user_master_id: GlobalVariables.shared.user_master_id,contact_person_name: self.name.text!,contact_person_number: self.phoneNumber.text!, service_latlon: String(format: "%@%@%@", lat_,",",long_), service_location: self.location, service_address: self.address.text!, order_date: date.formattedDateFromString(dateString: self.dateTextField.text!, withFormat:"yyyy-MM-dd")!, order_timeslot_id: timeslotID)
         }
     }
     

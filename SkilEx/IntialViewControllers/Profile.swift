@@ -38,7 +38,7 @@ class Profile: UIViewController
 
         // Do any additional setup after loading the view.
         self.preferedLanguage()
-        self.addBackButton()
+//        self.addBackButton()
         view.bindToKeyboard()
         self.nametTextfiled.tag = 1
         self.genderTextfiled.tag = 2
@@ -100,9 +100,9 @@ class Profile: UIViewController
         submit.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "submit_profile_text", comment: ""), for: .normal)
     }
     
-    @objc public override func backButtonClick(sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
-    }
+//    @objc public func backButtonClick(sender: UIButton) {
+//        self.navigationController?.popViewController(animated: true)
+//    }
     
     override func viewWillLayoutSubviews() {
         submit.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
