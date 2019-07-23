@@ -377,8 +377,8 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         }
         else if (segue.identifier == "search")
         {
-//            let vc = segue.destination as! SearchResult
-//            vc.searchtext = self.searchTextfield.text!
+            let vc = segue.destination as! SearchResult
+            vc.searchText = self.searchTextfield.text!
         }
 
     }

@@ -40,10 +40,40 @@
 /* Home text */
 "homesearchbar_text" = "Search for Service";
 
+/* Services text */
+"servicestitle_text" = "Services";
+"servicesrequested_text" = "Requested Service";
+"servicesongoing_text" = "Ongoing Service";
+"servicesService_text" = "Service History";
+
 /* ServiceDeatil text */
 "servicedetailnav_text" = "Search Detail";
 "servicedetailservice_text" = "Service";
 "servicedetailsummary_text" = "View Summary";
 "servicedetailadd_text" = "Add";
 
+/* ViewSummary text */
+"viewsummarynavtitle_text" = "View Summary";
+"viewsummaryadvanceamount_text" = "Advance amount";
+"viewsummarytotalamount_text" = "Total Amount";
+"viewsummaryproceed_text" = "Proceed";
+
+/* CustomerAddress text */
+"customeraddressnavtitle_text" = "Customer Address";
+"locationaddress_text" = "Location(address)";
+"customeraddressname_text" = "Name";
+"customeraddressphonenumber_text" = "Phone Number";
+"customeraddressdate_text" = "Select Date";
+"customeraddresstime_text" = "Select Time";
+"customeraddressproceed_text" = "Proceed";
+
+/* Searchresult text */
+"searchresultnavtitle_text" = "Search Result";
+
+/* Ongoing text */
+"ongoingservicenavtitle_text" = "Ongoing Service";
+
+/* Advancepayment text */
+"advancepaymentnavtitle_text" = "Advance Payment";
+"advancepaymentproceed_text" = "Proceed";
 

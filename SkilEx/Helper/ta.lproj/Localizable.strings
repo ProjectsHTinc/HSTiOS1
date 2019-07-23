@@ -40,9 +40,39 @@
 /* Home text */
 "homesearchbar_text" = "சேவையைத் தேடுங்கள்";
 
+/* Services text */
+"servicestitle_text" = "சேவைகள்";
+"servicesrequested_text" = "கோரப்பட்ட சேவை";
+"servicesongoing_text" = "நடந்துகொண்டிருக்கும் சேவை";
+"servicesService_text" = "சேவை வரலாறு";
+
 /* ServiceDeatil text */
 "servicedetailnav_text" = "தேடல் விவரம்";
 "servicedetailservice_text" = "சேவை";
 "servicedetailsummary_text" = "சுருக்கம் காண்க";
 "servicedetailadd_text" = "கூட்டு";
 
+/* ViewSummary text */
+"viewsummarynavtitle_text" = "சுருக்கம் காண்க";
+"viewsummaryadvanceamount_text" = "முன்கூட்டியே தொகை";
+"viewsummarytotalamount_text" = "மொத்த தொகை";
+"viewsummaryproceed_text" = "தொடர";
+
+/* CustomerAddress text */
+"customeraddressnavtitle_text" = "வாடிக்கையாளர் முகவரி";
+"locationaddress_text" = "இருப்பிடம் (முகவரி)";
+"customeraddressname_text" = "பெயர்";
+"customeraddressphonenumber_text" = "தொலைபேசி எண்";
+"customeraddressdate_text" = "தேதியைத் தேர்ந்தெடுக்கவும்";
+"customeraddresstime_text" = "நேரத்தைத் தேர்ந்தெடுக்கவும்";
+"customeraddressproceed_text" = "தொடர";
+
+/* Searchresult text */
+"searchresultnavtitle_text" = "தேடல் முடிவுகள்";
+
+/* Ongoing text */
+"ongoingservicenavtitle_text" = "நடந்துகொண்டிருக்கும் சேவை";
+
+/* Advancepayment text */
+"advancepaymentnavtitle_text" = "முன் பணம்";
+"advancepaymentproceed_text" = "தொடர";

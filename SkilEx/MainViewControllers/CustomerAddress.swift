@@ -12,7 +12,7 @@ import CoreLocation
 import MBProgressHUD
 import SwiftyJSON
 
-class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate,MKMapViewDelegate {
+class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var address: UITextField!
@@ -21,6 +21,9 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     @IBOutlet weak var proceedOutlet: UIButton!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var timeTextField: UITextField!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var phoneNumberLabel: UILabel!
     
     var points: [MKPointAnnotation] = []
     var lat_ = String()
@@ -29,6 +32,8 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     var timeslot_id = [String]()
     var timeslotID = String()
     var location = String()
+    var advanceAmount = String()
+    var advancepaymentStatus = String()
 
     var locationManager = CLLocationManager()
     let datePicker = UIDatePicker()
@@ -36,6 +41,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.preferedLanguage()
         mapView.delegate = self
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -73,6 +79,17 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         {
             self.phoneNumber.text = mobNumber
         }
+    }
+    
+    func preferedLanguage()
+    {
+        self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressnavtitle_text", comment: "")
+        self.locationLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "locationaddress_text", comment: "")
+        self.nameLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressname_text", comment: "")
+        self.phoneNumberLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressphonenumber_text", comment: "")
+        self.dateTextField.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressdate_text", comment: "")
+        self.timeTextField.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddresstime_text", comment: "")
+        proceedOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressproceed_text", comment: ""), for: .normal)
     }
     
     @objc public override func backButtonClick() {
@@ -397,7 +414,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         else
         {
             let date = Date()
-//            self.webRequest(user_master_id: GlobalVariables.shared.user_master_id,contact_person_name: self.name.text!,contact_person_number: self.phoneNumber.text!, service_latlon: String(format: "%@%@%@", lat_,",",long_), service_location: self.location, service_address: self.address.text!, order_date: date.formattedDateFromString(dateString: self.dateTextField.text!, withFormat:"yyyy-MM-dd")!, order_timeslot_id: timeslotID)
+            self.webRequest(user_master_id: GlobalVariables.shared.user_master_id,contact_person_name: self.name.text!,contact_person_number: self.phoneNumber.text!, service_latlon: String(format: "%@%@%@", lat_,",",long_), service_location: self.location, service_address: self.address.text!, order_date: date.formattedDateFromString(dateString: self.dateTextField.text!, withFormat:"yyyy-MM-dd")!, order_timeslot_id: timeslotID)
         }
     }
     
@@ -418,7 +435,19 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                         let status = json["status"].stringValue
                         if msg == "Service done" && status == "success"{
                             
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
+                            if json["service_details"].count > 0
+                            {
+                                self.advanceAmount = json["service_details"]["advance_amount"].stringValue
+                                GlobalVariables.shared.order_id = json["service_details"]["order_id"].stringValue
+                                self.advancepaymentStatus = json["service_details"]["advance_payment_status"].stringValue
+                                if  self.advancepaymentStatus == "NA"
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    self.performSegue(withIdentifier: "advancePayment", sender: self)
+                                }
                             }
                         }
                     }) {
@@ -433,14 +462,19 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         }
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if (segue.identifier == "advancePayment"){
+            let vc = segue.destination as! AdvancePayment
+            vc.advance_amount = self.advanceAmount
+        }
     }
-    */
+    
 
 }

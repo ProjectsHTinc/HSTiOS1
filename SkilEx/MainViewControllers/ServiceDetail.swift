@@ -66,6 +66,7 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         self.webRequestServiceList(Index: sub_cat_id)
         lastSelectedIndex = 0
         self.indexArray = []
+        GlobalVariables.shared.viewPage = "ServiceDetail"
     }
     
     func preferedLanguage()
@@ -366,7 +367,7 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                             else
                             {
                                     Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                        //Custom action code
+                                        
                                     }
                             }
                         }) {
@@ -475,7 +476,6 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         {
             self.serviceRemoveFromCart(user_master_id: GlobalVariables.shared.user_master_id)
         }
-
          self.navigationController?.popViewController(animated: true)
     }
 

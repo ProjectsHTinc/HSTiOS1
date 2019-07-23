@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import SwiftyJSON
+import MBProgressHUD
 
 class ServiceDescripitionTableViewController: UITableViewController {
+    
     @IBOutlet weak var serviceName: UILabel!
     @IBOutlet weak var inclusionText: UILabel!
     @IBOutlet weak var exclusionText: UILabel!
@@ -60,7 +63,47 @@ class ServiceDescripitionTableViewController: UITableViewController {
     
     @IBAction func bookNowAction(_ sender: Any)
     {
-        self.performSegue(withIdentifier: "viewSummary", sender: self)
+       self.serviceAddToCart(user_master_id: GlobalVariables.shared.user_master_id, category_id: GlobalVariables.shared.main_catID, sub_category_id: GlobalVariables.shared.sub_catID, service_id: GlobalVariables.shared.catServicetID)
+    }
+    
+    func serviceAddToCart(user_master_id: String, category_id: String, sub_category_id: String, service_id:String)
+    {
+            let url = AFWrapper.BASE_URL + "add_service_to_cart"
+            let parameters = ["user_master_id": user_master_id, "category_id": category_id, "sub_category_id": sub_category_id, "service_id": service_id]
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            DispatchQueue.global().async
+                {
+                    do
+                    {
+                        try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
+                            (JSONResponse) -> Void in
+                            print(JSONResponse)
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                            let json = JSON(JSONResponse)
+                            let msg = json["msg"].stringValue
+                            let status = json["status"].stringValue
+                            if msg == "Service added to cart" && status == "success"
+                            {
+//                                let cart_total = json["cart_total"]
+//                                print(cart_total as Any)
+                                self.performSegue(withIdentifier: "viewSummary", sender: self)
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
+                                    
+                                }
+                            }
+                        }) {
+                            (error) -> Void in
+                            print(error)
+                        }
+                    }
+                    catch
+                    {
+                        print("Unable to load data: \(error)")
+                    }
+            }
     }
     
     /*

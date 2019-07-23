@@ -800,7 +800,6 @@
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <connections>
-                                                                <action selector="bookNow:" destination="8Ju-fR-q4O" eventType="touchUpInside" id="RW3-dz-uSq"/>
                                                                 <action selector="bookNowAction:" destination="8Ju-fR-q4O" eventType="touchUpInside" id="hK2-GY-OlM"/>
                                                             </connections>
                                                         </button>
@@ -812,7 +811,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rs:280" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lRw-GH-ina">
-                                                            <rect key="frame" x="138" y="31" width="66" height="23"/>
+                                                            <rect key="frame" x="138" y="31" width="103" height="23"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
@@ -1026,7 +1025,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dcI-ve-iNv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3655" y="-235"/>
+            <point key="canvasLocation" x="3653.5999999999999" y="-235.68215892053973"/>
         </scene>
         <!--profile-->
         <scene sceneID="16M-Ei-KoM">
@@ -1052,7 +1051,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="amd-lJ-RNu">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="amd-lJ-RNu">
                                 <rect key="frame" x="0.0" y="50" width="375" height="219"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.92941176469999998" green="0.93333333330000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -1178,8 +1177,10 @@
                     </view>
                     <connections>
                         <outlet property="advanceAmount" destination="mjT-sL-pDP" id="GO6-36-oq0"/>
+                        <outlet property="advanceAmountLabel" destination="f2u-sX-XPK" id="0xS-Fm-RIk"/>
                         <outlet property="proceedOutlet" destination="nDZ-n0-WcZ" id="c4C-Qd-SCh"/>
                         <outlet property="tableView" destination="amd-lJ-RNu" id="YJE-E2-9Kt"/>
+                        <outlet property="totalAmountLabel" destination="Mup-LP-dTY" id="2vN-ko-Dfo"/>
                         <outlet property="totalServiceAmount" destination="3wY-6f-lRx" id="hc7-9B-yqe"/>
                         <segue destination="KCa-6R-24n" kind="show" identifier="customerAddress" id="IX6-QL-ZIf"/>
                     </connections>
@@ -1276,7 +1277,7 @@
                                                 <rect key="frame" x="20" y="552" width="333" height="41"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.074509803920000006" green="0.35294117650000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Proceed">
+                                                <state key="normal" title="Book Service">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -1350,9 +1351,12 @@
                     <connections>
                         <outlet property="address" destination="vnQ-pO-SJA" id="aNz-tB-Gt1"/>
                         <outlet property="dateTextField" destination="XxN-jv-YXM" id="kIv-jP-Zjk"/>
+                        <outlet property="locationLabel" destination="hRQ-MQ-gW4" id="Ts8-c0-fM9"/>
                         <outlet property="mapView" destination="f54-eg-lOb" id="sEV-ck-dsg"/>
                         <outlet property="name" destination="XmY-dU-fyB" id="DnN-wz-mgZ"/>
+                        <outlet property="nameLabel" destination="QI4-v1-rkb" id="btI-W2-jfM"/>
                         <outlet property="phoneNumber" destination="e8f-B6-Hjr" id="Can-rb-6fD"/>
+                        <outlet property="phoneNumberLabel" destination="WMn-It-wxc" id="PMX-Bu-qK5"/>
                         <outlet property="proceedOutlet" destination="ZoK-o3-Qsz" id="qnG-ej-gfp"/>
                         <outlet property="timeTextField" destination="hcF-KX-Nrc" id="Uml-2U-dqe"/>
                         <segue destination="Glr-hq-Yri" kind="show" identifier="advancePayment" id="R0w-zu-FXZ"/>
@@ -1673,18 +1677,31 @@
                     <tabBarItem key="tabBarItem" title="Service" image="ios_icons-44" id="uIB-6j-vtC"/>
                     <navigationItem key="navigationItem" title="Customer Service" id="PZE-04-By9"/>
                     <connections>
+                        <outlet property="ongoingServiceLabel" destination="jIU-Xn-bJx" id="1ix-y3-G10"/>
+                        <outlet property="requestServiceLabel" destination="5d1-DE-W2F" id="7ni-vx-fMx"/>
                         <outlet property="scrollView" destination="IPM-gm-cVt" id="GVj-eZ-bnU"/>
+                        <outlet property="serviceHistoryLabel" destination="Eni-DK-EgI" id="G4x-ax-5QO"/>
+                        <outlet property="servicesTitleLabel" destination="3bo-kw-ekO" id="yTL-lU-ycc"/>
                         <outlet property="viewOne" destination="d7L-7x-dvM" id="vwW-A7-7VJ"/>
                         <outlet property="viewOneImgView" destination="Kwu-Rz-xal" id="r1w-sO-Ggl"/>
                         <outlet property="viewThree" destination="s5e-xZ-kBO" id="JAN-PX-jaX"/>
                         <outlet property="viewThreeImgView" destination="LDt-y0-MD8" id="KnH-7Z-d2G"/>
                         <outlet property="viewTwo" destination="1T3-aB-SPO" id="jbx-iu-OHF"/>
                         <outlet property="viewTwoImgView" destination="Gvi-CB-qYJ" id="aRc-le-ztt"/>
+                        <segue destination="zGb-Jc-R4T" kind="show" identifier="ongoingService" id="KS9-pG-Kaa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iam-sH-J5o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="957.60000000000002" y="790.25487256371821"/>
+        </scene>
+        <!--OnGoing_Service-->
+        <scene sceneID="bY5-UW-AUs">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CustomerService" referencedIdentifier="OnGoing_Service" id="zGb-Jc-R4T" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zfp-oJ-Iqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="958" y="1240"/>
         </scene>
         <!--Search Result-->
         <scene sceneID="gx9-8a-h1q">
@@ -1774,7 +1791,7 @@
                         <viewLayoutGuide key="safeArea" id="EdS-vL-d6V"/>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="okd-dE-TAN" id="hCx-SI-NCP"/>
+                        <outlet property="tableView" destination="okd-dE-TAN" id="d5u-pR-ER0"/>
                         <segue destination="55w-5V-SKN" kind="show" identifier="serviceDescrption" id="1PX-ZQ-xGS"/>
                     </connections>
                 </viewController>
@@ -1790,11 +1807,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VFV-px-KHa">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VFV-px-KHa">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="442"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vo8-oq-scy">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vo8-oq-scy">
                                         <rect key="frame" x="17" y="17" width="341" height="569"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="onlinepay" translatesAutoresizingMaskIntoConstraints="NO" id="MMn-VD-0OB">
                                                 <rect key="frame" x="102" y="75" width="138" height="171"/>
@@ -1820,35 +1839,35 @@
                                                 <state key="normal" title="Proceed">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="proceedAction:" destination="Glr-hq-Yri" eventType="touchUpInside" id="3zL-qf-1qA"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="603" id="MTe-SV-Y3F"/>
-                                    <constraint firstAttribute="width" constant="375" id="Sa3-R5-f2h"/>
-                                    <constraint firstItem="Vo8-oq-scy" firstAttribute="top" secondItem="VFV-px-KHa" secondAttribute="top" constant="17" id="ZQy-xK-UJG"/>
-                                    <constraint firstItem="Vo8-oq-scy" firstAttribute="leading" secondItem="VFV-px-KHa" secondAttribute="leading" constant="17" id="d37-N2-VaP"/>
-                                    <constraint firstAttribute="bottom" secondItem="Vo8-oq-scy" secondAttribute="bottom" constant="17" id="je7-q8-b6X"/>
-                                    <constraint firstAttribute="trailing" secondItem="Vo8-oq-scy" secondAttribute="trailing" constant="17" id="lnr-Id-i5s"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="VFV-px-KHa" firstAttribute="trailing" secondItem="MnE-2v-Rci" secondAttribute="trailing" id="dvD-pH-v6K"/>
-                            <constraint firstItem="VFV-px-KHa" firstAttribute="leading" secondItem="MnE-2v-Rci" secondAttribute="leading" id="edY-Kf-pjI"/>
-                            <constraint firstItem="VFV-px-KHa" firstAttribute="top" secondItem="MnE-2v-Rci" secondAttribute="top" id="n4B-s7-zuQ"/>
-                            <constraint firstItem="VFV-px-KHa" firstAttribute="bottom" secondItem="MnE-2v-Rci" secondAttribute="bottom" id="sgI-Yy-YCW"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="MnE-2v-Rci"/>
                     </view>
+                    <connections>
+                        <outlet property="advanceAmount" destination="rYD-60-Rnw" id="bJF-xh-3j1"/>
+                        <outlet property="advancepaymentLabel" destination="5aw-4D-Bxm" id="vjm-Jv-h5l"/>
+                        <outlet property="proceedOutlet" destination="5S5-UQ-QGX" id="GoS-rc-0ub"/>
+                        <outlet property="subView" destination="Vo8-oq-scy" id="BfO-7g-BR4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oNs-j0-YEr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2456.8000000000002" y="1181.5592203898052"/>
+            <point key="canvasLocation" x="2478" y="1232"/>
         </scene>
         <!--Profile-->
         <scene sceneID="qfl-oW-9jE">
@@ -1900,7 +1919,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="YJ2-0K-weh"/>
-        <segue reference="BFb-iT-Ez1"/>
+        <segue reference="1PX-ZQ-xGS"/>
         <segue reference="obf-VG-d2E"/>
     </inferredMetricsTieBreakers>
 </document>

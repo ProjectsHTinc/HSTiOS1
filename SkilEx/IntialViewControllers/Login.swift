@@ -24,20 +24,16 @@ class Login: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
         self.preferedLanguage()
         self.mobileNumber.delegate = self
         self.mobileNumber.tag = 1
         self.addToolBar(textField: mobileNumber)
         view.bindToKeyboard()
         self.hideKeyboardWhenTappedAround()
-       
     }
     
     override func viewWillLayoutSubviews() {
-        
         submitOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
-        
     }
     
     func preferedLanguage()
@@ -129,7 +125,7 @@ class Login: UIViewController,UITextFieldDelegate {
                             let msg = json["msg"].stringValue
                             let status = json["status"].stringValue
                             if msg == "Success" && status == "success"{
-                              GlobalVariables.shared.user_master_id = "2"
+                              GlobalVariables.shared.user_master_id = "1"
                               self.performSegue(withIdentifier: "guest_Home", sender: self)
                             }
                         }) {

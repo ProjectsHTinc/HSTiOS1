@@ -16,13 +16,27 @@ class Service: UIViewController{
     @IBOutlet var viewOneImgView: UIView!
     @IBOutlet var viewTwoImgView: UIView!
     @IBOutlet var viewThreeImgView: UIView!
+    @IBOutlet weak var requestServiceLabel: UILabel!
+    @IBOutlet weak var ongoingServiceLabel: UILabel!
+    @IBOutlet weak var serviceHistoryLabel: UILabel!
+    @IBOutlet weak var servicesTitleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "homenavtitle_text", comment: "")
+        self.preferedLanguage()
     }
+    
+    func preferedLanguage()
+    {
+        self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "homenavtitle_text", comment: "")
+        servicesTitleLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicestitle_text", comment: "")
+        requestServiceLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesrequested_text", comment: "")
+        ongoingServiceLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesongoing_text", comment: "")
+        serviceHistoryLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesService_text", comment: "")
+    }
+    
     
     @IBAction func requestServiceButtonAction(_ sender: Any)
     {
@@ -31,7 +45,7 @@ class Service: UIViewController{
     
     @IBAction func onGoingButtonAction(_ sender: Any)
     {
-        
+        self.performSegue(withIdentifier: "ongoingService", sender: self)
     }
     
     @IBAction func serviceHistoryButtonAction(_ sender: Any)
@@ -39,14 +53,19 @@ class Service: UIViewController{
         
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if (segue.identifier == "")
+        {
+            let _ = segue.destination as! OnGoing_Service
+        }
     }
-    */
+    
 
 }

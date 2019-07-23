@@ -39,6 +39,14 @@
 		6B709F9622D601B7003E22EB /* ServiceDescripition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B709F9522D601B7003E22EB /* ServiceDescripition.swift */; };
 		6B709F9822D606AA003E22EB /* ServicesDescripition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B709F9722D606AA003E22EB /* ServicesDescripition.swift */; };
 		6B710D2922CB6618009AB70B /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B710D2822CB6618009AB70B /* BannerCollectionViewCell.swift */; };
+		6B7F3A2922E6F0E5007139E3 /* DateFormmatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7F3A2822E6F0E5007139E3 /* DateFormmatter.swift */; };
+		6B7F3A2B22E6F0F5007139E3 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7F3A2A22E6F0F5007139E3 /* MapView.swift */; };
+		6B7F3A2D22E704E7007139E3 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7F3A2C22E704E7007139E3 /* SearchResult.swift */; };
+		6B7F3A3122E71A8E007139E3 /* OnGoing Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7F3A3022E71A8E007139E3 /* OnGoing Service.swift */; };
+		6B7F3A3322E71AAA007139E3 /* CustomerService.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B7F3A3222E71AAA007139E3 /* CustomerService.storyboard */; };
+		6B7F3A3522E71F6C007139E3 /* OngoingServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7F3A3422E71F6C007139E3 /* OngoingServiceTableViewCell.swift */; };
+		6B7F3A3722E72BF2007139E3 /* ServiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7F3A3622E72BF2007139E3 /* ServiceList.swift */; };
+		6B7F3A3922E74211007139E3 /* DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7F3A3822E74211007139E3 /* DropShadow.swift */; };
 		6B972D7522DEFF5F00665546 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B972D7422DEFF5F00665546 /* GlobalVariables.swift */; };
 		6B9BF3B422DDF2630006F602 /* TimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9BF3B322DDF2630006F602 /* TimeSlot.swift */; };
 		6BB3452C229FD89E00547817 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB34527229FD89E00547817 /* UserDefault.swift */; };
@@ -122,6 +130,14 @@
 		6B709F9522D601B7003E22EB /* ServiceDescripition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDescripition.swift; sourceTree = "<group>"; };
 		6B709F9722D606AA003E22EB /* ServicesDescripition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesDescripition.swift; sourceTree = "<group>"; };
 		6B710D2822CB6618009AB70B /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
+		6B7F3A2822E6F0E5007139E3 /* DateFormmatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormmatter.swift; sourceTree = "<group>"; };
+		6B7F3A2A22E6F0F5007139E3 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		6B7F3A2C22E704E7007139E3 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		6B7F3A3022E71A8E007139E3 /* OnGoing Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnGoing Service.swift"; sourceTree = "<group>"; };
+		6B7F3A3222E71AAA007139E3 /* CustomerService.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomerService.storyboard; sourceTree = "<group>"; };
+		6B7F3A3422E71F6C007139E3 /* OngoingServiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingServiceTableViewCell.swift; sourceTree = "<group>"; };
+		6B7F3A3622E72BF2007139E3 /* ServiceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceList.swift; sourceTree = "<group>"; };
+		6B7F3A3822E74211007139E3 /* DropShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropShadow.swift; sourceTree = "<group>"; };
 		6B972D7422DEFF5F00665546 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		6B9BF3B322DDF2630006F602 /* TimeSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlot.swift; sourceTree = "<group>"; };
 		6BB34527229FD89E00547817 /* UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
@@ -201,11 +217,12 @@
 				6B44C89D22CE14200084A5AB /* ServiceDetail.swift */,
 				6B709F9522D601B7003E22EB /* ServiceDescripition.swift */,
 				6B645A7B22E5E4D60039935C /* ServiceDescripitionTableViewController.swift */,
+				6B645A7D22E5EE6F0039935C /* ViewSummary.swift */,
 				6B4B51DA22C5E5FA00D73166 /* Service.swift */,
-				6B4B51DC22C5E60600D73166 /* UserProfile.swift */,
 				6B3E652C22DC828C0098D4C4 /* CustomerAddress.swift */,
 				6BF7E24922E055F00083FF49 /* AdvancePayment.swift */,
-				6B645A7D22E5EE6F0039935C /* ViewSummary.swift */,
+				6B7F3A2C22E704E7007139E3 /* SearchResult.swift */,
+				6B4B51DC22C5E60600D73166 /* UserProfile.swift */,
 				6B4B51D222C5D9C400D73166 /* MainView.storyboard */,
 			);
 			path = MainViewControllers;
@@ -218,6 +235,7 @@
 				6B6AECEA22CC664E00192683 /* CategoryCollectionViewCell.swift */,
 				6B44C89B22CDE23C0084A5AB /* SearchCollectionReusableView.swift */,
 				6B44C89F22CE143D0084A5AB /* ServiceDetailTableViewCell.swift */,
+				6B7F3A3422E71F6C007139E3 /* OngoingServiceTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -254,6 +272,7 @@
 				6B65344722813E720079F5AC /* Helper */,
 				6B193EB6227FF08D0015BD8E /* IntialViewControllers */,
 				6B4B51CF22C5D96E00D73166 /* MainViewControllers */,
+				6B7F3A2F22E71A64007139E3 /* Customer Service */,
 				6B4B51E222C61BFD00D73166 /* Cells */,
 				6B5FE6F2227BFB19007A4F32 /* Main.storyboard */,
 				6B5FE6F5227BFB24007A4F32 /* Assets.xcassets */,
@@ -295,6 +314,15 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		6B7F3A2F22E71A64007139E3 /* Customer Service */ = {
+			isa = PBXGroup;
+			children = (
+				6B7F3A3022E71A8E007139E3 /* OnGoing Service.swift */,
+				6B7F3A3222E71AAA007139E3 /* CustomerService.storyboard */,
+			);
+			path = "Customer Service";
+			sourceTree = "<group>";
+		};
 		6BB34543229FD95200547817 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,6 +342,7 @@
 				6B972D7422DEFF5F00665546 /* GlobalVariables.swift */,
 				6B645A7322E5C04D0039935C /* BannerImages.swift */,
 				6B645A7F22E5F54B0039935C /* CartList.swift */,
+				6B7F3A3622E72BF2007139E3 /* ServiceList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -334,6 +363,9 @@
 				6B645A7522E5C4850039935C /* NavigationButtons.swift */,
 				6B645A7722E5C7D50039935C /* RoundCornerUIView.swift */,
 				6B645A7922E5CECB0039935C /* PlaceHolderImageInTextfield.swift */,
+				6B7F3A2A22E6F0F5007139E3 /* MapView.swift */,
+				6B7F3A2822E6F0E5007139E3 /* DateFormmatter.swift */,
+				6B7F3A3822E74211007139E3 /* DropShadow.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -467,6 +499,7 @@
 				6BFFE50022E1DDC100943263 /* Localizable.strings in Resources */,
 				6B5FE6F6227BFB24007A4F32 /* Assets.xcassets in Resources */,
 				6B4B51D322C5D9C400D73166 /* MainView.storyboard in Resources */,
+				6B7F3A3322E71AAA007139E3 /* CustomerService.storyboard in Resources */,
 				6BB3453A229FD8D000547817 /* InitialView.storyboard in Resources */,
 				6B5FE6F4227BFB19007A4F32 /* Main.storyboard in Resources */,
 			);
@@ -551,8 +584,10 @@
 				6BB3452E229FD89E00547817 /* Toolbar.swift in Sources */,
 				6BB34540229FD93700547817 /* ReachabilityManager.swift in Sources */,
 				6B709F9822D606AA003E22EB /* ServicesDescripition.swift in Sources */,
+				6B7F3A2B22E6F0F5007139E3 /* MapView.swift in Sources */,
 				6BB34541229FD93700547817 /* Alert.swift in Sources */,
 				6B9BF3B422DDF2630006F602 /* TimeSlot.swift in Sources */,
+				6B7F3A2D22E704E7007139E3 /* SearchResult.swift in Sources */,
 				6BFFE4FB22E19F8E00943263 /* AlertController.swift in Sources */,
 				6BB34542229FD93700547817 /* AFWrapper.swift in Sources */,
 				6B44C8A022CE143D0084A5AB /* ServiceDetailTableViewCell.swift in Sources */,
@@ -561,6 +596,7 @@
 				6B645A7822E5C7D50039935C /* RoundCornerUIView.swift in Sources */,
 				6B4B51D922C5E5ED00D73166 /* Home.swift in Sources */,
 				6B44C89E22CE14200084A5AB /* ServiceDetail.swift in Sources */,
+				6B7F3A3722E72BF2007139E3 /* ServiceList.swift in Sources */,
 				6B972D7522DEFF5F00665546 /* GlobalVariables.swift in Sources */,
 				6B4B51DD22C5E60600D73166 /* UserProfile.swift in Sources */,
 				6B5FE6EF227BFB19007A4F32 /* AppDelegate.swift in Sources */,
@@ -574,14 +610,18 @@
 				6B6AECED22CC736000192683 /* Categories.swift in Sources */,
 				6BB34530229FD89E00547817 /* RoundedCornerImageView.swift in Sources */,
 				6B645A8022E5F54B0039935C /* CartList.swift in Sources */,
+				6B7F3A3122E71A8E007139E3 /* OnGoing Service.swift in Sources */,
 				6BF8FB2022D3527A005DB209 /* SubCategories.swift in Sources */,
 				6B1E0B8522C4A2C4006A0EF5 /* RoundCornerButtons.swift in Sources */,
 				6B645A7E22E5EE6F0039935C /* ViewSummary.swift in Sources */,
 				6BB34532229FD8B000547817 /* LocalizationSystem.swift in Sources */,
 				6B6D04F422C4DB4700393676 /* TextFieldShadowColor.swift in Sources */,
+				6B7F3A3522E71F6C007139E3 /* OngoingServiceTableViewCell.swift in Sources */,
 				6B44C8B522CE1C270084A5AB /* UIViewExtension.swift in Sources */,
+				6B7F3A3922E74211007139E3 /* DropShadow.swift in Sources */,
 				6B4B51DB22C5E5FA00D73166 /* Service.swift in Sources */,
 				6B44C89C22CDE23C0084A5AB /* SearchCollectionReusableView.swift in Sources */,
+				6B7F3A2922E6F0E5007139E3 /* DateFormmatter.swift in Sources */,
 				6BF7E24A22E055F00083FF49 /* AdvancePayment.swift in Sources */,
 				6BB3452F229FD89E00547817 /* TapTodismissKeypad.swift in Sources */,
 				6B645A7422E5C04D0039935C /* BannerImages.swift in Sources */,

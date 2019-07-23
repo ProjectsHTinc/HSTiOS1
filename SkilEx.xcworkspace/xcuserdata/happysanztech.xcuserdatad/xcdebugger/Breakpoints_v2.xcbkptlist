@@ -41,20 +41,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SkilEx/MainViewControllers/ViewSummary.swift"
-            timestampString = "585496921.2271399"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "SkilEx/IntialViewControllers/Profile.swift"
             timestampString = "585496921.2274899"
             startingColumnNumber = "9223372036854775807"
@@ -71,13 +57,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SkilEx/MainViewControllers/ViewSummary.swift"
-            timestampString = "585496921.227569"
+            filePath = "SkilEx/MainViewControllers/ServiceDescripitionTableViewController.swift"
+            timestampString = "585579333.107227"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "webRequestRemoveFromCart(cartId:)"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "serviceAddToCart(user_master_id:category_id:sub_category_id:service_id:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SkilEx/MainViewControllers/ServiceDescripitionTableViewController.swift"
+            timestampString = "585579333.107291"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "bookNowAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -88,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SkilEx/MainViewControllers/ViewSummary.swift"
-            timestampString = "585496921.227785"
+            timestampString = "585579333.107384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "webRequestRemoveFromCart(cartId:)"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "backButtonClick()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -104,12 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SkilEx/MainViewControllers/ViewSummary.swift"
-            timestampString = "585496921.227993"
+            timestampString = "585579333.107434"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "webRequestViewCart()"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
+            landmarkName = "serviceRemoveFromCart(user_master_id:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -119,13 +121,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SkilEx/MainViewControllers/ViewSummary.swift"
-            timestampString = "585496970.391723"
+            filePath = "SkilEx/MainViewControllers/CustomerAddress.swift"
+            timestampString = "585579333.107484"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "tableView(_:commit:forRowAt:)"
+            startingLineNumber = "432"
+            endingLineNumber = "432"
+            landmarkName = "webRequest(user_master_id:contact_person_name:contact_person_number:service_latlon:service_location:service_address:order_date:order_timeslot_id:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SkilEx/MainViewControllers/CustomerAddress.swift"
+            timestampString = "585579333.107795"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "438"
+            endingLineNumber = "438"
+            landmarkName = "webRequest(user_master_id:contact_person_name:contact_person_number:service_latlon:service_location:service_address:order_date:order_timeslot_id:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

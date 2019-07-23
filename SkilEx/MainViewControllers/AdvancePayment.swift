@@ -9,11 +9,41 @@
 import UIKit
 
 class AdvancePayment: UIViewController {
-
+    
+    var advance_amount = String()
+    
+    @IBOutlet weak var advancepaymentLabel: UILabel!
+    @IBOutlet weak var advanceAmount: UILabel!
+    @IBOutlet weak var proceedOutlet: UIButton!
+    @IBOutlet weak var subView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.preferedLanguage()
+        self.addBackButton()
+
+    }
+    override func viewWillLayoutSubviews() {
+        
+        self.subView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.5, radius: 6)
+        proceedOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
+    }
+    
+    @objc public override func backButtonClick() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func preferedLanguage()
+    {
+        self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "advancepaymentnavtitle_text", comment: "")
+        proceedOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "advancepaymentproceed_text", comment: ""), for: .normal)
+    }
+    
+    @IBAction func proceedAction(_ sender: Any)
+    {
+        
     }
     
 
