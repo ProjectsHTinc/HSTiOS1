@@ -47,6 +47,9 @@
 		6B7F3A3522E71F6C007139E3 /* OngoingServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7F3A3422E71F6C007139E3 /* OngoingServiceTableViewCell.swift */; };
 		6B7F3A3722E72BF2007139E3 /* ServiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7F3A3622E72BF2007139E3 /* ServiceList.swift */; };
 		6B7F3A3922E74211007139E3 /* DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7F3A3822E74211007139E3 /* DropShadow.swift */; };
+		6B7FB26E22E817E900B9D9A4 /* RequestedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7FB26D22E817E900B9D9A4 /* RequestedService.swift */; };
+		6B7FB27022E8180900B9D9A4 /* RequestedServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7FB26F22E8180900B9D9A4 /* RequestedServiceTableViewCell.swift */; };
+		6B7FB27222E86B7200B9D9A4 /* ServicesDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7FB27122E86B7200B9D9A4 /* ServicesDetail.swift */; };
 		6B972D7522DEFF5F00665546 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B972D7422DEFF5F00665546 /* GlobalVariables.swift */; };
 		6B9BF3B422DDF2630006F602 /* TimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9BF3B322DDF2630006F602 /* TimeSlot.swift */; };
 		6BB3452C229FD89E00547817 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB34527229FD89E00547817 /* UserDefault.swift */; };
@@ -138,6 +141,9 @@
 		6B7F3A3422E71F6C007139E3 /* OngoingServiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingServiceTableViewCell.swift; sourceTree = "<group>"; };
 		6B7F3A3622E72BF2007139E3 /* ServiceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceList.swift; sourceTree = "<group>"; };
 		6B7F3A3822E74211007139E3 /* DropShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropShadow.swift; sourceTree = "<group>"; };
+		6B7FB26D22E817E900B9D9A4 /* RequestedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestedService.swift; sourceTree = "<group>"; };
+		6B7FB26F22E8180900B9D9A4 /* RequestedServiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestedServiceTableViewCell.swift; sourceTree = "<group>"; };
+		6B7FB27122E86B7200B9D9A4 /* ServicesDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesDetail.swift; sourceTree = "<group>"; };
 		6B972D7422DEFF5F00665546 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		6B9BF3B322DDF2630006F602 /* TimeSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlot.swift; sourceTree = "<group>"; };
 		6BB34527229FD89E00547817 /* UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
@@ -236,6 +242,7 @@
 				6B44C89B22CDE23C0084A5AB /* SearchCollectionReusableView.swift */,
 				6B44C89F22CE143D0084A5AB /* ServiceDetailTableViewCell.swift */,
 				6B7F3A3422E71F6C007139E3 /* OngoingServiceTableViewCell.swift */,
+				6B7FB26F22E8180900B9D9A4 /* RequestedServiceTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -318,6 +325,8 @@
 			isa = PBXGroup;
 			children = (
 				6B7F3A3022E71A8E007139E3 /* OnGoing Service.swift */,
+				6B7FB26D22E817E900B9D9A4 /* RequestedService.swift */,
+				6B7FB27122E86B7200B9D9A4 /* ServicesDetail.swift */,
 				6B7F3A3222E71AAA007139E3 /* CustomerService.storyboard */,
 			);
 			path = "Customer Service";
@@ -579,6 +588,7 @@
 				6BB3453C229FD8D000547817 /* Profile.swift in Sources */,
 				6B645A7622E5C4850039935C /* NavigationButtons.swift in Sources */,
 				6BB34539229FD8D000547817 /* Login.swift in Sources */,
+				6B7FB27022E8180900B9D9A4 /* RequestedServiceTableViewCell.swift in Sources */,
 				6B710D2922CB6618009AB70B /* BannerCollectionViewCell.swift in Sources */,
 				6BB3452C229FD89E00547817 /* UserDefault.swift in Sources */,
 				6BB3452E229FD89E00547817 /* Toolbar.swift in Sources */,
@@ -607,12 +617,14 @@
 				6B709F9622D601B7003E22EB /* ServiceDescripition.swift in Sources */,
 				6B6AECEB22CC664E00192683 /* CategoryCollectionViewCell.swift in Sources */,
 				6B3E652D22DC828C0098D4C4 /* CustomerAddress.swift in Sources */,
+				6B7FB26E22E817E900B9D9A4 /* RequestedService.swift in Sources */,
 				6B6AECED22CC736000192683 /* Categories.swift in Sources */,
 				6BB34530229FD89E00547817 /* RoundedCornerImageView.swift in Sources */,
 				6B645A8022E5F54B0039935C /* CartList.swift in Sources */,
 				6B7F3A3122E71A8E007139E3 /* OnGoing Service.swift in Sources */,
 				6BF8FB2022D3527A005DB209 /* SubCategories.swift in Sources */,
 				6B1E0B8522C4A2C4006A0EF5 /* RoundCornerButtons.swift in Sources */,
+				6B7FB27222E86B7200B9D9A4 /* ServicesDetail.swift in Sources */,
 				6B645A7E22E5EE6F0039935C /* ViewSummary.swift in Sources */,
 				6BB34532229FD8B000547817 /* LocalizationSystem.swift in Sources */,
 				6B6D04F422C4DB4700393676 /* TextFieldShadowColor.swift in Sources */,

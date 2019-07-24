@@ -1,8 +1,8 @@
 //
-//  OnGoing Service.swift
+//  RequestedService.swift
 //  SkilEx
 //
-//  Created by Happy Sanz Tech on 23/07/19.
+//  Created by Happy Sanz Tech on 24/07/19.
 //  Copyright © 2019 Happy Sanz Tech. All rights reserved.
 //
 
@@ -10,8 +10,8 @@ import UIKit
 import SwiftyJSON
 import MBProgressHUD
 
-class OnGoing_Service: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSource {
+   
     var serviceListArr = [ServiceList]()
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,18 +21,18 @@ class OnGoing_Service: UIViewController, UITableViewDelegate, UITableViewDataSou
         // Do any additional setup after loading the view.
         self.preferedLanguage()
         self.addBackButton()
-        self.webRequestOngoingServiceList(user_master_id: GlobalVariables.shared.user_master_id)
+        self.webRequestRequestedServiceList(user_master_id: GlobalVariables.shared.user_master_id)
     }
     
     func preferedLanguage () {
-         self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "ongoingservicenavtitle_text", comment: "")
+        self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "requestedservicenavtitle_text", comment: "")
     }
-
+    
     @objc public override func backButtonClick() {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func webRequestOngoingServiceList(user_master_id: String) {
+    func webRequestRequestedServiceList(user_master_id: String) {
         let parameters = ["user_master_id": user_master_id]
         MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
@@ -47,7 +47,7 @@ class OnGoing_Service: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let msg = json["msg"].stringValue
                         let status = json["status"].stringValue
                         if msg == "Service found" && status == "success"{
-                           
+                            
                             if json["service_list"].count > 0 {
                                 
                                 self.serviceListArr = []
@@ -57,7 +57,7 @@ class OnGoing_Service: UIViewController, UITableViewDelegate, UITableViewDataSou
                                     let services = ServiceList.init(json: json["service_list"][i])
                                     self.serviceListArr.append(services)
                                 }
-                                    self.tableView.reloadData()
+                                self.tableView.reloadData()
                             }
                         }
                         else
@@ -83,23 +83,27 @@ class OnGoing_Service: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! OngoingServiceTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RequestedServiceTableViewCell
+        
         let serviceList = serviceListArr[indexPath.row]
         
         if LocalizationSystem.sharedInstance.getLanguage() == "en"
         {
-            cell.mainCategoery.text = serviceList.main_category
-            cell.subCategoery.text = serviceList.sub_category
-            cell.customerName.text = serviceList.contact_person_name
-            cell.serviceDate.text = serviceList.order_date
+            cell.mainCatgoery.text = serviceList.main_category
+            cell.subcatgoery.text = serviceList.sub_category
+            cell.serviceName.text = serviceList.service_name
+            cell.dateLabel.text = serviceList.order_date
+            cell.timeLabel.text = serviceList.time_slot
 
         }
         else
         {
-            cell.mainCategoery.text = serviceList.main_category_ta
-            cell.subCategoery.text = serviceList.sub_category_ta
-            cell.customerName.text = serviceList.contact_person_name
-            cell.serviceDate.text = serviceList.order_date
+            cell.mainCatgoery.text = serviceList.main_category_ta
+            cell.subcatgoery.text = serviceList.sub_category_ta
+            cell.serviceName.text = serviceList.service_ta_name
+            cell.dateLabel.text = serviceList.order_date
+            cell.timeLabel.text = serviceList.time_slot
+
         }
         
         cell.cellView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.5, radius: 6)
@@ -108,7 +112,7 @@ class OnGoing_Service: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
+        return 197
     }
     
     /*

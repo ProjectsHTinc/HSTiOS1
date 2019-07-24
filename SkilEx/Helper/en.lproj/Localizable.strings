@@ -77,3 +77,5 @@
 "advancepaymentnavtitle_text" = "Advance Payment";
 "advancepaymentproceed_text" = "Proceed";
 
+/* Requested text */
+"requestedservicenavtitle_text" = "Requested Service";

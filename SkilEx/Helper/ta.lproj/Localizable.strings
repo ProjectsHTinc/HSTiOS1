@@ -70,9 +70,13 @@
 /* Searchresult text */
 "searchresultnavtitle_text" = "தேடல் முடிவுகள்";
 
-/* Ongoing text */
-"ongoingservicenavtitle_text" = "நடந்துகொண்டிருக்கும் சேவை";
-
 /* Advancepayment text */
 "advancepaymentnavtitle_text" = "முன் பணம்";
 "advancepaymentproceed_text" = "தொடர";
+
+
+/* Ongoing text */
+"ongoingservicenavtitle_text" = "நடந்துகொண்டிருக்கும் சேவை";
+
+/* Requested text */
+"requestedservicenavtitle_text" = "கோரப்பட்ட சேவை";

@@ -38,9 +38,9 @@ class OTP: UIViewController,UITextFieldDelegate {
         self.textfieldTwo.delegate = self
         self.textfieldThree.delegate = self
         self.textfieldFour.delegate = self
-     
-//        self.textfiledOne.tag = 1
-      
+        
+//      self.textfiledOne.tag = 1
+        
         self.addToolBar(textField:textfiledOne)
         self.addToolBar(textField:textfieldTwo)
         self.addToolBar(textField:textfieldThree)
@@ -65,7 +65,6 @@ class OTP: UIViewController,UITextFieldDelegate {
     }
     
     override func viewWillLayoutSubviews() {
-        
         submitOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: self.submitOutlet.frame.height / 2, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
     }
     
@@ -113,7 +112,8 @@ class OTP: UIViewController,UITextFieldDelegate {
         }
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
         let maxLength = 1
         let currentString: NSString = textField.text! as NSString
         let newString: NSString =

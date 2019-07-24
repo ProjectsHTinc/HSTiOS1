@@ -40,7 +40,7 @@ class Service: UIViewController{
     
     @IBAction func requestServiceButtonAction(_ sender: Any)
     {
-        
+        self.performSegue(withIdentifier: "requestedService", sender: self)
     }
     
     @IBAction func onGoingButtonAction(_ sender: Any)
@@ -61,9 +61,13 @@ class Service: UIViewController{
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         
-        if (segue.identifier == "")
+        if (segue.identifier == "ongoingService")
         {
             let _ = segue.destination as! OnGoing_Service
+        }
+        else if (segue.identifier == "requestedService")
+        {
+            let _ = segue.destination as! RequestedService
         }
     }
     
