@@ -24,13 +24,11 @@ class Profile: UIViewController
     @IBOutlet var nametTextfiled: UITextField!
     @IBOutlet var genderTextfiled: UITextField!
     @IBOutlet var emailTextfiled: UITextField!
-    @IBOutlet var addressTextfiled: UITextField!
     @IBOutlet var submit: UIButton!
     @IBOutlet var showImagePickerOutlet: UIButton!
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var registerMobileNumberLabel: UILabel!
     @IBOutlet weak var mailIdLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -38,12 +36,11 @@ class Profile: UIViewController
 
         // Do any additional setup after loading the view.
         self.preferedLanguage()
-//        self.addBackButton()
+        self.addBackButton()
         view.bindToKeyboard()
         self.nametTextfiled.tag = 1
         self.genderTextfiled.tag = 2
         self.emailTextfiled.tag = 3
-        self.addressTextfiled.tag = 4
         self.hideKeyboardWhenTappedAround()
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         print(userdata?.fullName as Any,userdata?.gender as Any,userdata?.profilePic as Any)
@@ -51,7 +48,6 @@ class Profile: UIViewController
             nametTextfiled.text = ""
             genderTextfiled.text = ""
             emailTextfiled.text = ""
-            addressTextfiled.text = ""
             if userdata?.profilePic?.isEmpty == true
             {
                 self.profileImageView.image = UIImage(named: "user")
@@ -64,7 +60,6 @@ class Profile: UIViewController
             nametTextfiled.text = userdata?.fullName
             genderTextfiled.text = userdata?.gender
             emailTextfiled.text = userdata?.email
-            addressTextfiled.text = userdata?.address
             if userdata?.profilePic?.isEmpty == true
             {
                 MBProgressHUD.hide(for: self.view, animated: true)
@@ -96,13 +91,12 @@ class Profile: UIViewController
         fullNameLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "fullname_text", comment: "")
         registerMobileNumberLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "regmobnum_text", comment: "")
         mailIdLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "mailid_text", comment: "")
-        cityLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "city_text", comment: "")
         submit.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "submit_profile_text", comment: ""), for: .normal)
     }
     
-//    @objc public func backButtonClick(sender: UIButton) {
-//        self.navigationController?.popViewController(animated: true)
-//    }
+    @objc public override func backButtonClick() {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     override func viewWillLayoutSubviews() {
         submit.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
@@ -110,17 +104,17 @@ class Profile: UIViewController
     
     @IBAction func submitBtn(_ sender: Any)
     {
-        if userdata?.fullName == nil && userdata?.gender == nil && userdata?.email == nil && userdata?.address == nil && profileImage == nil{
+        if userdata?.fullName == nil && userdata?.gender == nil && userdata?.email == nil && profileImage == nil{
             
-            self.submitProfile(name: nametTextfiled.text!, gender: genderTextfiled.text!, email: emailTextfiled.text!, address: addressTextfiled.text!)
+            self.submitProfile(name: nametTextfiled.text!, gender: genderTextfiled.text!, email: emailTextfiled.text!)
         }
         else{
-            self.updateProfile(name: nametTextfiled.text!, gender: genderTextfiled.text!, email: emailTextfiled.text!, address: addressTextfiled.text!)
+            self.updateProfile(name: nametTextfiled.text!, gender: genderTextfiled.text!, email: emailTextfiled.text!)
 
         }
     }
     
-    func submitProfile(name:String,gender:String,email:String,address:String){
+    func submitProfile(name:String,gender:String,email:String){
         
         if name.isEmpty{
             
@@ -140,16 +134,10 @@ class Profile: UIViewController
                 //Custom action code
             }
         }
-        else if address.isEmpty{
-            
-            Alert.defaultManager.showOkAlert("SkilEx", message: "address cannot be Empty") { (action) in
-                //Custom action code
-            }
-        }
         else
         {
             let url = AFWrapper.BASE_URL + "mobile_check"
-            let parameters = ["user_master_id": GlobalVariables.shared.user_master_id, "full_name": name, "gender": gender, "address": address, "email": email]
+            let parameters = ["user_master_id": GlobalVariables.shared.user_master_id, "full_name": name, "gender": gender, "email": email]
             MBProgressHUD.showAdded(to: self.view, animated: true)
             DispatchQueue.global().async
                 {
@@ -160,7 +148,14 @@ class Profile: UIViewController
                             MBProgressHUD.hide(for: self.view, animated: true)
                             print(JSONResponse)
                             let json = JSON(JSONResponse)
-                            print(json)
+                            let msg = json["msg"].stringValue
+                            let status = json["status"].stringValue
+                            if msg == "Profile Updated" && status == "success"{
+                                
+                                Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
+                                    self.performSegue(withIdentifier: "userprofile", sender: self)
+                                }
+                            }
                         }) {
                             (error) -> Void in
                             print(error)
@@ -174,7 +169,7 @@ class Profile: UIViewController
         }
     }
     
-    func updateProfile(name:String,gender:String,email:String,address:String){
+    func updateProfile(name:String,gender:String,email:String){
         
         if name.isEmpty{
             
@@ -194,26 +189,33 @@ class Profile: UIViewController
                 //Custom action code
             }
         }
-        else if address.isEmpty{
-            
-            Alert.defaultManager.showOkAlert("SkilEx", message: "address cannot be Empty") { (action) in
-                //Custom action code
-            }
-        }
         else
         {
-            let parameters = ["user_master_id": userdata?.usermasterId, "full_name": name, "gender": gender, "address": address, "email": email]
+            let parameters = ["user_master_id": GlobalVariables.shared.user_master_id, "full_name": name, "gender": gender, "email": email]
             MBProgressHUD.showAdded(to: self.view, animated: true)
             DispatchQueue.global().async
                 {
                     do
                     {
-                        try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "profile_update", params: (parameters as! [String : String]), headers: nil, success: {
+                        try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "profile_update", params: (parameters), headers: nil, success: {
                             (JSONResponse) -> Void in
                             MBProgressHUD.hide(for: self.view, animated: true)
                             print(JSONResponse)
                             let json = JSON(JSONResponse)
-                            print(json)
+                            let msg = json["msg"].stringValue
+                            let status = json["status"].stringValue
+                            if msg == "Profile Updated" && status == "success"
+                            {
+                                AlertController.shared.showAlert(targetVC: self, title: "SkilEx", message: msg, complition: {
+                                    self.performSegue(withIdentifier: "userprofile", sender: self)
+                                })
+                            }
+                            else
+                            {
+                                AlertController.shared.showAlert(targetVC: self, title: "SkilEx", message: msg, complition: {
+
+                                })
+                            }
                         }) {
                             (error) -> Void in
                             print(error)
@@ -236,7 +238,7 @@ class Profile: UIViewController
     func profilePictureUpdate (image: UIImage?) {
         
         let data:Data = (image?.jpegData(compressionQuality: 0.75))!
-        let url = AFWrapper.BASE_URL + "profile_pic_upload" + "/" + userdata!.usermasterId!
+        let url = AFWrapper.BASE_URL + "profile_pic_upload" + "/" + GlobalVariables.shared.user_master_id
         MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
             {
@@ -249,12 +251,14 @@ class Profile: UIViewController
                         let msg = json["msg"]
                         let status = json["status"]
                         if msg == "Profile Picture Updated" && status == "success"{
+                            print(msg)
 //                            let pictureUrl = json["picture_url"]
 //                            let defaults = UserDefaults.standard
 //                            defaults.set(pictureUrl, forKey: "profile_pic")
-                            let userdata = UserData(json: json["picture_url"])
-                            UserDefaults.standard.saveUserdata(userdata: userdata)
-
+//                            let userdata = UserData(json: json["picture_url"])
+//                            let userdata = UserDefaults.standard.getUserData()
+//                            userdata?.profilePic = json["picture_url"].stringValue
+//                            UserDefaults.standard.saveUserdata(userdata: userdata!)
                         }
                     }) {
                         (error) -> Void in
@@ -290,6 +294,10 @@ class Profile: UIViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if (segue.identifier == "userprofile")
+        {
+            let _ = segue.destination as! UserProfile
+        }
     }
   
     
@@ -307,6 +315,7 @@ extension Profile: ImagePickerDelegate {
         {
             self.profileImageView.image = image
             self.profilePictureUpdate(image: image)
+            self.profileImageView.makeRounded()
         }
     }
 }

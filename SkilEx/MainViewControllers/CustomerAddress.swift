@@ -32,12 +32,14 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     var timeslot_id = [String]()
     var timeslotID = String()
     var location = String()
-    var advanceAmount = String()
     var advancepaymentStatus = String()
 
     var locationManager = CLLocationManager()
     let datePicker = UIDatePicker()
     let picker = UIPickerView()
+    
+    var timer: Timer?
+    var displayMinute = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +81,8 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         {
             self.phoneNumber.text = mobNumber
         }
+        
+        self.displayMinute = "1"
     }
     
     func preferedLanguage()
@@ -223,7 +227,9 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
             return
         }
     
-    func addAnnotation(location: CLLocationCoordinate2D){
+    func addAnnotation(location: CLLocationCoordinate2D)
+    {
+        GlobalVariables.shared.reuseID = "pin"
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
         annotation.title = ""
@@ -356,6 +362,9 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                             
                             if json["service_time_slot"].count > 0 {
                                 
+                                self.time_range = []
+                                self.timeslot_id = []
+                                
                                 for i in 0..<json["service_time_slot"].count {
                                     
                                     let service_time_slot = TimeSlot.init(json: json["service_time_slot"][i])
@@ -364,6 +373,12 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                                 }
                                 
                                     self.picker.reloadAllComponents()
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
+                                    
+                                }
                             }
                            
                         }
@@ -381,6 +396,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     
     @IBAction func proceedAction(_ sender: Any)
     {
+        
         if address.text == ""
         {
             Alert.defaultManager.showOkAlert("SkilEx", message: "address cannot be Empty") { (action) in
@@ -434,21 +450,93 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                         let msg = json["msg"].stringValue
                         let status = json["status"].stringValue
                         if msg == "Service done" && status == "success"{
-                            
+
                             if json["service_details"].count > 0
                             {
-                                self.advanceAmount = json["service_details"]["advance_amount"].stringValue
+                                let advance_amount = json["service_details"]["advance_amount"].stringValue
+                                GlobalVariables.shared.Advanceamount = advance_amount
                                 GlobalVariables.shared.order_id = json["service_details"]["order_id"].stringValue
                                 self.advancepaymentStatus = json["service_details"]["advance_payment_status"].stringValue
                                 if  self.advancepaymentStatus == "NA"
                                 {
-                                    
+                                    UserDefaults.standard.set("CA", forKey: "Advance/customer")
+                                    self.serviceProviderAllocation(user_master_id: GlobalVariables.shared.user_master_id, order_id: GlobalVariables.shared.order_id, displayMinute: self.displayMinute)
                                 }
                                 else
                                 {
                                     self.performSegue(withIdentifier: "advancePayment", sender: self)
                                 }
                             }
+                        }
+                    }) {
+                        (error) -> Void in
+                        print(error)
+                    }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
+        }
+    }
+    
+    func startTimer() {
+        if timer == nil {
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(callServiceAllocation), userInfo: nil, repeats: true);
+        }
+    }
+    
+    func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    @objc func callServiceAllocation()
+    {
+        self.serviceProviderAllocation(user_master_id: GlobalVariables.shared.user_master_id, order_id: GlobalVariables.shared.order_id, displayMinute: self.displayMinute)
+    }
+    
+    func serviceProviderAllocation(user_master_id: String, order_id: String, displayMinute: String)
+    {
+        let parameters = ["user_master_id": user_master_id, "order_id": order_id, "display_minute": displayMinute]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+            {
+                do
+                {
+                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "service_provider_allocation", params: parameters, headers: nil, success: {
+                        (JSONResponse) -> Void in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print(JSONResponse)
+                        let json = JSON(JSONResponse)
+                        let msg = json["msg"].stringValue
+                        let status = json["status"].stringValue
+                        if msg == "Mobile OTP" && status == "success"
+                        {
+                           self.stopTimer()
+                           Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
+                                self.performSegue(withIdentifier: "bookingSuccess", sender: self)
+                            }
+                        }
+                        else
+                        {
+
+                            if self.displayMinute == "1"
+                            {
+                                self.startTimer()
+                                self.displayMinute = "2"
+                            }
+                            else if self.displayMinute == "2"
+                            {
+                                
+                                self.displayMinute = "3"
+                            }
+                            else
+                            {
+                                self.stopTimer()
+                                self.performSegue(withIdentifier: "bookingSuccess", sender: self)
+                            }
+                            
                         }
                     }) {
                         (error) -> Void in
@@ -472,7 +560,12 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         
         if (segue.identifier == "advancePayment"){
             let vc = segue.destination as! AdvancePayment
-            vc.advance_amount = self.advanceAmount
+            vc.advance_amount = GlobalVariables.shared.Advanceamount
+            vc.orderId = GlobalVariables.shared.order_id
+        }
+        else if (segue.identifier == "bookingSuccess")
+        {
+            let _ = segue.destination as! BookingSuccess
         }
     }
     

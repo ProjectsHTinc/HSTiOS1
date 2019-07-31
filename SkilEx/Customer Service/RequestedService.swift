@@ -13,6 +13,7 @@ import MBProgressHUD
 class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     var serviceListArr = [ServiceList]()
+    var service_Order_id =  String()
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -29,7 +30,7 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     @objc public override func backButtonClick() {
-        self.navigationController?.popViewController(animated: true)
+       self.performSegue(withIdentifier: "servicePage", sender: self)
     }
     
     func webRequestRequestedServiceList(user_master_id: String) {
@@ -39,7 +40,7 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
             {
                 do
                 {
-                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "ongoing_services", params: parameters, headers: nil, success: {
+                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "requested_services", params: parameters, headers: nil, success: {
                         (JSONResponse) -> Void in
                         MBProgressHUD.hide(for: self.view, animated: true)
                         print(JSONResponse)
@@ -63,7 +64,7 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
                         else
                         {
                             Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                //Custom action code
+                                
                             }
                         }
                     }) {
@@ -111,18 +112,73 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let index = serviceListArr[indexPath.row]
+        self.service_Order_id = index.service_order_id!
+        self.webRequestRequestedServiceOrderDetails(service_order_id: index.service_order_id!)
+    }
+    
+    func webRequestRequestedServiceOrderDetails(service_order_id: String) {
+        let parameters = ["service_order_id": service_order_id]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+            {
+                do
+                {
+                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "service_order_details", params: parameters, headers: nil, success: {
+                        (JSONResponse) -> Void in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print(JSONResponse)
+                        let json = JSON(JSONResponse)
+                        let msg = json["msg"].stringValue
+                        let status = json["status"].stringValue
+                        if msg == "Service found" && status == "success"{
+                            
+                            if json["service_list"].count > 0 {
+                            let servicesDetail = ServicesListDetail(json: json["service_list"])
+                            UserDefaults.standard.saveServicesDetail(servicesListDetail: servicesDetail)
+                            self.performSegue(withIdentifier: "requestedServiceDetail", sender: self)
+                                
+                            }
+                        }
+                        else
+                        {
+                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
+                                //Custom action code
+                            }
+                        }
+                    }) {
+                        (error) -> Void in
+                        print(error)
+                    }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 197
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if (segue.identifier == "requestedServiceDetail"){
+            let vc = segue.destination as! RequestedServiceDetail
+            vc.service_order_id = self.service_Order_id
+        }
+        else if (segue.identifier == "requestedServiceDetail")
+        {
+            let _ = segue.destination as! Service
+        }
     }
-    */
-
+    
 }

@@ -30,6 +30,7 @@ class Login: UIViewController,UITextFieldDelegate {
         self.addToolBar(textField: mobileNumber)
         view.bindToKeyboard()
         self.hideKeyboardWhenTappedAround()
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -125,7 +126,7 @@ class Login: UIViewController,UITextFieldDelegate {
                             let msg = json["msg"].stringValue
                             let status = json["status"].stringValue
                             if msg == "Success" && status == "success"{
-                              GlobalVariables.shared.user_master_id = "1"
+                              GlobalVariables.shared.user_master_id = "49"
                               self.performSegue(withIdentifier: "guest_Home", sender: self)
                             }
                         }) {

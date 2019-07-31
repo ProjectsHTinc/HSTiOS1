@@ -11,26 +11,26 @@
 "mobilenumber_text" = "Enter Mobile Number";
 "mobilenumberplaceholder_text" = "Mobile Number";
 "login_text" = "Login";
-"skip_text" = "Skip for Now";
+"skip_text" = "Skip for now";
 
 /* Otp text */
 "enterverificationCode_text" = "Enter Verification Code";
-"content_text" = "We have send you a 6 digit verfication code on";
-"resend_text" = "Resend Code";
+"content_text" = "We have sent you a 4 digit verfication\n code to your mobile number";
+"resend_text" = "Resend OTP";
 
 /* profile text */
-"profilenavtitle_text" = "User Profile";
+"profilenavtitle_text" = "Update User Profile";
 "fullname_text" = "Full Name";
-"regmobnum_text" = "Registered Mobile Number";
-"mailid_text" = "Mail ID";
+"regmobnum_text" = "Enter Mobile Number";
+"mailid_text" = "Enter Email ID (optional)";
 "city_text" = "City";
-"submit_profile_text" = "Submit";
+"submit_profile_text" = "Save";
 
 
 /* tabbarcontroller text */
-"homenavtitle_text" = "SkilEx - User Profile";
+"homenavtitle_text" = "SkilEx Services";
 "hometab_text" = "Home";
-"servicetab_text" = "Service";
+"servicetab_text" = "Services";
 "profiletab_text" = "Profile";
 "alerttitle_text" = "SkilEx";
 "homealertmsg_text" = "If you want this service you have to login";
@@ -38,34 +38,34 @@
 "homealertbuttoncancel_text" = "Cancel";
 
 /* Home text */
-"homesearchbar_text" = "Search for Service";
+"homesearchbar_text" = "Search for Services";
 
 /* Services text */
 "servicestitle_text" = "Services";
-"servicesrequested_text" = "Requested Service";
-"servicesongoing_text" = "Ongoing Service";
+"servicesrequested_text" = "Requested Services";
+"servicesongoing_text" = "Ongoing Services";
 "servicesService_text" = "Service History";
 
 /* ServiceDeatil text */
 "servicedetailnav_text" = "Search Detail";
-"servicedetailservice_text" = "Service";
+"servicedetailservice_text" = "Services";
 "servicedetailsummary_text" = "View Summary";
 "servicedetailadd_text" = "Add";
 
 /* ViewSummary text */
-"viewsummarynavtitle_text" = "View Summary";
+"viewsummarynavtitle_text" = "Order Summary";
 "viewsummaryadvanceamount_text" = "Advance amount";
-"viewsummarytotalamount_text" = "Total Amount";
+"viewsummarytotalamount_text" = "Grand Amount";
 "viewsummaryproceed_text" = "Proceed";
 
 /* CustomerAddress text */
 "customeraddressnavtitle_text" = "Customer Address";
-"locationaddress_text" = "Location(address)";
+"locationaddress_text" = "Location (Address)";
 "customeraddressname_text" = "Name";
 "customeraddressphonenumber_text" = "Phone Number";
 "customeraddressdate_text" = "Select Date";
 "customeraddresstime_text" = "Select Time";
-"customeraddressproceed_text" = "Proceed";
+"customeraddressproceed_text" = "Book Service";
 
 /* Searchresult text */
 "searchresultnavtitle_text" = "Search Result";
@@ -79,3 +79,87 @@
 
 /* Requested text */
 "requestedservicenavtitle_text" = "Requested Service";
+
+/* servicesDetail text */
+"servicesdetailreqstednavtitle_text" = "Requested Service Detail";
+
+/*OngoingservicesDetail text */
+"servicesdetailongoingnavtitle_text" = "Ongoing Service Detail";
+"servicesdetailongoingprovider_text" = "Service Provider";
+"servicesdetailongoingtimeslot_text" = "Service Starting Time";
+"servicesdetailongoingestimatedcost_text" = "Estimated Cost";
+"servicesdetailongoingcallserviceperson_text" = "Call Service Person";
+"servicesdetailongoingtrack_text" = "Track";
+
+"servicesdetailongoingstart_text" = "Start";
+
+
+/*RequestedservicesDetail text */
+"servicesdetailrequestednavtitle_text" = "Requested Service Detail";
+"servicesdetailrequestedcustomername_text" = "Customer Name";
+"servicesdetailrequestedcustomernumber_text" = "Phone Number";
+"servicesdetailrequestedestimated_text" = "Estimated Cost";
+"servicesdetailrequestedaddress_text" = "Address";
+"servicesdetailrequestedcancel_text" = "Cancel service";
+
+/*BookingStatus text */
+"bookingstatusnavtitle_text" = "booking Success";
+"bookingsucces_text" = "Succes";
+"bookingsuccesstatus_text" = "Your Service has been booked Successfully";
+"backtohome_text" = "Back to Home";
+"bookingfailed_text" = "Sorry!";
+"bookingfailedstatus_text" = "Your booking has Failed";
+"backtohomefailed_textt" = "Try Again";
+
+
+/*Tracking text */
+"trackingnavtitle_text" = "Tracking";
+
+/*ServiceHistorySummary text */
+"servicehistorysummarynavtitle_text" = "Booking Detail Summary";
+"servicehistorysummarycustomername_text" = "Customer Name";
+"servicehistorysummaryservicedate_text" = "Service Date";
+"servicehistorysummaryrequestedtime_text" = "Requested Service Time";
+"servicehistorysummaryserviceprovider_text" = "Service Provider";
+"servicehistorysummaryserviceperson_text" = "Service Person";
+"servicehistorysummaryservicestarted_text" = "Service started on";
+"servicehistorysummaryservicecompleted_text" = "Service completed on";
+"servicehistorysummaryviewbill_text" = "View Bill";
+"servicehistorysummarymaterialsused_text" = "Materials Used";
+"servicehistorysummarypayment_text" = "Payment";
+"servicehistorysummaryservicecharge_text" = "Service Charge";
+"servicehistorysummaryadditionalservicecharge_text" = "Additional Service Charge";
+"servicehistorysummarycouponapplied_text" = "Coupon Applied";
+"servicehistorysummaryadvanceamount_text" = "Advance Amount";
+"servicehistorysummarygrandtotal_text" = "Grand total";
+"servicehistorysummarysubtotal_text" = "Sub total";
+"servicehistorysummaryshare_text" = "Share";
+"servicehistorybutton_text" = "Pay Now";
+
+/*AdditionalService text */
+"additionalservicenavtitle_text" = "Additional Services";
+
+
+/*AdditionalService text */
+"paymentmethodavtitle_text" = "Payment Method";
+"paymentmethodonline_text" = "Payment online";
+"paymentmethodcash_text" = "Payment Cash";
+
+/*cancelservice text */
+"cancelservicenavtitle_text" = "Service Cancellation";
+"cancelservicetextfield_text" = "Select a reson for cancellation";
+"cancelservicecommnets_text" = "Comments (If any)";
+"cancelservicesubmit_text" = "Submit";
+
+/*ccresultviewcontroller text */
+"ccresultsucess_text" = "Awesome !";
+"ccresultstatussuces_text" = "You have successfully booked\n a service via SkilEx";
+"ccresultsbuttonsucess_text" = "Back to Home";
+
+"ccresultfailure_text" = "Something's Wrong";
+"ccresultstatusfailure_text" = "We are not able to process\n your Payment";
+"ccresultsbuttonfailure_text" = "Try Again";
+
+
+/*notificationandoffers text */
+"notificationnavtitle_text" = "Notification";

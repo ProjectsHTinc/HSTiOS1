@@ -34,12 +34,18 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         self.addrightButton()
         self.viewMainCategoery()
         self.viewBanners()
+        self.serviceRemoveFromCart(user_master_id: GlobalVariables.shared.user_master_id)
         self.categoryCollectionView.isUserInteractionEnabled = true
         self.hideKeyboardWhenTappedAround()
         self.searchTextfield.delegate = self
         self.searchTextfield.addShadowToTextField(cornerRadius: 5.0)
         self.searchTextfield.addShadowToTextField(color: UIColor.gray, cornerRadius: 5.0)
         self.searchTextfield.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: "homesearchbar_text", comment: "")
+    }
+    
+    @objc public override func rightButtonClick()
+    {
+        self.performSegue(withIdentifier: "notificationOffers", sender: self)
     }
     
     func viewBanners()
@@ -125,6 +131,38 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                 }
         }
     }
+    
+    func serviceRemoveFromCart(user_master_id: String)
+    {
+        let url = AFWrapper.BASE_URL + "clear_cart"
+        let parameters = ["user_master_id": user_master_id]
+        DispatchQueue.global().async
+            {
+                do
+                {
+                    try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
+                        (JSONResponse) -> Void in
+                        print(JSONResponse)
+                        let json = JSON(JSONResponse)
+                        let msg = json["msg"].stringValue
+                        let status = json["status"].stringValue
+                        if msg == "All Service removed from cart" && status == "success"
+                        {
+                            print(msg)
+                        }
+                    }) {
+                        (error) -> Void in
+                        print(error)
+                    }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
+        }
+    }
+    
+
     
     func startTimer() {
         if timer == nil {
@@ -220,6 +258,8 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                         }
                     }
                 }
+                
+                cell.cellView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.2, radius: 3)
                 return cell
             }
             else
@@ -242,6 +282,8 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                         }
                     }
                 }
+                
+                cell.cellView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.3, radius: 3)
                 return cell
             }
         }
@@ -379,6 +421,10 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         {
             let vc = segue.destination as! SearchResult
             vc.searchText = self.searchTextfield.text!
+        }
+        else if (segue.identifier == "notificationOffers")
+        {
+            let _ = segue.destination as! NotificationAndOffers
         }
 
     }

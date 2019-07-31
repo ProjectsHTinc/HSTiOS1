@@ -69,6 +69,13 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         GlobalVariables.shared.viewPage = "ServiceDetail"
     }
     
+    override func viewWillAppear(_ animated: Bool)
+    {
+        sub_cat_id = self.subcategoeryIDArr[0]
+        self.webRequestServiceList(Index: sub_cat_id)
+        self.indexArray = []
+    }
+    
     func preferedLanguage()
     {
         self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailnav_text", comment: "")
@@ -157,6 +164,12 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                                         self.service_nameArr.append(service_name!)
                                         let service_id = services.service_id
                                         self.serviceIDArr.append(service_id!)
+                                        let selected = services.selected
+                                        if selected != "0"
+                                        {
+                                            let myIndexPath = NSIndexPath(row: i, section: 0)
+                                            self.indexArray?.append(myIndexPath as NSIndexPath)
+                                        }
                                     }
                                         self.tableView .reloadData()
                                 }
@@ -451,6 +464,7 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                                 UserDefaults.standard.saveServicesDescripition(servicesDescripition: servicesdescripition)
                                 GlobalVariables.shared.Service_amount = servicesdescripition.rate_card!
                                 self.performSegue(withIdentifier: "serviceDescrption", sender: self)
+                            
                             }
                         }) {
                             (error) -> Void in
@@ -471,12 +485,33 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         return 117
     }
     
-    @objc public override func backButtonClick() {
+    @objc public override func backButtonClick()
+    {
         if isServiceAddButtonIsClicked == true
         {
-            self.serviceRemoveFromCart(user_master_id: GlobalVariables.shared.user_master_id)
+            let alertController = UIAlertController(title: "SkilEX", message: "If you want to leave the page, All the existing added service will be Deleted", preferredStyle: UIAlertController.Style.alert)
+            
+            
+            let okAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default) {
+                UIAlertAction in
+
+                self.serviceRemoveFromCart(user_master_id: GlobalVariables.shared.user_master_id)
+                self.navigationController?.popViewController(animated: true)
+
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default) {
+                UIAlertAction in
+            }
+            
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
         }
-         self.navigationController?.popViewController(animated: true)
+        else
+        {
+            self.navigationController?.popViewController(animated: true)
+
+        }
     }
 
     @IBAction func viewSummaryButton(_ sender: Any)

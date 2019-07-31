@@ -15,6 +15,7 @@ class RequestedServiceTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var cellView: UIView!
+    @IBOutlet weak var serviceCharge: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

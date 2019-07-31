@@ -62,20 +62,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     // Permission For Push Notification
     func registerForPushNotifications() {
         UNUserNotificationCenter.current() // 1
-            .requestAuthorization(options: [.alert, .sound, .badge]) {
+            .requestAuthorization(options: [.alert, .sound, .badge]) { // 2
                 [weak self] granted, error in
                 
                 print("Permission granted: \(granted)")
                 guard granted else { return }
                 self?.getNotificationSettings()
-                print("Test")
         }
     }
     
     func getNotificationSettings() {
-        // guard  == .authorized else { return }
-        DispatchQueue.main.async {
-            UIApplication.shared.registerForRemoteNotifications()
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            print("Notification settings: \(settings)")
+            guard settings.authorizationStatus == .authorized else { return }
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
         }
     }
 
@@ -110,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let device_Token = tokenParts.joined()
-        UserDefaults.standard.saveDeviceToken(deviceToken: device_Token)
+        UserDefaults.standard.saveDeviceToken(deviceToken: "sadsdasdasdasdasdasdasd")
         print("Device Token: \(String(describing: device_Token))")
     }
     
@@ -118,7 +120,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     {
         print("Failed to register: \(error)")
     }
-    
-
 }
 

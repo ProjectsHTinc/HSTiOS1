@@ -9,4 +9,5 @@
    pod 'SwiftyJSON', '~> 4.0'
    pod ‘ReachabilitySwift’, ‘~> 3’
    pod 'HMSegmentedControl'
+   pod 'OpenSSL-Universal
    end

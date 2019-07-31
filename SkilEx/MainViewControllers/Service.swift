@@ -25,6 +25,7 @@ class Service: UIViewController{
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigationItem.setHidesBackButton(true, animated:true);
         self.preferedLanguage()
     }
     
@@ -50,7 +51,7 @@ class Service: UIViewController{
     
     @IBAction func serviceHistoryButtonAction(_ sender: Any)
     {
-        
+        self.performSegue(withIdentifier: "serviceHistory", sender: self)
     }
     
     
@@ -68,6 +69,9 @@ class Service: UIViewController{
         else if (segue.identifier == "requestedService")
         {
             let _ = segue.destination as! RequestedService
+        }
+        else if (segue.identifier == "serviceHistory"){
+            let _ = segue.destination as! ServiceHistory
         }
     }
     

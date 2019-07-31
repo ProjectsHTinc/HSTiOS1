@@ -11,22 +11,49 @@ import MapKit
 
 extension UIViewController: MKMapViewDelegate
 {
+    
     public func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard annotation is MKPointAnnotation else { print("no mkpointannotaions"); return nil }
         
-        let reuseId = "pin"
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+       // let reuseId = "pin"
         
-        if pinView == nil {
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView!.canShowCallout = true
-            pinView!.rightCalloutAccessoryView = UIButton(type: .infoDark)
-            pinView!.pinTintColor = UIColor.red
+        let reuseId = GlobalVariables.shared.reuseID
+        if reuseId == "pin"
+        {
+            var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+            
+            if pinView == nil {
+                pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                pinView!.canShowCallout = true
+                pinView!.rightCalloutAccessoryView = UIButton(type: .infoDark)
+                pinView!.pinTintColor = UIColor.red
+            }
+            else {
+                pinView!.annotation = annotation
+            }
+            
+            return pinView
         }
-        else {
-            pinView!.annotation = annotation
+        else
+        {
+            var annotationView: MKAnnotationView?
+            if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) {
+                annotationView = dequeuedAnnotationView
+                annotationView?.annotation = annotation
+            }
+            else {
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            }
+            
+            if let annotationView = annotationView {
+                
+                annotationView.canShowCallout = true
+                annotationView.image = UIImage(named: "bike")
+            }
+            return annotationView
         }
-        return pinView
+        
     }
     
     public func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {

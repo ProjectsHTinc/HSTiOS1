@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class ServiceList: Codable {
 
-    var service_order_id, service_ta_name, order_date, time_slot, sub_category, main_category, service_name, main_category_ta, sub_category_ta, contact_person_name : String?
+    var service_order_id, service_ta_name, order_date, time_slot, sub_category, main_category, service_name, main_category_ta, sub_category_ta, contact_person_name, order_status : String?
     
     init(json:JSON) {
         
@@ -25,6 +25,7 @@ class ServiceList: Codable {
         self.main_category_ta = json["main_category_ta"].stringValue
         self.sub_category_ta = json["sub_category_ta"].stringValue
         self.contact_person_name = json["contact_person_name"].stringValue
+        self.order_status = json["order_status"].stringValue
 
     }
 }

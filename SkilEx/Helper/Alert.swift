@@ -93,7 +93,7 @@ class Alert: NSObject {
     }
 
     fileprivate func showAlert(_ title: String?, message: String?, actions: [UIAlertAction]) {
-        self.showAlert(title, message: message, actions: actions, style: UIAlertController.Style.alert, view: nil)
+        self.showAlert(title, message: message, actions: actions, style: UIAlertController.Style.alert, view: self)
     }
 
     fileprivate func showAlert(_ title: String?, message: String?, actions: [UIAlertAction], style: UIAlertController.Style, view: AnyObject?) {

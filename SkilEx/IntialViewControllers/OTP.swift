@@ -130,7 +130,7 @@ class OTP: UIViewController,UITextFieldDelegate {
     {
         if OTP.isEmpty{
 
-            Alert.defaultManager.showOkAlert("SkilEx", message: "Mobile Number cannot be Empty") { (action) in
+            Alert.defaultManager.showOkAlert("SkilEx", message: "Otp cannot be Empty") { (action) in
                 //Custom action code
             }
         }
@@ -178,7 +178,47 @@ class OTP: UIViewController,UITextFieldDelegate {
         }
 
     }
-    @IBAction func resendButton(_ sender: Any) {
+    @IBAction func resendButton(_ sender: Any)
+    {
+       self.webrequestResendOtp(mobileNumber: mobileNumber)
+    }
+    
+    func webrequestResendOtp (mobileNumber: String)
+    {
+        let parameters = ["phone_no": mobileNumber]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+            {
+                do
+                {
+                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "mobile_check", params: parameters, headers: nil, success: {
+                        (JSONResponse) -> Void in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print(JSONResponse)
+                        let json = JSON(JSONResponse)
+                        let msg = json["msg"].stringValue
+                        let status = json["status"].stringValue
+                        if msg == "Mobile OTP" && status == "success"{
+                            let phone_no = json["phone_no"].stringValue
+                            let otp = json["otp"].stringValue
+                            self.user_master_id = json["user_master_id"].stringValue
+                            UserDefaults.standard.set(self.user_master_id, forKey: "user_master_id")
+                            GlobalVariables.shared.user_master_id = UserDefaults.standard.string(forKey: "user_master_id") ?? ""
+                            UserDefaults.standard.set(phone_no, forKey: "phone_no")
+                            UserDefaults.standard.set(otp, forKey: "otp_key")
+                            self.otp = UserDefaults.standard.string(forKey: "otp_key") ?? ""
+                            print(phone_no)
+                        }
+                    }) {
+                        (error) -> Void in
+                        print(error)
+                    }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
+        }
     }
     
     // MARK: - Navigation

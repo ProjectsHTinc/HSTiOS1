@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import MBProgressHUD
+import SwiftyJSON
 
 class AdvancePayment: UIViewController {
     
     var advance_amount = String()
+    var orderId = String()
     
     @IBOutlet weak var advancepaymentLabel: UILabel!
     @IBOutlet weak var advanceAmount: UILabel!
@@ -23,12 +26,13 @@ class AdvancePayment: UIViewController {
         // Do any additional setup after loading the view.
         self.preferedLanguage()
         self.addBackButton()
+        self.advanceAmount.text = String(format: "%@ %@", "Rs.", advance_amount)
 
     }
     override func viewWillLayoutSubviews() {
         
         self.subView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.5, radius: 6)
-        proceedOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
+        proceedOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 18, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
     }
     
     @objc public override func backButtonClick() {
@@ -43,9 +47,26 @@ class AdvancePayment: UIViewController {
     
     @IBAction func proceedAction(_ sender: Any)
     {
-        
+        self.webRequestCCavenue ()
     }
     
+    
+    func webRequestCCavenue ()
+    {
+        UserDefaults.standard.set("Ap", forKey: "Advance/customer")
+        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "CCWebViewController") as! CCWebViewController
+        viewController.accessCode = "AVQM86GG76CA98MQAC"
+        viewController.merchantId = "225068"
+        viewController.amount = "1.00"
+            // advance_amount
+        viewController.currency = "INR"
+        viewController.orderId = GlobalVariables.shared.order_id
+        viewController.redirectUrl = "https://www.skilex.in/development/ccavenue_app/customer_advance.php"
+        viewController.cancelUrl = "https://www.skilex.in/development/ccavenue_app/customer_advance.php"
+        viewController.rsaKeyUrl = "https://www.skilex.in/development/ccavenue_app/GetRSA.php"
+        self.present(viewController, animated: true, completion: nil)
+    }
+
 
     /*
     // MARK: - Navigation

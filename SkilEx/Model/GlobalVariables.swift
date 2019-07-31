@@ -17,4 +17,8 @@ class GlobalVariables: NSObject {
     var catServicetID = String()
     var viewPage = String()
     var order_id = String()
+    var reuseID = String()
+    var Advanceamount = String()
+    var payableAmount = String()
+
 }

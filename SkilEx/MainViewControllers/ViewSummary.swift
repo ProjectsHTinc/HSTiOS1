@@ -21,6 +21,7 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     var cartListArr = [CartList]()
     var cartListServiceName = [String]()
+    var grand_total = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +61,8 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
                         let status = json["status"].stringValue
+                        self.grand_total = json["grand_total"].stringValue
+                        
                         if msg == "Cart list found" && status == "success"{
                             
                             self.advanceAmount.isHidden = false
@@ -149,7 +152,7 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
             
             cell.serviceName.text = cartList.service_name
             self.advanceAmount.text = String(format: "%@ %@", "Rs.",cartListArr[0].advance_amount!)
-            self.totalServiceAmount.text = String(format: "%@ %@", "Rs.",GlobalVariables.shared.Service_amount)
+            self.totalServiceAmount.text = String(format: "%@ %@", "Rs.",self.grand_total)
             let imgUrl = cartList.service_picture
             if imgUrl!.isEmpty == false
             {
@@ -170,7 +173,7 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
         {
             cell.serviceName.text = cartList.service_ta_name
             self.advanceAmount.text = String(format: "%@ %@", "Rs.",cartListArr[0].advance_amount!)
-            self.totalServiceAmount.text = String(format: "%@ %@", "Rs.",GlobalVariables.shared.Service_amount)
+            self.totalServiceAmount.text = String(format: "%@ %@", "Rs.",self.grand_total)
             let imgUrl = cartList.service_picture
             if imgUrl!.isEmpty == false
             {

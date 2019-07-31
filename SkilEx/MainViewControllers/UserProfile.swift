@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import SwiftyJSON
 
 class UserProfile: UIViewController {
     @IBOutlet weak var userImage: UIImageView!
@@ -15,17 +16,51 @@ class UserProfile: UIViewController {
     @IBOutlet weak var userMobileNumber: UILabel!
     @IBOutlet weak var userMailId: UILabel!
     
-    let userdata = UserDefaults.standard.getUserData()
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.updateUserDetails()
+        self.navigationItem.setHidesBackButton(true, animated:true);
+        self.profileView()
+    }
+    
+    func profileView ()
+    {
+        let parameters = ["user_master_id": GlobalVariables.shared.user_master_id]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+            {
+                do
+                {
+                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "user_info", params: parameters, headers: nil, success: {
+                        (JSONResponse) -> Void in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print(JSONResponse)
+                        let json = JSON(JSONResponse)
+                        let msg = json["msg"].stringValue
+                        let status = json["status"].stringValue
+                        if msg == "User information" && status == "success"
+                        {
+                            let userdata = UserData(json: json["user_details"])
+                            UserDefaults.standard.saveUserdata(userdata: userdata)
+                            self.updateUserDetails()
+                        }
+                    }) {
+                        (error) -> Void in
+                        print(error)
+                    }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
+        }
     }
     
     func updateUserDetails()
     {
+        let userdata = UserDefaults.standard.getUserData()
+
         if  userdata?.fullName == nil && userdata?.email == nil  && userdata?.profilePic == nil{
             self.userName.text = ""
             self.userMobileNumber.text = ""
@@ -86,10 +121,11 @@ class UserProfile: UIViewController {
         GlobalVariables.shared.main_catID = ""
         GlobalVariables.shared.sub_catID = ""
         GlobalVariables.shared.catServicetID = ""
-         GlobalVariables.shared.viewPage = ""
+        GlobalVariables.shared.viewPage = ""
         UserDefaults.standard.set("", forKey: "user_master_id")
         UserDefaults.standard.set("", forKey: "phone_no")
         UserDefaults.standard.set("", forKey: "otp_key")
+        UserDefaults.standard.set("", forKey: "Advance/customer")
         UserDefaults.standard.clearUserData()
         self.performSegue(withIdentifier: "to_Login", sender: self)
 
