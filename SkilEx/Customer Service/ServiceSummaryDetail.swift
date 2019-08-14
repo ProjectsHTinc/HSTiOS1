@@ -117,7 +117,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
         if LocalizationSystem.sharedInstance.getLanguage() == "en"
         {
             self.mainCategoery.text = bookingDetailSummary?.main_category
-            self.subCategoery.text = bookingDetailSummary?.sub_category
+            self.subCategoery.text = bookingDetailSummary?.service_name
             self.customerName.text = bookingDetailSummary?.contact_person_name
             self.serviceDate.text = bookingDetailSummary?.order_date
             self.requestedTime.text = bookingDetailSummary?.time_slot
@@ -164,7 +164,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
         else
         {
             self.mainCategoery.text = bookingDetailSummary?.main_category_ta
-            self.subCategoery.text = bookingDetailSummary?.sub_category_ta
+            self.subCategoery.text = bookingDetailSummary?.service_name
             self.customerName.text = bookingDetailSummary?.contact_person_name
             self.serviceDate.text = bookingDetailSummary?.order_date
             self.requestedTime.text = bookingDetailSummary?.time_slot

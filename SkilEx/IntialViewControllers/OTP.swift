@@ -21,6 +21,7 @@ class OTP: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var enterVerificationCodeLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var resendOutlet: UIButton!
+    @IBOutlet weak var notReciveOTPLabel: UILabel!
     
     var mobileNumber = String()
     var otp = String()
@@ -73,6 +74,7 @@ class OTP: UIViewController,UITextFieldDelegate {
         enterVerificationCodeLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "enterverificationCode_text", comment: "")
         contentLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "content_text", comment: "")
         resendOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "resend_text", comment: ""), for: .normal)
+        notReciveOTPLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "notsendOTP_text", comment: "")
     }
     
   

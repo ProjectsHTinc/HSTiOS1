@@ -31,7 +31,9 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
 
         // Do any additional setup after loading the view.
         self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "homenavtitle_text", comment: "")
-        self.addrightButton()
+        /*temp hide */
+        //self.addrightButton()
+        /*temp hide */
         self.viewMainCategoery()
         self.viewBanners()
         self.serviceRemoveFromCart(user_master_id: GlobalVariables.shared.user_master_id)

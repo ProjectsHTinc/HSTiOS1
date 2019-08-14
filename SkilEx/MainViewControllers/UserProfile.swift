@@ -15,6 +15,10 @@ class UserProfile: UIViewController {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userMobileNumber: UILabel!
     @IBOutlet weak var userMailId: UILabel!
+    @IBOutlet weak var profileSettingsLabel: UILabel!
+    @IBOutlet weak var aboutSkilexLabel: UILabel!
+    @IBOutlet weak var shareSkilexLabel: UILabel!
+    @IBOutlet weak var logoutLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +26,17 @@ class UserProfile: UIViewController {
         // Do any additional setup after loading the view.
         self.navigationItem.setHidesBackButton(true, animated:true);
         self.profileView()
+        self.preferedLanguage()
+
+    }
+    
+    func preferedLanguage()
+    {
+        self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "userprofilenav_text", comment: "")
+        profileSettingsLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "profilesettings_text", comment: "")
+        aboutSkilexLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "aboutSkilex_text", comment: "")
+        shareSkilexLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "shareSkilex_text", comment: "")
+        logoutLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "logout_text", comment: "")
     }
     
     func profileView ()
@@ -44,6 +59,14 @@ class UserProfile: UIViewController {
                             let userdata = UserData(json: json["user_details"])
                             UserDefaults.standard.saveUserdata(userdata: userdata)
                             self.updateUserDetails()
+                        }
+                        else
+                        {
+                            self.userMobileNumber.text = "-"
+                            self.userMailId.text = "-"
+                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
+                                
+                            }
                         }
                     }) {
                         (error) -> Void in
@@ -101,7 +124,29 @@ class UserProfile: UIViewController {
     
     @IBAction func profileButton(_ sender: Any)
     {
-        self.performSegue(withIdentifier: "to_Profile", sender: self)
+        if GlobalVariables.shared.user_master_id == ""
+        {
+            let alertController = UIAlertController(title: "SkilEX", message: "If you want this service you have to login", preferredStyle: UIAlertController.Style.alert)
+            
+            
+            let okAction = UIAlertAction(title: "Login", style: UIAlertAction.Style.default) {
+                UIAlertAction in
+                self.performSegue(withIdentifier: "to_Login", sender: self)
+                
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default) {
+                UIAlertAction in
+                
+            }
+            
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else
+        {
+            self.performSegue(withIdentifier: "to_Profile", sender: self)
+        }
     }
     
     @IBAction func aboutSkilex(_ sender: Any)
@@ -141,6 +186,7 @@ class UserProfile: UIViewController {
         
         if (segue.identifier == "to_Profile"){
             
+            let _ = segue.destination as! Profile
         }
     }
 

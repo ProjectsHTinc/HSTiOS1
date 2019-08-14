@@ -74,7 +74,7 @@
                                                 <rect key="frame" x="115" y="419" width="131" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.074509803920000006" green="0.35294117650000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                                 <state key="normal" title="Login">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -83,7 +83,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqD-yP-5Fa">
-                                                <rect key="frame" x="114" y="466" width="131" height="29"/>
+                                                <rect key="frame" x="50" y="466" width="252" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                                 <state key="normal" title="Skip for now">
@@ -277,6 +277,7 @@
                         <outlet property="contentLabel" destination="nyo-eF-Swu" id="Wb3-rR-ZZx"/>
                         <outlet property="enterVerificationCodeLabel" destination="Bde-5h-L19" id="543-SK-dXs"/>
                         <outlet property="mobileNumberLabel" destination="9Tc-oW-ZM6" id="Phw-5b-U01"/>
+                        <outlet property="notReciveOTPLabel" destination="TOT-Ao-lpA" id="5gb-ag-KYa"/>
                         <outlet property="resendOutlet" destination="3w8-8G-DZo" id="Jy4-TI-D2e"/>
                         <outlet property="submitOutlet" destination="ZBt-KZ-TWp" id="T91-9I-TX1"/>
                         <outlet property="textfieldFour" destination="4aI-kO-qE9" id="gQc-yK-aKQ"/>
@@ -389,7 +390,7 @@
                                                 <rect key="frame" x="120" y="496" width="131" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.074509803920000006" green="0.35294117650000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                                 <state key="normal" title="Submit">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>

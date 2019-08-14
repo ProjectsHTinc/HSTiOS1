@@ -368,6 +368,7 @@
 		6B193EB6227FF08D0015BD8E /* IntialViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6B5FE6EE227BFB19007A4F32 /* AppDelegate.swift */,
 				6BB34535229FD8D000547817 /* Login.swift */,
 				6BB34537229FD8D000547817 /* OTP.swift */,
 				6BB34538229FD8D000547817 /* Profile.swift */,
@@ -437,7 +438,6 @@
 		6B5FE6ED227BFB19007A4F32 /* SkilEx */ = {
 			isa = PBXGroup;
 			children = (
-				6B5FE6EE227BFB19007A4F32 /* AppDelegate.swift */,
 				6B0756C122EAF3BC00355C01 /* CCAvenue */,
 				6BB34544229FD95C00547817 /* Model */,
 				6B075A9822E9E4D600A7B17F /* Utilites */,

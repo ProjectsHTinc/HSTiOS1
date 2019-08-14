@@ -47,8 +47,8 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         segmentedControl1?.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.down
         segmentedControl1?.backgroundColor = UIColor.white
         segmentedControl1?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.gray]
-        let font = UIFont.systemFont(ofSize: 14)
-        segmentedControl1?.titleTextAttributes = [NSAttributedString.Key.font: font]
+//        let font = UIFont.systemFont(ofSize: 14)
+        segmentedControl1?.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Helvetica-Bold", size: 14)!]
         segmentedControl1?.selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255.0, alpha: 1.0)]
         segmentedControl1?.selectionIndicatorColor = UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255.0, alpha: 1.0)
         segmentedControl1?.isVerticalDividerEnabled = false
@@ -169,6 +169,8 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                                         {
                                             let myIndexPath = NSIndexPath(row: i, section: 0)
                                             self.indexArray?.append(myIndexPath as NSIndexPath)
+                                            let serviceCount = String(GlobalVariables.shared.rowCount)
+                                            self.UpdateServiceCountandCost(serviceCount:serviceCount, amount: GlobalVariables.shared.Service_amount)
                                         }
                                     }
                                         self.tableView .reloadData()
@@ -257,6 +259,7 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                         }
                     }
                 }
+
                 cell.selectionBackgroundView.backgroundColor =  UIColor(red: 142.0/255, green: 198.0/255, blue: 65.0/255, alpha: 1.0)
                 cell.addButton.tag = indexPath.row
                 cell.addButton.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
@@ -373,9 +376,9 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                                 let cart_total = json["cart_total"]
                                 print(cart_total as Any)
                                 let service_count = cart_total["service_count"].stringValue
-                                let total_amt = cart_total["total_amt"].stringValue
+                                GlobalVariables.shared.Service_amount = cart_total["total_amt"].stringValue
                                 MBProgressHUD.showAdded(to: self.view, animated: true)
-                                self.UpdateServiceCountandCost(serviceCount: service_count , amount: total_amt)
+                                self.UpdateServiceCountandCost(serviceCount: service_count , amount: GlobalVariables.shared.Service_amount)
                             }
                             else
                             {
@@ -400,7 +403,6 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
     {
         MBProgressHUD.hide(for: self.view, animated: true)
         self.serviceCountLabel.text = String(format: "%@%@%@ | %@%@", LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailservice_text", comment: ""),":", serviceCount,"Rs.",amount)
-        GlobalVariables.shared.Service_amount = amount
     }
     
     func serviceRemoveFromCart(user_master_id: String)
@@ -482,7 +484,7 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 117
+        return 95
     }
     
     @objc public override func backButtonClick()

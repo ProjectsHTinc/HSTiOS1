@@ -8,159 +8,167 @@
 
 /* Login text */
 "appname_text" = "ஸ்கில்எக்ஸ்";
-"welcome_text" = "உங்களை வரவேற்கிறது";
-"mobilenumber_text" = "உங்கள் மொபைல் நம்பரை என்டர் செய்யவும் ";
-"mobilenumberplaceholder_text" = "மொபைல் நம்பர்";
-"login_text" = "உள் நுழை";
+"welcome_text" = "நல்வரவு";
+"mobilenumber_text" = "தொலைபேசி எண்ணை என்டர் செய்யவும்";
+"mobilenumberplaceholder_text" = "தொலைபேசி எண்";
+"login_text" = "உள்நுழை";
 "skip_text" = "இப்போதைக்கு தவிர்";
 
 /* Otp text */
-"enterverificationCode_text" = "சரிபார்ப்புக் குறியீட்டை உள்ளிடவும்";
+"enterverificationCode_text" = "சரிபார்ப்பு குறியீட்டை என்டர் செய்யவும்";
 "content_text" = "உங்கள் மொபைல் எண்ற்கு அனுப்பப்பட்டுள்ள 4 இலக்க கடவுச்சொல்லை என்டர் செய்யவும்";
-"resend_text" = "கடவுச்சொல்லை திரும்பவும் அனுப்புக";
+"resend_text" = "கடவுச்சொல்லை மீண்டும் அனுப்புக";
+"notsendOTP_text" = "கடவுச்சொல்லை பெறவில்லையா?";
 
 /* profile text */
-"profilenavtitle_text" = "பயனர் சுயவிவர";
-"fullname_text" = "முழு பெயர்";
-"regmobnum_text" = "பதிவு செய்யப்பட்ட மொபைல் எண்";
-"mailid_text" = "மின்னஞ்சல் முகவரி";
+"profilenavtitle_text" = "பயனர் சுயவிவரத்தை புதுப்பிக்கவும்";
+"fullname_text" = "முழுப்பெயர்";
+"regmobnum_text" = "தொலைபேசி எண்ணை என்டர் செய்யவும்";
+"mailid_text" = "மின்னஞ்சல் முகவரி (கட்டாயமற்றது)";
 "city_text" = "நகரம்";
-"submit_profile_text" = "உள் நுழை";
+"submit_profile_text" = "சேவ் செய்க";
 
 /* tabbarcontroller text */
-"homenavtitle_text" = "ஸ்கில்எக்ஸ் - சேவை வழங்குநர்";
+"homenavtitle_text" = "ஸ்கில்எக்ஸ் - ஸ்கில்எக்ஸ் சேவைகள்";
 "hometab_text" = "முகப்பு பக்கம்";
 "servicetab_text" = "சேவைகள்";
-"profiletab_text" = "பயனர் சுயவிவரம்";
+"profiletab_text" = "பயனர் சுயவிவரம் / சுயவிவரங்கள்";
 "homealerttitle_text" = "ஸ்கில்எக்ஸ்";
-"homealertmsg_text" = "இந்த சேவையை நீங்கள் விரும்பினால் நீங்கள் உள்நுழைய வேண்டும்";
-"homealertbuttonlogin_text" = "உள் நுழை";
-"homealertbuttoncancel_text" = "ரத்து";
+"homealertmsg_text" = "இச்சேவையை பெற உள்நுழையவும்";
+"homealertbuttonlogin_text" = "உள்நுழை";
+"homealertbuttoncancel_text" = "ரத்து செய்";
 
 /* Home text */
-"homesearchbar_text" = "சேவையைத் தேடுங்கள்";
+"homesearchbar_text" = "ஸ்கில்எக்ஸ் சேவைகளை தேடவும்";
+
+/* User Profile */
+"userprofilenav_text" = "பயனர் சுயவிவரம்";
+"profilesettings_text" = "சுயவிவர அமைப்புகள்";
+"aboutSkilex_text" = "ஸ்கைலெக்ஸ் பற்றி அறிய";
+"shareSkilex_text" = "ஸ்கைலெக்ஸ் பகிரவ";
+"logout_text" = "வெளியேறு";
 
 /* Services text */
 "servicestitle_text" = "சேவைகள்";
-"servicesrequested_text" = "கோரப்பட்ட சேவை";
-"servicesongoing_text" = "நடந்துகொண்டிருக்கும் சேவை";
-"servicesService_text" = "சேவை வரலாறு";
+"servicesrequested_text" = "கோரிய சேவைகள்";
+"servicesongoing_text" = "நடப்பு சேவைகள்";
+"servicesService_text" = "நிறைவுற்ற சேவைகளின் விபரங்கள்";
 
 /* ServiceDeatil text */
-"servicedetailnav_text" = "தேடல் விவரம்";
-"servicedetailservice_text" = "சேவை";
-"servicedetailsummary_text" = "சுருக்கம் காண்க";
-"servicedetailadd_text" = "கூட்டு";
+"servicedetailnav_text" = "தேடல் விபரங்கள் ";
+"servicedetailservice_text" = "சேவைகள்";
+"servicedetailsummary_text" = "நிறைவுச்சுருக்கத்தை காண்க";
+"servicedetailadd_text" = "சேர்";
 
 /* ViewSummary text */
-"viewsummarynavtitle_text" = "சுருக்கம் காண்க";
-"viewsummaryadvanceamount_text" = "முன்கூட்டியே தொகை";
+"viewsummarynavtitle_text" = "சேவை நிறைவுச்சுருக்கம்";
+"viewsummaryadvanceamount_text" = "முன் பணம்";
 "viewsummarytotalamount_text" = "மொத்த தொகை";
-"viewsummaryproceed_text" = "தொடர";
+"viewsummaryproceed_text" = "தொடரவும்";
+"ordersummary_text" = "ஆர்டர் சுருக்கம்";
 
 /* CustomerAddress text */
 "customeraddressnavtitle_text" = "வாடிக்கையாளர் முகவரி";
 "locationaddress_text" = "இருப்பிடம் (முகவரி)";
 "customeraddressname_text" = "பெயர்";
-"customeraddressphonenumber_text" = "தொலைபேசி எண்";
-"customeraddressdate_text" = "தேதியைத் தேர்ந்தெடுக்கவும்";
-"customeraddresstime_text" = "நேரத்தைத் தேர்ந்தெடுக்கவும்";
-"customeraddressproceed_text" = "தொடர";
+"customeraddressphonenumber_text" = "தொலைபேசி எண்";
+"customeraddressdate_text" = "தேதியை தேர்வு செய்க";
+"customeraddresstime_text" = "நேரத்தை தேர்வு செய்க";
+"customeraddressproceed_text" = "சேவை முன்பதிவு செய்க";
 
 /* Searchresult text */
 "searchresultnavtitle_text" = "தேடல் முடிவுகள்";
 
 /* Advancepayment text */
 "advancepaymentnavtitle_text" = "முன் பணம்";
-"advancepaymentproceed_text" = "தொடர";
+"advancepaymentproceed_text" = "தொடரவும்";
 
 
 /* Ongoing text */
-"ongoingservicenavtitle_text" = "நடந்துகொண்டிருக்கும் சேவை";
+"ongoingservicenavtitle_text" = "நடப்பு சேவைகள்";
 
 /* Requested text */
-"requestedservicenavtitle_text" = "கோரப்பட்ட சேவை";
+"requestedservicenavtitle_text" = "கோரிய சேவைகள்";
 
 
 /*RequestedservicesDetail text */
-"servicesdetailreqstednavtitle_text" = "கோரப்பட்ட சேவை விவரம்";
+"servicesdetailreqstednavtitle_text" = "கோரிய சேவையின் விபரங்கள்";
 
 /*OngoingservicesDetail text */
-"servicesdetailongoingnavtitle_text" = "நடந்துகொண்டிருக்கும் சேவை விவரம்";
+"servicesdetailongoingnavtitle_text" = "நடப்பு சேவையின் விபரங்கள்";
 "servicesdetailongoingprovider_text" = "சேவை வழங்குநர்";
-"servicesdetailongoingtimeslot_text" = "சேவை நேரம்";
-"servicesdetailongoingestimatedcost_text" = "மதிப்பிடப்பட்ட செலவு";
-"servicesdetailongoingcallserviceperson_text" = "சேவை நபரை அழைக்கவும்";
-"servicesdetailongoingtrack_text" = "கண்காணிப்பு";
-
-"servicesdetailongoingstart_text" = "தொடங்கியது";
+"servicesdetailongoingtimeslot_text" = "சேவை தொடங்கும் நேரம்";
+"servicesdetailongoingestimatedcost_text" = "கணிக்கப்பட்ட தொகை";
+"servicesdetailongoingcallserviceperson_text" = "சேவகரை அழை";
+"servicesdetailongoingtrack_text" = "சேவகரின் வருகையை கண்காணி";
+"servicesdetailongoingstart_text" = "தொடங்கவும்";
 
 
 /*RequestedservicesDetail text */
-"servicesdetailrequestednavtitle_text" = "கோரப்பட்ட சேவை விவரம்";
+"servicesdetailrequestednavtitle_text" = "கோரிய சேவையின் விபரங்கள்";
 "servicesdetailrequestedcustomername_text" = "வாடிக்கையாளர் பெயர்";
-"servicesdetailrequestedcustomernumber_text" = "வாடிக்கையாளர் எண்";
-"servicesdetailrequestedestimated_text" = "மதிப்பிடப்பட்ட செலவு";
+"servicesdetailrequestedcustomernumber_text" = "தொலைபேசி எண்";
+"servicesdetailrequestedestimated_text" = "கணிக்கப்பட்ட தொகை";
 "servicesdetailrequestedaddress_text" = "முகவரி";
-"servicesdetailrequestedcancel_text" = "சேவையை ரத்துசெய்";
+"servicesdetailrequestedcancel_text" = "சேவையை ரத்து செய்";
 
 /*BookingStatus text */
-"bookingstatusnavtitle_text" = "முன்பதிவு வெற்றி";
+"bookingstatusnavtitle_text" = "சேவை முன்பதிவு செய்யப்பட்டது";
 "bookingsucces_text" = "வெற்றி";
-"bookingsuccesstatus_text" = "உங்கள் சேவை வெற்றிகரமாக பதிவு செய்யப்பட்டுள்ளது";
-"backtohome_text" = "முகப்பு பக்கத்திற்குத் திரும்பு";
-"bookingfailed_text" = "தோல்வி";
-"bookingfailedstatus_text" = "உங்கள் முன்பதிவு தோல்வியுற்றது";
-"backtohomefailed_textt" = "முகப்பு பக்கத்திற்குத் திரும்பு";
+"bookingsuccesstatus_text" = "உங்கள் சேவை வெற்றிகரமாக முன்பதிவு செய்யப்பட்டது";
+"backtohome_text" = "முகப்பு பக்கத்திற்கு செல்க";
+"bookingfailed_text" = "மன்னிக்கவும் !";
+"bookingfailedstatus_text" = "உங்களது முன்பதிவு தோல்வியடைந்தது!";
+"backtohomefailed_textt" = "மீண்டும் முயற்சிக்கவும்";
 
 /*Tracking text */
 "trackingnavtitle_text" = "கண்காணிப்பு";
 
 
 /*ServiceHistorySummary text */
-"servicehistorysummarynavtitle_text" = "முன்பதிவு விவரம் சுருக்கம்";
+"servicehistorysummarynavtitle_text" = "சேவை முன்பதிவு நிறைவுச்சுருக்கம்";
 "servicehistorysummarycustomername_text" = "வாடிக்கையாளர் பெயர்";
-"servicehistorysummaryservicedate_text" = "சேவை தேதி";
-"servicehistorysummaryrequestedtime_text" = "சேவை நேரம்";
+"servicehistorysummaryservicedate_text" = "சேவை நாள்";
+"servicehistorysummaryrequestedtime_text" = "கோரிய சேவையின் நேரம்";
 "servicehistorysummaryserviceprovider_text" = "சேவை வழங்குநர்";
-"servicehistorysummaryserviceperson_text" = "சேவை நபர்";
-"servicehistorysummaryservicestarted_text" = "சேவை தொடங்கியது";
-"servicehistorysummaryservicecompleted_text" = "சேவை முடிந்தது";
-"servicehistorysummaryviewbill_text" = "மசோதாவைக் காண்க";
-"servicehistorysummarymaterialsused_text" = "பயன்படுத்தப்படும் பொருள்";
-"servicehistorysummarypayment_text" = "கொடுப்பனவு";
+"servicehistorysummaryserviceperson_text" = "சேவகர்";
+"servicehistorysummaryservicestarted_text" = "சேவை தொடங்கப்பட்ட நாள்";
+"servicehistorysummaryservicecompleted_text" = "சேவை நிறைவுற்ற நாள்";
+"servicehistorysummaryviewbill_text" = "சேவைக்கான ரசிது";
+"servicehistorysummarymaterialsused_text" = "பயன்படுத்தப்பட்ட பொருட்கள்";
+"servicehistorysummarypayment_text" = "சேவை கட்டணம்";
 "servicehistorysummaryservicecharge_text" = "சேவை கட்டணம்";
 "servicehistorysummaryadditionalservicecharge_text" = "கூடுதல் சேவை கட்டணம்";
 "servicehistorysummarycouponapplied_text" = "கூப்பன் பயன்படுத்தப்பட்டது";
-"servicehistorysummaryadvanceamount_text" = "முன்கூட்டியே தொகை";
+"servicehistorysummaryadvanceamount_text" = "முன் பணம்";
 "servicehistorysummarygrandtotal_text" = "மொத்தம்";
-"servicehistorysummarysubtotal_text" = "கூட்டுத்தொகை";
-"servicehistorysummaryshare_text" = "பகிர்";
-"servicehistorybutton_text" = "இப்போது செலுத்த";
+"servicehistorysummarysubtotal_text" = "கூட்டுத்தொகை";
+"servicehistorysummaryshare_text" = "பகிரவும்";
+"servicehistorybutton_text" = "பணம் செலுத்து";
 
 /*AdditionalService text */
-"additionalservicenavtitle_text" = "Additional Service";
+"additionalservicenavtitle_text" = "கூடுதல் சேவைகள்";
 
 
 /*AdditionalService text */
-"paymentmethodavtitle_text" = "கட்டணம் செலுத்தும் முறை";
-"paymentmethodonline_text" = "கட்டணம் ஆன்லைனில்";
-"paymentmethodcash_text" = "கொடுப்பனவு ரொக்கம்";
+"paymentmethodavtitle_text" = "பணம் செலுத்தும் முறை";
+"paymentmethodonline_text" = "ஆன்லைனில் பணம் செலுத்து";
+"paymentmethodcash_text" = "நேரடியாக பணம் செலுத்து";
 
 /*cancelservice text */
-"cancelservicenavtitle_text" = "சேவையை ரத்துசெய்";
-"cancelservicetextfield_text" = "ரத்து செய்வதற்கான காரணத்தைத் தேர்ந்தெடுக்கவும்";
-"cancelservicecommnets_text" = "கருத்துகள் (ஏதேனும் இருந்தால்)";
-"cancelservicesubmit_text" = "சமர்ப்பி";
+"cancelservicenavtitle_text" = "சேவையை ரத்து செய்தல்";
+"cancelservicetextfield_text" = "ரத்து செய்வதற்கான காரணத்தை தேர்வு செய்யவும்";
+"cancelservicecommnets_text" = "கருத்துக்கள் (ஏதேனும் இருந்தால்)";
+"cancelservicesubmit_text" = "சமர்ப்பிக்க";
 
 /*ccresultviewcontroller text */
 "ccresultsucess_text" = "அருமை!";
-"ccresultstatussuces_text" = "நீங்கள் ஸ்கில்எக்ஸ் வழியாக ஒரு சேவையை\n வெற்றிகரமாக முன்பதிவு செய்துள்ளீர்கள்";
-"ccresultsbuttonsucess_text" = "முகப்பு பக்கத்திற்குத் திரும்பு";
+"ccresultstatussuces_text" = "ஸ்கில்எக்ஸ் மூலமாக நீங்கள் வெற்றிகரமாக சேவை முன்பதிவு செய்துள்ளீர்கள்";
+"ccresultsbuttonsucess_text" = "முகப்பு பக்கத்திற்கு செல்க";
 
-"ccresultfailure_text" = "ஏதோ தவறு";
-"ccresultstatusfailure_text" = "உங்கள் கட்டணத்தை எங்களால் செயல்படுத்த முடியவில்லை";
-"ccresultsbuttonfailure_text" = "மீண்டும் முயற்சி செய்";
+"ccresultfailure_text" = "எதோ தவறு நடந்துள்ளது";
+"ccresultstatusfailure_text" = "உங்கள் சேவை கட்டணத்தை செயல்படுத்த முடியவில்லை";
+"ccresultsbuttonfailure_text" = "மீண்டும் முயற்சிக்கவும்";
 
 /*notificationandoffers text */
 "notificationnavtitle_text" = "அறிவிப்பு";

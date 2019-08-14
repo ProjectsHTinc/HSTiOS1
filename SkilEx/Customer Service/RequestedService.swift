@@ -91,7 +91,6 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
         if LocalizationSystem.sharedInstance.getLanguage() == "en"
         {
             cell.mainCatgoery.text = serviceList.main_category
-            cell.subcatgoery.text = serviceList.sub_category
             cell.serviceName.text = serviceList.service_name
             cell.dateLabel.text = serviceList.order_date
             cell.timeLabel.text = serviceList.time_slot
@@ -100,7 +99,6 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
         else
         {
             cell.mainCatgoery.text = serviceList.main_category_ta
-            cell.subcatgoery.text = serviceList.sub_category_ta
             cell.serviceName.text = serviceList.service_ta_name
             cell.dateLabel.text = serviceList.order_date
             cell.timeLabel.text = serviceList.time_slot
@@ -160,7 +158,7 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 197
+        return 158
     }
     
     

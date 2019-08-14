@@ -6,6 +6,7 @@
   Copyright © 2019 Happy Sanz Tech. All rights reserved.
 */
 /* Login text */
+
 "appname_text" = "SkilEx";
 "welcome_text" = "Welcome !";
 "mobilenumber_text" = "Enter Mobile Number";
@@ -17,6 +18,7 @@
 "enterverificationCode_text" = "Enter Verification Code";
 "content_text" = "We have sent you a 4 digit verfication\n code to your mobile number";
 "resend_text" = "Resend OTP";
+"notsendOTP_text" = "Didn't Recieve the OTP?";
 
 /* profile text */
 "profilenavtitle_text" = "Update User Profile";
@@ -40,6 +42,13 @@
 /* Home text */
 "homesearchbar_text" = "Search for Services";
 
+/* User Profile */
+"userprofilenav_text" = "User Profile";
+"profilesettings_text" = "Profile Settings";
+"aboutSkilex_text" = "About SkilEx";
+"shareSkilex_text" = "Share SkilEx";
+"logout_text" = "Log Out";
+
 /* Services text */
 "servicestitle_text" = "Services";
 "servicesrequested_text" = "Requested Services";
@@ -57,6 +66,8 @@
 "viewsummaryadvanceamount_text" = "Advance amount";
 "viewsummarytotalamount_text" = "Grand Amount";
 "viewsummaryproceed_text" = "Proceed";
+"ordersummary_text" = "Order Summary";
+
 
 /* CustomerAddress text */
 "customeraddressnavtitle_text" = "Customer Address";

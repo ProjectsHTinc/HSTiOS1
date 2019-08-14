@@ -24,13 +24,11 @@ class SearchResult: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         self.addBackButton()
         self.preferedLanguage()
         self.webRequestSearchList(searchtext:searchText)
         GlobalVariables.shared.viewPage = "ServiceResult"
-
     }
     
     func preferedLanguage(){
@@ -42,7 +40,6 @@ class SearchResult: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     func webRequestSearchList(searchtext: String){
-        
         let parameters = ["service_txt": searchtext, "service_txt_ta": "", "user_master_id": GlobalVariables.shared.user_master_id]
         MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
@@ -144,7 +141,7 @@ class SearchResult: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 117
+        return 95
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)

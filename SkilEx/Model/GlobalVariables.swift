@@ -20,5 +20,5 @@ class GlobalVariables: NSObject {
     var reuseID = String()
     var Advanceamount = String()
     var payableAmount = String()
-
+    var rowCount = Int()
 }

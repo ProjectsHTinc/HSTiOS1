@@ -88,7 +88,7 @@ class OngoingServicesDetail: UIViewController {
         if LocalizationSystem.sharedInstance.getLanguage() == "en"
         {
             self.mainCategoeryName.text = serviceListDetail?.main_category
-            self.subCategoeryName.text = serviceListDetail?.sub_category
+            self.subCategoeryName.text = serviceListDetail?.service_name
             self.contactPersonName.text = serviceListDetail?.contact_person_name
             self.date.text = serviceListDetail?.order_date
             let imgurl = serviceListDetail?.pic
@@ -118,7 +118,7 @@ class OngoingServicesDetail: UIViewController {
         else
         {
             self.mainCategoeryName.text = serviceListDetail?.main_category_ta
-            self.subCategoeryName.text = serviceListDetail?.sub_category_ta
+            self.subCategoeryName.text = serviceListDetail?.service_ta_name
             self.contactPersonName.text = serviceListDetail?.contact_person_name
             self.date.text = serviceListDetail?.order_date
             let imgurl = serviceListDetail?.pic

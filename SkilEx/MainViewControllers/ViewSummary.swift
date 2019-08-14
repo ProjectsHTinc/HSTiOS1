@@ -18,10 +18,10 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var proceedOutlet: UIButton!
     @IBOutlet weak var advanceAmountLabel: UILabel!
     @IBOutlet weak var totalAmountLabel: UILabel!
+    @IBOutlet weak var orderSummaryLabel: UILabel!
     
     var cartListArr = [CartList]()
     var cartListServiceName = [String]()
-    var grand_total = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,6 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
     override func viewWillLayoutSubviews() {
         
         proceedOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
-        
     }
     
     func preferedLanguage()
@@ -44,6 +43,7 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.advanceAmountLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "viewsummaryadvanceamount_text", comment: "")
         self.totalAmountLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "viewsummarytotalamount_text", comment: "")
         proceedOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "viewsummaryproceed_text", comment: ""), for: .normal)
+        orderSummaryLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "ordersummary_text", comment: "")
     }
     
     func webRequestViewCart()
@@ -61,7 +61,7 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
                         let status = json["status"].stringValue
-                        self.grand_total = json["grand_total"].stringValue
+                        GlobalVariables.shared.Service_amount = json["grand_total"].stringValue
                         
                         if msg == "Cart list found" && status == "success"{
                             
@@ -152,7 +152,8 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
             
             cell.serviceName.text = cartList.service_name
             self.advanceAmount.text = String(format: "%@ %@", "Rs.",cartListArr[0].advance_amount!)
-            self.totalServiceAmount.text = String(format: "%@ %@", "Rs.",self.grand_total)
+            self.totalServiceAmount.text = String(format: "%@ %@", "Rs.",GlobalVariables.shared.Service_amount)
+            GlobalVariables.shared.rowCount = cartListArr.count
             let imgUrl = cartList.service_picture
             if imgUrl!.isEmpty == false
             {
@@ -167,13 +168,13 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
                     }
                 }
             }
-            
         }
         else
         {
             cell.serviceName.text = cartList.service_ta_name
             self.advanceAmount.text = String(format: "%@ %@", "Rs.",cartListArr[0].advance_amount!)
-            self.totalServiceAmount.text = String(format: "%@ %@", "Rs.",self.grand_total)
+            self.totalServiceAmount.text = String(format: "%@ %@", "Rs.",GlobalVariables.shared.Service_amount)
+            GlobalVariables.shared.rowCount = cartListArr.count
             let imgUrl = cartList.service_picture
             if imgUrl!.isEmpty == false
             {
@@ -193,6 +194,10 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 95
+    }
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -203,6 +208,18 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
             let cartList = cartListArr[indexPath.row]
             print(cartList.cart_id!)
             self.webRequestRemoveFromCart(cartId: cartList.cart_id!)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String?
+    {
+        if LocalizationSystem.sharedInstance.getLanguage() == "en"{
+            
+            return "Delete"
+        }
+        else
+        {
+            return "அழி"
         }
     }
     

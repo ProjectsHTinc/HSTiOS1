@@ -100,6 +100,10 @@ class ServiceHistory: UIViewController,UITableViewDelegate,UITableViewDataSource
             {
                 cell.serviceStatusImage.image = UIImage(named: "cancelservice")
             }
+            else if cell.serviceStats.text == "Completed"
+            {
+                cell.serviceStatusImage.image = UIImage(named: "pending")
+            }
             else
             {
                 cell.serviceStatusImage.image = UIImage(named: "servicesuccess")
@@ -112,6 +116,22 @@ class ServiceHistory: UIViewController,UITableViewDelegate,UITableViewDataSource
             cell.subcategoery.text = serviceList.service_ta_name
             cell.date.text = serviceList.contact_person_name
             cell.time.text = serviceList.order_date
+            cell.serviceStats.text = serviceList.order_status
+            if cell.serviceStats.text == "Cancelled"
+            {
+                cell.serviceStatusImage.image = UIImage(named: "cancelservice")
+                cell.serviceStats.text = "ரத்து செய்யப்பட்டது"
+            }
+            else if cell.serviceStats.text == "Completed"
+            {
+                cell.serviceStatusImage.image = UIImage(named: "pending")
+                cell.serviceStats.text = "நிறைவுற்றது"
+            }
+            else
+            {
+                cell.serviceStatusImage.image = UIImage(named: "servicesuccess")
+                cell.serviceStats.text = "பணம் செலுத்தப்பட்டது"
+            }
         }
         
         cell.cellView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.5, radius: 6)
@@ -129,10 +149,8 @@ class ServiceHistory: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
         else
         {
-            
             self.webRequestProceedforPayment()
             self.webRequestserviceSummaryDetail(service_order_id: index.service_order_id!)
-            
         }
     }
     

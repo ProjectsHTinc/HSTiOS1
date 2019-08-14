@@ -63,7 +63,7 @@ class RequestedServiceDetail: UIViewController {
         if LocalizationSystem.sharedInstance.getLanguage() == "en"
         {
             self.mainCategoeryName.text = serviceListDetail?.main_category
-            self.subCategoeryName.text = serviceListDetail?.sub_category
+           // self.subCategoeryName.text = serviceListDetail?.sub_category
             self.serviceName.text = serviceListDetail?.service_name
             self.date.text = serviceListDetail?.order_date
             self.time.text = serviceListDetail?.time_slot
@@ -75,7 +75,7 @@ class RequestedServiceDetail: UIViewController {
         else
         {
             self.mainCategoeryName.text = serviceListDetail?.main_category_ta
-            self.subCategoeryName.text = serviceListDetail?.sub_category_ta
+          //  self.subCategoeryName.text = serviceListDetail?.sub_category_ta
             self.serviceName.text = serviceListDetail?.service_name
             self.date.text = serviceListDetail?.order_date
             self.time.text = serviceListDetail?.time_slot

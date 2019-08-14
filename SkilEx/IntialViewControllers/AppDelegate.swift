@@ -18,7 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
-        if GlobalVariables.shared.user_master_id.isEmpty ==  true
+        GlobalVariables.shared.user_master_id = UserDefaults.standard.string(forKey: "user_master_id") ?? ""
+        print(GlobalVariables.shared.user_master_id)
+        if GlobalVariables.shared.user_master_id.isEmpty == true
         {
            
             let topWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)

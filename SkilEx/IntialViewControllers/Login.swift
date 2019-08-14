@@ -126,7 +126,7 @@ class Login: UIViewController,UITextFieldDelegate {
                             let msg = json["msg"].stringValue
                             let status = json["status"].stringValue
                             if msg == "Success" && status == "success"{
-                              GlobalVariables.shared.user_master_id = "49"
+                              GlobalVariables.shared.user_master_id = ""
                               self.performSegue(withIdentifier: "guest_Home", sender: self)
                             }
                         }) {
@@ -174,4 +174,5 @@ class Login: UIViewController,UITextFieldDelegate {
     }
     
 }
+
 
