@@ -41,9 +41,14 @@ class Tracking: UIViewController, CLLocationManagerDelegate {
         }
         self.stopTimer()
         self.addBackButton()
-        self.preferedLanguage()
         self.subView.dropShadow(offsetX: 0, offsetY: 1, color:  UIColor.gray, opacity: 0.5, radius: 6)
         self.webRequestTracking(user_master_id: GlobalVariables.shared.user_master_id, person_id: (serviceListDetail?.person_id!)!)
+        self.preferedLanguage()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -123,6 +128,8 @@ class Tracking: UIViewController, CLLocationManagerDelegate {
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "Tracking found" && status == "success"{
                             self.latitude = json["track_info"]["lat"].doubleValue
@@ -132,8 +139,22 @@ class Tracking: UIViewController, CLLocationManagerDelegate {
                         }
                         else
                         {
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                self.navigationController?.popViewController(animated: true)
+                            
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                    self.navigationController?.popViewController(animated: true)
+
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                    self.navigationController?.popViewController(animated: true)
+
+                                }
                             }
                         }
                     }) {

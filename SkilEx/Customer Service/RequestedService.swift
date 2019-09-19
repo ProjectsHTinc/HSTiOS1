@@ -14,15 +14,22 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
    
     var serviceListArr = [ServiceList]()
     var service_Order_id =  String()
+    var advancePaymentStatus = String()
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.preferedLanguage()
         self.addBackButton()
         self.webRequestRequestedServiceList(user_master_id: GlobalVariables.shared.user_master_id)
+        self.preferedLanguage()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
     }
     
     func preferedLanguage () {
@@ -46,6 +53,8 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "Service found" && status == "success"{
                             
@@ -63,8 +72,19 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
                         }
                         else
                         {
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                    //self.performSegue(withIdentifier: "servicePage", sender: self)
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                    //self.performSegue(withIdentifier: "servicePage", sender: self)
+                                }
                             }
                         }
                     }) {
@@ -94,6 +114,7 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
             cell.serviceName.text = serviceList.service_name
             cell.dateLabel.text = serviceList.order_date
             cell.timeLabel.text = serviceList.time_slot
+            self.advancePaymentStatus = serviceList.advance_payment_status!
 
         }
         else
@@ -102,6 +123,7 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
             cell.serviceName.text = serviceList.service_ta_name
             cell.dateLabel.text = serviceList.order_date
             cell.timeLabel.text = serviceList.time_slot
+            self.advancePaymentStatus = serviceList.advance_payment_status!
 
         }
         
@@ -129,6 +151,8 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "Service found" && status == "success"{
                             
@@ -141,8 +165,19 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
                         }
                         else
                         {
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                //Custom action code
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+//                                    self.performSegue(withIdentifier: "bookingSuccess", sender: self)
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+//                                    self.performSegue(withIdentifier: "bookingSuccess", sender: self)
+                                }
                             }
                         }
                     }) {
@@ -172,6 +207,8 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
         if (segue.identifier == "requestedServiceDetail"){
             let vc = segue.destination as! RequestedServiceDetail
             vc.service_order_id = self.service_Order_id
+            vc.advancePayment_Status = self.advancePaymentStatus
+
         }
         else if (segue.identifier == "requestedServiceDetail")
         {

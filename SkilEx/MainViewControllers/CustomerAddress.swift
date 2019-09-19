@@ -43,7 +43,6 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.preferedLanguage()
         mapView.delegate = self
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -83,6 +82,12 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         }
         
         self.displayMinute = "1"
+        self.preferedLanguage()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
     }
     
     func preferedLanguage()
@@ -106,7 +111,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
             if self.dateTextField.text?.isEmpty == true
             {
                 self.timeTextField.isEnabled = false
-                Alert.defaultManager.showOkAlert("SkilEx", message: "Y0u have to choose your Date") { (action) in
+                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "You have to choose your Date") { (action) in
                     
                 self.timeTextField.resignFirstResponder()
                 }
@@ -127,9 +132,9 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         let toolbar = UIToolbar();
         toolbar.tintColor = UIColor.black
         toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donedatePicker));
+        let doneButton = UIBarButtonItem(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "done", comment: ""), style: .plain, target: self, action: #selector(donedatePicker));
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
+        let cancelButton = UIBarButtonItem(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "cancel", comment: ""), style: .plain, target: self, action: #selector(cancelDatePicker));
         toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
         dateTextField.inputAccessoryView = toolbar
         dateTextField.inputView = datePicker
@@ -159,9 +164,9 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
         toolbar.tintColor = UIColor.black
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donePicker));
+        let doneButton = UIBarButtonItem(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "done", comment: ""), style: .plain, target: self, action: #selector(donePicker));
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPicker));
+        let cancelButton = UIBarButtonItem(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "cancel", comment: ""), style: .plain, target: self, action: #selector(cancelPicker));
         toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
         timeTextField.inputAccessoryView = toolbar
         timeTextField.inputView = picker
@@ -357,6 +362,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "View Timeslot" && status == "success"{
                             
@@ -376,7 +382,8 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                             }
                             else
                             {
-                                Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    // Custom action code
                                     
                                 }
                             }
@@ -399,32 +406,32 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         
         if address.text == ""
         {
-            Alert.defaultManager.showOkAlert("SkilEx", message: "address cannot be Empty") { (action) in
+            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "addressfield", comment: "")) { (action) in
             }
         }
         else if name.text == ""
         {
-            Alert.defaultManager.showOkAlert("SkilEx", message: "name Number cannot be Empty") { (action) in
+            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "namefield", comment: "")) { (action) in 
             }
         }
         else if phoneNumber.text == ""
         {
-            Alert.defaultManager.showOkAlert("SkilEx", message: "Mobile Number cannot be Empty") { (action) in
+            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "mobilefield", comment: "")) { (action) in
             }
         }
         else if phoneNumber.text?.count != 10
         {
-            Alert.defaultManager.showOkAlert("SkilEx", message: "Mobile Number is wrong") { (action) in
+            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "mobilefield", comment: "")) { (action) in
             }
         }
         else if dateTextField.text == ""
         {
-            Alert.defaultManager.showOkAlert("SkilEx", message: "Date cannot be Empty") { (action) in
+            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "datefield", comment: "")) { (action) in
             }
         }
         else if timeTextField.text == ""
         {
-            Alert.defaultManager.showOkAlert("SkilEx", message: "Time cannot be Empty") { (action) in
+            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "timefield", comment: "")) { (action) in
             }
         }
         else
@@ -482,7 +489,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     
     func startTimer() {
         if timer == nil {
-            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(callServiceAllocation), userInfo: nil, repeats: true);
+            timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(callServiceAllocation), userInfo: nil, repeats: true);
         }
     }
     
@@ -510,12 +517,25 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "Mobile OTP" && status == "success"
                         {
                            self.stopTimer()
-                           Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                self.performSegue(withIdentifier: "bookingSuccess", sender: self)
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                    self.performSegue(withIdentifier: "bookingSuccess", sender: self)
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                    self.performSegue(withIdentifier: "bookingSuccess", sender: self)
+                                }
                             }
                         }
                         else
@@ -534,9 +554,10 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                             else
                             {
                                 self.stopTimer()
-                                self.performSegue(withIdentifier: "bookingSuccess", sender: self)
                             }
                             
+                            self.performSegue(withIdentifier: "bookingSuccess", sender: self)
+
                         }
                     }) {
                         (error) -> Void in

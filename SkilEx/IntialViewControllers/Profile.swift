@@ -17,7 +17,9 @@ class Profile: UIViewController
     var profileImage: UIImage!
     let userdata = UserDefaults.standard.getUserData()
     
-    var isEditButtonIsClicked = true
+    var isMaleButtonClicked = true
+    var isFemaleButtonClicked = true
+    var gender = String()
 
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var profileImageView: UIImageView!
@@ -29,24 +31,35 @@ class Profile: UIViewController
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var registerMobileNumberLabel: UILabel!
     @IBOutlet weak var mailIdLabel: UILabel!
+    @IBOutlet weak var maleImgView: UIImageView!
+    @IBOutlet weak var femaleImgView: UIImageView!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var maleLabel: UILabel!
+    @IBOutlet weak var femaleLabel: UILabel!
+    @IBOutlet weak var mobileNumberTextfield: UITextField!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        view.bindToKeyboard()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
         self.preferedLanguage()
         self.addBackButton()
-        view.bindToKeyboard()
         self.nametTextfiled.tag = 1
-        self.genderTextfiled.tag = 2
+        //self.mobileNumberTextfield.tag = 2
         self.emailTextfiled.tag = 3
         self.hideKeyboardWhenTappedAround()
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         print(userdata?.fullName as Any,userdata?.gender as Any,userdata?.profilePic as Any)
-        if  userdata?.fullName == nil && userdata?.gender == nil && userdata?.email == nil && userdata?.address == nil && userdata?.profilePic == nil{
+        if  userdata?.fullName == nil && userdata?.gender == nil && userdata?.email == nil && userdata?.phoneNumber == nil && userdata?.profilePic == nil{
             nametTextfiled.text = ""
-            genderTextfiled.text = ""
+           // mobileNumberTextfield.text = ""
             emailTextfiled.text = ""
             if userdata?.profilePic?.isEmpty == true
             {
@@ -56,17 +69,38 @@ class Profile: UIViewController
         }
         else
         {
-            MBProgressHUD.showAdded(to: self.view, animated: true)
             nametTextfiled.text = userdata?.fullName
-            genderTextfiled.text = userdata?.gender
+           // mobileNumberTextfield.text = userdata?.address
             emailTextfiled.text = userdata?.email
+            let gender = userdata?.gender
+            if gender == "Male"
+            {
+                isMaleButtonClicked = false
+                isFemaleButtonClicked = true
+                self.maleImgView.image = UIImage (named: "radio_buttonselect")
+                self.femaleImgView.image = UIImage (named: "radio_buttonunselect")
+                self.maleLabel.textColor = UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0)
+                self.femaleLabel.textColor = UIColor.gray
+                self.gender = "Male"
+            }
+            else if gender == "Female"
+            {
+                isFemaleButtonClicked = false
+                isMaleButtonClicked = true
+                self.femaleImgView.image = UIImage (named: "radio_buttonselect")
+                self.maleImgView.image = UIImage (named: "radio_buttonunselect")
+                self.femaleLabel.textColor = UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0)
+                self.maleLabel.textColor = UIColor.gray
+                self.gender = "Female"
+            }
+            
             if userdata?.profilePic?.isEmpty == true
             {
-                MBProgressHUD.hide(for: self.view, animated: true)
                 self.profileImageView.image = UIImage(named: "user")
             }
             else
             {
+                MBProgressHUD.showAdded(to: self.view, animated: true)
                 let url = URL(string: (userdata?.profilePic)!)
                 DispatchQueue.global().async { [weak self] in
                     if let data = try? Data(contentsOf: url!) {
@@ -82,15 +116,17 @@ class Profile: UIViewController
             }
             self.submit.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "submit_profile_text", comment: ""), for: .normal)
         }
-        
     }
     
     func preferedLanguage()
     {
         self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "profilenavtitle_text", comment: "")
         fullNameLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "fullname_text", comment: "")
-        registerMobileNumberLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "regmobnum_text", comment: "")
+    //    registerMobileNumberLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "address_text", comment: "")
         mailIdLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "mailid_text", comment: "")
+        genderLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "gender_text", comment: "")
+        maleLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "male_text", comment: "")
+        femaleLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "female_text", comment: "")
         submit.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "submit_profile_text", comment: ""), for: .normal)
     }
     
@@ -98,94 +134,28 @@ class Profile: UIViewController
         self.navigationController?.popViewController(animated: true)
     }
     
-    override func viewWillLayoutSubviews() {
-        submit.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
+    override func viewWillLayoutSubviews()
+    {
+        submit.addShadowToButton(color: UIColor.gray, cornerRadius:self.submit.layer.frame.height/2 , backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
     }
     
     @IBAction func submitBtn(_ sender: Any)
     {
-        if userdata?.fullName == nil && userdata?.gender == nil && userdata?.email == nil && profileImage == nil{
-            
-            self.submitProfile(name: nametTextfiled.text!, gender: genderTextfiled.text!, email: emailTextfiled.text!)
-        }
-        else{
-            self.updateProfile(name: nametTextfiled.text!, gender: genderTextfiled.text!, email: emailTextfiled.text!)
-
-        }
-    }
-    
-    func submitProfile(name:String,gender:String,email:String){
-        
-        if name.isEmpty{
-            
-            Alert.defaultManager.showOkAlert("SkilEx", message: "name cannot be Empty") { (action) in
-                //Custom action code
-            }
-        }
-        else if gender.isEmpty{
-            
-            Alert.defaultManager.showOkAlert("SkilEx", message: "gender cannot be Empty") { (action) in
-                //Custom action code
-            }
-        }
-        else if email.isEmpty{
-            
-            Alert.defaultManager.showOkAlert("SkilEx", message: "email cannot be Empty") { (action) in
-                //Custom action code
-            }
-        }
-        else
-        {
-            let url = AFWrapper.BASE_URL + "mobile_check"
-            let parameters = ["user_master_id": GlobalVariables.shared.user_master_id, "full_name": name, "gender": gender, "email": email]
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-            DispatchQueue.global().async
-                {
-                    do
-                    {
-                        try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
-                            (JSONResponse) -> Void in
-                            MBProgressHUD.hide(for: self.view, animated: true)
-                            print(JSONResponse)
-                            let json = JSON(JSONResponse)
-                            let msg = json["msg"].stringValue
-                            let status = json["status"].stringValue
-                            if msg == "Profile Updated" && status == "success"{
-                                
-                                Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                    self.performSegue(withIdentifier: "userprofile", sender: self)
-                                }
-                            }
-                        }) {
-                            (error) -> Void in
-                            print(error)
-                        }
-                    }
-                    catch
-                    {
-                        print("Unable to load data: \(error)")
-                    }
-            }
-        }
+        self.updateProfile(name: nametTextfiled.text!, gender: self.gender, email: emailTextfiled.text!)
     }
     
     func updateProfile(name:String,gender:String,email:String){
         
         if name.isEmpty{
             
-            Alert.defaultManager.showOkAlert("SkilEx", message: "name cannot be Empty") { (action) in
+            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "namefield", comment: "")) { (action) in
                 //Custom action code
             }
         }
-        else if gender.isEmpty{
+        else if self.gender == ""
+        {
             
-            Alert.defaultManager.showOkAlert("SkilEx", message: "gender cannot be Empty") { (action) in
-                //Custom action code
-            }
-        }
-        else if email.isEmpty{
-            
-            Alert.defaultManager.showOkAlert("SkilEx", message: "email cannot be Empty") { (action) in
+            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: "")) { (action) in
                 //Custom action code
             }
         }
@@ -203,18 +173,42 @@ class Profile: UIViewController
                             print(JSONResponse)
                             let json = JSON(JSONResponse)
                             let msg = json["msg"].stringValue
+                            let msg_en = json["msg_en"].stringValue
+                            let msg_ta = json["msg_ta"].stringValue
                             let status = json["status"].stringValue
                             if msg == "Profile Updated" && status == "success"
                             {
-                                AlertController.shared.showAlert(targetVC: self, title: "SkilEx", message: msg, complition: {
-                                    self.performSegue(withIdentifier: "userprofile", sender: self)
-                                })
+                              
+                                if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                                {
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Profile updated") { (action) in
+                                        //Custom action code
+                                        self.performSegue(withIdentifier: "userprofile", sender: self)
+
+                                    }
+                                }
+                                else
+                                {
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "சேமிக்கப்பட்டது ") { (action) in
+                                        //Custom action code
+                                        self.performSegue(withIdentifier: "userprofile", sender: self)
+                                    }
+                                }
                             }
                             else
                             {
-                                AlertController.shared.showAlert(targetVC: self, title: "SkilEx", message: msg, complition: {
-
-                                })
+                                if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                                {
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                        //Custom action code
+                                    }
+                                }
+                                else
+                                {
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                        //Custom action code
+                                    }
+                                }
                             }
                         }) {
                             (error) -> Void in
@@ -287,6 +281,53 @@ class Profile: UIViewController
         }
         
         return false
+    }
+    
+    @IBAction func maleradioButton(_ sender: Any)
+    {
+        if isMaleButtonClicked == true
+        {
+            isMaleButtonClicked = false
+            isFemaleButtonClicked = true
+            self.maleImgView.image = UIImage (named: "radio_buttonselect")
+            self.femaleImgView.image = UIImage (named: "radio_buttonunselect")
+            self.maleLabel.textColor = UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0)
+            self.femaleLabel.textColor = UIColor.gray
+            self.gender = "Male"
+        }
+        else
+        {
+            isMaleButtonClicked = true
+            isFemaleButtonClicked = true
+            self.maleImgView.image = UIImage (named: "radio_buttonunselect")
+            self.maleLabel.textColor = UIColor.gray
+            self.gender = ""
+
+        }
+    }
+    
+    @IBAction func femaleradioButton(_ sender: Any)
+    {
+        if isFemaleButtonClicked == true
+        {
+            isFemaleButtonClicked = false
+            isMaleButtonClicked = true
+            self.femaleImgView.image = UIImage (named: "radio_buttonselect")
+            self.maleImgView.image = UIImage (named: "radio_buttonunselect")
+            self.femaleLabel.textColor = UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0)
+            self.maleLabel.textColor = UIColor.gray
+            self.gender = "Female"
+
+        }
+        else
+        {
+            isFemaleButtonClicked = true
+            isMaleButtonClicked = true
+            self.femaleImgView.image = UIImage (named: "radio_buttonunselect")
+            self.femaleLabel.textColor = UIColor.gray
+            self.gender = ""
+
+        }
     }
     
     // MARK: - Navigation

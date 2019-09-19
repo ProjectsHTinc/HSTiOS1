@@ -30,7 +30,6 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "homenavtitle_text", comment: "")
         /*temp hide */
         //self.addrightButton()
         /*temp hide */
@@ -42,8 +41,29 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         self.searchTextfield.delegate = self
         self.searchTextfield.addShadowToTextField(cornerRadius: 5.0)
         self.searchTextfield.addShadowToTextField(color: UIColor.gray, cornerRadius: 5.0)
-        self.searchTextfield.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: "homesearchbar_text", comment: "")
+        self.preferedLanguage()
+
     }
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
+    }
+       
+    
+    func preferedLanguage()
+    {
+        self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "homenavtitle_text", comment: "")
+        let attributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.gray,
+            NSAttributedString.Key.font : UIFont(name: "Helvetica", size: 12)! // Note the !
+        ]
+        self.searchTextfield.attributedPlaceholder = NSAttributedString(string: LocalizationSystem.sharedInstance.localizedStringForKey(key: "homesearchbar_text", comment: ""), attributes:attributes)
+        self.categoryCollectionView.reloadData()
+        
+    }
+    
     
     @objc public override func rightButtonClick()
     {
@@ -318,6 +338,8 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "View Sub Category" && status == "success"
                         {
@@ -349,8 +371,17 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                         }
                         else
                         {
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                }
                             }
                         }
                     }) {
@@ -398,7 +429,16 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         
         if textField == searchTextfield
         {
-            self.performSegue(withIdentifier: "search", sender: self)
+            if searchTextfield.text?.isEmpty == true
+            {
+                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "searchtextnotempty", comment: "")) { (action) in
+                    //Custom action code
+                }
+            }
+            else
+            {
+                self.performSegue(withIdentifier: "search", sender: self)
+            }
         }
         return true
     }

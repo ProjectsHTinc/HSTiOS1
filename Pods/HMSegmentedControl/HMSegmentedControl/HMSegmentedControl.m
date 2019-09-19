@@ -129,9 +129,9 @@
     self.scrollView.showsHorizontalScrollIndicator = NO;
     [self addSubview:self.scrollView];
     
-    _backgroundColor = [UIColor whiteColor];
+    _backgroundColor = [UIColor colorWithRed:52.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
     self.opaque = NO;
-    _selectionIndicatorColor = [UIColor colorWithRed:52.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
+    _selectionIndicatorColor = [UIColor whiteColor];
     _selectionIndicatorBoxColor = _selectionIndicatorColor;
 
     self.selectedSegmentIndex = 0;
@@ -947,7 +947,7 @@
 - (NSDictionary *)resultingTitleTextAttributes {
     NSDictionary *defaults = @{
         NSFontAttributeName : [UIFont systemFontOfSize:19.0f],
-        NSForegroundColorAttributeName : [UIColor blackColor],
+        NSForegroundColorAttributeName : [UIColor grayColor],
     };
     
     NSMutableDictionary *resultingAttrs = [NSMutableDictionary dictionaryWithDictionary:defaults];

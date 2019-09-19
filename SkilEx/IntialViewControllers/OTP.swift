@@ -32,7 +32,6 @@ class OTP: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.preferedLanguage()
         view.bindToKeyboard()
         self.mobileNumberLabel.text = String(format: "%@ %@", "+91", mobileNumber)
         self.textfiledOne.delegate = self
@@ -65,8 +64,13 @@ class OTP: UIViewController,UITextFieldDelegate {
        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
+    }
+    
     override func viewWillLayoutSubviews() {
         submitOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: self.submitOutlet.frame.height / 2, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
+        submitOutlet.clipsToBounds = true
     }
     
     func preferedLanguage()
@@ -132,19 +136,20 @@ class OTP: UIViewController,UITextFieldDelegate {
     {
         if OTP.isEmpty{
 
-            Alert.defaultManager.showOkAlert("SkilEx", message: "Otp cannot be Empty") { (action) in
+            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Otp cannot be Empty") { (action) in
                 //Custom action code
             }
         }
         else if OTP != otp
         {
-            Alert.defaultManager.showOkAlert("SkilEx", message: "Otp is Wrong") { (action) in
+            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Otp is Wrong") { (action) in
                 //Custom action code
             }
         }
         else
         {
-            let parameters = ["user_master_id":user_master_id, "phone_no": mobileNumber, "otp":OTP, "device_token": UserDefaults.standard.getDevicetoken(), "mobile_type": "2", "uniqueNumber": uniqueNumber]
+            //UserDefaults.standard.getDevicetoken()
+            let parameters = ["user_master_id":user_master_id, "phone_no": mobileNumber, "otp":OTP, "device_token":"jshdkajhd" , "mobile_type": "2", "uniqueNumber": uniqueNumber]
             MBProgressHUD.showAdded(to: self.view, animated: true)
             DispatchQueue.global().async
                 {
@@ -155,6 +160,8 @@ class OTP: UIViewController,UITextFieldDelegate {
                             MBProgressHUD.hide(for: self.view, animated: true)
                             let json = JSON(JSONResponse)
                             let msg = json["msg"].stringValue
+                            let msg_en = json["msg_en"].stringValue
+                            let msg_ta = json["msg_ta"].stringValue
                             let status = json["status"].stringValue
                             if msg == "Login Successfully" && status == "success"{
                                 let userdata = UserData(json: json["userData"])
@@ -163,8 +170,17 @@ class OTP: UIViewController,UITextFieldDelegate {
                             }
                             else
                             {
-                                Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                    // Custom action code
+                                if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                                {
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                        //Custom action code
+                                    }
+                                }
+                                else
+                                {
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                        //Custom action code
+                                    }
                                 }
                             }
                         }) {

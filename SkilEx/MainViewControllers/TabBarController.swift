@@ -15,41 +15,40 @@ class Tabbarcontroller: UITabBarController, UITabBarControllerDelegate {
 
         // Do any additional setup after loading the view.
         self.delegate = self
-        if let viewControllers = viewControllers {
-            selectedViewController = viewControllers[0]
-        }
+//        if let viewControllers = viewControllers {
+//            selectedViewController = viewControllers[0]
+//        }
     }
     
-    override func tabBar(_ tabBar: UITabBar, didSelect item: (UITabBarItem?))
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
+    }
+    
+    func preferedLanguage()
     {
-        if item == self.tabBar.items! [2]
+        tabBar.items?[0].title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "hometab_text", comment: "")
+        tabBar.items?[1].title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicetab_text", comment: "")
+        tabBar.items?[2].title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "profiletab_text", comment: "")
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        
+        if(item.tag == 1)
         {
-            if GlobalVariables.shared.user_master_id == ""
-            {
-                let alertController = UIAlertController(title: "SkilEX", message: "If you want this service you have to login", preferredStyle: UIAlertController.Style.alert)
-                
-                
-                let okAction = UIAlertAction(title: "Login", style: UIAlertAction.Style.default) {
-                    UIAlertAction in
-                    self.performSegue(withIdentifier: "to_Login", sender: self)
-                    
-                }
-                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default) {
-                    UIAlertAction in
-                    
-                    if let viewControllers = self.viewControllers {
-                        self.selectedViewController = viewControllers[0]
-                    }
-                }
-                
-                alertController.addAction(okAction)
-                alertController.addAction(cancelAction)
-                self.present(alertController, animated: true, completion: nil)
-            }
+            // Code for item 1
+            self.preferedLanguage()
+        }
+        else if(item.tag == 2) {
+            // Code for item 2
+            self.preferedLanguage()
+        }
+            
+        else if(item.tag == 3) {
+            // Code for item 3
+            self.preferedLanguage()
+
         }
     }
-
-
     
     // MARK: - Navigation
 
@@ -58,10 +57,13 @@ class Tabbarcontroller: UITabBarController, UITabBarControllerDelegate {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         
-        if (segue.identifier == "to_Login")
-        {
-            let _ = segue.destination as! Login
-        }
+//        if (segue.identifier == "to_Login")
+//        {
+//            let _ = segue.destination as! Login
+//        }
     }
 
 }
+
+
+

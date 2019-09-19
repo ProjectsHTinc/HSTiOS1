@@ -18,20 +18,29 @@ class Login: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var skipforNowPotlet: UIButton!
     @IBOutlet var mobileNumber: UITextField!
     @IBOutlet var submitOutlet: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var user_master_id = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.preferedLanguage()
         self.mobileNumber.delegate = self
         self.mobileNumber.tag = 1
         self.addToolBar(textField: mobileNumber)
         view.bindToKeyboard()
         self.hideKeyboardWhenTappedAround()
-        
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
+    }
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//
+//    }
+    
     
     override func viewWillLayoutSubviews() {
         submitOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
@@ -54,20 +63,20 @@ class Login: UIViewController,UITextFieldDelegate {
     
     @IBAction func skipButton(_ sender: Any)
     {
-        self.skipLogin(unique_number: UIDevice.current.identifierForVendor!.uuidString, mobile_key: UserDefaults.standard.getDevicetoken(), mobile_type: "2", user_stat: "Guest")
+        //UserDefaults.standard.getDevicetoken()
+        self.skipLogin(unique_number: UIDevice.current.identifierForVendor!.uuidString, mobile_key:"akjshkajshkasj" , mobile_type: "2", user_stat: "Guest")
     }
     
     func userLogin (mobileNumber:String)
     {
         if mobileNumber.isEmpty{
+            AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "mobilefield", comment: ""), complition: {
 
-            Alert.defaultManager.showOkAlert("SkilEx", message: "Mobile Number cannot be Empty") { (action) in
-                //Custom action code
-            }
+            })
         }
         else if mobileNumber.count != 10
         {
-            Alert.defaultManager.showOkAlert("SkilEx", message: "Enter the valid Mobile Number") { (action) in
+            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Enter the valid Mobile Number") { (action) in
                 //Custom action code
             }
         }
@@ -149,7 +158,8 @@ class Login: UIViewController,UITextFieldDelegate {
         }
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
         let maxLength = 10
         let currentString: NSString = textField.text! as NSString
         let newString: NSString =

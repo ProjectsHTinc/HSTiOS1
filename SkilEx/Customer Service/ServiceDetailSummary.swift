@@ -47,10 +47,12 @@ class ServiceDetailSummary: UITableViewController
     @IBOutlet weak var grandTotal: UILabel!
     @IBOutlet weak var shareOutlet: UIButton!
     @IBOutlet weak var viewBillLabel: UILabel!
+    @IBOutlet weak var serviceCompletedTime: UILabel!
     
     var order_status = String()
     var service_order_id = String()
-    
+    var checkSetOrderStatus = Int()
+
     let bookingDetailSummary = UserDefaults.standard.getServiceSummary()
     
     override func viewDidLoad() {
@@ -62,8 +64,14 @@ class ServiceDetailSummary: UITableViewController
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.addBackButton()
-        self.preferedLanguage()
+        self.webRequestProceedforPayment ()
         self.serviceStatusCheck (user_master_id: GlobalVariables.shared.user_master_id, service_order_id: service_order_id)
+        self.preferedLanguage()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
     }
     
     func preferedLanguage () {
@@ -80,10 +88,61 @@ class ServiceDetailSummary: UITableViewController
         self.serviceChargeLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummaryservicecharge_text", comment: "")
         self.additionalServiceChargeLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummaryadditionalservicecharge_text", comment: "")
         self.couponLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummarycouponapplied_text", comment: "")
-        self.subTotalLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummarycouponapplied_text", comment: "")
+        self.subTotalLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummarysubtotal_text", comment: "")
         self.advanceAmountLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummaryadvanceamount_text", comment: "")
         self.grandTotalLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummarygrandtotal_text", comment: "")
         self.viewBillLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummaryviewbill_text", comment: "")
+        self.shareOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummaryshare_text", comment: ""), for: .normal)
+    }
+    
+    func webRequestProceedforPayment ()
+    {
+        let parameters = ["user_master_id": GlobalVariables.shared.user_master_id,"service_order_id": service_order_id]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+            {
+                do
+                {
+                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "proceed_for_payment", params: parameters, headers: nil, success: {
+                        (JSONResponse) -> Void in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print(JSONResponse)
+                        let json = JSON(JSONResponse)
+                        let msg = json["msg"].stringValue
+                        let msg_en = json["msg_ta"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
+                        let status = json["status"].stringValue
+                        if msg == "Proceed for Payment" && status == "success"
+                        {
+                            GlobalVariables.shared.order_id = json["payment_details"]["order_id"].stringValue
+                            GlobalVariables.shared.payableAmount = json["payment_details"]["payable_amount"].stringValue
+                            
+                        }
+                        else
+                        {
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                        }
+                    }) {
+                        (error) -> Void in
+                        print(error)
+                    }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
+        }
     }
     
     func serviceStatusCheck (user_master_id: String, service_order_id: String)
@@ -100,16 +159,45 @@ class ServiceDetailSummary: UITableViewController
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "Service status" && status == "success"{
                             
                             self.order_status = json["order_status"].stringValue
+                            if self.order_status == "Cancelled"
+                            {
+                                self.checkSetOrderStatus = 1
+                            }
+                            else
+                            {
+                                self.checkSetOrderStatus = 3
+                                
+                            }
                             self.updateValues()
                         }
                         else
                         {
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                //Custom action code
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                            else
+                            {
+                                if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                                {
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                        //Custom action code
+                                    }
+                                }
+                                else
+                                {
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                        //Custom action code
+                                    }
+                                }
                             }
                         }
                     }) {
@@ -128,76 +216,115 @@ class ServiceDetailSummary: UITableViewController
     {
         if LocalizationSystem.sharedInstance.getLanguage() == "en"
         {
+            self.mainCategoery.text = bookingDetailSummary?.main_category
+            self.subCategoery.text = bookingDetailSummary?.service_name
+            self.customerName.text = bookingDetailSummary?.contact_person_name
             self.serviceDate.text = bookingDetailSummary?.order_date
             self.requestedTime.text = bookingDetailSummary?.time_slot
             self.serviceProvider.text = bookingDetailSummary?.provider_name
             self.servicePerson.text = bookingDetailSummary?.person_name
-            self.serviceStartDate.text = bookingDetailSummary?.service_start_time
-            self.serviceStartTime.text = bookingDetailSummary?.service_start_time
-            self.serviceCompletedDate.text = bookingDetailSummary?.service_end_time
-            self.additionalServiceTextField.text = String(format: "%@ - %@",  "Additional Service",bookingDetailSummary!.additional_service!)
+            let starTime = bookingDetailSummary?.service_start_time
+            let starTimeArr = starTime!.components(separatedBy: " ")
+            let startdate = starTimeArr[0]
+            let start_time = starTimeArr[1]
+            self.serviceStartDate.text = startdate
+            self.serviceStartTime.text = start_time
+            let endTime  = bookingDetailSummary?.service_end_time
+            let endTimeArr = endTime!.components(separatedBy: " ")
+            let enddate = endTimeArr[0]
+            let end_time = endTimeArr[1]
+            self.serviceCompletedDate.text = enddate
+            self.serviceCompletedTime.text = end_time
+            self.additionalServiceTextField.text = String(format: "%@ - %@",  LocalizationSystem.sharedInstance.localizedStringForKey(key: "serviceadditional_text", comment: ""),bookingDetailSummary!.additional_service!)
             self.materialUsedTextView.text = bookingDetailSummary?.material_notes
             self.serviceCharge.text = bookingDetailSummary?.service_amount
             self.additionalServiceCharge.text = bookingDetailSummary?.additional_service_amt
             self.advanceAmount.text = bookingDetailSummary?.paid_advance_amt
             self.coupon.text = bookingDetailSummary?.discount_amt
+            self.subTotal.text = bookingDetailSummary?.total_service_cost
             let coupon_id = bookingDetailSummary?.coupon_id
             if coupon_id == "0"
             {
-                self.grandTotal.text = bookingDetailSummary?.net_service_amount
+                let payableAmount = GlobalVariables.shared.payableAmount
+                let myFloat = (payableAmount as NSString).floatValue
+                self.grandTotal.text = String (myFloat)
             }
             else
             {
-                self.grandTotal.text = bookingDetailSummary?.payable_amount
+                let payableAmount = GlobalVariables.shared.payableAmount
+                let myFloat = (payableAmount as NSString).floatValue
+                self.grandTotal.text = String (myFloat)
             }
             
             if self.order_status == "Cancelled"
             {
                 self.serviceCompletedLabel.text = "Service Cancelled On"
             }
+            else if self.order_status == "Paid"
+            {
+                self.serviceCompletedLabel.text = "Service Completed On"
+            }
             else
             {
                 self.serviceCompletedLabel.text = "Service Completed On"
-
             }
         }
         else
         {
+            self.mainCategoery.text = bookingDetailSummary?.main_category
+            self.subCategoery.text = bookingDetailSummary?.service_name
+            self.customerName.text = bookingDetailSummary?.contact_person_name
             self.serviceDate.text = bookingDetailSummary?.order_date
             self.requestedTime.text = bookingDetailSummary?.time_slot
             self.serviceProvider.text = bookingDetailSummary?.provider_name
             self.servicePerson.text = bookingDetailSummary?.person_name
-            let fullName = bookingDetailSummary?.service_start_time
-            let fullNameArr = fullName!.components(separatedBy: " ")
-            let date = fullNameArr[0]
-            let time = fullNameArr[1]
-            self.serviceStartDate.text = date
-            self.serviceStartTime.text = time
-            self.serviceCompletedDate.text = bookingDetailSummary?.service_end_time
-            self.additionalServiceTextField.text = String(format: "%@ - %@",  "Additional Service",bookingDetailSummary!.additional_service!)
+            let starTime = bookingDetailSummary?.service_start_time
+            let starTimeArr = starTime!.components(separatedBy: " ")
+            let startdate = starTimeArr[0]
+            let start_time = starTimeArr[1]
+            self.serviceStartDate.text = startdate
+            self.serviceStartTime.text = start_time
+            let endTime  = bookingDetailSummary?.service_end_time
+            let endTimeArr = endTime!.components(separatedBy: " ")
+            let enddate = endTimeArr[0]
+            let end_time = endTimeArr[1]
+            self.serviceCompletedDate.text = enddate
+            self.serviceCompletedTime.text = end_time
+            self.additionalServiceTextField.text = String(format: "%@ - %@",  LocalizationSystem.sharedInstance.localizedStringForKey(key: "serviceadditional_text", comment: ""),bookingDetailSummary!.additional_service!)
             self.materialUsedTextView.text = bookingDetailSummary?.material_notes
             self.serviceCharge.text = bookingDetailSummary?.service_amount
             self.additionalServiceCharge.text = bookingDetailSummary?.additional_service_amt
             self.coupon.text = bookingDetailSummary?.discount_amt
             self.advanceAmount.text = bookingDetailSummary?.paid_advance_amt
+            self.subTotal.text = bookingDetailSummary?.total_service_cost
             let coupon_id = bookingDetailSummary?.coupon_id
             if coupon_id == "0"
             {
-                self.grandTotal.text = bookingDetailSummary?.net_service_amount
+                let payableAmount = GlobalVariables.shared.payableAmount
+                let myFloat = (payableAmount as NSString).floatValue
+                self.grandTotal.text = String (myFloat)
             }
             else
             {
-                self.grandTotal.text = bookingDetailSummary?.payable_amount
+                let payableAmount = GlobalVariables.shared.payableAmount
+                let myFloat = (payableAmount as NSString).floatValue
+                self.grandTotal.text = String (myFloat)
             }
             if self.order_status == "Cancelled"
             {
                 self.serviceCompletedLabel.text = "சேவை ரத்து செய்யப்பட்டது"
+            }
+            else if self.order_status == "Paid"
+            {
+                self.serviceCompletedLabel.text = "சேவை முடிந்தது"
             }
             else
             {
                 self.serviceCompletedLabel.text = "சேவை முடிந்தது"
             }
         }
+        
+            self.tableView.reloadData()
     }
     
     @objc public override func backButtonClick() {
@@ -213,14 +340,14 @@ class ServiceDetailSummary: UITableViewController
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return checkSetOrderStatus
     }
     @IBAction func additionalServiceAction(_ sender: Any)
     {
         let additionalService = bookingDetailSummary?.additional_service
         if additionalService == "0"
         {
-            Alert.defaultManager.showOkAlert("SkilEx", message: "Additional Service is Empty") { (action) in
+            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "additionalservicealert", comment: "")) { (action) in
             }
         }
         else
@@ -231,12 +358,12 @@ class ServiceDetailSummary: UITableViewController
     
     @IBAction func viewBillAction(_ sender: Any)
     {
-        
+        self.performSegue(withIdentifier: "bill", sender: self)
     }
     
     @IBAction func shareAction(_ sender: Any)
     {
-        self.performSegue(withIdentifier: "paymentMethod", sender: self)
+        //self.performSegue(withIdentifier: "paymentMethod", sender: self)
     }
     
     /*
@@ -300,6 +427,11 @@ class ServiceDetailSummary: UITableViewController
         else if (segue.identifier == "paymentMethod")
         {
             let _ = segue.destination as! CashMethod
+        }
+        else if (segue.identifier == "bill")
+        {
+            let vc = segue.destination as! ViewBill
+            vc.serviceOrderId = self.service_order_id
         }
     }
     

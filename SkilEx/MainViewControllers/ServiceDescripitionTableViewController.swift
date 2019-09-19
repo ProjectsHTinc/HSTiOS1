@@ -27,10 +27,11 @@ class ServiceDescripitionTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+        
         if LocalizationSystem.sharedInstance.getLanguage() == "en"
         {
             let serviceDetail = UserDefaults.standard.getServicesDescripition()
-            self.serviceName.text = serviceDetail?.service_name
+            self.serviceName.text = serviceDetail?.rate_card_details
             self.amountLabel.text = String(format: "%@ %@","Rs.",(serviceDetail?.rate_card!)!)
             self.inclusionText.text = serviceDetail?.inclusions
             self.exclusionText.text = serviceDetail?.exclusions
@@ -39,14 +40,35 @@ class ServiceDescripitionTableViewController: UITableViewController {
         else
         {
             let serviceDetail = UserDefaults.standard.getServicesDescripition()
-            self.serviceName.text = serviceDetail?.service_ta_name
+            self.serviceName.text = serviceDetail?.rate_card_details_ta
             self.amountLabel.text = String(format: "%@ %@","Rs.",(serviceDetail?.rate_card!)!)
             self.inclusionText.text = serviceDetail?.inclusions_ta
             self.exclusionText.text = serviceDetail?.exclusions_ta
             self.procedureText.text = serviceDetail?.service_procedure_ta
         }
-       
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+      
+        if LocalizationSystem.sharedInstance.getLanguage() == "en"
+        {
+            let serviceDetail = UserDefaults.standard.getServicesDescripition()
+            self.serviceName.text = serviceDetail?.rate_card_details
+            self.amountLabel.text = String(format: "%@ %@","Rs.",(serviceDetail?.rate_card!)!)
+            self.inclusionText.text = serviceDetail?.inclusions
+            self.exclusionText.text = serviceDetail?.exclusions
+            self.procedureText.text = serviceDetail?.service_procedure
+        }
+        else
+        {
+            let serviceDetail = UserDefaults.standard.getServicesDescripition()
+            self.serviceName.text = serviceDetail?.rate_card_details_ta
+            self.amountLabel.text = String(format: "%@ %@","Rs.",(serviceDetail?.rate_card!)!)
+            self.inclusionText.text = serviceDetail?.inclusions_ta
+            self.exclusionText.text = serviceDetail?.exclusions_ta
+            self.procedureText.text = serviceDetail?.service_procedure_ta
+        }
     }
 
     // MARK: - Table view data source
@@ -81,6 +103,8 @@ class ServiceDescripitionTableViewController: UITableViewController {
                             MBProgressHUD.hide(for: self.view, animated: true)
                             let json = JSON(JSONResponse)
                             let msg = json["msg"].stringValue
+                            let msg_en = json["msg_en"].stringValue
+                            let msg_ta = json["msg_ta"].stringValue
                             let status = json["status"].stringValue
                             if msg == "Service added to cart" && status == "success"
                             {
@@ -90,8 +114,17 @@ class ServiceDescripitionTableViewController: UITableViewController {
                             }
                             else
                             {
-                                Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                    
+                                if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                                {
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                        //Custom action code
+                                    }
+                                }
+                                else
+                                {
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                        //Custom action code
+                                    }
                                 }
                             }
                         }) {

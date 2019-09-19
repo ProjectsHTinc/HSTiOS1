@@ -36,8 +36,8 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.preferedLanguage()
         self.addBackButton()
+        self.hideNavigationBarBorderLine()
         let viewWidth = view.frame.width
         segmentedControl1 = HMSegmentedControl(sectionTitles: subcategoeryNameArr)
         segmentedControl1!.autoresizingMask = [.flexibleRightMargin, .flexibleWidth]
@@ -45,12 +45,13 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         segmentedControl1?.segmentEdgeInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         segmentedControl1?.selectionStyle = HMSegmentedControlSelectionStyle.fullWidthStripe
         segmentedControl1?.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.down
-        segmentedControl1?.backgroundColor = UIColor.white
-        segmentedControl1?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        segmentedControl1?.backgroundColor = UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255.0, alpha: 1.0)
+
 //        let font = UIFont.systemFont(ofSize: 14)
-        segmentedControl1?.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Helvetica-Bold", size: 14)!]
-        segmentedControl1?.selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255.0, alpha: 1.0)]
-        segmentedControl1?.selectionIndicatorColor = UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255.0, alpha: 1.0)
+        segmentedControl1?.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Helvetica-Bold", size: 14)!,NSAttributedString.Key.foregroundColor: UIColor(red: 229.0/255, green: 229.0/255, blue: 229.0/255.0, alpha: 1.0)]
+//        segmentedControl1?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        segmentedControl1?.selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        segmentedControl1?.selectionIndicatorColor = UIColor.white
         segmentedControl1?.isVerticalDividerEnabled = false
         segmentedControl1!.verticalDividerColor = UIColor.black
         segmentedControl1!.verticalDividerWidth = 0
@@ -67,6 +68,16 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         lastSelectedIndex = 0
         self.indexArray = []
         GlobalVariables.shared.viewPage = "ServiceDetail"
+        self.preferedLanguage()
+
+    }
+    
+    func hideNavigationBarBorderLine ()
+    {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.layoutIfNeeded()
+
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -74,6 +85,8 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         sub_cat_id = self.subcategoeryIDArr[0]
         self.webRequestServiceList(Index: sub_cat_id)
         self.indexArray = []
+        self.preferedLanguage()
+
     }
     
     func preferedLanguage()
@@ -81,6 +94,7 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailnav_text", comment: "")
         serviceCountLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailservice_text", comment: "")
         viewSummaryLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailsummary_text", comment: "")
+
     }
     
     
@@ -102,10 +116,10 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
             
             if isServiceAddButtonIsClicked == true
             {
-                let alertController = UIAlertController(title: "SkilEX", message: "If you choose another service ,All the existing added service will be Deleted", preferredStyle: UIAlertController.Style.alert)
+                let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailalertnextcatgoery", comment: ""), preferredStyle: UIAlertController.Style.alert)
                 
                 
-                let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
+                let okAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "confirmalert", comment: ""), style: UIAlertAction.Style.default) {
                     UIAlertAction in
                     self.serviceRemoveFromCart(user_master_id: GlobalVariables.shared.user_master_id)
                     self.selectedSegementIndex = Int(segmentedControl?.selectedSegmentIndex ?? 0)
@@ -114,7 +128,7 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                     self.webRequestServiceList(Index:self.sub_cat_id)
 
                 }
-                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default) {
+                let cancelAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "cancel", comment: ""), style: UIAlertAction.Style.default) {
                     UIAlertAction in
                     self.segmentedControl1?.selectedSegmentIndex = self.lastSelectedIndex
                 }
@@ -147,6 +161,8 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                             print(JSONResponse)
                             let json = JSON(JSONResponse)
                             let msg = json["msg"].stringValue
+                            let msg_en = json["msg_en"].stringValue
+                            let msg_ta = json["msg_ta"].stringValue
                             let status = json["status"].stringValue
                             if msg == "View Services" && status == "success"
                             {
@@ -179,8 +195,17 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                             }
                             else
                             {
-                                Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                    
+                                if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                                {
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                        //Custom action code
+                                    }
+                                }
+                                else
+                                {
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                        //Custom action code
+                                    }
                                 }
                                 self.serviceArr.removeAll()
                                 self.service_nameArr.removeAll()
@@ -342,14 +367,14 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
     {
         if user_master_id.isEmpty == true
         {
-            let alertController = UIAlertController(title: "SkilEX", message: "If you want this service you have to login", preferredStyle: UIAlertController.Style.alert)
+            let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "homealertmsg_text", comment: ""), preferredStyle: UIAlertController.Style.alert)
             
             
-            let okAction = UIAlertAction(title: "Login", style: UIAlertAction.Style.default) {
+            let okAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "login_text", comment: ""), style: UIAlertAction.Style.default) {
                 UIAlertAction in
                 self.performSegue(withIdentifier: "to_Login", sender: self)
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default) {
+            let cancelAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "cancel", comment: ""), style: UIAlertAction.Style.default) {
                 UIAlertAction in
             }
             
@@ -370,6 +395,7 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                             print(JSONResponse)
                             let json = JSON(JSONResponse)
                             let msg = json["msg"].stringValue
+                            let msg_ta = json["msg_ta"].stringValue
                             let status = json["status"].stringValue
                             if msg == "Service added to cart" && status == "success"
                             {
@@ -382,9 +408,10 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                             }
                             else
                             {
-                                    Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                        
-                                    }
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    // Custom action code
+                                    
+                                }
                             }
                         }) {
                             (error) -> Void in
@@ -491,7 +518,7 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
     {
         if isServiceAddButtonIsClicked == true
         {
-            let alertController = UIAlertController(title: "SkilEX", message: "If you want to leave the page, All the existing added service will be Deleted", preferredStyle: UIAlertController.Style.alert)
+            let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicespageBack_text", comment: ""), preferredStyle: UIAlertController.Style.alert)
             
             
             let okAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default) {
@@ -524,7 +551,7 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         }
         else
         {
-            Alert.defaultManager.showOkAlert("SkilEx", message: "Your Cart is Empty") { (action) in
+            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicescartmsg_text", comment: "")) { (action) in
                 
             }
         }

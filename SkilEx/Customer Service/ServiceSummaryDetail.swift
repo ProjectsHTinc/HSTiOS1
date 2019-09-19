@@ -49,6 +49,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
     @IBOutlet weak var viewBillLabel: UILabel!
     @IBOutlet weak var couponTextField: UITextField!
     @IBOutlet weak var applyCouponOutlet: UIButton!
+    @IBOutlet weak var serviceCompletedTime: UILabel!
     
     var service_order_id = String()
     var paymentStatus = String()
@@ -69,8 +70,8 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.webRequestProceedforPayment ()
         self.addBackButton()
-        self.preferedLanguage()
         self.couponTextField.borderColor = UIColor.black
         self.couponTextField.borderWidth = 1.0
         self.couponTextField.clipsToBounds = true
@@ -78,7 +79,12 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
         self.updateValues()
         self.webRequestCouponList()
         self.serviceStatusCheck (user_master_id: GlobalVariables.shared.user_master_id, service_order_id: service_order_id)
+        self.preferedLanguage()
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
     }
     
     override func viewWillLayoutSubviews() {
@@ -103,8 +109,11 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
         self.advanceAmountLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummaryadvanceamount_text", comment: "")
         self.grandTotalLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummarygrandtotal_text", comment: "")
         self.viewBillLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummaryviewbill_text", comment: "")
+        self.couponTextField.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "serviceentercouponcode_text", comment: "")
+        self.applyCouponOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "serviceapply_text", comment: ""), for: .normal)
         self.paidOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorybutton_text", comment: ""), for: .normal)
     }
+    
     
     @objc public override func backButtonClick() {
         self.navigationController?.popViewController(animated: true)
@@ -123,14 +132,19 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
             self.requestedTime.text = bookingDetailSummary?.time_slot
             self.serviceProvider.text = bookingDetailSummary?.provider_name
             self.servicePerson.text = bookingDetailSummary?.person_name
-            let fullName = bookingDetailSummary?.service_start_time
-            let fullNameArr = fullName!.components(separatedBy: " ")
-            let date = fullNameArr[0]
-            let time = fullNameArr[1]
-            self.serviceStartDate.text = date
-            self.serviceStartTime.text = time
-            self.serviceCompletedDate.text = bookingDetailSummary?.service_end_time
-            self.additionalServiceTextField.text = String(format: "%@ - %@",  "Additional Service",bookingDetailSummary!.additional_service!)
+            let starTime = bookingDetailSummary?.service_start_time
+            let starTimeArr = starTime!.components(separatedBy: " ")
+            let startdate = starTimeArr[0]
+            let start_time = starTimeArr[1]
+            self.serviceStartDate.text = startdate
+            self.serviceStartTime.text = start_time
+            let endTime  = bookingDetailSummary?.service_end_time
+            let endTimeArr = endTime!.components(separatedBy: " ")
+            let enddate = endTimeArr[0]
+            let end_time = endTimeArr[1]
+            self.serviceCompletedDate.text = enddate
+            self.serviceCompletedTime.text = end_time
+            self.additionalServiceTextField.text = String(format: "%@ - %@",  LocalizationSystem.sharedInstance.localizedStringForKey(key: "serviceadditional_text", comment: ""),bookingDetailSummary!.additional_service!)
             self.materialUsedTextView.text = bookingDetailSummary?.material_notes
             self.serviceCharge.text = bookingDetailSummary?.service_amount
             self.additionalServiceCharge.text = bookingDetailSummary?.additional_service_amt
@@ -140,14 +154,18 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
             let coupon_id = bookingDetailSummary?.coupon_id
             if coupon_id == "0"
             {
-                self.grandTotal.text = GlobalVariables.shared.payableAmount
+                let payableAmount = GlobalVariables.shared.payableAmount
+                let myFloat = (payableAmount as NSString).floatValue
+                self.grandTotal.text = String (myFloat)
                 self.coupon.text = bookingDetailSummary?.discount_amt
                 iscouponApplied = false
             }
             else
             {
                 self.couponTextField.text = bookingDetailSummary?.coupon_code
-                self.grandTotal.text = GlobalVariables.shared.payableAmount
+                let payableAmount = GlobalVariables.shared.payableAmount
+                let myFloat = (payableAmount as NSString).floatValue
+                self.grandTotal.text = String (myFloat)
                 self.coupon.text = bookingDetailSummary?.discount_amt
                 iscouponApplied = true
             }
@@ -170,14 +188,19 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
             self.requestedTime.text = bookingDetailSummary?.time_slot
             self.serviceProvider.text = bookingDetailSummary?.provider_name
             self.servicePerson.text = bookingDetailSummary?.person_name
-            let fullName = bookingDetailSummary?.service_start_time
-            let fullNameArr = fullName!.components(separatedBy: " ")
-            let date = fullNameArr[0]
-            let time = fullNameArr[1]
-            self.serviceStartDate.text = date
-            self.serviceStartTime.text = time
-            self.serviceCompletedDate.text = bookingDetailSummary?.service_end_time
-            self.additionalServiceTextField.text = String(format: "%@ - %@",  "Additional Service",bookingDetailSummary!.additional_service!)
+            let starTime = bookingDetailSummary?.service_start_time
+            let starTimeArr = starTime!.components(separatedBy: " ")
+            let startdate = starTimeArr[0]
+            let start_time = starTimeArr[1]
+            self.serviceStartDate.text = startdate
+            self.serviceStartTime.text = start_time
+            let endTime  = bookingDetailSummary?.service_end_time
+            let endTimeArr = endTime!.components(separatedBy: " ")
+            let enddate = endTimeArr[0]
+            let end_time = endTimeArr[1]
+            self.serviceCompletedDate.text = enddate
+            self.serviceCompletedTime.text = end_time
+            self.additionalServiceTextField.text = String(format: "%@ - %@",  LocalizationSystem.sharedInstance.localizedStringForKey(key: "serviceadditional_text", comment: ""),bookingDetailSummary!.additional_service!)
             self.materialUsedTextView.text = bookingDetailSummary?.material_notes
             self.serviceCharge.text = bookingDetailSummary?.service_amount
             self.additionalServiceCharge.text = bookingDetailSummary?.additional_service_amt
@@ -187,13 +210,17 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
             let coupon_id = bookingDetailSummary?.coupon_id
             if coupon_id == "0"
             {
-                self.grandTotal.text = GlobalVariables.shared.payableAmount
+                let payableAmount = GlobalVariables.shared.payableAmount
+                let myFloat = (payableAmount as NSString).floatValue
+                self.grandTotal.text = String (myFloat)
                 self.coupon.text = bookingDetailSummary?.discount_amt
                 iscouponApplied = false
             }
             else
             {
-                self.grandTotal.text = GlobalVariables.shared.payableAmount
+                let payableAmount = GlobalVariables.shared.payableAmount
+                let myFloat = (payableAmount as NSString).floatValue
+                self.grandTotal.text = String (myFloat)
                 self.coupon.text = bookingDetailSummary?.discount_amt
                 iscouponApplied = true
             }
@@ -223,6 +250,8 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_ta"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         let order_id = json["order_id"].stringValue
                         print(order_id)
@@ -240,8 +269,17 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                         }
                         else
                         {
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                //Custom action code
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                }
                             }
                         }
                     }) {
@@ -324,7 +362,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
         let additionalService = bookingDetailSummary?.additional_service
         if additionalService == "0"
         {
-            Alert.defaultManager.showOkAlert("SkilEx", message: "Additional Service is Empty") { (action) in
+            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "additionalservicealert", comment: "")) { (action) in
             }
         }
         else
@@ -335,7 +373,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
     
     @IBAction func viewBillAction(_ sender: Any)
     {
-        
+        self.performSegue(withIdentifier: "bill", sender: self)
     }
     
     @IBAction func payNowAction(_ sender: Any)
@@ -372,6 +410,8 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_ta"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if status == "success"{
                 
@@ -382,8 +422,17 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                         }
                         else
                         {
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                //Custom action code
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                }
                             }
                         }
                     }) {
@@ -411,7 +460,9 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                         MBProgressHUD.hide(for: self.view, animated: true)
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
-                        let msg = json["msg"].stringValue
+                      //  let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg"].stringValue
                         let status = json["status"].stringValue
                         let order_id = json["order_id"].stringValue
                         print(order_id)
@@ -424,8 +475,17 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                         }
                         else
                         {
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                //Custom action code
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                }
                             }
                         }
                     }) {
@@ -453,6 +513,8 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         let order_id = json["order_id"].stringValue
                         print(order_id)
@@ -466,8 +528,18 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                         }
                         else
                         {
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                //Custom action code
+                           
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                }
                             }
                         }
                     }) {
@@ -496,6 +568,8 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "Proceed for Payment" && status == "success"
                         {
@@ -505,8 +579,17 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                         }
                         else
                         {
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                //Custom action code
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                }
                             }
                         }
                     }) {
@@ -535,6 +618,8 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "Service status" && status == "success"{
                             
@@ -559,8 +644,17 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                         }
                         else
                         {
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                //Custom action code
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                }
                             }
                         }
                     }) {
@@ -637,6 +731,11 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
             let vc = segue.destination as! CashMethod
             vc.order_id = GlobalVariables.shared.order_id
             vc.payable_amount = GlobalVariables.shared.payableAmount
+        }
+        else if (segue.identifier == "bill")
+        {
+            let vc = segue.destination as! ViewBill
+            vc.serviceOrderId = self.service_order_id
         }
     }
     

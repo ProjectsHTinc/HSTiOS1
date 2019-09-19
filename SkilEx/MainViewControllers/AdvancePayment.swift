@@ -24,11 +24,16 @@ class AdvancePayment: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.preferedLanguage()
         self.addBackButton()
         self.advanceAmount.text = String(format: "%@ %@", "Rs.", advance_amount)
+        self.preferedLanguage()
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
+    }
+    
     override func viewWillLayoutSubviews() {
         
         self.subView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.5, radius: 6)

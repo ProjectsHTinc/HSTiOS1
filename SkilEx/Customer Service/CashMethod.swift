@@ -23,6 +23,11 @@ class CashMethod: UIViewController {
         // Do any additional setup after loading the view.
         self.addBackButton()
         self.preferedLanguage()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
     }
     
     override func viewWillLayoutSubviews() {
@@ -39,7 +44,6 @@ class CashMethod: UIViewController {
     @objc public override func backButtonClick() {
         self.navigationController?.popViewController(animated: true)
     }
-    
     
     @IBAction func payOnlineAction(_ sender: Any)
     {
@@ -76,17 +80,27 @@ class CashMethod: UIViewController {
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if status == "success"{
-                            
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
+                            AlertController.shared.showAlert(targetVC: self, title: "SkilEx", message: msg, complition: {
                                 self.performSegue(withIdentifier: "Home", sender: self)
-                            }
+                            })
                         }
                         else
                         {
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                //Custom action code
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                }
                             }
                         }
                     }) {

@@ -11,6 +11,7 @@ import MBProgressHUD
 import SwiftyJSON
 
 class UserProfile: UIViewController {
+    
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userMobileNumber: UILabel!
@@ -19,6 +20,7 @@ class UserProfile: UIViewController {
     @IBOutlet weak var aboutSkilexLabel: UILabel!
     @IBOutlet weak var shareSkilexLabel: UILabel!
     @IBOutlet weak var logoutLabel: UILabel!
+    @IBOutlet weak var changeLangugaeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +28,25 @@ class UserProfile: UIViewController {
         // Do any additional setup after loading the view.
         self.navigationItem.setHidesBackButton(true, animated:true);
         self.profileView()
-        self.preferedLanguage()
-
+        if GlobalVariables.shared.user_master_id == ""
+        {
+            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "noinfpormationguest", comment: "")) { (action) in
+            }
+            self.userName.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "GuestUSER", comment: "")
+            self.userMobileNumber.text = "-"
+            self.userMailId.text = "-"
+            self.preferedLanguage()
+            
+            
+        }
+        else
+        {
+            self.preferedLanguage()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()       
     }
     
     func preferedLanguage()
@@ -36,8 +55,18 @@ class UserProfile: UIViewController {
         profileSettingsLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "profilesettings_text", comment: "")
         aboutSkilexLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "aboutSkilex_text", comment: "")
         shareSkilexLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "shareSkilex_text", comment: "")
+        changeLangugaeLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "languagechange_text", comment: "")
         logoutLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "logout_text", comment: "")
+        self.changeTabbarTitle ()
     }
+    
+    func changeTabbarTitle ()
+    {
+        tabBarController?.tabBar.items![0].title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "hometab_text", comment: "")
+        tabBarController?.tabBar.items![1].title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicetab_text", comment: "")
+        tabBarController?.tabBar.items![2].title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "profiletab_text", comment: "")
+    }
+    
     
     func profileView ()
     {
@@ -53,6 +82,8 @@ class UserProfile: UIViewController {
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "User information" && status == "success"
                         {
@@ -62,11 +93,20 @@ class UserProfile: UIViewController {
                         }
                         else
                         {
-                            self.userMobileNumber.text = "-"
-                            self.userMailId.text = "-"
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+//                                    self.performSegue(withIdentifier: "bookingSuccess", sender: self)
+                                }
                             }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+//                                    self.performSegue(withIdentifier: "bookingSuccess", sender: self)
+                                }
+                            } 
                         }
                     }) {
                         (error) -> Void in
@@ -84,7 +124,8 @@ class UserProfile: UIViewController {
     {
         let userdata = UserDefaults.standard.getUserData()
 
-        if  userdata?.fullName == nil && userdata?.email == nil  && userdata?.profilePic == nil{
+        if  userdata?.fullName == nil && userdata?.email == nil  && userdata?.profilePic == nil
+        {
             self.userName.text = ""
             self.userMobileNumber.text = ""
             self.userMailId.text = ""
@@ -126,15 +167,15 @@ class UserProfile: UIViewController {
     {
         if GlobalVariables.shared.user_master_id == ""
         {
-            let alertController = UIAlertController(title: "SkilEX", message: "If you want this service you have to login", preferredStyle: UIAlertController.Style.alert)
+            let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "guestclickprofile", comment: ""), preferredStyle: UIAlertController.Style.alert)
             
             
-            let okAction = UIAlertAction(title: "Login", style: UIAlertAction.Style.default) {
+            let okAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "login_text", comment: ""), style: UIAlertAction.Style.default) {
                 UIAlertAction in
                 self.performSegue(withIdentifier: "to_Login", sender: self)
                 
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default) {
+            let cancelAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "cancel", comment: ""), style: UIAlertAction.Style.default) {
                 UIAlertAction in
                 
             }
@@ -151,7 +192,7 @@ class UserProfile: UIViewController {
     
     @IBAction func aboutSkilex(_ sender: Any)
     {
-        
+        self.performSegue(withIdentifier: "aboutUs", sender: self)
     }
     
     @IBAction func shareSkilex(_ sender: Any)
@@ -159,24 +200,85 @@ class UserProfile: UIViewController {
         
     }
     
-    @IBAction func logOut(_ sender: Any)
+    @IBAction func changeLanguageAction(_ sender: Any)
     {
-        GlobalVariables.shared.user_master_id = ""
-        GlobalVariables.shared.Service_amount = ""
-        GlobalVariables.shared.main_catID = ""
-        GlobalVariables.shared.sub_catID = ""
-        GlobalVariables.shared.catServicetID = ""
-        GlobalVariables.shared.viewPage = ""
-        UserDefaults.standard.set("", forKey: "user_master_id")
-        UserDefaults.standard.set("", forKey: "phone_no")
-        UserDefaults.standard.set("", forKey: "otp_key")
-        UserDefaults.standard.set("", forKey: "Advance/customer")
-        UserDefaults.standard.clearUserData()
-        self.performSegue(withIdentifier: "to_Login", sender: self)
+        let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // create an action
+        let firstAction: UIAlertAction = UIAlertAction(title: "தமிழ்", style: .default) { action -> Void in
+            
+            print("First Action pressed")
+            self.changeLanguage(language: "ta")
+        }
+        
+        let secondAction: UIAlertAction = UIAlertAction(title: "English", style: .default) { action -> Void in
+            
+            print("Second Action pressed")
+            self.changeLanguage(language: "en")
 
+        }
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in }
+        
+        // add actions
+        actionSheetController.addAction(firstAction)
+        actionSheetController.addAction(secondAction)
+        actionSheetController.addAction(cancelAction)
+        
+        
+        // present an actionSheet...
+        // present(actionSheetController, animated: true, completion: nil)   // doesn't work for iPad
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            actionSheetController.popoverPresentationController?.sourceView = self.view
+            actionSheetController.popoverPresentationController?.sourceRect = self.view.bounds
+            actionSheetController.popoverPresentationController?.permittedArrowDirections = [.down, .up]
+        } // works for both iPhone & iPad
+        
+        present(actionSheetController, animated: true) {
+            print("option menu presented")
+        }
     }
     
+    func changeLanguage(language:String)
+    {
+        LocalizationSystem.sharedInstance.setLanguage(languageCode: language)
+        self.viewDidLoad()
+    }
+    
+    @IBAction func logOut(_ sender: Any)
+    {
+        
+        let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "LogOutAccess", comment: ""), preferredStyle: UIAlertController.Style.alert)
+        
+        let okAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "LogOutAccessButtonOK", comment: ""), style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            
+            GlobalVariables.shared.user_master_id = ""
+            GlobalVariables.shared.Service_amount = ""
+            GlobalVariables.shared.main_catID = ""
+            GlobalVariables.shared.sub_catID = ""
+            GlobalVariables.shared.catServicetID = ""
+            GlobalVariables.shared.viewPage = ""
+            UserDefaults.standard.set("", forKey: "user_master_id")
+            UserDefaults.standard.set("", forKey: "phone_no")
+            UserDefaults.standard.set("", forKey: "otp_key")
+            UserDefaults.standard.set("", forKey: "Advance/customer")
+            UserDefaults.standard.clearUserData()
+            UserDefaults.standard.set("", forKey: "user_master_id")
+            self.performSegue(withIdentifier: "to_Login", sender: self)
+            
+        }
+        let cancelAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "LogOutAccessButtonCancel", comment: ""), style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            
+        }
+        
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
 
+    }
     
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -188,7 +290,10 @@ class UserProfile: UIViewController {
             
             let _ = segue.destination as! Profile
         }
+        
+        else if (segue.identifier == "aboutUs")
+        {
+            let _ = segue.destination as! AboutUs
+        }
     }
-
-
 }

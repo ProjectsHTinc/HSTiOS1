@@ -29,6 +29,7 @@ class OngoingServicesDetail: UIViewController {
     @IBOutlet weak var serviceTimeSlotLabel: UILabel!
     @IBOutlet weak var estimatedCostLabel: UILabel!
     @IBOutlet weak var callServicePersonLabel: UILabel!
+    @IBOutlet weak var orderidLabel: UILabel!
     
     var serviceorderId = String()
     let serviceListDetail = UserDefaults.standard.getServicesDetail()
@@ -38,26 +39,43 @@ class OngoingServicesDetail: UIViewController {
 
         // Do any additional setup after loading the view.
         self.addBackButton()
-        self.preferedLanguage()
         self.LoadValues()
         self.subView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.5, radius: 6)
-        
+        self.preferedLanguage()
+
     }
     
-    override func viewWillLayoutSubviews() {
-       
-        
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
         if serviceListDetail?.order_status == "Ongoing"
         {
-            self.trackOutlet.isEnabled = false
+            self.trackOutlet.isHidden = true
             trackOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor.gray)
         }
         else if serviceListDetail?.order_status == "Initiated"
         {
-            self.trackOutlet.isEnabled = true
+            self.trackOutlet.isHidden = false
             self.trackOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingtrack_text", comment: ""), for: .normal)
             trackOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
         }
+        
+        let person_number = serviceListDetail?.person_number
+        
+        if person_number == ""
+        {
+            callServicePersonLabel.isHidden = true
+            callServiceProviderOutlet.isEnabled = false
+        }
+        else
+        {
+            callServicePersonLabel.isHidden = false
+            callServiceProviderOutlet.isEnabled = true
+        }
+
+    }
+    
+    override func viewWillLayoutSubviews() {
+       
 //        else if serviceListDetail?.order_status == "Completed"
 //        {
 //            self.orderStatus = "Completed"
@@ -114,6 +132,7 @@ class OngoingServicesDetail: UIViewController {
             self.estimatedCost.text = serviceListDetail?.estimated_cost
             self.serviceProviderName.text = serviceListDetail?.provider_name
             self.callServiceProviderOutlet.setTitle(serviceListDetail?.person_number, for: .normal)
+            self.orderidLabel.text = String(format: "%@ : %@",LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesorderID_text", comment: ""),serviceListDetail!.service_order_id ?? "")
         }
         else
         {
@@ -144,6 +163,7 @@ class OngoingServicesDetail: UIViewController {
             self.estimatedCost.text = serviceListDetail?.estimated_cost
             self.serviceProviderName.text = serviceListDetail?.provider_name
             self.callServiceProviderOutlet.setTitle(serviceListDetail?.person_number, for: .normal)
+            self.orderidLabel.text = String(format: "%@ : %@",LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesorderID_text", comment: ""),serviceListDetail!.service_order_id ?? "")
         }
     }
     

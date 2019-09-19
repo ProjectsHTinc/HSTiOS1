@@ -26,9 +26,14 @@ class SearchResult: UIViewController,UITableViewDelegate,UITableViewDataSource {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.addBackButton()
-        self.preferedLanguage()
         self.webRequestSearchList(searchtext:searchText)
         GlobalVariables.shared.viewPage = "ServiceResult"
+        self.preferedLanguage()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
     }
     
     func preferedLanguage(){
@@ -52,6 +57,8 @@ class SearchResult: UIViewController,UITableViewDelegate,UITableViewDataSource {
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "View Services" && status == "success"{
                          
@@ -75,8 +82,20 @@ class SearchResult: UIViewController,UITableViewDelegate,UITableViewDataSource {
                         }
                         else
                         {
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                    //self.navigationController?.popViewController(animated: true)
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                    //self.navigationController?.popViewController(animated: true)
+
+                                }
                             }
                         }
                     }) {

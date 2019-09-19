@@ -24,7 +24,6 @@ class BookingSuccess: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.preferedLanguage()
         self.addBackButton()
         self.displayMinute = "1"
         
@@ -57,11 +56,17 @@ class BookingSuccess: UIViewController {
                 self.WebRequesAdvanceamountbooking()
             }
         }
+        self.preferedLanguage()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
     }
     
     func startTimer() {
         if timer == nil {
-            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(callServiceAllocation), userInfo: nil, repeats: true);
+            timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(callServiceAllocation), userInfo: nil, repeats: true);
         }
     }
     
@@ -101,11 +106,12 @@ class BookingSuccess: UIViewController {
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
                         let status = json["status"].stringValue
                         if msg == "Mobile OTP" && status == "success"
                         {
                             self.stopTimer()
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
+                            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
 //                                self.performSegue(withIdentifier: "home", sender: self)
                             }
                         }

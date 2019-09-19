@@ -14,18 +14,26 @@
 "login_text" = "Login";
 "skip_text" = "Skip for now";
 
+/*Done Cancel */
+"done" = "Done";
+"cancel" = "Cancel";
+
 /* Otp text */
 "enterverificationCode_text" = "Enter Verification Code";
 "content_text" = "We have sent you a 4 digit verfication\n code to your mobile number";
 "resend_text" = "Resend OTP";
-"notsendOTP_text" = "Didn't Recieve the OTP?";
+"notsendOTP_text" = "Didn't Receive  the OTP?";
 
 /* profile text */
 "profilenavtitle_text" = "Update User Profile";
 "fullname_text" = "Full Name";
 "regmobnum_text" = "Enter Mobile Number";
+"address_text" = "Address";
 "mailid_text" = "Enter Email ID (optional)";
 "city_text" = "City";
+"gender_text" = "Gender";
+"male_text" = "Male";
+"female_text" = "Female";
 "submit_profile_text" = "Save";
 
 
@@ -47,6 +55,7 @@
 "profilesettings_text" = "Profile Settings";
 "aboutSkilex_text" = "About SkilEx";
 "shareSkilex_text" = "Share SkilEx";
+"languagechange_text" = "Change Language";
 "logout_text" = "Log Out";
 
 /* Services text */
@@ -54,6 +63,8 @@
 "servicesrequested_text" = "Requested Services";
 "servicesongoing_text" = "Ongoing Services";
 "servicesService_text" = "Service History";
+"servicespageBack_text" = "If you want to leave the page, All the existing added service will be Deleted";
+"servicescartmsg_text" = "Your Cart is Empty";
 
 /* ServiceDeatil text */
 "servicedetailnav_text" = "Search Detail";
@@ -61,10 +72,14 @@
 "servicedetailsummary_text" = "View Summary";
 "servicedetailadd_text" = "Add";
 
+
+/* ServiceDiscripition text */
+"servicediscripitionnav_text" = "Search Descripition";
+
 /* ViewSummary text */
 "viewsummarynavtitle_text" = "Order Summary";
-"viewsummaryadvanceamount_text" = "Advance amount";
-"viewsummarytotalamount_text" = "Grand Amount";
+"viewsummaryadvanceamount_text" = "Advance Amont";
+"viewsummarytotalamount_text" = "Total Service Cost";
 "viewsummaryproceed_text" = "Proceed";
 "ordersummary_text" = "Order Summary";
 
@@ -96,10 +111,10 @@
 
 /*OngoingservicesDetail text */
 "servicesdetailongoingnavtitle_text" = "Ongoing Service Detail";
-"servicesdetailongoingprovider_text" = "Service Provider";
+"servicesdetailongoingprovider_text" = "SkilEx Associate";
 "servicesdetailongoingtimeslot_text" = "Service Starting Time";
 "servicesdetailongoingestimatedcost_text" = "Estimated Cost";
-"servicesdetailongoingcallserviceperson_text" = "Call Service Person";
+"servicesdetailongoingcallserviceperson_text" = "Call SkilEx Expert";
 "servicesdetailongoingtrack_text" = "Track";
 
 "servicesdetailongoingstart_text" = "Start";
@@ -112,6 +127,7 @@
 "servicesdetailrequestedestimated_text" = "Estimated Cost";
 "servicesdetailrequestedaddress_text" = "Address";
 "servicesdetailrequestedcancel_text" = "Cancel service";
+"servicesorderID_text" = "Order Id";
 
 /*BookingStatus text */
 "bookingstatusnavtitle_text" = "booking Success";
@@ -131,8 +147,8 @@
 "servicehistorysummarycustomername_text" = "Customer Name";
 "servicehistorysummaryservicedate_text" = "Service Date";
 "servicehistorysummaryrequestedtime_text" = "Requested Service Time";
-"servicehistorysummaryserviceprovider_text" = "Service Provider";
-"servicehistorysummaryserviceperson_text" = "Service Person";
+"servicehistorysummaryserviceprovider_text" = "SkilEx Associate";
+"servicehistorysummaryserviceperson_text" = "SkilEx Expert";
 "servicehistorysummaryservicestarted_text" = "Service started on";
 "servicehistorysummaryservicecompleted_text" = "Service completed on";
 "servicehistorysummaryviewbill_text" = "View Bill";
@@ -146,6 +162,10 @@
 "servicehistorysummarysubtotal_text" = "Sub total";
 "servicehistorysummaryshare_text" = "Share";
 "servicehistorybutton_text" = "Pay Now";
+"serviceentercouponcode_text" = "Enter Coupon Code";
+"serviceapply_text" = "Apply";
+"serviceadditional_text" = "Additional Service";
+
 
 /*AdditionalService text */
 "additionalservicenavtitle_text" = "Additional Services";
@@ -174,3 +194,31 @@
 
 /*notificationandoffers text */
 "notificationnavtitle_text" = "Notification";
+
+
+/*aboutus text */
+"aboutusnavtitle_text" = "SkilEx";
+"aboutLabel_text" = "About";
+
+/*viewbill text */
+"viewbillnavtitle_text" = "View Bill";
+
+/* alerts local text */
+"advancepamentnotreturn" = "If you cancel you will not be refunded the advance amount paid. Are you sure you want to cancel?";
+"namefield" = "Name is mandatory";
+"mobilefield" = "Phone number is mandatory";
+"genderfield" = "Gender must be choosen";
+"addressfield" = "Address must be choosen";
+"datefield" = "Date is mandatory";
+"timefield" = "time is mandatory";
+"guestclickprofile" = "You need login to access your profile";
+"noinfpormationguest" = "No Information Found";
+"additionalservicealert" = "Additional Service is Empty";
+"servicedetailalertnextcatgoery" = "You need to confirm your selection before going for another category. Else your selection will be discarded.";
+"confirmalert" = "Confirm";
+"logintoaccess" = "You need to login to book a service";
+"searchtextnotempty" = "what are you looking for?";
+"LogOutAccess" = "Do you really want to logout?";
+"LogOutAccessButtonOK" = "YES";
+"LogOutAccessButtonCancel" = "NO";
+"GuestUSER" = "GUEST";

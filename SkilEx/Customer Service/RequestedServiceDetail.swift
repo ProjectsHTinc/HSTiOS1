@@ -13,6 +13,7 @@ import MBProgressHUD
 class RequestedServiceDetail: UIViewController {
     
     var service_order_id  = String()
+    var advancePayment_Status = String()
     
     @IBOutlet weak var mainCategoeryName: UILabel!
     @IBOutlet weak var subCategoeryName: UILabel!
@@ -29,6 +30,7 @@ class RequestedServiceDetail: UIViewController {
     @IBOutlet weak var estimatedCost: UILabel!
     @IBOutlet weak var cancelServiceOutLet: UIButton!
     @IBOutlet weak var subView: UIView!
+    @IBOutlet weak var orderidLabel: UILabel!
     
     let serviceListDetail = UserDefaults.standard.getServicesDetail()
 
@@ -38,9 +40,15 @@ class RequestedServiceDetail: UIViewController {
 
         // Do any additional setup after loading the view.
         self.addBackButton()
-        self.preferedLanguage()
         self.LoadValues()
         self.subView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.5, radius: 6)
+        print(advancePayment_Status)
+        self.preferedLanguage()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
     }
     
     override func viewWillLayoutSubviews() {
@@ -71,6 +79,7 @@ class RequestedServiceDetail: UIViewController {
             self.customerNumber.text = serviceListDetail?.contact_person_number
             self.estimatedCost.text = serviceListDetail?.estimated_cost
             self.address.text = serviceListDetail?.service_address
+            self.orderidLabel.text = String(format: "%@ : %@",LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesorderID_text", comment: ""),serviceListDetail!.service_order_id ?? "")
         }
         else
         {
@@ -83,6 +92,8 @@ class RequestedServiceDetail: UIViewController {
             self.customerNumber.text = serviceListDetail?.contact_person_number
             self.estimatedCost.text = serviceListDetail?.estimated_cost
             self.address.text = serviceListDetail?.service_address
+            self.orderidLabel.text = String(format: "%@ : %@",LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesorderID_text", comment: ""),serviceListDetail!.service_order_id ?? "")
+
         }
     }
     
@@ -108,6 +119,7 @@ class RequestedServiceDetail: UIViewController {
         {
             let vc = segue.destination as! CancelService
             vc.serviceId = self.service_order_id
+            vc.advancePayment_Status = advancePayment_Status
         }
     }
 

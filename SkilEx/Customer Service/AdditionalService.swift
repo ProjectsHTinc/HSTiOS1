@@ -21,9 +21,13 @@ class AdditionalService: UIViewController, UITableViewDelegate, UITableViewDataS
 
         // Do any additional setup after loading the view.
         self.addBackButton()
-        self.preferedLanguage()
         self.webRequestAdditionalServiceList(service_order_id: serviceorderid)
+        self.preferedLanguage()
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
     }
     
     @objc public override func backButtonClick() {
@@ -48,6 +52,8 @@ class AdditionalService: UIViewController, UITableViewDelegate, UITableViewDataS
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "service found" && status == "success"{
                             
@@ -65,8 +71,17 @@ class AdditionalService: UIViewController, UITableViewDelegate, UITableViewDataS
                         }
                         else
                         {
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                //Custom action code
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                }
                             }
                         }
                     }) {

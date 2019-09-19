@@ -27,6 +27,11 @@ class Service: UIViewController{
         // Do any additional setup after loading the view.
         self.navigationItem.setHidesBackButton(true, animated:true);
         self.preferedLanguage()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
     }
     
     func preferedLanguage()

@@ -23,8 +23,13 @@ class ServiceHistory: UIViewController,UITableViewDelegate,UITableViewDataSource
 
         // Do any additional setup after loading the view.
         self.addBackButton()
-        self.preferedLanguage()
         self.webRequestServiceHistory(user_master_id: GlobalVariables.shared.user_master_id)
+        self.preferedLanguage()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.preferedLanguage()
     }
     
     func preferedLanguage () {
@@ -48,6 +53,8 @@ class ServiceHistory: UIViewController,UITableViewDelegate,UITableViewDataSource
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "Service found" && status == "success"{
                             
@@ -65,8 +72,17 @@ class ServiceHistory: UIViewController,UITableViewDelegate,UITableViewDataSource
                         }
                         else
                         {
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                //Custom action code
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                }
                             }
                         }
                     }) {
@@ -147,6 +163,10 @@ class ServiceHistory: UIViewController,UITableViewDelegate,UITableViewDataSource
         {
             self.webRequestserviceOrderSummary(service_order_id: index.service_order_id!)
         }
+        else if self.serviceStatus == "Paid"
+        {
+            self.webRequestserviceOrderSummary(service_order_id: index.service_order_id!)
+        }
         else
         {
             self.webRequestProceedforPayment()
@@ -167,6 +187,8 @@ class ServiceHistory: UIViewController,UITableViewDelegate,UITableViewDataSource
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         let order_id = json["order_id"].stringValue
                         print(order_id)
@@ -180,8 +202,17 @@ class ServiceHistory: UIViewController,UITableViewDelegate,UITableViewDataSource
                         }
                         else
                         {
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                //Custom action code
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                }
                             }
                         }
                     }) {
@@ -209,6 +240,8 @@ class ServiceHistory: UIViewController,UITableViewDelegate,UITableViewDataSource
                     print(JSONResponse)
                     let json = JSON(JSONResponse)
                     let msg = json["msg"].stringValue
+                    let msg_en = json["msg_en"].stringValue
+                    let msg_ta = json["msg_ta"].stringValue
                     let status = json["status"].stringValue
                     let order_id = json["order_id"].stringValue
                     print(order_id)
@@ -222,8 +255,17 @@ class ServiceHistory: UIViewController,UITableViewDelegate,UITableViewDataSource
                     }
                     else
                     {
-                        Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                            //Custom action code
+                        if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                        {
+                            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                //Custom action code
+                            }
+                        }
+                        else
+                        {
+                            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                //Custom action code
+                            }
                         }
                     }
                 }) {
@@ -252,6 +294,8 @@ class ServiceHistory: UIViewController,UITableViewDelegate,UITableViewDataSource
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "Proceed for Payment" && status == "success"
                         {
@@ -261,8 +305,17 @@ class ServiceHistory: UIViewController,UITableViewDelegate,UITableViewDataSource
                         }
                         else
                         {
-                            Alert.defaultManager.showOkAlert("SkilEx", message: msg) { (action) in
-                                //Custom action code
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                }
                             }
                         }
                     }) {

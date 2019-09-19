@@ -13,6 +13,11 @@
 "mobilenumberplaceholder_text" = "தொலைபேசி எண்";
 "login_text" = "உள்நுழை";
 "skip_text" = "இப்போதைக்கு தவிர்";
+"mobilenumberAlert" = "இப்போதைக்கு தவிர்";
+
+/*Done Cancel */
+"done" = "முடிந்தது";
+"cancel" = "வேண்டாம்";
 
 /* Otp text */
 "enterverificationCode_text" = "சரிபார்ப்பு குறியீட்டை என்டர் செய்யவும்";
@@ -24,15 +29,19 @@
 "profilenavtitle_text" = "பயனர் சுயவிவரத்தை புதுப்பிக்கவும்";
 "fullname_text" = "முழுப்பெயர்";
 "regmobnum_text" = "தொலைபேசி எண்ணை என்டர் செய்யவும்";
+"address_text" = "முகவரி";
 "mailid_text" = "மின்னஞ்சல் முகவரி (கட்டாயமற்றது)";
 "city_text" = "நகரம்";
+"gender_text" = "பாலினம்";
+"male_text" = "ஆண்";
+"female_text" = "பெண்";
 "submit_profile_text" = "சேவ் செய்க";
 
 /* tabbarcontroller text */
-"homenavtitle_text" = "ஸ்கில்எக்ஸ் - ஸ்கில்எக்ஸ் சேவைகள்";
+"homenavtitle_text" = "ஸ்கில்எக்ஸ் சேவைகள்";
 "hometab_text" = "முகப்பு பக்கம்";
 "servicetab_text" = "சேவைகள்";
-"profiletab_text" = "பயனர் சுயவிவரம் / சுயவிவரங்கள்";
+"profiletab_text" = "பயனர் சுயவிவரம்";
 "homealerttitle_text" = "ஸ்கில்எக்ஸ்";
 "homealertmsg_text" = "இச்சேவையை பெற உள்நுழையவும்";
 "homealertbuttonlogin_text" = "உள்நுழை";
@@ -45,7 +54,8 @@
 "userprofilenav_text" = "பயனர் சுயவிவரம்";
 "profilesettings_text" = "சுயவிவர அமைப்புகள்";
 "aboutSkilex_text" = "ஸ்கைலெக்ஸ் பற்றி அறிய";
-"shareSkilex_text" = "ஸ்கைலெக்ஸ் பகிரவ";
+"shareSkilex_text" = "ஸ்கைலெக்ஸ் பகிரவும்";
+"languagechange_text" = "மொழியை தேர்வுசெய்க";
 "logout_text" = "வெளியேறு";
 
 /* Services text */
@@ -53,12 +63,19 @@
 "servicesrequested_text" = "கோரிய சேவைகள்";
 "servicesongoing_text" = "நடப்பு சேவைகள்";
 "servicesService_text" = "நிறைவுற்ற சேவைகளின் விபரங்கள்";
+"servicespageBack_text" = "நீங்கள் பக்கத்தை விட்டு வெளியேற விரும்பினால், ஏற்கனவே உள்ள அனைத்து சேவைகளும் நீக்கப்படும்";
+"servicescartmsg_text" = "உங்கள் சேவை பட்டியல் காலியாக உள்ளது";
+
 
 /* ServiceDeatil text */
-"servicedetailnav_text" = "தேடல் விபரங்கள் ";
+"servicedetailnav_text" = "தேடல் விபரங்கள்";
 "servicedetailservice_text" = "சேவைகள்";
-"servicedetailsummary_text" = "நிறைவுச்சுருக்கத்தை காண்க";
+"servicedetailsummary_text" = "நிறைவு சுருக்கம்";
 "servicedetailadd_text" = "சேர்";
+
+
+/* ServiceDiscripition text */
+"servicediscripitionnav_text" = "சேவை விபரம்";
 
 /* ViewSummary text */
 "viewsummarynavtitle_text" = "சேவை நிறைவுச்சுருக்கம்";
@@ -74,7 +91,7 @@
 "customeraddressphonenumber_text" = "தொலைபேசி எண்";
 "customeraddressdate_text" = "தேதியை தேர்வு செய்க";
 "customeraddresstime_text" = "நேரத்தை தேர்வு செய்க";
-"customeraddressproceed_text" = "சேவை முன்பதிவு செய்க";
+"customeraddressproceed_text" = "தொடரவும்";
 
 /* Searchresult text */
 "searchresultnavtitle_text" = "தேடல் முடிவுகள்";
@@ -100,7 +117,7 @@
 "servicesdetailongoingtimeslot_text" = "சேவை தொடங்கும் நேரம்";
 "servicesdetailongoingestimatedcost_text" = "கணிக்கப்பட்ட தொகை";
 "servicesdetailongoingcallserviceperson_text" = "சேவகரை அழை";
-"servicesdetailongoingtrack_text" = "சேவகரின் வருகையை கண்காணி";
+"servicesdetailongoingtrack_text" = "கண்காணி";
 "servicesdetailongoingstart_text" = "தொடங்கவும்";
 
 
@@ -111,6 +128,7 @@
 "servicesdetailrequestedestimated_text" = "கணிக்கப்பட்ட தொகை";
 "servicesdetailrequestedaddress_text" = "முகவரி";
 "servicesdetailrequestedcancel_text" = "சேவையை ரத்து செய்";
+"servicesorderID_text" = "ஆர்டர் எண்";
 
 /*BookingStatus text */
 "bookingstatusnavtitle_text" = "சேவை முன்பதிவு செய்யப்பட்டது";
@@ -134,7 +152,7 @@
 "servicehistorysummaryserviceperson_text" = "சேவகர்";
 "servicehistorysummaryservicestarted_text" = "சேவை தொடங்கப்பட்ட நாள்";
 "servicehistorysummaryservicecompleted_text" = "சேவை நிறைவுற்ற நாள்";
-"servicehistorysummaryviewbill_text" = "சேவைக்கான ரசிது";
+"servicehistorysummaryviewbill_text" = "ரசிது";
 "servicehistorysummarymaterialsused_text" = "பயன்படுத்தப்பட்ட பொருட்கள்";
 "servicehistorysummarypayment_text" = "சேவை கட்டணம்";
 "servicehistorysummaryservicecharge_text" = "சேவை கட்டணம்";
@@ -145,6 +163,10 @@
 "servicehistorysummarysubtotal_text" = "கூட்டுத்தொகை";
 "servicehistorysummaryshare_text" = "பகிரவும்";
 "servicehistorybutton_text" = "பணம் செலுத்து";
+"serviceentercouponcode_text" = "கூப்பன் குறியீட்டை உள்ளிடவும்";
+"serviceapply_text" = "விண்ணப்பிக்கவும்";
+"serviceadditional_text" = "கூடுதல் சேவை";
+
 
 /*AdditionalService text */
 "additionalservicenavtitle_text" = "கூடுதல் சேவைகள்";
@@ -172,3 +194,34 @@
 
 /*notificationandoffers text */
 "notificationnavtitle_text" = "அறிவிப்பு";
+
+/*aboutus text */
+"aboutusnavtitle_text" = "ஸ்கில்எக்ஸ்";
+"aboutLabel_text" = "ஸ்கில்எக்ஸ் - ஒரு பார்வை";
+
+/*viewbill text */
+"viewbillnavtitle_text" = "ரசிதை பார்க்கவும்";
+
+
+/* alerts local text */
+"advancepamentnotreturn" = "நீங்கள் ரத்துசெய்தால், செலுத்தப்பட்ட முன்கூட்டியே தொகை உங்களுக்கு திருப்பித் தரப்படாது. நீங்கள் நிச்சயமாக ரத்து செய்ய விரும்புகிறீர்களா?";
+"namefield" = "பெயர் கட்டாயம் தேவை";
+"mobilefield" = "தொலைப்பேசி எண் கட்டாயம் தேவை";
+"genderfield" = "பாலினம் கட்டாயம் தேவை";
+"addressfield" = "முகவரி கட்டாயம் தேவை";
+"datefield" = "தேதியை கட்டாயம் தேவை";
+"timefield" = "நேரம் is mandatory";
+"selectinganothercategoery" = "நீங்கள் ரத்துசெய்தால், செலுத்தப்பட்ட முன்கூட்டியே தொகை உங்களுக்கு திருப்பித் தரப்படாது. நீங்கள் நிச்சயமாக ரத்து செய்ய விரும்புகிறீர்களா?";
+"guestclickprofile" = "சுயவிபரங்களை அணுக உள்நுழையவும்";
+"noinfpormationguest" = "எந்த தகவலும் கிடைக்கவில்லை";
+"okalert" = "சரி";
+"noinfpormationguest" = "எந்த தகவலும் கிடைக்கவில்லை";
+"additionalservicealert" = "கூடுதல் சேவை காலியாக உள்ளது";
+"servicedetailalertnextcatgoery" = "மற்ற பிரிவிற்கு செல்லும் முன் தேர்ந்தெடுக்கப்பட்டதை உறுதி செய்யவும். இல்லையேல் அனைத்து தேர்வுகளும் நிராகரிக்கப்படும்.";
+"confirmalert" = "உறுதி செய்க";
+"logintoaccess" = "சேவை முன்பதிவு செய்யஉள்நுழைவது அவசியம் ";
+"searchtextnotempty" = "நீங்கள் என்ன தேடுகிறீர்கள்?";
+"LogOutAccess" = "நீங்கள் உண்மையில் வெளியேற விரும்புகிறீர்களா?";
+"LogOutAccessButtonOK" = "ஆம்";
+"LogOutAccessButtonCancel" = "இல்லை";
+"GuestUSER" = "விருந்தினர் பயனர்";

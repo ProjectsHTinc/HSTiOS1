@@ -61,6 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         return true
     }
     
+    
     // Permission For Push Notification
     func registerForPushNotifications() {
         UNUserNotificationCenter.current() // 1
@@ -122,5 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     {
         print("Failed to register: \(error)")
     }
+    
 }
+
 
