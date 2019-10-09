@@ -38,7 +38,7 @@
 
 
 /* tabbarcontroller text */
-"homenavtitle_text" = "SkilEx Services";
+"homenavtitle_text" = "Category";
 "hometab_text" = "Home";
 "servicetab_text" = "Services";
 "profiletab_text" = "Profile";
@@ -52,9 +52,9 @@
 
 /* User Profile */
 "userprofilenav_text" = "User Profile";
-"profilesettings_text" = "Profile Settings";
-"aboutSkilex_text" = "About SkilEx";
-"shareSkilex_text" = "Share SkilEx";
+"profilesettings_text" = "Profile";
+"aboutSkilex_text" = "About";
+"shareSkilex_text" = "Share App";
 "languagechange_text" = "Change Language";
 "logout_text" = "Log Out";
 
@@ -67,25 +67,25 @@
 "servicescartmsg_text" = "Your Cart is Empty";
 
 /* ServiceDeatil text */
-"servicedetailnav_text" = "Search Detail";
+"servicedetailnav_text" = "Sub Category";
 "servicedetailservice_text" = "Services";
 "servicedetailsummary_text" = "View Summary";
 "servicedetailadd_text" = "Add";
 
 
 /* ServiceDiscripition text */
-"servicediscripitionnav_text" = "Search Descripition";
+"servicediscripitionnav_text" = "Service Detail";
 
 /* ViewSummary text */
-"viewsummarynavtitle_text" = "Order Summary";
+"viewsummarynavtitle_text" = "Booking Summary";
 "viewsummaryadvanceamount_text" = "Advance Amont";
 "viewsummarytotalamount_text" = "Total Service Cost";
-"viewsummaryproceed_text" = "Proceed";
+"viewsummaryproceed_text" = "Confirm";
 "ordersummary_text" = "Order Summary";
 
 
 /* CustomerAddress text */
-"customeraddressnavtitle_text" = "Customer Address";
+"customeraddressnavtitle_text" = "Address";
 "locationaddress_text" = "Location (Address)";
 "customeraddressname_text" = "Name";
 "customeraddressphonenumber_text" = "Phone Number";
@@ -174,7 +174,7 @@
 /*AdditionalService text */
 "paymentmethodavtitle_text" = "Payment Method";
 "paymentmethodonline_text" = "Payment online";
-"paymentmethodcash_text" = "Payment Cash";
+"paymentmethodcash_text" = "Pay by Cash";
 
 /*cancelservice text */
 "cancelservicenavtitle_text" = "Service Cancellation";

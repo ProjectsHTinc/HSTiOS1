@@ -38,7 +38,7 @@
 "submit_profile_text" = "சேவ் செய்க";
 
 /* tabbarcontroller text */
-"homenavtitle_text" = "ஸ்கில்எக்ஸ் சேவைகள்";
+"homenavtitle_text" = "பிரிவுகள்";
 "hometab_text" = "முகப்பு பக்கம்";
 "servicetab_text" = "சேவைகள்";
 "profiletab_text" = "பயனர் சுயவிவரம்";
@@ -81,11 +81,11 @@
 "viewsummarynavtitle_text" = "சேவை நிறைவுச்சுருக்கம்";
 "viewsummaryadvanceamount_text" = "முன் பணம்";
 "viewsummarytotalamount_text" = "மொத்த தொகை";
-"viewsummaryproceed_text" = "தொடரவும்";
+"viewsummaryproceed_text" = "உறுதிப்படுத்தவும்";
 "ordersummary_text" = "ஆர்டர் சுருக்கம்";
 
 /* CustomerAddress text */
-"customeraddressnavtitle_text" = "வாடிக்கையாளர் முகவரி";
+"customeraddressnavtitle_text" = "முகவரி";
 "locationaddress_text" = "இருப்பிடம் (முகவரி)";
 "customeraddressname_text" = "பெயர்";
 "customeraddressphonenumber_text" = "தொலைபேசி எண்";
