@@ -314,7 +314,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     }
     
     override func viewWillLayoutSubviews() {
-        proceedOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
+        proceedOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 16, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool

@@ -119,7 +119,7 @@ class OnGoing_Service: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.serviceDate.text = serviceList.order_date
         }
         
-        cell.cellView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.5, radius: 6)
+        cell.cellView.dropShadow()
         
         return cell
     }

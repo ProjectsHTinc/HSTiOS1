@@ -173,41 +173,39 @@ class Profile: UIViewController
                             print(JSONResponse)
                             let json = JSON(JSONResponse)
                             let msg = json["msg"].stringValue
-                            let msg_en = json["msg_en"].stringValue
-                            let msg_ta = json["msg_ta"].stringValue
+//                            let msg_en = json["msg_en"].stringValue
+//                            let msg_ta = json["msg_ta"].stringValue
                             let status = json["status"].stringValue
                             if msg == "Profile Updated" && status == "success"
                             {
                               
                                 if LocalizationSystem.sharedInstance.getLanguage() == "en"
                                 {
-                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Profile updated") { (action) in
-                                        //Custom action code
+                                    
+                                    AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Profile updated", complition: {
                                         self.performSegue(withIdentifier: "userprofile", sender: self)
-
-                                    }
+                                    })
                                 }
                                 else
                                 {
-                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "சேமிக்கப்பட்டது ") { (action) in
-                                        //Custom action code
+                                    AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "சேமிக்கப்பட்டது", complition: {
                                         self.performSegue(withIdentifier: "userprofile", sender: self)
-                                    }
+                                    })
                                 }
                             }
                             else
                             {
-                                if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                                if LocalizationSystem.sharedInstance.getLanguage() == "ta"
                                 {
-                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
-                                        //Custom action code
-                                    }
+                                     AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "சேமிக்கப்பட்டது", complition: {
+//                                         self.performSegue(withIdentifier: "userprofile", sender: self)
+                                     })
                                 }
                                 else
                                 {
-                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
-                                        //Custom action code
-                                    }
+                                     AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Profile updated", complition: {
+//                                          self.performSegue(withIdentifier: "userprofile", sender: self)
+                                    })
                                 }
                             }
                         }) {

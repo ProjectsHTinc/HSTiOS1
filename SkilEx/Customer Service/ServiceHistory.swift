@@ -150,7 +150,7 @@ class ServiceHistory: UIViewController,UITableViewDelegate,UITableViewDataSource
             }
         }
         
-        cell.cellView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.5, radius: 6)
+        cell.cellView.dropShadow()
         
         return cell
     }

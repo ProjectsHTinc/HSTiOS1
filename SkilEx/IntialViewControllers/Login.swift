@@ -41,7 +41,6 @@ class Login: UIViewController,UITextFieldDelegate {
 //
 //    }
     
-    
     override func viewWillLayoutSubviews() {
         submitOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
     }
@@ -95,7 +94,8 @@ class Login: UIViewController,UITextFieldDelegate {
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
                         let status = json["status"].stringValue
-                        if msg == "Mobile OTP" && status == "success"{
+                        if msg == "Mobile OTP" && status == "success"
+                        {
                             let phone_no = json["phone_no"].stringValue
                             let otp = json["otp"].stringValue
                             self.user_master_id = json["user_master_id"].stringValue

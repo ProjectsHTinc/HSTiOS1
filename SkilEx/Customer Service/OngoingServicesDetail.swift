@@ -40,7 +40,7 @@ class OngoingServicesDetail: UIViewController {
         // Do any additional setup after loading the view.
         self.addBackButton()
         self.LoadValues()
-        self.subView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.5, radius: 6)
+        self.subView.dropShadow()
         self.preferedLanguage()
 
     }
@@ -50,13 +50,13 @@ class OngoingServicesDetail: UIViewController {
         if serviceListDetail?.order_status == "Ongoing"
         {
             self.trackOutlet.isHidden = true
-            trackOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor.gray)
+            trackOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 16, backgroundcolor: UIColor.gray)
         }
         else if serviceListDetail?.order_status == "Initiated"
         {
             self.trackOutlet.isHidden = false
             self.trackOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingtrack_text", comment: ""), for: .normal)
-            trackOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
+            trackOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 16, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
         }
         
         let person_number = serviceListDetail?.person_number

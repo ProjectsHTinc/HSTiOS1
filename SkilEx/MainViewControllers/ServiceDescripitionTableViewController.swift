@@ -17,6 +17,7 @@ class ServiceDescripitionTableViewController: UITableViewController {
     @IBOutlet weak var exclusionText: UILabel!
     @IBOutlet weak var procedureText: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var othersLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,7 @@ class ServiceDescripitionTableViewController: UITableViewController {
             self.inclusionText.text = serviceDetail?.inclusions
             self.exclusionText.text = serviceDetail?.exclusions
             self.procedureText.text = serviceDetail?.service_procedure
+            self.othersLabel.text = serviceDetail?.others
         }
         else
         {
@@ -45,6 +47,8 @@ class ServiceDescripitionTableViewController: UITableViewController {
             self.inclusionText.text = serviceDetail?.inclusions_ta
             self.exclusionText.text = serviceDetail?.exclusions_ta
             self.procedureText.text = serviceDetail?.service_procedure_ta
+            self.othersLabel.text = serviceDetail?.others_ta
+
         }
         
     }
@@ -59,6 +63,8 @@ class ServiceDescripitionTableViewController: UITableViewController {
             self.inclusionText.text = serviceDetail?.inclusions
             self.exclusionText.text = serviceDetail?.exclusions
             self.procedureText.text = serviceDetail?.service_procedure
+            self.othersLabel.text = serviceDetail?.others
+
         }
         else
         {
@@ -68,6 +74,8 @@ class ServiceDescripitionTableViewController: UITableViewController {
             self.inclusionText.text = serviceDetail?.inclusions_ta
             self.exclusionText.text = serviceDetail?.exclusions_ta
             self.procedureText.text = serviceDetail?.service_procedure_ta
+            self.othersLabel.text = serviceDetail?.others_ta
+
         }
     }
 
@@ -80,12 +88,33 @@ class ServiceDescripitionTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return 5
     }
     
     @IBAction func bookNowAction(_ sender: Any)
     {
-       self.serviceAddToCart(user_master_id: GlobalVariables.shared.user_master_id, category_id: GlobalVariables.shared.main_catID, sub_category_id: GlobalVariables.shared.sub_catID, service_id: GlobalVariables.shared.catServicetID)
+        if GlobalVariables.shared.user_master_id .isEmpty == true
+        {
+          let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "homealertmsg_text", comment: ""), preferredStyle: UIAlertController.Style.alert)
+            
+            
+            let okAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "login_text", comment: ""), style: UIAlertAction.Style.default) {
+                UIAlertAction in
+                self.performSegue(withIdentifier: "to_Login", sender: self)
+            }
+            let cancelAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "cancel", comment: ""), style: UIAlertAction.Style.default) {
+                UIAlertAction in
+            }
+            
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else
+        {
+            self.serviceAddToCart(user_master_id: GlobalVariables.shared.user_master_id, category_id: GlobalVariables.shared.main_catID, sub_category_id: GlobalVariables.shared.sub_catID, service_id: GlobalVariables.shared.catServicetID)
+        }
+       
     }
     
     func serviceAddToCart(user_master_id: String, category_id: String, sub_category_id: String, service_id:String)

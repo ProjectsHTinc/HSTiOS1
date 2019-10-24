@@ -33,22 +33,21 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         /*temp hide */
         //self.addrightButton()
         /*temp hide */
-        self.viewMainCategoery()
-        self.viewBanners()
-        self.serviceRemoveFromCart(user_master_id: GlobalVariables.shared.user_master_id)
-        self.categoryCollectionView.isUserInteractionEnabled = true
-        self.hideKeyboardWhenTappedAround()
-        self.searchTextfield.delegate = self
-        self.searchTextfield.addShadowToTextField(cornerRadius: 5.0)
-        self.searchTextfield.addShadowToTextField(color: UIColor.gray, cornerRadius: 5.0)
-        self.preferedLanguage()
-
     }
     
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.preferedLanguage()
+    override func viewWillAppear(_ animated: Bool)
+    {
+       self.viewMainCategoery()
+       self.viewBanners()
+       self.serviceRemoveFromCart(user_master_id: GlobalVariables.shared.user_master_id)
+       self.categoryCollectionView.isUserInteractionEnabled = true
+       self.hideKeyboardWhenTappedAround()
+       self.searchTextfield.delegate = self
+       self.searchTextfield.addShadowToTextField(cornerRadius: 5.0)
+       self.searchTextfield.addShadowToTextField(color: UIColor.gray, cornerRadius: 5.0)
+       self.preferedLanguage()
     }
        
     
@@ -131,6 +130,8 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                         let status = json["status"].stringValue
                         if msg == "View Category" && status == "success"
                         {
+                            self.categoeryArr.removeAll()
+
                             if json["categories"].count > 0 {
                                 
                                 for i in 0..<json["categories"].count {

@@ -41,7 +41,7 @@ class RequestedServiceDetail: UIViewController {
         // Do any additional setup after loading the view.
         self.addBackButton()
         self.LoadValues()
-        self.subView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.5, radius: 6)
+        self.subView.dropShadow()
         print(advancePayment_Status)
         self.preferedLanguage()
 
@@ -52,7 +52,7 @@ class RequestedServiceDetail: UIViewController {
     }
     
     override func viewWillLayoutSubviews() {
-        cancelServiceOutLet.addShadowToButton(color: UIColor.clear, cornerRadius: 20, backgroundcolor: UIColor.clear)
+        cancelServiceOutLet.addShadowToButton(color: UIColor.clear, cornerRadius: 16, backgroundcolor: UIColor.clear)
     }
     
     func preferedLanguage()
@@ -63,7 +63,6 @@ class RequestedServiceDetail: UIViewController {
         self.estimatedCostLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailrequestedestimated_text", comment: "")
         self.addressLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailrequestedaddress_text", comment: "")
         self.cancelServiceOutLet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailrequestedcancel_text", comment: ""), for: .normal)
-        
     }
     
     func LoadValues()

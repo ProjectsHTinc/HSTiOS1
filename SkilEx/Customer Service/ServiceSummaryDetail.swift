@@ -88,7 +88,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
     }
     
     override func viewWillLayoutSubviews() {
-        paidOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
+        paidOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 16, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
     }
     
     func preferedLanguage () {
@@ -144,7 +144,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
             let end_time = endTimeArr[1]
             self.serviceCompletedDate.text = enddate
             self.serviceCompletedTime.text = end_time
-            self.additionalServiceTextField.text = String(format: "%@ - %@",  LocalizationSystem.sharedInstance.localizedStringForKey(key: "serviceadditional_text", comment: ""),bookingDetailSummary!.additional_service!)
+            self.additionalServiceTextField.text = String(format: "%@ - %@", LocalizationSystem.sharedInstance.localizedStringForKey(key: "serviceadditional_text", comment: ""),bookingDetailSummary!.additional_service!)
             self.materialUsedTextView.text = bookingDetailSummary?.material_notes
             self.serviceCharge.text = bookingDetailSummary?.service_amount
             self.additionalServiceCharge.text = bookingDetailSummary?.additional_service_amt

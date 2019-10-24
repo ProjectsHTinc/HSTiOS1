@@ -31,6 +31,7 @@ class BookingSuccess: UIViewController {
 
         if View == "CA"
         {
+            self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingstatusnavtitle_text", comment: "")
             self.statusImg.image = UIImage(named: "servicesuccess")
             self.succesLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingsucces_text", comment: "")
             self.successStatusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingsuccesstatus_text", comment: "")
@@ -40,6 +41,7 @@ class BookingSuccess: UIViewController {
         {
             if transStatus == "Transaction Successful"
             {
+                self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingstatusnavtitle_text", comment: "")
                 self.statusImg.image = UIImage(named: "servicesuccess")
                 self.succesLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingsucces_text", comment: "")
                 self.successStatusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingsuccesstatus_text", comment: "")
@@ -49,6 +51,7 @@ class BookingSuccess: UIViewController {
             }
             else
             {
+                self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingstatusnavtitle_text", comment: "")
                 self.statusImg.image = UIImage(named: "cancelservice")
                 self.succesLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingfailed_text", comment: "")
                 self.successStatusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingfailedstatus_text", comment: "")
@@ -56,12 +59,12 @@ class BookingSuccess: UIViewController {
                 self.WebRequesAdvanceamountbooking()
             }
         }
-        self.preferedLanguage()
+        //self.preferedLanguage()
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.preferedLanguage()
+       // self.preferedLanguage()
     }
     
     func startTimer() {
@@ -85,7 +88,8 @@ class BookingSuccess: UIViewController {
     }
     
     
-    func preferedLanguage () {
+    func preferedLanguage ()
+    {
         self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingstatusnavtitle_text", comment: "")
         self.succesLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingsucces_text", comment: "")
         self.successStatusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingsuccesstatus_text", comment: "")
@@ -95,14 +99,14 @@ class BookingSuccess: UIViewController {
     func serviceProviderAllocation(user_master_id: String, order_id: String, displayMinute: String)
     {
         let parameters = ["user_master_id": user_master_id, "order_id": order_id, "display_minute": displayMinute]
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        //MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
             {
                 do
                 {
                     try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "service_provider_allocation", params: parameters, headers: nil, success: {
                         (JSONResponse) -> Void in
-                        MBProgressHUD.hide(for: self.view, animated: true)
+                        //MBProgressHUD.hide(for: self.view, animated: true)
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
@@ -148,14 +152,14 @@ class BookingSuccess: UIViewController {
     func WebRequesAdvanceamountbooking ()
     {
         let parameters = ["order_id": GlobalVariables.shared.user_master_id, "advance_amount": GlobalVariables.shared.Advanceamount, "advance_payment_status": transStatus]
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        //MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
             {
                 do
                 {
                     try AFWrapper.requestPOSTURL("https://www.skilex.in/development/ccavenue_app/customer_advance.php", params: parameters, headers: nil, success: {
                         (JSONResponse) -> Void in
-                        MBProgressHUD.hide(for: self.view, animated: true)
+                        //MBProgressHUD.hide(for: self.view, animated: true)
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue

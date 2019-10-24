@@ -14,10 +14,15 @@ class AFWrapper: NSObject {
     
 //MARK: API URL
     
-static let BASE_URL = "http://skilex.in/development/apicustomer/"
-//"http://skilex.in/development/apicustomer/"
-//static let subBASE_URL = "http://skilex.in/uat/apicustomer/"
+     /*live Url*/
+        //"https://skilex.in/apicustomer/"
+     /*Development Url*/
+       //"http://skilex.in/development/apicustomer/"
+     /*Development Url*/
+       //static let subBASE_URL = "http://skilex.in/uat/apicustomer/"
     
+static let BASE_URL = "http://skilex.in/development/apicustomer/"
+
     class func cancelAllRequests() {
         let sessionManager = Alamofire.SessionManager.default
         sessionManager.session.getTasksWithCompletionHandler { dataTasks, uploadTasks, downloadTasks in
@@ -32,7 +37,7 @@ static let BASE_URL = "http://skilex.in/development/apicustomer/"
         Alamofire.request(strURL).responseJSON { (responseObject) -> Void in
             
             print(responseObject)
-            
+             
             if responseObject.result.isSuccess {
                 let resJson = JSON(responseObject.result.value!)
                 success(resJson)
@@ -74,12 +79,13 @@ static let BASE_URL = "http://skilex.in/development/apicustomer/"
                 secondCounter = secondCounter + 1
             }
             
-            /* not in use */
+              /* not in use */
 //            let contentDict = params as? [String: String]
 //            for (key, value) in contentDict! {
 //                MultipartFormData.append(value.data(using: .utf8)!, withName: key)
 //            }
-        }, to: strURL, method: .post, headers: nil, encodingCompletion: { (result) in
+
+        },  to: strURL, method: .post, headers: nil, encodingCompletion: { (result) in
             switch result {
             case .success(let upload, _, _):
                 upload.responseJSON(completionHandler: { (dataResponse) in

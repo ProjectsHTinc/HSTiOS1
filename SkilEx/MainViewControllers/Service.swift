@@ -26,6 +26,9 @@ class Service: UIViewController{
 
         // Do any additional setup after loading the view.
         self.navigationItem.setHidesBackButton(true, animated:true);
+        self.viewOne.dropShadow()
+        self.viewTwo.dropShadow()
+        self.viewThree.dropShadow()
         self.preferedLanguage()
 
     }

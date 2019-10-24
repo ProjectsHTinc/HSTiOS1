@@ -14,7 +14,6 @@ class CartList: Codable {
     var is_advance_payment, service_picture, status, rate_card, cart_id, advance_amount, service_name, service_ta_name : String?
     
     init(json:JSON) {
-        
         self.is_advance_payment = json["is_advance_payment"].stringValue
         self.service_picture = json["service_picture"].stringValue
         self.status = json["status"].stringValue
@@ -23,7 +22,5 @@ class CartList: Codable {
         self.advance_amount = json["advance_amount"].stringValue
         self.service_name = json["service_name"].stringValue
         self.service_ta_name = json["service_ta_name"].stringValue
-
     }
-
 }
