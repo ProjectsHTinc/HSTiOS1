@@ -19,9 +19,9 @@ class AFWrapper: NSObject {
      /*Development Url*/
        //"http://skilex.in/development/apicustomer/"
      /*Development Url*/
-       //static let subBASE_URL = "http://skilex.in/uat/apicustomer/"
+       //static let subBASE_URL = "http://skilex.in/development/apicustomer/"
     
-static let BASE_URL = "http://skilex.in/development/apicustomer/"
+static let BASE_URL = "https://skilex.in/apicustomer/"
 
     class func cancelAllRequests() {
         let sessionManager = Alamofire.SessionManager.default

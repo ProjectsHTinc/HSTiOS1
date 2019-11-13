@@ -22,31 +22,46 @@ class CCResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let paybyCash = UserDefaults.standard.string(forKey: "PaybyCash")
+        if (paybyCash == "YES")
+        {
+            self.backgroundView.backgroundColor = UIColor(red: 226/255.0, green: 242/255.0, blue: 240/255.0, alpha: 1.0)
+            self.statusImg.image = UIImage(named: "success")
+            self.statusLabel.textColor = UIColor(red: 63/255.0, green: 170/255.0, blue: 132/255.0, alpha: 1.0)
+            self.subStatus.textColor = UIColor(red: 63/255.0, green: 170/255.0, blue: 132/255.0, alpha: 1.0)
+            self.statusLabel.text =  LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultsucess_text", comment: "")
+            self.subStatus.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultstatussuces_text", comment: "")
+            self.doneButton.backgroundColor = UIColor(red: 63/255.0, green: 170/255.0, blue: 132/255.0, alpha: 1.0)
+            self.doneButton.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultsbuttonsucess_text", comment: ""), for: .normal)
+        }
+        else
+        {
             if transStatus == "Transaction Successful"
             {
-                self.backgroundView.backgroundColor = UIColor(red: 226/255.0, green: 242/255.0, blue: 240/255.0, alpha: 1.0)
-                self.statusImg.image = UIImage(named: "success")
-                self.statusLabel.textColor = UIColor(red: 63/255.0, green: 170/255.0, blue: 132/255.0, alpha: 1.0)
-                self.subStatus.textColor = UIColor(red: 63/255.0, green: 170/255.0, blue: 132/255.0, alpha: 1.0)
-                self.statusLabel.text =  LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultsucess_text", comment: "")
-                self.subStatus.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultstatussuces_text", comment: "")
-                self.doneButton.backgroundColor = UIColor(red: 63/255.0, green: 170/255.0, blue: 132/255.0, alpha: 1.0)
-                self.doneButton.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultsbuttonsucess_text", comment: ""), for: .normal)
-
+               self.backgroundView.backgroundColor = UIColor(red: 226/255.0, green: 242/255.0, blue: 240/255.0, alpha: 1.0)
+               self.statusImg.image = UIImage(named: "success")
+               self.statusLabel.textColor = UIColor(red: 63/255.0, green: 170/255.0, blue: 132/255.0, alpha: 1.0)
+               self.subStatus.textColor = UIColor(red: 63/255.0, green: 170/255.0, blue: 132/255.0, alpha: 1.0)
+               self.statusLabel.text =  LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultsucess_text", comment: "")
+               self.subStatus.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultstatussuces_text", comment: "")
+               self.doneButton.backgroundColor = UIColor(red: 63/255.0, green: 170/255.0, blue: 132/255.0, alpha: 1.0)
+               self.doneButton.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultsbuttonsucess_text", comment: ""), for: .normal)
             }
-            else
-            {
-                self.backgroundView.backgroundColor = UIColor(red: 251/255.0, green: 242/255.0, blue: 236/255.0, alpha: 1.0)
-                self.statusImg.image = UIImage(named: "failed")
-                self.statusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultfailure_text", comment: "")
-                self.statusLabel.textColor = UIColor(red: 239/255.0, green: 64/255.0, blue: 105/255.0, alpha: 1.0)
-                self.subStatus.textColor = UIColor(red: 239/255.0, green: 64/255.0, blue: 105/255.0, alpha: 1.0)
-                self.subStatus.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultstatusfailure_text", comment: "")
-                self.doneButton.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultsbuttonfailure_text", comment: ""), for: .normal)
-                self.doneButton.backgroundColor = UIColor(red: 239/255.0, green: 64/255.0, blue: 105/255.0, alpha: 1.0)
+           else
+           {
+               self.backgroundView.backgroundColor = UIColor(red: 251/255.0, green: 242/255.0, blue: 236/255.0, alpha: 1.0)
+               self.statusImg.image = UIImage(named: "failed")
+               self.statusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultfailure_text", comment: "")
+               self.statusLabel.textColor = UIColor(red: 239/255.0, green: 64/255.0, blue: 105/255.0, alpha: 1.0)
+               self.subStatus.textColor = UIColor(red: 239/255.0, green: 64/255.0, blue: 105/255.0, alpha: 1.0)
+               self.subStatus.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultstatusfailure_text", comment: "")
+               self.doneButton.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultsbuttonfailure_text", comment: ""), for: .normal)
+               self.doneButton.backgroundColor = UIColor(red: 239/255.0, green: 64/255.0, blue: 105/255.0, alpha: 1.0)
 
-            }
+           }
         }
+    }
     
     override func viewWillLayoutSubviews() {
         doneButton.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))

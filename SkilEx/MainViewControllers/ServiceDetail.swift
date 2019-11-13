@@ -545,14 +545,34 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
 
     @IBAction func viewSummaryButton(_ sender: Any)
     {
-        if isServiceAddButtonIsClicked == true
+        if GlobalVariables.shared.user_master_id.isEmpty == true
         {
-            self.performSegue(withIdentifier: "viewSummary", sender: self)
+              let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "homealertmsg_text", comment: ""), preferredStyle: UIAlertController.Style.alert)
+                         
+                         
+             let okAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "login_text", comment: ""), style: UIAlertAction.Style.default) {
+                 UIAlertAction in
+                 self.performSegue(withIdentifier: "to_Login", sender: self)
+             }
+             let cancelAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "cancel", comment: ""), style: UIAlertAction.Style.default) {
+                 UIAlertAction in
+             }
+             
+             alertController.addAction(okAction)
+             alertController.addAction(cancelAction)
+             self.present(alertController, animated: true, completion: nil)
         }
         else
         {
-            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicescartmsg_text", comment: "")) { (action) in
-                
+            if isServiceAddButtonIsClicked == true
+            {
+                self.performSegue(withIdentifier: "viewSummary", sender: self)
+            }
+            else
+            {
+                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicescartmsg_text", comment: "")) { (action) in
+                    
+                }
             }
         }
     }

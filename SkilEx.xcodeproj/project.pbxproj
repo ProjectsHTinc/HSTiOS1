@@ -99,6 +99,11 @@
 		6BB34540229FD93700547817 /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB3453D229FD93700547817 /* ReachabilityManager.swift */; };
 		6BB34541229FD93700547817 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB3453E229FD93700547817 /* Alert.swift */; };
 		6BB34542229FD93700547817 /* AFWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB3453F229FD93700547817 /* AFWrapper.swift */; };
+		6BB9790923741816002BF9E9 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB9790823741816002BF9E9 /* NotificationService.swift */; };
+		6BB9790D23741816002BF9E9 /* NotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6BB9790623741815002BF9E9 /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6BB979142374256F002BF9E9 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BB979122374256F002BF9E9 /* UserNotificationsUI.framework */; };
+		6BB979152374256F002BF9E9 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BB979132374256F002BF9E9 /* UserNotifications.framework */; };
+		6BB97917237440AB002BF9E9 /* UITextViewWorkaround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB97916237440AB002BF9E9 /* UITextViewWorkaround.swift */; };
 		6BD1356122F0653500E8494F /* AdditionalServiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD1356022F0653500E8494F /* AdditionalServiceList.swift */; };
 		6BD1356322F068E900E8494F /* AdditionalServiceTableViewcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD1356222F068E900E8494F /* AdditionalServiceTableViewcell.swift */; };
 		6BF7E24A22E055F00083FF49 /* AdvancePayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF7E24922E055F00083FF49 /* AdvancePayment.swift */; };
@@ -125,7 +130,28 @@
 			remoteGlobalIDString = 6B5FE6EA227BFB19007A4F32;
 			remoteInfo = SkilEx;
 		};
+		6BB9790B23741816002BF9E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B5FE6E3227BFB19007A4F32 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6BB9790523741815002BF9E9;
+			remoteInfo = NotificationService;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6BB9791123741816002BF9E9 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6BB9790D23741816002BF9E9 /* NotificationService.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2E62D35FE170816259464C12 /* Pods-SkilEx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkilEx.release.xcconfig"; path = "Pods/Target Support Files/Pods-SkilEx/Pods-SkilEx.release.xcconfig"; sourceTree = "<group>"; };
@@ -235,6 +261,12 @@
 		6BB3453D229FD93700547817 /* ReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		6BB3453E229FD93700547817 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		6BB3453F229FD93700547817 /* AFWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWrapper.swift; sourceTree = "<group>"; };
+		6BB9790623741815002BF9E9 /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BB9790823741816002BF9E9 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		6BB9790A23741816002BF9E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6BB979122374256F002BF9E9 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		6BB979132374256F002BF9E9 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		6BB97916237440AB002BF9E9 /* UITextViewWorkaround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewWorkaround.swift; sourceTree = "<group>"; };
 		6BD1356022F0653500E8494F /* AdditionalServiceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalServiceList.swift; sourceTree = "<group>"; };
 		6BD1356222F068E900E8494F /* AdditionalServiceTableViewcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalServiceTableViewcell.swift; sourceTree = "<group>"; };
 		6BF7E24922E055F00083FF49 /* AdvancePayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancePayment.swift; sourceTree = "<group>"; };
@@ -254,12 +286,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BB979152374256F002BF9E9 /* UserNotifications.framework in Frameworks */,
 				6B542E0E236185E80096350C /* lib in Frameworks */,
 				6B542E0D236185D50096350C /* include in Frameworks */,
 				6B075A8D22E9E12B00A7B17F /* Foundation.framework in Frameworks */,
 				6B07573B22EAF54A00355C01 /* libcrypto.a in Frameworks */,
 				6B07573D22EAF54F00355C01 /* libssl.a in Frameworks */,
 				6B075A8922E9E12B00A7B17F /* CoreGraphics.framework in Frameworks */,
+				6BB979142374256F002BF9E9 /* UserNotificationsUI.framework in Frameworks */,
 				6B075A8B22E9E12B00A7B17F /* UIKit.framework in Frameworks */,
 				E9F2030372AE7751922855D1 /* Pods_SkilEx.framework in Frameworks */,
 			);
@@ -279,12 +313,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6BB9790323741815002BF9E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		61B34F5914B8E9D6545B6560 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6BB979132374256F002BF9E9 /* UserNotifications.framework */,
+				6BB979122374256F002BF9E9 /* UserNotificationsUI.framework */,
 				6B07573A22EAF54A00355C01 /* libcrypto.a */,
 				6B07573C22EAF54F00355C01 /* libssl.a */,
 				6B075A8422E9E12A00A7B17F /* CoreGraphics.framework */,
@@ -428,6 +471,7 @@
 				6B5FE6ED227BFB19007A4F32 /* SkilEx */,
 				6B5FE702227BFB24007A4F32 /* SkilExTests */,
 				6B5FE70D227BFB24007A4F32 /* SkilExUITests */,
+				6BB9790723741815002BF9E9 /* NotificationService */,
 				6B5FE6EC227BFB19007A4F32 /* Products */,
 				90922BDD4BFCEAA87AF7C258 /* Pods */,
 				61B34F5914B8E9D6545B6560 /* Frameworks */,
@@ -440,6 +484,7 @@
 				6B5FE6EB227BFB19007A4F32 /* SkilEx.app */,
 				6B5FE6FF227BFB24007A4F32 /* SkilExTests.xctest */,
 				6B5FE70A227BFB24007A4F32 /* SkilExUITests.xctest */,
+				6BB9790623741815002BF9E9 /* NotificationService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -538,6 +583,7 @@
 				6BD1356022F0653500E8494F /* AdditionalServiceList.swift */,
 				6B774B6922F1B4BA00D3EC28 /* Notifications.swift */,
 				6BFA5F25230AA6CF00E483D2 /* Bill.swift */,
+				6BB97916237440AB002BF9E9 /* UITextViewWorkaround.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -564,6 +610,15 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		6BB9790723741815002BF9E9 /* NotificationService */ = {
+			isa = PBXGroup;
+			children = (
+				6BB9790823741816002BF9E9 /* NotificationService.swift */,
+				6BB9790A23741816002BF9E9 /* Info.plist */,
+			);
+			path = NotificationService;
+			sourceTree = "<group>";
+		};
 		90922BDD4BFCEAA87AF7C258 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -585,10 +640,12 @@
 				6B5FE6E8227BFB19007A4F32 /* Frameworks */,
 				6B5FE6E9227BFB19007A4F32 /* Resources */,
 				B2BCB297543F969F27DBCA62 /* [CP] Embed Pods Frameworks */,
+				6BB9791123741816002BF9E9 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6BB9790C23741816002BF9E9 /* PBXTargetDependency */,
 			);
 			name = SkilEx;
 			productName = SkilEx;
@@ -631,13 +688,30 @@
 			productReference = 6B5FE70A227BFB24007A4F32 /* SkilExUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		6BB9790523741815002BF9E9 /* NotificationService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6BB9790E23741816002BF9E9 /* Build configuration list for PBXNativeTarget "NotificationService" */;
+			buildPhases = (
+				6BB9790223741815002BF9E9 /* Sources */,
+				6BB9790323741815002BF9E9 /* Frameworks */,
+				6BB9790423741815002BF9E9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationService;
+			productName = NotificationService;
+			productReference = 6BB9790623741815002BF9E9 /* NotificationService.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		6B5FE6E3227BFB19007A4F32 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Happy Sanz Tech";
 				TargetAttributes = {
@@ -661,6 +735,9 @@
 						CreatedOnToolsVersion = 10.2.1;
 						TestTargetID = 6B5FE6EA227BFB19007A4F32;
 					};
+					6BB9790523741815002BF9E9 = {
+						CreatedOnToolsVersion = 11.2;
+					};
 				};
 			};
 			buildConfigurationList = 6B5FE6E6227BFB19007A4F32 /* Build configuration list for PBXProject "SkilEx" */;
@@ -680,6 +757,7 @@
 				6B5FE6EA227BFB19007A4F32 /* SkilEx */,
 				6B5FE6FE227BFB24007A4F32 /* SkilExTests */,
 				6B5FE709227BFB24007A4F32 /* SkilExUITests */,
+				6BB9790523741815002BF9E9 /* NotificationService */,
 			);
 		};
 /* End PBXProject section */
@@ -707,6 +785,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6B5FE708227BFB24007A4F32 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6BB9790423741815002BF9E9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -839,6 +924,7 @@
 				6B7F3A3522E71F6C007139E3 /* OngoingServiceTableViewCell.swift in Sources */,
 				6B30C7A822EF334D00F0FAA8 /* CancelService.swift in Sources */,
 				6B86FE8F22E995A500C1DFC9 /* ServicesListDetail.swift in Sources */,
+				6BB97917237440AB002BF9E9 /* UITextViewWorkaround.swift in Sources */,
 				6B44C8B522CE1C270084A5AB /* UIViewExtension.swift in Sources */,
 				6B0756D622EAF4D900355C01 /* LoadingOverlay.swift in Sources */,
 				6B7F3A3922E74211007139E3 /* DropShadow.swift in Sources */,
@@ -872,6 +958,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6BB9790223741815002BF9E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BB9790923741816002BF9E9 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -884,6 +978,11 @@
 			isa = PBXTargetDependency;
 			target = 6B5FE6EA227BFB19007A4F32 /* SkilEx */;
 			targetProxy = 6B5FE70B227BFB24007A4F32 /* PBXContainerItemProxy */;
+		};
+		6BB9790C23741816002BF9E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6BB9790523741815002BF9E9 /* NotificationService */;
+			targetProxy = 6BB9790B23741816002BF9E9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1040,22 +1139,26 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5FFB14252EA2B1678FF07CB1 /* Pods-SkilEx.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SkilEx/SkilEx.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.5;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = V6CV8B3X47;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/SSL/include\"";
 				INFOPLIST_FILE = SkilEx/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SSL/lib\"";
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.customer.SkilEx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1070,22 +1173,26 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2E62D35FE170816259464C12 /* Pods-SkilEx.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SkilEx/SkilEx.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.5;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = V6CV8B3X47;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/SSL/include\"";
 				INFOPLIST_FILE = SkilEx/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SSL/lib\"";
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.customer.SkilEx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1177,6 +1284,50 @@
 			};
 			name = Release;
 		};
+		6BB9790F23741816002BF9E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V6CV8B3X47;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.customer.SkilEx.NotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6BB9791023741816002BF9E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V6CV8B3X47;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.customer.SkilEx.NotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1212,6 +1363,15 @@
 			buildConfigurations = (
 				6B5FE71A227BFB24007A4F32 /* Debug */,
 				6B5FE71B227BFB24007A4F32 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6BB9790E23741816002BF9E9 /* Build configuration list for PBXNativeTarget "NotificationService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BB9790F23741816002BF9E9 /* Debug */,
+				6BB9791023741816002BF9E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

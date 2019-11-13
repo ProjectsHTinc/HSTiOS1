@@ -48,6 +48,7 @@ class CashMethod: UIViewController {
     @IBAction func payOnlineAction(_ sender: Any)
     {
         UserDefaults.standard.set("Cp", forKey: "Advance/customer")
+        UserDefaults.standard.set("NO", forKey: "PaybyCash")
         let viewController = self.storyboard!.instantiateViewController(withIdentifier: "CCWebViewController") as! CCWebViewController
         viewController.accessCode = "AVQM86GG76CA98MQAC"
         viewController.merchantId = "225068"
@@ -80,13 +81,15 @@ class CashMethod: UIViewController {
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        print("%@",msg)
                         let msg_en = json["msg_en"].stringValue
                         let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if status == "success"{
-                            AlertController.shared.showAlert(targetVC: self, title: "SkilEx", message: msg, complition: {
-                                self.performSegue(withIdentifier: "Home", sender: self)
-                            })
+                            UserDefaults.standard.set("YES", forKey: "PaybyCash")
+                            let storyBoard : UIStoryboard = UIStoryboard(name: "CustomerService", bundle:nil)
+                            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "cCResultViewController") as! CCResultViewController
+                            self.present(nextViewController, animated:true, completion:nil)
                         }
                         else
                         {

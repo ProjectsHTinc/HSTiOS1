@@ -197,9 +197,18 @@ class UserProfile: UIViewController {
     
     @IBAction func shareSkilex(_ sender: Any)
     {
+        let urlString = NSURL(string:"https://apps.apple.com/us/app/skilex/id1484596811?ls=1")
         
+        let activityVC = UIActivityViewController(activityItems: [urlString as Any], applicationActivities: nil)
+        activityVC.excludedActivityTypes = [UIActivity.ActivityType.print, UIActivity.ActivityType.postToWeibo, UIActivity.ActivityType.copyToPasteboard, UIActivity.ActivityType.addToReadingList, UIActivity.ActivityType.postToVimeo]
+        present(activityVC, animated: true, completion: nil)
+        
+        //this is required for iPad since activityVC defaults to popover presentation
+        if let popOver = activityVC.popoverPresentationController {
+          popOver.sourceView = self.view
+        }
     }
-    
+        
     @IBAction func changeLanguageAction(_ sender: Any)
     {
         let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -264,6 +273,7 @@ class UserProfile: UIViewController {
             UserDefaults.standard.set("", forKey: "phone_no")
             UserDefaults.standard.set("", forKey: "otp_key")
             UserDefaults.standard.set("", forKey: "Advance/customer")
+            UserDefaults.standard.set("", forKey: "PaybyCash")
             UserDefaults.standard.clearUserData()
             UserDefaults.standard.set("", forKey: "user_master_id")
             self.performSegue(withIdentifier: "to_Login", sender: self)

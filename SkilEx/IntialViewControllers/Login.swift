@@ -32,8 +32,9 @@ class Login: UIViewController,UITextFieldDelegate {
         self.hideKeyboardWhenTappedAround()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.preferedLanguage()
+    override func viewWillAppear(_ animated: Bool)
+    {
+       self.preferedLanguage()
     }
     
 //    override func viewWillDisappear(_ animated: Bool) {
@@ -62,8 +63,8 @@ class Login: UIViewController,UITextFieldDelegate {
     
     @IBAction func skipButton(_ sender: Any)
     {
-        //UserDefaults.standard.getDevicetoken()
-        self.skipLogin(unique_number: UIDevice.current.identifierForVendor!.uuidString, mobile_key:"akjshkajshkasj" , mobile_type: "2", user_stat: "Guest")
+        let deviceToken = UserDefaults.standard.getDevicetoken()
+        self.skipLogin(unique_number: UIDevice.current.identifierForVendor!.uuidString, mobile_key: deviceToken , mobile_type: "2", user_stat: "Guest")
     }
     
     func userLogin (mobileNumber:String)
@@ -181,6 +182,28 @@ class Login: UIViewController,UITextFieldDelegate {
             let vc = segue.destination as! Tabbarcontroller
             print(vc)
         }
+    }
+    @IBAction func changeLanguageButton(_ sender: Any)
+    {
+        let alertController = UIAlertController(title: "SkilEX \nஸ்கிலெக்ஸ்", message: "Choose your langugae \nஉங்கள்மொழியைத்தேர்வுசெய்க", preferredStyle: UIAlertController.Style.alert)
+                       
+                       
+       let okAction = UIAlertAction(title: "தமிழ்", style: UIAlertAction.Style.default) {
+           UIAlertAction in
+           LocalizationSystem.sharedInstance.setLanguage(languageCode: "ta")
+           self.preferedLanguage()
+
+       }
+       let cancelAction = UIAlertAction(title: "English", style: UIAlertAction.Style.default) {
+           UIAlertAction in
+           LocalizationSystem.sharedInstance.setLanguage(languageCode: "en")
+           self.preferedLanguage()
+
+       }
+       
+       alertController.addAction(okAction)
+       alertController.addAction(cancelAction)
+       self.present(alertController, animated: true, completion: nil)
     }
     
 }

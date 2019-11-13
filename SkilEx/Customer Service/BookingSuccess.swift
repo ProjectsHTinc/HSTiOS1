@@ -10,7 +10,8 @@ import UIKit
 import SwiftyJSON
 import MBProgressHUD
 
-class BookingSuccess: UIViewController {
+class BookingSuccess: UIViewController
+{
     @IBOutlet weak var succesLabel: UILabel!
     @IBOutlet weak var successStatusLabel: UILabel!
     @IBOutlet weak var backToHomeOutlet: UIButton!

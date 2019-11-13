@@ -7,7 +7,7 @@
 */
 
 /* Login text */
-"appname_text" = "ஸ்கில்எக்ஸ்";
+"appname_text" = "ஸ்கிலெக்ஸ்";
 "welcome_text" = "நல்வரவு";
 "mobilenumber_text" = "தொலைபேசி எண்ணை என்டர் செய்யவும்";
 "mobilenumberplaceholder_text" = "தொலைபேசி எண்";
@@ -42,13 +42,13 @@
 "hometab_text" = "முகப்பு பக்கம்";
 "servicetab_text" = "சேவைகள்";
 "profiletab_text" = "பயனர் சுயவிவரம்";
-"homealerttitle_text" = "ஸ்கில்எக்ஸ்";
+"homealerttitle_text" = "ஸ்கிலெக்ஸ்";
 "homealertmsg_text" = "இச்சேவையை பெற உள்நுழையவும்";
 "homealertbuttonlogin_text" = "உள்நுழை";
 "homealertbuttoncancel_text" = "ரத்து செய்";
 
 /* Home text */
-"homesearchbar_text" = "ஸ்கில்எக்ஸ் சேவைகளை தேடவும்";
+"homesearchbar_text" = "ஸ்கிலெக்ஸ் சேவைகளை தேடவும்";
 
 /* User Profile */
 "userprofilenav_text" = "பயனர் சுயவிவரம்";
@@ -185,7 +185,7 @@
 
 /*ccresultviewcontroller text */
 "ccresultsucess_text" = "அருமை!";
-"ccresultstatussuces_text" = "ஸ்கில்எக்ஸ் மூலமாக நீங்கள் வெற்றிகரமாக சேவை முன்பதிவு செய்துள்ளீர்கள்";
+"ccresultstatussuces_text" = "ஸ்கிலெக்ஸ் மூலமாக நீங்கள் வெற்றிகரமாக சேவை முன்பதிவு செய்துள்ளீர்கள்";
 "ccresultsbuttonsucess_text" = "முகப்பு பக்கத்திற்கு செல்க";
 
 "ccresultfailure_text" = "எதோ தவறு நடந்துள்ளது";
@@ -196,8 +196,8 @@
 "notificationnavtitle_text" = "அறிவிப்பு";
 
 /*aboutus text */
-"aboutusnavtitle_text" = "ஸ்கில்எக்ஸ்";
-"aboutLabel_text" = "ஸ்கில்எக்ஸ் - ஒரு பார்வை";
+"aboutusnavtitle_text" = "ஸ்கிலெக்ஸ்";
+"aboutLabel_text" = "ஸ்கிலெக்ஸ் - ஒரு பார்வை";
 
 /*viewbill text */
 "viewbillnavtitle_text" = "ரசிதை பார்க்கவும்";

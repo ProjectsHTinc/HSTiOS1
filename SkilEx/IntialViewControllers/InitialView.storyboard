@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="niF-mn-ca8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="niF-mn-ca8">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -106,11 +106,23 @@
                                                 <rect key="frame" x="0.0" y="513" width="375" height="153"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZR-WJ-UnP">
+                                                <rect key="frame" x="329" y="38" width="25" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="Gpb-Uo-qeb"/>
+                                                    <constraint firstAttribute="width" constant="25" id="PiJ-lh-rr6"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="change_language"/>
+                                                <connections>
+                                                    <action selector="changeLanguageButton:" destination="niF-mn-ca8" eventType="touchUpInside" id="rdP-ir-hgu"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="ycD-ac-wph" firstAttribute="centerX" secondItem="B5z-QG-aJd" secondAttribute="centerX" constant="-6" id="2pY-dc-0da"/>
                                             <constraint firstItem="hea-5r-UJ6" firstAttribute="centerX" secondItem="B5z-QG-aJd" secondAttribute="centerX" constant="16" id="3HZ-WI-1RA"/>
+                                            <constraint firstItem="XZR-WJ-UnP" firstAttribute="top" secondItem="B5z-QG-aJd" secondAttribute="top" constant="38" id="50j-si-84t"/>
                                             <constraint firstItem="U0S-Ss-dIm" firstAttribute="top" secondItem="4Ia-jR-Iab" secondAttribute="bottom" constant="19.5" id="AQN-0j-lyk"/>
                                             <constraint firstItem="uwL-X3-EVC" firstAttribute="centerX" secondItem="B5z-QG-aJd" secondAttribute="centerX" constant="-138.25" id="BMV-OH-dyw"/>
                                             <constraint firstItem="uwL-X3-EVC" firstAttribute="centerY" secondItem="B5z-QG-aJd" secondAttribute="centerY" constant="38.25" id="BRV-HZ-C5i"/>
@@ -131,10 +143,12 @@
                                             <constraint firstItem="ss7-3Q-HUW" firstAttribute="centerX" secondItem="B5z-QG-aJd" secondAttribute="centerX" id="eFL-x8-aQv"/>
                                             <constraint firstItem="U0S-Ss-dIm" firstAttribute="centerY" secondItem="B5z-QG-aJd" secondAttribute="centerY" constant="-99.75" id="gM2-eL-YFd"/>
                                             <constraint firstItem="hea-5r-UJ6" firstAttribute="top" secondItem="7yZ-y9-csl" secondAttribute="bottom" constant="30" id="iaJ-2c-l7i"/>
+                                            <constraint firstAttribute="trailing" secondItem="XZR-WJ-UnP" secondAttribute="trailing" constant="21" id="so0-yJ-Ttq"/>
                                             <constraint firstItem="ZMK-I2-76n" firstAttribute="centerY" secondItem="B5z-QG-aJd" secondAttribute="centerY" constant="-53" id="vwu-zo-htT"/>
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="B5z-QG-aJd" secondAttribute="trailing" id="13r-kl-5qv"/>
                                     <constraint firstItem="B5z-QG-aJd" firstAttribute="leading" secondItem="6x3-7r-0Yy" secondAttribute="leading" id="IZY-nC-hVS"/>
@@ -168,7 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YPW-G9-Q6v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="114.40000000000001" y="152.47376311844079"/>
+            <point key="canvasLocation" x="84" y="151"/>
         </scene>
         <!--tabbarcontroller-->
         <scene sceneID="DbP-Dp-hU2">
@@ -553,6 +567,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="change_language" width="24.5" height="24"/>
         <image name="ios_icons-13" width="24.5" height="21.5"/>
         <image name="ios_icons-15" width="44.5" height="50.5"/>
         <image name="login_logo" width="250.5" height="250.5"/>

@@ -193,8 +193,8 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     
-    @objc func scrollToNextCell() {
-        
+    @objc func scrollToNextCell()
+    {
         //scroll to next cell
         let items = bannerCollectionView.numberOfItems(inSection: 0)
         if (items - 1) == index {
@@ -204,7 +204,6 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         } else {
             bannerCollectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
         }
-        
         if inForwardDirection {
             if index == (items - 1) {
                 index -= 1
@@ -220,7 +219,6 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                 index -= 1
             }
         }
-        
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -288,7 +286,7 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
             else
             {
                 let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "Categorycell", for: indexPath) as! CategoryCollectionViewCell
-              //  cell.cellView.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: -1, height: -1), radius: 0, scale: true, cornerradius: 0)
+                //cell.cellView.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: -1, height: -1), radius: 0, scale: true, cornerradius: 0)
                 let categoery = categoeryArr[indexPath.row]
                 cell.categoeryName.text =  categoery.cat_ta_name
                 let imgUrl = categoery.cat_pic_url
@@ -305,7 +303,6 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                         }
                     }
                 }
-                
                 cell.cellView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.3, radius: 3)
                 return cell
             }
@@ -400,12 +397,10 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        
         if collectionView == categoryCollectionView
         {
             let yourWidth = categoryCollectionView.bounds.width/3.0
             let yourHeight = yourWidth
-            
             return CGSize(width: yourWidth, height: yourHeight)
         }
         else
@@ -414,20 +409,23 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets
+    {
         return UIEdgeInsets(top: 2,left: 0,bottom: 0,right: 0)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat
+    {
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat
+    {
+      return 0
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
         if textField == searchTextfield
         {
             if searchTextfield.text?.isEmpty == true
@@ -443,8 +441,9 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         }
         return true
     }
-    @IBAction func searchFieldCloseButton(_ sender: Any) {
-        
+    
+    @IBAction func searchFieldCloseButton(_ sender: Any)
+    {
         searchTextfield.text = ""
         searchTextfield.resignFirstResponder()
     }
@@ -454,7 +453,8 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if (segue.identifier == "serviceDetail") {
+        if (segue.identifier == "serviceDetail")
+        {
             let vc = segue.destination as! ServiceDetail
             vc.subcategoeryNameArr = self.subcategoeryArr
             vc.subcategoeryIDArr = self.subcategoeryID
@@ -472,4 +472,3 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
 
     }
 }
-

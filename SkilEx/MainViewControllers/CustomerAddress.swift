@@ -80,10 +80,8 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         {
             self.phoneNumber.text = mobNumber
         }
-        
         self.displayMinute = "1"
         self.preferedLanguage()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,7 +99,8 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         proceedOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressproceed_text", comment: ""), for: .normal)
     }
     
-    @objc public override func backButtonClick() {
+    @objc public override func backButtonClick()
+    {
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -123,11 +122,29 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         }
     }
     
-    func showDatePicker(){
+    var threeDaysfromNow: Date {
+       return (Calendar.current as NSCalendar).date(byAdding: .day, value: 2, to: Date(), options: [])!
+    }
+    
+    func showDatePicker()
+    {
         //Formate Date
+        if LocalizationSystem.sharedInstance.getLanguage() == "en"
+        {
+            let loc = Locale(identifier: "en")
+            datePicker.locale = loc
+        }
+        else
+        {
+            let loc = Locale(identifier: "ta")
+            datePicker.locale = loc
+        }
+
         datePicker.datePickerMode = .date
         let now = Date();
+        
         datePicker.minimumDate = now
+        datePicker.maximumDate = threeDaysfromNow
         //ToolBar
         let toolbar = UIToolbar();
         toolbar.tintColor = UIColor.black
@@ -142,6 +159,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     
     @objc func donedatePicker()
     {
+        self.timeTextField.text = ""
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"
         dateTextField.text = formatter.string(from: datePicker.date)
@@ -151,12 +169,14 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         self.timeSlot(user_master_id: GlobalVariables.shared.user_master_id, service_date: self.dateTextField.text!)
     }
     
-    @objc func cancelDatePicker(){
+    @objc func cancelDatePicker()
+    {
+        self.timeTextField.text = ""
         self.view.endEditing(true)
     }
     
-    func showPickerView(){
-        
+    func showPickerView()
+    {
         picker.delegate = self
         picker.dataSource = self
         picker.translatesAutoresizingMaskIntoConstraints = false
@@ -172,7 +192,8 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         timeTextField.inputView = picker
     }
     
-    @objc func donePicker(){
+    @objc func donePicker()
+    {
         let row = picker.selectedRow(inComponent: 0)
         self.picker.selectRow(row, inComponent: 0, animated: false)
         self.timeTextField.text = time_range[row]
@@ -181,7 +202,8 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         self.timeTextField.resignFirstResponder()
     }
     
-    @objc func cancelPicker(){
+    @objc func cancelPicker()
+    {
         self.view.endEditing(true)
     }
     
@@ -212,15 +234,18 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         self.mapView.addGestureRecognizer(lpgr)
     }
     
-    @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer) {
-        if gestureReconizer.state != UIGestureRecognizer.State.ended {
+    @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer)
+    {
+        if gestureReconizer.state != UIGestureRecognizer.State.ended
+        {
             let touchLocation = gestureReconizer.location(in: mapView)
             let locationCoordinate = mapView.convert(touchLocation,toCoordinateFrom: mapView)
             removeAnnotation(location: locationCoordinate)
             print("Tapped at lat: \(locationCoordinate.latitude) long: \(locationCoordinate.longitude)")
             return
         }
-        if gestureReconizer.state != UIGestureRecognizer.State.began {
+        if gestureReconizer.state != UIGestureRecognizer.State.began
+        {
             let touchLocation = gestureReconizer.location(in: mapView)
             let locationCoordinate = mapView.convert(touchLocation,toCoordinateFrom: mapView)
             addAnnotation(location: locationCoordinate)
@@ -345,7 +370,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
             return newString.length <= maxLength
         }
         
-           return true
+            return true
     }
     
     func timeSlot (user_master_id: String, service_date: String)
@@ -378,16 +403,28 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                                     self.timeslot_id.append(service_time_slot.timeslot_id!)
                                 }
                                 
+                                    self.timeTextField.isUserInteractionEnabled = true
                                     self.picker.reloadAllComponents()
                             }
                             else
                             {
+                                self.timeTextField.isUserInteractionEnabled = false
+                                self.timeTextField.text = ""
                                 Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
                                     // Custom action code
                                     
                                 }
                             }
                            
+                        }
+                        else
+                        {
+                            self.timeTextField.isUserInteractionEnabled = false
+                            self.timeTextField.text = ""
+                            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                // Custom action code
+                                
+                            }
                         }
                     }) {
                         (error) -> Void in
@@ -548,7 +585,6 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                             }
                             else if self.displayMinute == "2"
                             {
-                                
                                 self.displayMinute = "3"
                             }
                             else
@@ -571,15 +607,14 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         }
     }
     
-    
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         
-        if (segue.identifier == "advancePayment"){
+        if (segue.identifier == "advancePayment")
+        {
             let vc = segue.destination as! AdvancePayment
             vc.advance_amount = GlobalVariables.shared.Advanceamount
             vc.orderId = GlobalVariables.shared.order_id
@@ -589,6 +624,4 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
             let _ = segue.destination as! BookingSuccess
         }
     }
-    
-
 }

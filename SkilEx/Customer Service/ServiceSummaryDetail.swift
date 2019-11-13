@@ -10,7 +10,8 @@ import UIKit
 import SwiftyJSON
 import MBProgressHUD
 
-class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPickerViewDelegate {
+
+class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPickerViewDelegate,UITextViewDelegate{
     
     @IBOutlet weak var mainCategoery: UILabel!
     @IBOutlet weak var subCategoery: UILabel!
@@ -61,6 +62,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
     var orderStatus = String()
     var iscouponApplied = false
     var showRow = Int()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +87,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
     
     override func viewWillAppear(_ animated: Bool) {
         self.preferedLanguage()
+
     }
     
     override func viewWillLayoutSubviews() {
@@ -103,7 +106,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
         self.materialUsedLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummarymaterialsused_text", comment: "")
         self.paymentLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummarypayment_text", comment: "")
         self.serviceChargeLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummaryservicecharge_text", comment: "")
-        self.additionalServiceChargeLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummaryadditionalservicecharge_text", comment: "")
+        self.additionalServiceChargeLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "serviceadditional_text", comment: "")
         self.couponLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummarycouponapplied_text", comment: "")
         self.subTotalLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummarysubtotal_text", comment: "")
         self.advanceAmountLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummaryadvanceamount_text", comment: "")
@@ -133,17 +136,25 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
             self.serviceProvider.text = bookingDetailSummary?.provider_name
             self.servicePerson.text = bookingDetailSummary?.person_name
             let starTime = bookingDetailSummary?.service_start_time
-            let starTimeArr = starTime!.components(separatedBy: " ")
-            let startdate = starTimeArr[0]
-            let start_time = starTimeArr[1]
-            self.serviceStartDate.text = startdate
-            self.serviceStartTime.text = start_time
+            if (starTime!.isEmpty != true)
+            {
+                let starTimeArr = starTime!.components(separatedBy: " ")
+                let startdate = starTimeArr[0]
+                let start_time = starTimeArr[1]
+                let s_time = starTimeArr[2]
+                self.serviceStartDate.text = startdate
+                self.serviceStartTime.text = String(format: "%@ %@", start_time,s_time)
+            }
             let endTime  = bookingDetailSummary?.service_end_time
-            let endTimeArr = endTime!.components(separatedBy: " ")
-            let enddate = endTimeArr[0]
-            let end_time = endTimeArr[1]
-            self.serviceCompletedDate.text = enddate
-            self.serviceCompletedTime.text = end_time
+            if (endTime!.isEmpty != true)
+            {
+                let endTimeArr = endTime!.components(separatedBy: " ")
+                let enddate = endTimeArr[0]
+                let end_time = endTimeArr[1]
+                let e_time = endTimeArr[2]
+                self.serviceCompletedDate.text = enddate
+                self.serviceCompletedTime.text =  String(format: "%@ %@", end_time,e_time)
+            }
             self.additionalServiceTextField.text = String(format: "%@ - %@", LocalizationSystem.sharedInstance.localizedStringForKey(key: "serviceadditional_text", comment: ""),bookingDetailSummary!.additional_service!)
             self.materialUsedTextView.text = bookingDetailSummary?.material_notes
             self.serviceCharge.text = bookingDetailSummary?.service_amount
@@ -182,24 +193,33 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
         else
         {
             self.mainCategoery.text = bookingDetailSummary?.main_category_ta
-            self.subCategoery.text = bookingDetailSummary?.service_name
+            self.subCategoery.text = bookingDetailSummary?.service_ta_name
             self.customerName.text = bookingDetailSummary?.contact_person_name
             self.serviceDate.text = bookingDetailSummary?.order_date
             self.requestedTime.text = bookingDetailSummary?.time_slot
             self.serviceProvider.text = bookingDetailSummary?.provider_name
             self.servicePerson.text = bookingDetailSummary?.person_name
             let starTime = bookingDetailSummary?.service_start_time
-            let starTimeArr = starTime!.components(separatedBy: " ")
-            let startdate = starTimeArr[0]
-            let start_time = starTimeArr[1]
-            self.serviceStartDate.text = startdate
-            self.serviceStartTime.text = start_time
+            if (starTime?.isEmpty != true)
+            {
+                let starTimeArr = starTime!.components(separatedBy: " ")
+                let startdate = starTimeArr[0]
+                let start_time = starTimeArr[1]
+                let time = starTimeArr[2]
+                self.serviceStartDate.text = startdate
+                self.serviceStartTime.text = String(format: "%@ %@", start_time,time)
+            }
             let endTime  = bookingDetailSummary?.service_end_time
-            let endTimeArr = endTime!.components(separatedBy: " ")
-            let enddate = endTimeArr[0]
-            let end_time = endTimeArr[1]
-            self.serviceCompletedDate.text = enddate
-            self.serviceCompletedTime.text = end_time
+            if (endTime!.isEmpty != true)
+            {
+                let endTimeArr = endTime!.components(separatedBy: " ")
+                let enddate = endTimeArr[0]
+                let end_time = endTimeArr[1]
+                let e_time = endTimeArr[2]
+                self.serviceCompletedDate.text = enddate
+                self.serviceCompletedTime.text = String(format: "%@ %@", end_time, e_time)
+            }
+        
             self.additionalServiceTextField.text = String(format: "%@ - %@",  LocalizationSystem.sharedInstance.localizedStringForKey(key: "serviceadditional_text", comment: ""),bookingDetailSummary!.additional_service!)
             self.materialUsedTextView.text = bookingDetailSummary?.material_notes
             self.serviceCharge.text = bookingDetailSummary?.service_amount

@@ -148,8 +148,8 @@ class OTP: UIViewController,UITextFieldDelegate {
         }
         else
         {
-            //UserDefaults.standard.getDevicetoken()
-            let parameters = ["user_master_id":user_master_id, "phone_no": mobileNumber, "otp":OTP, "device_token":"jshdkajhd" , "mobile_type": "2", "uniqueNumber": uniqueNumber]
+            let deviceToken = UserDefaults.standard.getDevicetoken()
+            let parameters = ["user_master_id":user_master_id, "phone_no": mobileNumber, "otp":OTP, "device_token": deviceToken , "mobile_type": "2", "uniqueNumber": uniqueNumber]
             MBProgressHUD.showAdded(to: self.view, animated: true)
             DispatchQueue.global().async
                 {

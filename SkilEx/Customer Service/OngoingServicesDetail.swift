@@ -45,22 +45,30 @@ class OngoingServicesDetail: UIViewController {
 
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         self.preferedLanguage()
         if serviceListDetail?.order_status == "Ongoing"
         {
             self.trackOutlet.isHidden = true
+            trackOutlet.layer.cornerRadius = 5.0
             trackOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 16, backgroundcolor: UIColor.gray)
         }
         else if serviceListDetail?.order_status == "Initiated"
         {
             self.trackOutlet.isHidden = false
             self.trackOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingtrack_text", comment: ""), for: .normal)
+            trackOutlet.layer.cornerRadius = 5.0
             trackOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 16, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
+        }
+        else
+        {
+            self.trackOutlet.isHidden = true
+            trackOutlet.layer.cornerRadius = 5.0
+            trackOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 16, backgroundcolor: UIColor.gray)
         }
         
         let person_number = serviceListDetail?.person_number
-        
         if person_number == ""
         {
             callServicePersonLabel.isHidden = true
@@ -74,7 +82,8 @@ class OngoingServicesDetail: UIViewController {
 
     }
     
-    override func viewWillLayoutSubviews() {
+    override func viewWillLayoutSubviews()
+    {
        
 //        else if serviceListDetail?.order_status == "Completed"
 //        {
@@ -188,7 +197,6 @@ class OngoingServicesDetail: UIViewController {
                 } else {
                     // Fallback on earlier versions
                     application.openURL(phoneCallURL as URL)
-                    
                 }
             }
         }
@@ -212,7 +220,6 @@ class OngoingServicesDetail: UIViewController {
     
     
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.

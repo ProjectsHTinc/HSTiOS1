@@ -115,7 +115,7 @@ class CCWebViewController: UIViewController,UIWebViewDelegate {
         
         serialQueue.sync {
             self.rsaKeyDataStr = "access_code=\(self.accessCode)&order_id=\(self.orderId)"
-            //            let requestData = self.rsaKeyDataStr.data(using: String.Encoding.utf8, allowLossyConversion: true)
+            //let requestData = self.rsaKeyDataStr.data(using: String.Encoding.utf8, allowLossyConversion: true)
             
             let requestData = self.rsaKeyDataStr.data(using: String.Encoding.utf8)
             
@@ -297,7 +297,6 @@ class CCWebViewController: UIViewController,UIWebViewDelegate {
                     }
                     else
                     {
-                        
                         let storyBoard : UIStoryboard = UIStoryboard(name: "CustomerService", bundle:nil)
                         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "cCResultViewController") as! CCResultViewController
                         nextViewController.transStatus = transStatus

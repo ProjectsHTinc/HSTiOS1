@@ -9,6 +9,7 @@
 import UIKit
 import UserNotifications
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
 
@@ -19,45 +20,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         
         // Override point for customization after application launch.
         GlobalVariables.shared.user_master_id = UserDefaults.standard.string(forKey: "user_master_id") ?? ""
-        print(GlobalVariables.shared.user_master_id)
-        if GlobalVariables.shared.user_master_id.isEmpty == true
-        {
-           
-            let topWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
-            topWindow?.rootViewController = UIViewController()
-            topWindow?.windowLevel = UIWindow.Level.alert + 1
-            let alert: UIAlertController =  UIAlertController(title: "SkilEX \nஸ்கில்எக்ஸ்", message: "Choose your langugae \nஉங்கள்மொழியைத்தேர்வுசெய்க", preferredStyle: .alert)
-            alert.addAction(UIAlertAction.init(title: "தமிழ்", style: .default, handler: { (alertAction) in
-                
-                LocalizationSystem.sharedInstance.setLanguage(languageCode: "ta")
-                let mainStoryboard:UIStoryboard = UIStoryboard(name: "InitialView", bundle: nil)
-                let homePage = mainStoryboard.instantiateViewController(withIdentifier: "login") as! Login
-                self.window?.rootViewController = homePage
-                
-            }))
-            alert.addAction(UIAlertAction.init(title: "English", style: .default, handler: { (alertAction) in
-                
-                LocalizationSystem.sharedInstance.setLanguage(languageCode: "en")
-                let mainStoryboard:UIStoryboard = UIStoryboard(name: "InitialView", bundle: nil)
-                let homePage = mainStoryboard.instantiateViewController(withIdentifier: "login") as! Login
-                self.window?.rootViewController = homePage
-                
-            }))
-            
-            topWindow?.makeKeyAndVisible()
-            topWindow?.rootViewController?.present(alert, animated: true, completion:nil)
-
+         print(GlobalVariables.shared.user_master_id)
+         if GlobalVariables.shared.user_master_id.isEmpty != true
+         {
+           let mainStoryboard:UIStoryboard = UIStoryboard(name: "MainView", bundle: nil)
+           let homePage = mainStoryboard.instantiateViewController(withIdentifier: "tabbarcontroller") as! Tabbarcontroller
+           self.window?.rootViewController = homePage
         }
-        else
-        {
-            let mainStoryboard:UIStoryboard = UIStoryboard(name: "MainView", bundle: nil)
-            let homePage = mainStoryboard.instantiateViewController(withIdentifier: "tabbarcontroller") as! Tabbarcontroller
-            self.window?.rootViewController = homePage
-        }
-        
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white 
         registerForPushNotifications()
+        registerNotificationCategories()
+        UNUserNotificationCenter.current().delegate = self
         ReachabilityManager.shared.startMonitoring()
+        UITextViewWorkaround.unique.executeWorkaround()
         return true
     }
     
@@ -73,6 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                 self?.getNotificationSettings()
         }
     }
+    
     
     func getNotificationSettings() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
@@ -109,14 +85,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func registerNotificationCategories() {
+        let openBoardAction = UNNotificationAction(identifier: UNNotificationDefaultActionIdentifier, title: "Open Board", options: UNNotificationActionOptions.foreground)
+        let contentAddedCategory = UNNotificationCategory(identifier: "content_added_notification", actions: [openBoardAction], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: .customDismissAction)
+        UNUserNotificationCenter.current().setNotificationCategories([contentAddedCategory])
+    }
 
     // Genrate Device Token
     func application( _ application: UIApplication,didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
     {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let device_Token = tokenParts.joined()
-        UserDefaults.standard.saveDeviceToken(deviceToken: "sadsdasdasdasdasdasdasd")
+        UserDefaults.standard.saveDeviceToken(deviceToken: device_Token)
         print("Device Token: \(String(describing: device_Token))")
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        defer {
+            completionHandler()
+        }
+
+        /// Identify the action by matching its identifier.
+        guard response.actionIdentifier == UNNotificationDefaultActionIdentifier else { return }
+
+        /// Perform the related action
+        print("Open board tapped from a notification!")
+
+        /// .. deeplink into the board
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        completionHandler([.alert, .badge, .sound])
     }
     
     func application(_ application: UIApplication,didFailToRegisterForRemoteNotificationsWithError error: Error)
@@ -124,6 +125,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         print("Failed to register: \(error)")
     }
     
+}
+
+var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
 }
 
 

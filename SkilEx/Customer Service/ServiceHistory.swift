@@ -155,7 +155,8 @@ class ServiceHistory: UIViewController,UITableViewDelegate,UITableViewDataSource
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
         let index = serviceListArr[indexPath.row]
         serviceorderid = index.service_order_id!
         self.serviceStatus = index.order_status!
@@ -174,7 +175,8 @@ class ServiceHistory: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
     }
     
-    func webRequestserviceOrderSummary(service_order_id: String) {
+    func webRequestserviceOrderSummary(service_order_id: String)
+    {
         let parameters = ["user_master_id": GlobalVariables.shared.user_master_id,"service_order_id": service_order_id]
         MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
