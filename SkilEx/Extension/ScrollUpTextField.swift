@@ -8,31 +8,33 @@
 
 import UIKit
 
-//extension UIViewController {
+//extension UIViewController
+//{
 //
-//    @objc func keyboardWillShow(notification: NSNotification) {
+//    @objc func keyboardWillShow(notification: NSNotification)
+//{
 //        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
 //            if self.view.frame.origin.y == 0 {
 //                self.view.frame.origin.y -= keyboardSize.height
 //            }
 //        }
 //    }
-//
-//    @objc func keyboardWillHide(notification: NSNotification) {
+//    @objc func keyboardWillHide(notification: NSNotification)
+//{
 //        if self.view.frame.origin.y != 0 {
 //            self.view.frame.origin.y = 0
 //        }
 //    }
-//
 //}
 
-extension UIView {
-    
-    func bindToKeyboard() {
+extension UIView
+{
+    func bindToKeyboard()
+    {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(_:)), name:UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
-    
-    @objc func keyboardWillChange(_ notification: Notification) {
+    @objc func keyboardWillChange(_ notification: Notification)
+    {
         let duration = notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as! Double
         let curve = notification.userInfo![UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt
         let curveFrame = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
@@ -42,6 +44,5 @@ extension UIView {
         UIView.animateKeyframes(withDuration: duration, delay: 0.0, options: UIView.KeyframeAnimationOptions(rawValue: curve), animations: {
             self.frame.origin.y += deltaY
         }, completion: nil)
-        
     }
 }

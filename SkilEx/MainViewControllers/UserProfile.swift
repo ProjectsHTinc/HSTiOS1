@@ -21,6 +21,8 @@ class UserProfile: UIViewController {
     @IBOutlet weak var shareSkilexLabel: UILabel!
     @IBOutlet weak var logoutLabel: UILabel!
     @IBOutlet weak var changeLangugaeLabel: UILabel!
+    @IBOutlet weak var referLabel: UILabel!
+    @IBOutlet weak var walletLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +58,8 @@ class UserProfile: UIViewController {
         aboutSkilexLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "aboutSkilex_text", comment: "")
         shareSkilexLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "shareSkilex_text", comment: "")
         changeLangugaeLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "languagechange_text", comment: "")
+        referLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "referEarn_text", comment: "")
+        walletLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "wallet_text", comment: "")
         logoutLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "logout_text", comment: "")
         self.changeTabbarTitle ()
     }
@@ -218,12 +222,14 @@ class UserProfile: UIViewController {
             
             print("First Action pressed")
             self.changeLanguage(language: "ta")
+            self.languageUpdate(language_id: "1")
         }
         
         let secondAction: UIAlertAction = UIAlertAction(title: "English", style: .default) { action -> Void in
             
             print("Second Action pressed")
             self.changeLanguage(language: "en")
+            self.languageUpdate(language_id: "2")
 
         }
         
@@ -253,6 +259,36 @@ class UserProfile: UIViewController {
     {
         LocalizationSystem.sharedInstance.setLanguage(languageCode: language)
         self.viewDidLoad()
+    }
+    
+    func languageUpdate (language_id:String)
+    {
+        let parameters = ["user_master_id": GlobalVariables.shared.user_master_id, "lang_id": language_id]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+            {
+                do
+                {
+                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "guest_login", params: parameters, headers: nil, success: {
+                        (JSONResponse) -> Void in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print(JSONResponse)
+                        let json = JSON(JSONResponse)
+                        let msg = json["msg"].stringValue
+                        let status = json["status"].stringValue
+                        if msg == "Success" && status == "success"{
+                         
+                        }
+                    }) {
+                        (error) -> Void in
+                        print(error)
+                    }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
+        }
     }
     
     @IBAction func logOut(_ sender: Any)
@@ -288,6 +324,16 @@ class UserProfile: UIViewController {
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
 
+    }
+    
+    @IBAction func referandEarn(_ sender: Any)
+    {
+        self.performSegue(withIdentifier: "to_ReferAndEarn", sender: self)
+    }
+    
+    @IBAction func wallet(_ sender: Any)
+    {
+        self.performSegue(withIdentifier: "to_AddWallet", sender: self)
     }
     
     // MARK: - Navigation

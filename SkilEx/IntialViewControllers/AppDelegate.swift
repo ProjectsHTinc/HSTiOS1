@@ -9,7 +9,6 @@
 import UIKit
 import UserNotifications
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
 
@@ -19,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
+        Thread.sleep(forTimeInterval: 1.0)
         GlobalVariables.shared.user_master_id = UserDefaults.standard.string(forKey: "user_master_id") ?? ""
          print(GlobalVariables.shared.user_master_id)
          if GlobalVariables.shared.user_master_id.isEmpty != true
@@ -27,7 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
            let homePage = mainStoryboard.instantiateViewController(withIdentifier: "tabbarcontroller") as! Tabbarcontroller
            self.window?.rootViewController = homePage
         }
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white 
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white
+        application.registerForRemoteNotifications()
         registerForPushNotifications()
         registerNotificationCategories()
         UNUserNotificationCenter.current().delegate = self
@@ -35,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         UITextViewWorkaround.unique.executeWorkaround()
         return true
     }
-    
     
     // Permission For Push Notification
     func registerForPushNotifications() {
@@ -48,7 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                 self?.getNotificationSettings()
         }
     }
-    
     
     func getNotificationSettings() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in

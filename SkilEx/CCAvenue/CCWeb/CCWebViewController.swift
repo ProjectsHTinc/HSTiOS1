@@ -8,6 +8,8 @@
 
 import UIKit
 import Foundation
+import SwiftyJSON
+import MBProgressHUD
 //import OpenSSL
 
 /**
@@ -32,6 +34,8 @@ class CCWebViewController: UIViewController,UIWebViewDelegate {
     var rsaKey = String()
     static var statusCode = 0//zero means success or else error in encrption with rsa
     var encVal = String()
+    
+    var strAddMoneyToWallet = String()
     
     var transStatus = String()
     var advancePayment = String()
@@ -295,6 +299,11 @@ class CCWebViewController: UIViewController,UIWebViewDelegate {
                         nextViewController.transStatus = transStatus
                         self.present(nextViewController, animated:true, completion:nil)
                     }
+                    else if advancePayment == "MW"
+                    {
+                        self.navToAddMoney()
+
+                    }
                     else
                     {
                         let storyBoard : UIStoryboard = UIStoryboard(name: "CustomerService", bundle:nil)
@@ -315,6 +324,10 @@ class CCWebViewController: UIViewController,UIWebViewDelegate {
                         nextViewController.transStatus = transStatus
                         self.present(nextViewController, animated:true, completion:nil)
                     }
+                    else if advancePayment == "MW"
+                    {
+                        self.callWebServiceForAddingmoneyToWallet ()
+                    }
                     else
                     {
                         let storyBoard : UIStoryboard = UIStoryboard(name: "CustomerService", bundle:nil)
@@ -333,6 +346,10 @@ class CCWebViewController: UIViewController,UIWebViewDelegate {
                         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "bookingSuccess") as! BookingSuccess
                         nextViewController.transStatus = transStatus
                         self.present(nextViewController, animated:true, completion:nil)
+                    }
+                    else if advancePayment == "MW"
+                    {
+                        self.navToAddMoney ()
                     }
                     else
                     {
@@ -354,6 +371,45 @@ class CCWebViewController: UIViewController,UIWebViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func callWebServiceForAddingmoneyToWallet ()
+    {
+        let parameters = ["user_master_id": strAddMoneyToWallet]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+            {
+                do
+                {
+                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "ccavenue_app/adding_money_to_wallet.php", params: parameters, headers: nil, success: {
+                        (JSONResponse) -> Void in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print(JSONResponse)
+                        let json = JSON(JSONResponse)
+                        let msg = json["msg"].stringValue
+                        let status = json["status"].stringValue
+                        if msg == "Mobile OTP" && status == "success"
+                        {
+                            
+                        }
+                    }) {
+                        (error) -> Void in
+                        print(error)
+                    }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
+           }
+    }
+    
+    func navToAddMoney ()
+    {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "AdditionalService", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "addMoneyToWallet") as! AddMoneyToWallet
+//        nextViewController.transStatus = transStatus
+        self.present(nextViewController, animated:true, completion:nil)
     }
     
      // MARK: - Navigation

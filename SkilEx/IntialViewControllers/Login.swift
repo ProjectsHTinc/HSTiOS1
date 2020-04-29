@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 import MBProgressHUD
 
+
 class Login: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var appNameLabel: UILabel!
@@ -19,6 +20,7 @@ class Login: UIViewController,UITextFieldDelegate {
     @IBOutlet var mobileNumber: UITextField!
     @IBOutlet var submitOutlet: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var referralCode: UITextField!
     
     var user_master_id = String()
     
@@ -26,6 +28,7 @@ class Login: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.mobileNumber.delegate = self
+        self.referralCode.delegate = self
         self.mobileNumber.tag = 1
         self.addToolBar(textField: mobileNumber)
         view.bindToKeyboard()
@@ -59,6 +62,11 @@ class Login: UIViewController,UITextFieldDelegate {
     @IBAction func submit(_ sender: Any)
     {
         self.userLogin(mobileNumber: self.mobileNumber.text!)
+        
+        if !self.referralCode.text!.isEmpty
+        {
+            self.referralCodeLogin(referralCode: self.referralCode.text!)
+        }
     }
     
     @IBAction func skipButton(_ sender: Any)
@@ -120,6 +128,37 @@ class Login: UIViewController,UITextFieldDelegate {
         }
     }
     
+    func referralCodeLogin (referralCode:String)
+    {
+        let parameters = ["referral_code": referralCode]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+            {
+                do
+                {
+                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "login", params: parameters, headers: nil, success: {
+                        (JSONResponse) -> Void in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print(JSONResponse)
+                        let json = JSON(JSONResponse)
+                        let msg = json["msg"].stringValue
+                        let status = json["status"].stringValue
+                        if msg == "" && status == ""
+                        {
+
+                        }
+                    }) {
+                        (error) -> Void in
+                        print(error)
+                    }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
+           }
+        }
+    
     func skipLogin (unique_number: String, mobile_key: String, mobile_type: String, user_stat:String)
     {
             let parameters = ["unique_number": unique_number, "mobile_key": mobile_key, "mobile_type": mobile_type, "user_stat": user_stat]
@@ -153,19 +192,35 @@ class Login: UIViewController,UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField)
     {
-        if textField.tag == 1
+        if mobileNumber.isFirstResponder
         {
-            print("YES")
+            referralCode.becomeFirstResponder()
+        }
+        else
+        {
+            referralCode.resignFirstResponder()
         }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
-        let maxLength = 10
-        let currentString: NSString = textField.text! as NSString
-        let newString: NSString =
-            currentString.replacingCharacters(in: range, with: string) as NSString
-        return newString.length <= maxLength
+        if mobileNumber.isFirstResponder
+        {
+            let maxLength = 10
+            let currentString: NSString = mobileNumber.text! as NSString
+            let newString: NSString =
+                currentString.replacingCharacters(in: range, with: string) as NSString
+            return newString.length <= maxLength
+        }
+        else
+        {
+            let maxLength = 10
+            let currentString: NSString = referralCode.text! as NSString
+            let newString: NSString =
+                currentString.replacingCharacters(in: range, with: string) as NSString
+            return newString.length <= maxLength
+        }
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -205,7 +260,7 @@ class Login: UIViewController,UITextFieldDelegate {
        alertController.addAction(cancelAction)
        self.present(alertController, animated: true, completion: nil)
     }
-    
+        
 }
 
 

@@ -10,7 +10,8 @@ import UIKit
 import SwiftyJSON
 import MBProgressHUD
 
-class CashMethod: UIViewController {
+class CashMethod: UIViewController
+{
     @IBOutlet weak var payOnlineOutlet: UIButton!
     @IBOutlet weak var payCashOutlet: UIButton!
     
@@ -52,13 +53,18 @@ class CashMethod: UIViewController {
         let viewController = self.storyboard!.instantiateViewController(withIdentifier: "CCWebViewController") as! CCWebViewController
         viewController.accessCode = "AVQM86GG76CA98MQAC"
         viewController.merchantId = "225068"
-        viewController.amount = "1.00"
+        viewController.amount = payable_amount
         // advance_amount
         viewController.currency = "INR"
         viewController.orderId = order_id
-        viewController.redirectUrl = "https://www.skilex.in/development/ccavenue_app/service_net_amount.php"
-        viewController.cancelUrl = "https://www.skilex.in/development/ccavenue_app/service_net_amount.php"
-        viewController.rsaKeyUrl = "https://www.skilex.in/development/ccavenue_app/GetRSA.php"
+        
+        viewController.redirectUrl = String(format: "%@%@", AFWrapper.PaymentBaseUrl,"ccavenue_app/service_net_amount.php")
+        viewController.cancelUrl = String(format: "%@%@", AFWrapper.PaymentBaseUrl,"ccavenue_app/service_net_amount.php")
+        viewController.rsaKeyUrl = String(format: "%@%@", AFWrapper.PaymentBaseUrl,"ccavenue_app/GetRSA.php")
+        
+//        viewController.redirectUrl = "https://www.skilex.in/development/ccavenue_app/service_net_amount.php"
+//        viewController.cancelUrl = "https://www.skilex.in/development/ccavenue_app/service_net_amount.php"
+//        viewController.rsaKeyUrl = "https://www.skilex.in/development/ccavenue_app/GetRSA.php"
         self.present(viewController, animated: true, completion: nil)
     }
     
@@ -86,6 +92,7 @@ class CashMethod: UIViewController {
                         let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if status == "success"{
+                            self.servicePaymentSuccess(order_id: GlobalVariables.shared.order_id)
                             UserDefaults.standard.set("YES", forKey: "PaybyCash")
                             let storyBoard : UIStoryboard = UIStoryboard(name: "CustomerService", bundle:nil)
                             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "cCResultViewController") as! CCResultViewController
@@ -118,6 +125,42 @@ class CashMethod: UIViewController {
         }
     }
     
+     func servicePaymentSuccess(order_id:String)
+        {
+            let parameters = ["order_id":order_id]
+    //                  MBProgressHUD.showAdded(to: self.view, animated: true)
+                      DispatchQueue.global().async
+                          {
+                              do
+                              {
+                                  try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "service_payment_success", params: (parameters ), headers: nil, success:
+                                  {
+                                      (JSONResponse) -> Void in
+    //                                  MBProgressHUD.hide(for: self.view, animated: true)
+    //                                  let json = JSON(JSONResponse)
+    //                                  let msg = json["msg"].stringValue
+    //                                  let msg_en = json["msg_en"].stringValue
+    //                                  let msg_ta = json["msg_ta"].stringValue
+    //                                  let status = json["status"].stringValue
+    //                                  if msg == "Login Successfully" && status == "success"
+    //                                  {
+    //
+    //                                  }
+    //                                  else
+    //                                  {
+    //
+    //                                  }
+                                  }) {
+                                      (error) -> Void in
+                                      print(error)
+                                  }
+                              }
+                              catch
+                              {
+                                  print("Unable to load data: \(error)")
+                              }
+                      }
+        }
 
     
     // MARK: - Navigation

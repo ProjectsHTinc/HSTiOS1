@@ -54,7 +54,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
     
     var service_order_id = String()
     var paymentStatus = String()
-//    var payable_amount = String()
+    //var payable_amount = String()
     let picker = UIPickerView()
     var couponOffers = [String]()
     var couponID = [String]()
@@ -62,8 +62,8 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
     var orderStatus = String()
     var iscouponApplied = false
     var showRow = Int()
+    var viewFrom = String()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -72,17 +72,34 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        self.webRequestProceedforPayment ()
-        self.addBackButton()
-        self.couponTextField.borderColor = UIColor.black
-        self.couponTextField.borderWidth = 1.0
-        self.couponTextField.clipsToBounds = true
-        self.showPickerView()
-        self.updateValues()
-        self.webRequestCouponList()
-        self.serviceStatusCheck (user_master_id: GlobalVariables.shared.user_master_id, service_order_id: service_order_id)
-        self.preferedLanguage()
+        
+        if viewFrom == "onGoing"
+        {
+             self.addBackButton()
+             self.preferedLanguage()
+             self.webRequestserviceSummaryDetail(service_order_id: self.service_order_id)
 
+        }
+        else if viewFrom == "Started"
+        {
+            self.addBackButton()
+            self.preferedLanguage()
+            self.webRequestserviceSummaryDetail(service_order_id: self.service_order_id)
+        }
+        else
+        {
+            self.webRequestProceedforPayment ()
+            self.addBackButton()
+            self.couponTextField.borderColor = UIColor.black
+            self.couponTextField.borderWidth = 1.0
+            self.couponTextField.clipsToBounds = true
+            self.showPickerView()
+            self.updateValues()
+            self.webRequestCouponList()
+            self.serviceStatusCheck (user_master_id: GlobalVariables.shared.user_master_id, service_order_id: service_order_id)
+            self.preferedLanguage()
+        }
+     
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,7 +111,8 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
         paidOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 16, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
     }
     
-    func preferedLanguage () {
+    func preferedLanguage ()
+    {
         self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummarynavtitle_text", comment: "")
         self.customerNameLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummarycustomername_text", comment: "")
         self.serviceDateLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummaryservicedate_text", comment: "")
@@ -118,14 +136,14 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
     }
     
     
-    @objc public override func backButtonClick() {
+    @objc public override func backButtonClick()
+    {
         self.navigationController?.popViewController(animated: true)
     }
     
     func updateValues ()
     {
         let bookingDetailSummary = UserDefaults.standard.getServiceSummary()
-
         if LocalizationSystem.sharedInstance.getLanguage() == "en"
         {
             self.mainCategoery.text = bookingDetailSummary?.main_category
@@ -180,7 +198,6 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                 self.coupon.text = bookingDetailSummary?.discount_amt
                 iscouponApplied = true
             }
-            
             if iscouponApplied == false
             {
                 self.applyCouponOutlet.setTitle("Apply", for: .normal)
@@ -244,15 +261,14 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                 self.coupon.text = bookingDetailSummary?.discount_amt
                 iscouponApplied = true
             }
-            
-                if iscouponApplied == false
-                {
-                    self.applyCouponOutlet.setTitle("Apply", for: .normal)
-                }
-                else
-                {
+            if iscouponApplied == false
+            {
+                self.applyCouponOutlet.setTitle("Apply", for: .normal)
+            }
+            else
+            {
                 self.applyCouponOutlet.setTitle("Cancel", for: .normal)
-                }
+            }
         }
     }
     
@@ -430,7 +446,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
-                        let msg_en = json["msg_ta"].stringValue
+                        let msg_en = json["msg_en"].stringValue
                         let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if status == "success"{
@@ -480,9 +496,9 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                         MBProgressHUD.hide(for: self.view, animated: true)
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
-                      //  let msg = json["msg"].stringValue
+                        //let msg = json["msg"].stringValue
                         let msg_en = json["msg_en"].stringValue
-                        let msg_ta = json["msg"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         let order_id = json["order_id"].stringValue
                         print(order_id)
@@ -520,7 +536,8 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
         }
     }
     
-    func webRequestserviceSummaryDetail(service_order_id: String) {
+    func webRequestserviceSummaryDetail(service_order_id: String)
+    {
         let parameters = ["user_master_id": GlobalVariables.shared.user_master_id,"service_order_id": service_order_id]
         MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
@@ -543,7 +560,49 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                             if json["service_list"].count > 0 {
                                 let service_Summary = ServiceSummary(json: json["service_list"])
                                 UserDefaults.standard.saveServiceSummary(serviceSummary: service_Summary)
-                                self.updateValues()
+                                let bookingDetailSummary = UserDefaults.standard.getServiceSummary()
+
+                                if self.viewFrom == "onGoing"
+                                {
+                                    
+                                    let additionalService = bookingDetailSummary?.additional_service
+                                    let materialNotes = bookingDetailSummary?.material_notes
+                                    
+                                    if additionalService == "0" && materialNotes == ""
+                                    {
+                                        self.showRow = 1
+                                        self.updateValues()
+                                        self.tableView.reloadData()
+                                    }
+                                    else
+                                    {
+                                        self.showRow = 2
+                                        self.updateValues()
+                                        self.tableView.reloadData()
+                                    }
+                                }
+                                else if self.viewFrom == "Started"
+                                {
+                                    let additionalService = bookingDetailSummary?.additional_service
+                                    let materialNotes = bookingDetailSummary?.material_notes
+
+                                    if additionalService == "0" && materialNotes == ""
+                                    {
+                                       self.showRow = 1
+                                       self.updateValues()
+                                       self.tableView.reloadData()
+                                    }
+                                    else
+                                    {
+                                       self.showRow = 2
+                                       self.updateValues()
+                                       self.tableView.reloadData()
+                                     }
+                                }
+                                else
+                                {
+                                   self.updateValues()
+                                }
                             }
                         }
                         else
@@ -576,6 +635,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
     
     func webRequestProceedforPayment ()
     {
+        GlobalVariables.shared.serviceOrderId = service_order_id
         let parameters = ["user_master_id": GlobalVariables.shared.user_master_id,"service_order_id": service_order_id]
         MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
@@ -612,7 +672,8 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                                 }
                             }
                         }
-                    }) {
+                    })
+                    {
                         (error) -> Void in
                         print(error)
                     }
@@ -644,7 +705,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                         if msg == "Service status" && status == "success"{
                             
                             self.orderStatus = json["order_status"].stringValue
-//                            self.updateValues()
+//                          self.updateValues()
                             if self.orderStatus == "Paid"
                             {
                                 self.paidOutlet.isHidden = true
@@ -677,7 +738,8 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                                 }
                             }
                         }
-                    }) {
+                    })
+                    {
                         (error) -> Void in
                         print(error)
                     }

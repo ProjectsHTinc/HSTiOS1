@@ -11,8 +11,9 @@ import MapKit
 import CoreLocation
 import MBProgressHUD
 import SwiftyJSON
+import Alamofire
 
-class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var address: UITextField!
@@ -24,6 +25,8 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
+    @IBOutlet weak var addNotesLabel: UILabel!
+    @IBOutlet weak var notesTextView: UITextView!
     
     var points: [MKPointAnnotation] = []
     var lat_ = String()
@@ -33,6 +36,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     var timeslotID = String()
     var location = String()
     var advancepaymentStatus = String()
+    var fromDidupDateLocation = Bool()
 
     var locationManager = CLLocationManager()
     let datePicker = UIDatePicker()
@@ -40,7 +44,10 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     
     var timer: Timer?
     var displayMinute = String()
-    
+    var task: URLSessionTask? = nil
+
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -59,6 +66,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         phoneNumber.delegate = self
         dateTextField.delegate = self
         timeTextField.delegate = self
+        notesTextView.delegate = self
         self.address.tag = 1
         self.name.tag = 2
         self.phoneNumber.tag = 3
@@ -88,6 +96,10 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         self.preferedLanguage()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        
+    }
+    
     func preferedLanguage()
     {
         self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressnavtitle_text", comment: "")
@@ -96,6 +108,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         self.phoneNumberLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressphonenumber_text", comment: "")
         self.dateTextField.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressdate_text", comment: "")
         self.timeTextField.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddresstime_text", comment: "")
+        self.addNotesLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressnotes_text", comment: "")
         proceedOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressproceed_text", comment: ""), for: .normal)
     }
     
@@ -103,7 +116,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     {
         self.navigationController?.popViewController(animated: true)
     }
-    
+        
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == timeTextField
         {
@@ -199,7 +212,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         self.timeTextField.text = time_range[row]
         timeslotID = timeslot_id[row]
         print(timeslotID)
-        self.timeTextField.resignFirstResponder()
+        self.notesTextView.becomeFirstResponder()
     }
     
     @objc func cancelPicker()
@@ -207,26 +220,38 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         self.view.endEditing(true)
     }
     
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
     //MARK:- UIPickerViewDataSource methods
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int
+    {
         return 1
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+    {
         return time_range.count
     }
     
     //MARK:- UIPickerViewDelegates methods
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+    {
         return time_range[row]
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
         self.timeTextField.text = time_range[row]
     }
     
-    func setMapview(){
+    func setMapview()
+    {
         let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gestureReconizer:)))
         lpgr.minimumPressDuration = 0.1
         lpgr.delaysTouchesBegan = true
@@ -251,11 +276,12 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
             addAnnotation(location: locationCoordinate)
             lat_ = String(format:"%f", locationCoordinate.latitude)
             long_ = String(format:"%f", locationCoordinate.longitude)
+            fromDidupDateLocation = false
             self.getAddressFromLatLon(pdblLatitude: lat_, withLongitude: long_)
             print("Tapped at lat: \(locationCoordinate.latitude) long: \(locationCoordinate.longitude)")
-            }
-            return
         }
+            return
+    }
     
     func addAnnotation(location: CLLocationCoordinate2D)
     {
@@ -275,7 +301,8 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         self.mapView.removeAnnotations(self.mapView.annotations)
     }
     
-    func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {
+    func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String)
+    {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
         let lat: Double = Double("\(pdblLatitude)")!
@@ -323,10 +350,16 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                         print(addressString)
                     }
                      MBProgressHUD.hide(for: self.view, animated: true)
-                     self.address.text = addressString
+                    if (self.fromDidupDateLocation == true)
+                    {
+                        self.address.text = ""
+                    }
+                    else
+                    {
+                        self.address.text = addressString
+                    }
                 }
         })
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
@@ -335,6 +368,10 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         let span = MKCoordinateSpan(latitudeDelta: 0.0275, longitudeDelta: 0.0275)
         let region = MKCoordinateRegion(center: locValue, span: span)
+        lat_ = String(manager.location!.coordinate.latitude)
+        long_ = String(manager.location!.coordinate.longitude)
+        fromDidupDateLocation = true
+        self.getAddressFromLatLon(pdblLatitude: lat_, withLongitude: long_)
         mapView.setRegion(region, animated: true)
     }
     
@@ -387,6 +424,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
                         let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "View Timeslot" && status == "success"{
@@ -410,20 +448,35 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                             {
                                 self.timeTextField.isUserInteractionEnabled = false
                                 self.timeTextField.text = ""
-                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
-                                    // Custom action code
-                                    
-                                }
+                                if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                                   {
+                                       Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                           //Custom action code
+                                       }
+                                   }
+                                   else
+                                   {
+                                       Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                           //Custom action code
+                                       }
+                                   }
                             }
-                           
                         }
                         else
                         {
                             self.timeTextField.isUserInteractionEnabled = false
                             self.timeTextField.text = ""
-                            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
-                                // Custom action code
-                                
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                }
                             }
                         }
                     }) {
@@ -474,13 +527,13 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         else
         {
             let date = Date()
-            self.webRequest(user_master_id: GlobalVariables.shared.user_master_id,contact_person_name: self.name.text!,contact_person_number: self.phoneNumber.text!, service_latlon: String(format: "%@%@%@", lat_,",",long_), service_location: self.location, service_address: self.address.text!, order_date: date.formattedDateFromString(dateString: self.dateTextField.text!, withFormat:"yyyy-MM-dd")!, order_timeslot_id: timeslotID)
+            self.webRequest(user_master_id: GlobalVariables.shared.user_master_id,contact_person_name: self.name.text!,contact_person_number: self.phoneNumber.text!, service_latlon: String(format: "%@%@%@", lat_,",",long_), service_location: self.location, service_address: self.address.text!, order_date: date.formattedDateFromString(dateString: self.dateTextField.text!, withFormat:"yyyy-MM-dd")!, order_timeslot_id: timeslotID,notes:self.notesTextView.text!)
         }
     }
     
-    func webRequest(user_master_id: String, contact_person_name: String, contact_person_number: String, service_latlon: String, service_location: String, service_address: String, order_date: String, order_timeslot_id: String)
+    func webRequest(user_master_id: String, contact_person_name: String, contact_person_number: String, service_latlon: String, service_location: String, service_address: String, order_date: String, order_timeslot_id: String, notes:String)
     {
-        let parameters = ["user_master_id": user_master_id, "contact_person_name": contact_person_name, "contact_person_number": contact_person_number, "service_latlon": service_latlon, "service_location": service_location, "service_address": service_address, "order_date": order_date, "order_timeslot_id": order_timeslot_id]
+        let parameters = ["user_master_id": user_master_id, "contact_person_name": contact_person_name, "contact_person_number": contact_person_number, "service_latlon": service_latlon, "service_location": service_location, "service_address": service_address, "order_date": order_date, "order_timeslot_id": order_timeslot_id, "order_notes": notes]
         MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
             {
@@ -504,7 +557,10 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                                 if  self.advancepaymentStatus == "NA"
                                 {
                                     UserDefaults.standard.set("CA", forKey: "Advance/customer")
-                                    self.serviceProviderAllocation(user_master_id: GlobalVariables.shared.user_master_id, order_id: GlobalVariables.shared.order_id, displayMinute: self.displayMinute)
+//                                  self.serviceProviderAllocation(user_master_id: GlobalVariables.shared.user_master_id, order_id: GlobalVariables.shared.order_id)
+                                    self.callServiceAllocation ()
+                                    self.startTimer()
+                                    self.performSegue(withIdentifier: "bookingSuccess", sender: self)
                                 }
                                 else
                                 {
@@ -526,10 +582,10 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     
     func startTimer() {
         if timer == nil {
-            timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(callServiceAllocation), userInfo: nil, repeats: true);
+            timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(callServiceAllocation), userInfo: nil, repeats: true);
         }
     }
-    
+
     func stopTimer() {
         timer?.invalidate()
         timer = nil
@@ -537,12 +593,13 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     
     @objc func callServiceAllocation()
     {
-        self.serviceProviderAllocation(user_master_id: GlobalVariables.shared.user_master_id, order_id: GlobalVariables.shared.order_id, displayMinute: self.displayMinute)
+        //self.stopTimer()
+        self.serviceProviderAllocation(user_master_id: GlobalVariables.shared.user_master_id, order_id: GlobalVariables.shared.order_id)
     }
-    
-    func serviceProviderAllocation(user_master_id: String, order_id: String, displayMinute: String)
+                                     
+    func serviceProviderAllocation(user_master_id: String, order_id: String)
     {
-        let parameters = ["user_master_id": user_master_id, "order_id": order_id, "display_minute": displayMinute]
+        let parameters = ["user_master_id": user_master_id, "order_id": order_id, "display_minute": self.displayMinute]
         MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
             {
@@ -554,12 +611,12 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        print(msg)
                         let msg_en = json["msg_en"].stringValue
                         let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "Mobile OTP" && status == "success"
                         {
-                           self.stopTimer()
                             if LocalizationSystem.sharedInstance.getLanguage() == "en"
                             {
                                 Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
@@ -577,10 +634,8 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                         }
                         else
                         {
-
                             if self.displayMinute == "1"
                             {
-                                self.startTimer()
                                 self.displayMinute = "2"
                             }
                             else if self.displayMinute == "2"
@@ -591,11 +646,9 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                             {
                                 self.stopTimer()
                             }
-                            
-                            self.performSegue(withIdentifier: "bookingSuccess", sender: self)
-
+//                          self.performSegue(withIdentifier: "bookingSuccess", sender: self)
                         }
-                    }) {
+                     }) {
                         (error) -> Void in
                         print(error)
                     }
@@ -605,6 +658,12 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                     print("Unable to load data: \(error)")
                 }
         }
+        
+    }
+    
+    @objc func suspendServiceRequest ()
+    {
+       
     }
     
     // MARK: - Navigation
@@ -612,7 +671,6 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        
         if (segue.identifier == "advancePayment")
         {
             let vc = segue.destination as! AdvancePayment
@@ -625,3 +683,29 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         }
     }
 }
+
+//extension Dictionary
+//{
+//    func percentEncoded() -> Data? {
+//        return map { key, value in
+//            let escapedKey = "\(key)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
+//            let escapedValue = "\(value)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
+//            return escapedKey + "=" + escapedValue
+//        }
+//        .joined(separator: "&")
+//        .data(using: .utf8)
+//    }
+//}
+//
+//extension CharacterSet
+//{
+//    static let urlQueryValueAllowed: CharacterSet =
+//    {
+//        let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
+//        let subDelimitersToEncode = "!$&'()*+,;="
+//
+//        var allowed = CharacterSet.urlQueryAllowed
+//        allowed.remove(charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)")
+//        return allowed
+//    }()
+//}

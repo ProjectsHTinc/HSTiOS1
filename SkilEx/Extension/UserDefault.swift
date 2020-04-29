@@ -29,7 +29,6 @@ extension UserDefaults
     
     func saveUserdata(userdata: UserData)
     {
-        
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(userdata) {
             let defaults = UserDefaults.standard
@@ -37,7 +36,8 @@ extension UserDefaults
         }
     }
     
-    func getUserData()-> UserData? {
+    func getUserData()-> UserData?
+    {
     
         if data(forKey: UserDefaultsKey.userSessionKey.rawValue) != nil
         {
@@ -54,7 +54,6 @@ extension UserDefaults
     
     func saveServicesDescripition(servicesDescripition: ServicesDescripition)
     {
-        
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(servicesDescripition) {
             let defaults = UserDefaults.standard
@@ -68,7 +67,8 @@ extension UserDefaults
         {
             let decodedData = UserDefaults.standard.data(forKey: UserDefaultsKey.userSessionKey.rawValue)
             var servicesdescripition: ServicesDescripition?
-            if decodedData != nil {
+            if decodedData != nil
+            {
                 servicesdescripition = try! JSONDecoder().decode(ServicesDescripition.self, from: decodedData!)
             }
             return servicesdescripition
@@ -81,13 +81,15 @@ extension UserDefaults
     {
         
         let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(servicesListDetail) {
+        if let encoded = try? encoder.encode(servicesListDetail)
+        {
             let defaults = UserDefaults.standard
             defaults.set(encoded, forKey: UserDefaultsKey.userSessionKey.rawValue)
         }
     }
     
-    func getServicesDetail()-> ServicesListDetail? {
+    func getServicesDetail()-> ServicesListDetail?
+    {
         
         if data(forKey: UserDefaultsKey.userSessionKey.rawValue) != nil
         {
@@ -111,8 +113,8 @@ extension UserDefaults
         }
     }
     
-    func getServiceSummary()-> ServiceSummary? {
-        
+    func getServiceSummary()-> ServiceSummary?
+    {
         if data(forKey: UserDefaultsKey.userSessionKey.rawValue) != nil
         {
             let decodedData = UserDefaults.standard.data(forKey: UserDefaultsKey.userSessionKey.rawValue)
@@ -121,6 +123,30 @@ extension UserDefaults
                 service_Summary = try! JSONDecoder().decode(ServiceSummary.self, from: decodedData!)
             }
             return service_Summary
+        }
+        
+        return nil
+    }
+    
+    func saveWalletData(walletData: WalletData)
+    {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(walletData) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: UserDefaultsKey.userSessionKey.rawValue)
+        }
+    }
+    
+    func getWalletData()-> WalletData?
+    {
+        if data(forKey: UserDefaultsKey.userSessionKey.rawValue) != nil
+        {
+            let decodedData = UserDefaults.standard.data(forKey: UserDefaultsKey.userSessionKey.rawValue)
+            var Wallet_Data: WalletData?
+            if decodedData != nil {
+                Wallet_Data = try! JSONDecoder().decode(WalletData.self, from: decodedData!)
+            }
+            return Wallet_Data
         }
         
         return nil

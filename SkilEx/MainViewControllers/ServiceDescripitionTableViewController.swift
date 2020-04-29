@@ -18,6 +18,11 @@ class ServiceDescripitionTableViewController: UITableViewController {
     @IBOutlet weak var procedureText: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var othersLabel: UILabel!
+    @IBOutlet weak var booknowOutlet: UIButton!
+    @IBOutlet weak var inclusionLabel: UILabel!
+    @IBOutlet weak var exclusionLabel: UILabel!
+    @IBOutlet weak var procedureLabel: UILabel!
+    @IBOutlet weak var othertitleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +36,12 @@ class ServiceDescripitionTableViewController: UITableViewController {
         
         if LocalizationSystem.sharedInstance.getLanguage() == "en"
         {
+            inclusionLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicediscripitionInclusion_text", comment: "")
+            exclusionLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicediscripitionExclusion_text", comment: "")
+            procedureLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicediscripitionProcedure_text", comment: "")
+            othertitleLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicediscripitionOthers_text", comment: "")
+            booknowOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicediscripitionbooknwBtn_text", comment: ""), for: .normal)
+            
             let serviceDetail = UserDefaults.standard.getServicesDescripition()
             self.serviceName.text = serviceDetail?.rate_card_details
             self.amountLabel.text = String(format: "%@ %@","Rs.",(serviceDetail?.rate_card!)!)
@@ -41,6 +52,12 @@ class ServiceDescripitionTableViewController: UITableViewController {
         }
         else
         {
+            inclusionLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicediscripitionInclusion_text", comment: "")
+            exclusionLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicediscripitionExclusion_text", comment: "")
+            procedureLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicediscripitionProcedure_text", comment: "")
+            othertitleLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicediscripitionOthers_text", comment: "")
+            booknowOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicediscripitionbooknwBtn_text", comment: ""), for: .normal)
+            
             let serviceDetail = UserDefaults.standard.getServicesDescripition()
             self.serviceName.text = serviceDetail?.rate_card_details_ta
             self.amountLabel.text = String(format: "%@ %@","Rs.",(serviceDetail?.rate_card!)!)

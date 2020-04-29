@@ -14,14 +14,41 @@ class AFWrapper: NSObject {
     
 //MARK: API URL
     
-     /*live Url*/
-        //"https://skilex.in/apicustomer/"
-     /*Development Url*/
-       //"http://skilex.in/development/apicustomer/"
-     /*Development Url*/
-       //static let subBASE_URL = "http://skilex.in/development/apicustomer/"
+     //Live Base Url
+     /*"https://skilex.in/apicustomer/"*/
     
-static let BASE_URL = "https://skilex.in/apicustomer/"
+     //Development Base Url
+     /*"https://skilex.in/development/apicustomer/"*/
+    
+     //Live Base Url For PaymentGateway
+     /*"https://skilex.in/"*/
+    
+     //Development Base Url For PaymentGateway
+     /*"https://www.skilex.in/development"*/
+     
+    //static let BASE_URL = "https://skilex.in/development/apicustomer/"
+    
+static let BASE_URL = "https://skilex.in/development/apicustomerios/"
+static let PaymentBaseUrl = "https://www.skilex.in/development/"
+    
+//static let BASE_URL = "https://skilex.in/apicustomer/"
+//static let PaymentBaseUrl = "https://skilex.in/"
+    
+    
+    public static let sharedManager: SessionManager = {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 0
+        let manager = Alamofire.SessionManager(configuration: configuration, delegate: SessionManager.default.delegate)
+        return manager
+    }()
+    
+    public static let almosharedManager: SessionManager = {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 20
+        let manager = Alamofire.SessionManager(configuration: configuration, delegate: SessionManager.default.delegate)
+        return manager
+    }()
+    
 
     class func cancelAllRequests() {
         let sessionManager = Alamofire.SessionManager.default
@@ -30,6 +57,29 @@ static let BASE_URL = "https://skilex.in/apicustomer/"
             uploadTasks.forEach { $0.cancel() }
             downloadTasks.forEach { $0.cancel() }
         }
+    }
+    
+    class func setTimerforPostRequest (_ strURL : String, params : [String:String]?, headers : [String : String]?, success:@escaping (JSON) -> Void, failure:@escaping (Error) -> Void)
+   throws {
+    
+    
+    sharedManager.request(strURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+         
+         print(responseObject)
+         
+         if responseObject.result.isSuccess
+         {
+             let resJson = JSON(responseObject.result.value!)
+             success(resJson)
+         }
+         
+         if responseObject.result.isFailure
+         {
+             let error : Error = responseObject.result.error!
+             failure(error)
+         }
+     }
+        
     }
     
     class func requestGETURL(_ strURL: String, success:@escaping (JSON) -> Void, failure:@escaping (Error) -> Void)
@@ -45,6 +95,10 @@ static let BASE_URL = "https://skilex.in/apicustomer/"
             if responseObject.result.isFailure {
                 let error : Error = responseObject.result.error!
                 failure(error)
+                if error._code == NSURLErrorTimedOut {
+                    print("Request timeout!")
+                    self.cancelAllRequests()
+                }
             }
         }
         
@@ -57,11 +111,14 @@ static let BASE_URL = "https://skilex.in/apicustomer/"
             
             print(responseObject)
             
-            if responseObject.result.isSuccess {
+            if responseObject.result.isSuccess
+            {
                 let resJson = JSON(responseObject.result.value!)
                 success(resJson)
             }
-            if responseObject.result.isFailure {
+            
+            if responseObject.result.isFailure
+            {
                 let error : Error = responseObject.result.error!
                 failure(error)
             }
@@ -109,5 +166,4 @@ static let BASE_URL = "https://skilex.in/apicustomer/"
             }
         })
     }
-
 }

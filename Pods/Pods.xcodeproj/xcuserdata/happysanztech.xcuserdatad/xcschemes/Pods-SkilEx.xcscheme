@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "413521FFA828899DB9958EB68DFC0BC2"
+               BlueprintIdentifier = "ADC7686C535505C98CABD3E538F4172D"
                BuildableName = "Pods_SkilEx.framework"
                BlueprintName = "Pods-SkilEx"
                ReferencedContainer = "container:Pods.xcodeproj">

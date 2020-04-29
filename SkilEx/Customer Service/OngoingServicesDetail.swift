@@ -30,6 +30,17 @@ class OngoingServicesDetail: UIViewController {
     @IBOutlet weak var estimatedCostLabel: UILabel!
     @IBOutlet weak var callServicePersonLabel: UILabel!
     @IBOutlet weak var orderidLabel: UILabel!
+    @IBOutlet weak var statusView: UIView!
+    @IBOutlet weak var statusImg: UIImageView!
+    @IBOutlet weak var serviceResumeDateHeight: NSLayoutConstraint!
+    @IBOutlet weak var serviceResumeTimeHeight: NSLayoutConstraint!
+    @IBOutlet weak var trackButtonHeight: NSLayoutConstraint!
+    @IBOutlet weak var serviceREsumeDateLabel: UILabel!
+    @IBOutlet weak var serviceResumeTime: UILabel!
+    @IBOutlet weak var serviceResumeDateOutlet: UILabel!
+    @IBOutlet weak var serviceResumeTimeOutlet: UILabel!
+    @IBOutlet weak var serviceResumeDateOutletHeight: NSLayoutConstraint!
+    @IBOutlet weak var serviceResumeTimeOutletHeight: NSLayoutConstraint!
     
     var serviceorderId = String()
     let serviceListDetail = UserDefaults.standard.getServicesDetail()
@@ -53,6 +64,9 @@ class OngoingServicesDetail: UIViewController {
             self.trackOutlet.isHidden = true
             trackOutlet.layer.cornerRadius = 5.0
             trackOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 16, backgroundcolor: UIColor.gray)
+            self.statusImg.image = UIImage(named: "ios_icons-27")
+            self.statusView.backgroundColor = UIColor.init(red: 174/255.0, green: 132/255.0, blue: 187/255.0, alpha: 1.0)
+
         }
         else if serviceListDetail?.order_status == "Initiated"
         {
@@ -60,12 +74,68 @@ class OngoingServicesDetail: UIViewController {
             self.trackOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingtrack_text", comment: ""), for: .normal)
             trackOutlet.layer.cornerRadius = 5.0
             trackOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 16, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
+            self.statusImg.image = UIImage(named: "ios_icons-27")
+            self.statusView.backgroundColor = UIColor.init(red: 174/255.0, green: 132/255.0, blue: 187/255.0, alpha: 1.0)
+            
+//          self.serviceREsumeDateLabel.isHidden = true
+//          self.serviceResumeTime.isHidden = true
+//
+//          self.serviceResumeDateOutlet.isHidden = true
+//          self.serviceResumeTimeOutlet.isHidden = true
+            
+            self.serviceResumeDateHeight.constant = 0.0
+            self.serviceResumeTimeHeight.constant = 0.0
+            self.serviceResumeDateOutletHeight.constant = 0.0
+            self.serviceResumeTimeOutletHeight.constant = 0.0
+          
+        }
+        else if serviceListDetail?.order_status == "Hold"
+        {
+            self.trackOutlet.isHidden = true
+            trackOutlet.layer.cornerRadius = 5.0
+            trackOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 16, backgroundcolor: UIColor.gray)
+            self.statusView.backgroundColor = UIColor.init(red: 238/255.0, green: 25/255.0, blue: 37/255.0, alpha: 1.0)
+            self.statusImg.image = UIImage(named: "onhold")
+            
+            self.serviceResumeDateHeight.constant = 15.0
+            self.serviceResumeTimeHeight.constant = 15.0
+            self.serviceResumeDateOutletHeight.constant = 15.0
+            self.serviceResumeTimeOutletHeight.constant = 15.0
+
+        }
+        else if serviceListDetail?.order_status == "Started"
+        {
+            self.trackOutlet.isHidden = true
+            trackOutlet.layer.cornerRadius = 5.0
+            trackOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 16, backgroundcolor: UIColor.gray)
+            self.statusView.backgroundColor = UIColor.init(red: 238/255.0, green: 25/255.0, blue: 37/255.0, alpha: 1.0)
+            self.statusImg.image = UIImage(named: "ios_icons-27")
+        }
+        else if serviceListDetail?.order_status == "Accepted"
+        {
+            self.trackOutlet.isHidden = true
+            trackOutlet.layer.cornerRadius = 5.0
+            trackOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 16, backgroundcolor: UIColor.gray)
+            self.statusView.backgroundColor = UIColor.init(red: 238/255.0, green: 25/255.0, blue: 37/255.0, alpha: 1.0)
+            self.statusImg.image = UIImage(named: "ios_icons-27")
+            
+            self.serviceResumeDateHeight.constant = 0.0
+            self.serviceResumeTimeHeight.constant = 0.0
+            self.serviceResumeDateOutletHeight.constant = 0.0
+            self.serviceResumeTimeOutletHeight.constant = 0.0
         }
         else
         {
             self.trackOutlet.isHidden = true
             trackOutlet.layer.cornerRadius = 5.0
             trackOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 16, backgroundcolor: UIColor.gray)
+            self.statusView.backgroundColor = UIColor.init(red: 174/255.0, green: 132/255.0, blue: 187/255.0, alpha: 1.0)
+            self.statusImg.image = UIImage(named: "ios_icons-27")
+            
+            self.serviceResumeDateHeight.constant = 0.0
+            self.serviceResumeTimeHeight.constant = 0.0
+            self.serviceResumeDateOutletHeight.constant = 0.0
+            self.serviceResumeTimeOutletHeight.constant = 0.0
         }
         
         let person_number = serviceListDetail?.person_number
@@ -99,6 +169,12 @@ class OngoingServicesDetail: UIViewController {
 //            }
 //            trackOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
 //        }
+        statusView.roundCorners(corners: .topRight, radius: 5.0)
+
+    }
+    
+     func layoutSubviews() {
+        statusView.roundCorners(corners: .topRight, radius: 5.0)
     }
     
     func preferedLanguage()
@@ -108,6 +184,9 @@ class OngoingServicesDetail: UIViewController {
         self.serviceTimeSlotLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingtimeslot_text", comment: "")
         self.estimatedCostLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingestimatedcost_text", comment: "")
         self.callServicePersonLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingcallserviceperson_text", comment: "")
+        self.serviceResumeTime.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingsResumeTime_text", comment: "")
+        self.serviceREsumeDateLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingsResumeDate_text", comment: "")
+
     }
     
     func LoadValues()
@@ -142,6 +221,9 @@ class OngoingServicesDetail: UIViewController {
             self.serviceProviderName.text = serviceListDetail?.provider_name
             self.callServiceProviderOutlet.setTitle(serviceListDetail?.person_number, for: .normal)
             self.orderidLabel.text = String(format: "%@ : %@",LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesorderID_text", comment: ""),serviceListDetail!.service_order_id ?? "")
+            self.serviceResumeDateOutlet.text = serviceListDetail?.resume_date
+            self.serviceResumeTimeOutlet.text = serviceListDetail?.r_time_slot
+
         }
         else
         {
@@ -173,6 +255,8 @@ class OngoingServicesDetail: UIViewController {
             self.serviceProviderName.text = serviceListDetail?.provider_name
             self.callServiceProviderOutlet.setTitle(serviceListDetail?.person_number, for: .normal)
             self.orderidLabel.text = String(format: "%@ : %@",LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesorderID_text", comment: ""),serviceListDetail!.service_order_id ?? "")
+            self.serviceResumeDateOutlet.text = serviceListDetail?.resume_date
+            self.serviceResumeTimeOutlet.text = serviceListDetail?.r_time_slot
         }
     }
     
@@ -232,3 +316,5 @@ class OngoingServicesDetail: UIViewController {
     
 
 }
+
+

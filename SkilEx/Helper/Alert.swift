@@ -69,9 +69,9 @@ class Alert: NSObject {
             alertController.dismiss(animated: true, completion: nil)
         }
     }
-
+    
     //Displey
-
+    
     //Dismisses all alerts
     func cancelAllAlerts() {
         for alertCtrl in alertCtrls {

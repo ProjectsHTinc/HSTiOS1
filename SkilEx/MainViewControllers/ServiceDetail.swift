@@ -28,6 +28,7 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
     var selectedSegementIndex = Int()
     var selectedRowIndex = -1
     var indexArray  : [NSIndexPath]?
+    var serviceCount = String()
     
     @IBOutlet weak var viewSummaryLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -47,9 +48,9 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         segmentedControl1?.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.down
         segmentedControl1?.backgroundColor = UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255.0, alpha: 1.0)
 
-//        let font = UIFont.systemFont(ofSize: 14)
+//      let font = UIFont.systemFont(ofSize: 14)
         segmentedControl1?.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Helvetica-Bold", size: 14)!,NSAttributedString.Key.foregroundColor: UIColor(red: 229.0/255, green: 229.0/255, blue: 229.0/255.0, alpha: 1.0)]
-//        segmentedControl1?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+//      segmentedControl1?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         segmentedControl1?.selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         segmentedControl1?.selectionIndicatorColor = UIColor.white
         segmentedControl1?.isVerticalDividerEnabled = false
@@ -63,12 +64,13 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         segmentedControl1?.addTarget(self, action: #selector(segmentedControlChangedValue(_:)), for: .valueChanged)
         view.addSubview(segmentedControl1!)
         
-        sub_cat_id = self.subcategoeryIDArr[0]
-        self.webRequestServiceList(Index: sub_cat_id)
+//        sub_cat_id = self.subcategoeryIDArr[0]
+//        self.webRequestServiceList(Index: sub_cat_id)
         lastSelectedIndex = 0
         self.indexArray = []
         GlobalVariables.shared.viewPage = "ServiceDetail"
         self.preferedLanguage()
+        self.serviceCount = "0"
 
     }
     
@@ -84,9 +86,10 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
     {
         sub_cat_id = self.subcategoeryIDArr[0]
         self.webRequestServiceList(Index: sub_cat_id)
+        self.segmentedControl1?.selectedSegmentIndex = 0
+        self.serviceCount = "0"
         self.indexArray = []
         self.preferedLanguage()
-
     }
     
     func preferedLanguage()
@@ -94,18 +97,17 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailnav_text", comment: "")
         serviceCountLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailservice_text", comment: "")
         viewSummaryLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailsummary_text", comment: "")
-
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @objc func segmentedControlChangedValue(_ segmentedControl: HMSegmentedControl?) {
+    @objc func segmentedControlChangedValue(_ segmentedControl: HMSegmentedControl?)
+    {
         print(String(format: "Selected index %ld (via UIControlEventValueChanged)", Int(segmentedControl?.selectedSegmentIndex ?? 0)))
-        
+        print(self.serviceCount)
         if (sub_cat_id == "0")
         {
             sub_cat_id = self.subcategoeryIDArr[Int(segmentedControl?.selectedSegmentIndex ?? 0)]
@@ -113,14 +115,16 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         }
         else
         {
-            
-            if isServiceAddButtonIsClicked == true
+            if (self.serviceCount != "0")
             {
                 let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailalertnextcatgoery", comment: ""), preferredStyle: UIAlertController.Style.alert)
                 
                 
-                let okAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "confirmalert", comment: ""), style: UIAlertAction.Style.default) {
+                let okAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "confirmalert", comment: ""), style: UIAlertAction.Style.default)
+                {
                     UIAlertAction in
+                    self.isServiceAddButtonIsClicked = false
+                    self.serviceCount = "0"
                     self.serviceRemoveFromCart(user_master_id: GlobalVariables.shared.user_master_id)
                     self.selectedSegementIndex = Int(segmentedControl?.selectedSegmentIndex ?? 0)
                     self.lastSelectedIndex = Int(segmentedControl?.selectedSegmentIndex ?? 0)
@@ -166,14 +170,15 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                             let status = json["status"].stringValue
                             if msg == "View Services" && status == "success"
                             {
-                                if json["services"].count > 0 {
+                                if json["services"].count > 0
+                                {
                                     
                                     self.serviceArr.removeAll()
                                     self.service_nameArr.removeAll()
                                     self.serviceIDArr.removeAll()
                                     
-                                    for i in 0..<json["services"].count {
-                                        
+                                    for i in 0..<json["services"].count
+                                    {
                                         let services = Services.init(json: json["services"][i])
                                         self.serviceArr.append(services)
                                         let service_name = services.service_name
@@ -185,11 +190,11 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                                         {
                                             let myIndexPath = NSIndexPath(row: i, section: 0)
                                             self.indexArray?.append(myIndexPath as NSIndexPath)
-                                            let serviceCount = String(GlobalVariables.shared.rowCount)
-                                            self.UpdateServiceCountandCost(serviceCount:serviceCount, amount: GlobalVariables.shared.Service_amount)
+                                            self.serviceCount = String(GlobalVariables.shared.rowCount)
+                                            self.UpdateServiceCountandCost(serviceCount:self.serviceCount, amount: GlobalVariables.shared.Service_amount)
                                         }
                                     }
-                                        self.tableView .reloadData()
+                                        self.tableView.reloadData()
                                 }
                                 
                             }
@@ -349,18 +354,35 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
     }
     
     
-    @objc func buttonSelected(sender: UIButton){
-        print(sender.tag)
-        isServiceAddButtonIsClicked = true
-        let myIndexPath = NSIndexPath(row: sender.tag, section: 0)
-        self.indexArray?.append(myIndexPath as NSIndexPath)
-        print(indexArray as Any)
-        let cell = tableView.cellForRow(at: myIndexPath as IndexPath) as! ServiceDetailTableViewCell
-        self.serviceAddToCart(user_master_id: GlobalVariables.shared.user_master_id, category_id: main_cat_id, sub_category_id: sub_cat_id, service_id: serviceIDArr[myIndexPath.row])
-        cell.selectionBackgroundView.backgroundColor =  UIColor(red: 142.0/255, green: 198.0/255, blue: 65.0/255, alpha: 1.0)
-        cell.addImage.isHidden = true
-        cell.addLabel.isHidden = true
-        cell.tickImage.isHidden = false
+    @objc func buttonSelected(sender: UIButton)
+    {
+           print(sender.tag)
+           let myIndexPath = NSIndexPath(row: sender.tag, section: 0)
+           if ((indexArray?.contains(myIndexPath))!)
+           {
+            let indexOfA = indexArray?.firstIndex(of: myIndexPath)
+            print("YES",indexOfA as Any)
+            self.indexArray?.remove(at: indexOfA!)
+            let cell = tableView.cellForRow(at: myIndexPath as IndexPath) as! ServiceDetailTableViewCell
+            cell.selectionBackgroundView.backgroundColor =  UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0)
+            cell.addImage.isHidden = false
+            cell.addLabel.isHidden = false
+            cell.tickImage.isHidden = true
+            self.removeServiceFromCart(user_master_id: GlobalVariables.shared.user_master_id, category_id: main_cat_id, sub_category_id: sub_cat_id, service_id: serviceIDArr[myIndexPath.row])
+
+           }
+           else
+           {
+            isServiceAddButtonIsClicked = true
+            self.indexArray?.append((myIndexPath as NSIndexPath))
+            print(indexArray as Any)
+            let cell = tableView.cellForRow(at: myIndexPath as IndexPath) as! ServiceDetailTableViewCell
+            self.serviceAddToCart(user_master_id: GlobalVariables.shared.user_master_id, category_id: main_cat_id, sub_category_id: sub_cat_id, service_id: serviceIDArr[myIndexPath.row])
+            cell.selectionBackgroundView.backgroundColor =  UIColor(red: 142.0/255, green: 198.0/255, blue: 65.0/255, alpha: 1.0)
+            cell.addImage.isHidden = true
+            cell.addLabel.isHidden = true
+            cell.tickImage.isHidden = false
+           }
     }
     
     func serviceAddToCart(user_master_id: String, category_id: String, sub_category_id: String, service_id:String)
@@ -386,6 +408,7 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         {
             let url = AFWrapper.BASE_URL + "add_service_to_cart"
             let parameters = ["user_master_id": user_master_id, "category_id": category_id, "sub_category_id": sub_category_id, "service_id": service_id]
+            MBProgressHUD.showAdded(to: self.view, animated: true)
             DispatchQueue.global().async
                 {
                     do
@@ -393,25 +416,36 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                         try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
                             (JSONResponse) -> Void in
                             print(JSONResponse)
+                            MBProgressHUD.hide(for: self.view, animated: true)
                             let json = JSON(JSONResponse)
                             let msg = json["msg"].stringValue
-                            let msg_ta = json["msg_ta"].stringValue
+//                            let msg_en = json["msg_en"].stringValue
+//                            let msg_ta = json["msg_ta"].stringValue
                             let status = json["status"].stringValue
                             if msg == "Service added to cart" && status == "success"
                             {
                                 let cart_total = json["cart_total"]
                                 print(cart_total as Any)
-                                let service_count = cart_total["service_count"].stringValue
+                                self.serviceCount = cart_total["service_count"].stringValue
                                 GlobalVariables.shared.Service_amount = cart_total["total_amt"].stringValue
-                                MBProgressHUD.showAdded(to: self.view, animated: true)
-                                self.UpdateServiceCountandCost(serviceCount: service_count , amount: GlobalVariables.shared.Service_amount)
+                                self.UpdateServiceCountandCost(serviceCount: self.serviceCount , amount: GlobalVariables.shared.Service_amount)
                             }
                             else
                             {
-                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
-                                    // Custom action code
-                                    
-                                }
+//                                if LocalizationSystem.sharedInstance.getLanguage() == "en"
+//                                {
+//                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+//                                        // Custom action code
+//                                   }
+//                                }
+//                                else
+//                                {
+//                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+//                                        // Custom action code
+//                                     }
+//                                }
+//                                self.UpdateServiceCountandCost(serviceCount: "2" , amount: "2")
+
                             }
                         }) {
                             (error) -> Void in
@@ -426,16 +460,96 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         }
     }
     
+    func removeServiceFromCart(user_master_id: String, category_id: String, sub_category_id: String, service_id:String)
+    {
+        if user_master_id.isEmpty == true
+        {
+           let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "homealertmsg_text", comment: ""), preferredStyle: UIAlertController.Style.alert)
+           
+           
+           let okAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "login_text", comment: ""), style: UIAlertAction.Style.default) {
+               UIAlertAction in
+               self.performSegue(withIdentifier: "to_Login", sender: self)
+           }
+           let cancelAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "cancel", comment: ""), style: UIAlertAction.Style.default) {
+               UIAlertAction in
+           }
+           
+           alertController.addAction(okAction)
+           alertController.addAction(cancelAction)
+           self.present(alertController, animated: true, completion: nil)
+       }
+       else
+       {
+           let url = AFWrapper.BASE_URL + "remove_service_from_cart"
+           let parameters = ["user_master_id": user_master_id, "category_id": category_id, "sub_category_id": sub_category_id, "service_id": service_id]
+           MBProgressHUD.showAdded(to: self.view, animated: true)
+           DispatchQueue.global().async
+               {
+                   do
+                   {
+                       try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
+                           (JSONResponse) -> Void in
+                           print(JSONResponse)
+                           MBProgressHUD.hide(for: self.view, animated: true)
+                           let json = JSON(JSONResponse)
+                           let msg = json["msg"].stringValue
+                           let msg_en = json["msg_en"].stringValue
+                           let msg_ta = json["msg_ta"].stringValue
+                           let status = json["status"].stringValue
+                           if msg == "Service added to cart" && status == "success"
+                           {
+                               let cart_total = json["cart_total"]
+                               print(cart_total as Any)
+                               self.serviceCount = cart_total["service_count"].stringValue
+                               GlobalVariables.shared.Service_amount = cart_total["total_amt"].stringValue
+                               self.UpdateServiceCountandCost(serviceCount: self.serviceCount , amount: GlobalVariables.shared.Service_amount)
+                           }
+                           else
+                           {
+                               if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                               {
+                                   Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                       // Custom action code
+                                  }
+                               }
+                               else
+                               {
+                                   Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                       // Custom action code
+                                    }
+                               }
+                           }
+                       }) {
+                           (error) -> Void in
+                           print(error)
+                       }
+                   }
+                   catch
+                   {
+                       print("Unable to load data: \(error)")
+                   }
+           }
+       }
+    }
+    
     func UpdateServiceCountandCost(serviceCount:String, amount:String)
     {
-        MBProgressHUD.hide(for: self.view, animated: true)
-        self.serviceCountLabel.text = String(format: "%@%@%@ | %@%@", LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailservice_text", comment: ""),":", serviceCount,"Rs.",amount)
+        if (serviceCount == "0")
+        {
+             self.serviceCountLabel.text = "Services"
+        }
+        else
+        {
+            self.serviceCountLabel.text = String(format: "%@%@%@ | %@%@", LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailservice_text", comment: ""),":", serviceCount,"Rs.",amount)
+        }
     }
     
     func serviceRemoveFromCart(user_master_id: String)
     {
         let url = AFWrapper.BASE_URL + "clear_cart"
         let parameters = ["user_master_id": user_master_id]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
             {
                 do
@@ -443,12 +557,12 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                     try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
                         (JSONResponse) -> Void in
                         print(JSONResponse)
+                        MBProgressHUD.hide(for: self.view, animated: true)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
                         let status = json["status"].stringValue
                         if msg == "All Service removed from cart" && status == "success"
                         {
-                            MBProgressHUD.showAdded(to: self.view, animated: true)
                             self.UpdateServiceCountandCost(serviceCount: "0" , amount: "0")
                             self.indexArray = []
                         }
@@ -507,7 +621,6 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
              }
         
         }
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -516,10 +629,14 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
     
     @objc public override func backButtonClick()
     {
-        if isServiceAddButtonIsClicked == true
+        if (self.serviceCount == "0")
+        {
+            self.navigationController?.popViewController(animated: true)
+        }
+        else
         {
             let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicespageBack_text", comment: ""), preferredStyle: UIAlertController.Style.alert)
-            
+                    
             
             let okAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default) {
                 UIAlertAction in
@@ -535,11 +652,6 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
             alertController.addAction(okAction)
             alertController.addAction(cancelAction)
             self.present(alertController, animated: true, completion: nil)
-        }
-        else
-        {
-            self.navigationController?.popViewController(animated: true)
-
         }
     }
 
@@ -564,15 +676,15 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         }
         else
         {
-            if isServiceAddButtonIsClicked == true
+            if (self.serviceCount == "0")
             {
-                self.performSegue(withIdentifier: "viewSummary", sender: self)
+                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicescartmsg_text", comment: "")) { (action) in
+                                   
+                }
             }
             else
             {
-                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicescartmsg_text", comment: "")) { (action) in
-                    
-                }
+               self.performSegue(withIdentifier: "viewSummary", sender: self)
             }
         }
     }

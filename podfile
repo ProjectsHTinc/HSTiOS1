@@ -1,4 +1,4 @@
-  platform :ios, '10.0'
+   platform :ios, '10.0'
    use_frameworks!
 
    target 'SkilEx' do
@@ -10,4 +10,6 @@
    pod ‘ReachabilitySwift’, ‘~> 3’
    pod 'HMSegmentedControl'
    pod 'OpenSSL-Universal'
+   pod 'Facebook-iOS-SDK'
+   
    end

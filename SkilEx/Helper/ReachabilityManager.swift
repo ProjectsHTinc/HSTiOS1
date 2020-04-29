@@ -16,8 +16,10 @@ class ReachabilityManager: NSObject {
     var isNetworkAvailable : Bool {
         return reachabilityStatus != .notReachable
     }
+    
     // 4. Tracks current NetworkStatus (notReachable, reachableViaWiFi, reachableViaWWAN)
     var reachabilityStatus: Reachability.NetworkStatus = .notReachable
+    
     // 5. Reachability instance for Network status monitoring
     let reachability = Reachability()!
 
@@ -32,9 +34,9 @@ class ReachabilityManager: NSObject {
                 case .reachableViaWWAN:
                 print("Network reachable through Cellular Data")
                 }
-
    }
-    /// Starts monitoring the network availability status
+    
+    // Starts monitoring the network availability status
     func startMonitoring() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.reachabilityChanged),
@@ -46,7 +48,8 @@ class ReachabilityManager: NSObject {
             debugPrint("Could not start reachability notifier")
         }
     }
-    /// Stops monitoring the network availability status
+    
+    // Stops monitoring the network availability status
     func stopMonitoring(){
         reachability.stopNotifier()
         NotificationCenter.default.removeObserver(self,

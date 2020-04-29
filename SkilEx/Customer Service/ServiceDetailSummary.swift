@@ -111,29 +111,28 @@ class ServiceDetailSummary: UITableViewController, UITextViewDelegate
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
-                        let msg_en = json["msg_en"].stringValue
-                        let msg_ta = json["msg_ta"].stringValue
+//                        let msg_en = json["msg_en"].stringValue
+//                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "Proceed for Payment" && status == "success"
                         {
                             GlobalVariables.shared.order_id = json["payment_details"]["order_id"].stringValue
                             GlobalVariables.shared.payableAmount = json["payment_details"]["payable_amount"].stringValue
-                            
                         }
                         else
                         {
-                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
-                            {
-                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
-                                    //Custom action code
-                                }
-                            }
-                            else
-                            {
-                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
-                                    //Custom action code
-                                }
-                            }
+//                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+//                            {
+//                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+//                                    //Custom action code
+//                                }
+//                            }
+//                            else
+//                            {
+//                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+//                                    //Custom action code
+//                                }
+//                            }
                         }
                     }) {
                         (error) -> Void in

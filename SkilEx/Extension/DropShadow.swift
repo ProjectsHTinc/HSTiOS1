@@ -22,7 +22,8 @@ extension UIView {
 }
 
 extension UIView {
-    func dropShadow(scale: Bool = true) {
+    func dropShadow(scale: Bool = true)
+    {
         layer.masksToBounds = false
         layer.shadowColor = UIColor.gray.cgColor
         layer.shadowOpacity = 0.2

@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import MBProgressHUD
+import Alamofire
 
 class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate
 {
@@ -21,10 +22,15 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
     var subcategoeryArr = [String]()
     var subcategoeryID = [String]()
     var cat_id = String()
+//    var request: Alamofire.Request?
+    
+    let queue = DispatchQueue(label: "com.company.app.queue", attributes: .concurrent)
+    let group = DispatchGroup()
     
     @IBOutlet var bannerCollectionView: UICollectionView!
     @IBOutlet var categoryCollectionView: UICollectionView!
     @IBOutlet weak var searchTextfield: UITextField!
+    @IBOutlet weak var closeBtnImg: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,23 +39,139 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         /*temp hide */
         //self.addrightButton()
         /*temp hide */
+        //self.request?.resume()
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
     }
     
+    @objc func willEnterForeground() {
+       // do what's needed
+//        self.request?.resume()
+        self.closeBtnImg.isHidden = true
+        self.searchTextfield.isHidden = true
+        self.checkAppVersion(versionCode: "2")
+    }
     
     
     override func viewWillAppear(_ animated: Bool)
     {
-       self.viewMainCategoery()
-       self.viewBanners()
-       self.serviceRemoveFromCart(user_master_id: GlobalVariables.shared.user_master_id)
-       self.categoryCollectionView.isUserInteractionEnabled = true
-       self.hideKeyboardWhenTappedAround()
-       self.searchTextfield.delegate = self
-       self.searchTextfield.addShadowToTextField(cornerRadius: 5.0)
-       self.searchTextfield.addShadowToTextField(color: UIColor.gray, cornerRadius: 5.0)
-       self.preferedLanguage()
+//        self.request?.resume()
+        self.closeBtnImg.isHidden = true
+        self.searchTextfield.isHidden = true
+        self.checkAppVersion(versionCode: "2")
+        
     }
-       
+    
+    func checkAppVersion (versionCode:String)
+    {
+        let url = AFWrapper.BASE_URL + "version_check"
+        let parameters = ["version_code": versionCode]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+            {
+                do
+                {
+                    try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
+                        (JSONResponse) -> Void in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print(JSONResponse)
+                        let json = JSON(JSONResponse)
+//                      let msg = json["msg"].stringValue
+                        let status = json["status"].stringValue
+                        if status == "success"
+                        {
+                            self.loadValues()
+                        }
+                        else
+                        {
+                            let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "A new version of SkilEx is available!", preferredStyle: UIAlertController.Style.alert)
+                            
+                            let okAction = UIAlertAction(title: "Get it", style: UIAlertAction.Style.default)
+                            {
+                                UIAlertAction in
+                                self.toAppstore ()
+                            }
+                            
+                            alertController.addAction(okAction)
+                            self.present(alertController, animated: true, completion: nil)
+                        }
+                    }) {
+                        (error) -> Void in
+                        print(error)
+                    }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
+        }
+    }
+    
+    func toAppstore ()
+    {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        let myUrl = "https://apps.apple.com/us/app/skilex/id1484596811?ls=1"
+           if let url = URL(string: "\(myUrl)"), !url.absoluteString.isEmpty {
+               UIApplication.shared.open(url, options: [:], completionHandler: nil)
+           }
+
+           // or outside scope use this
+           guard let url = URL(string: "\(myUrl)"), !url.absoluteString.isEmpty else {
+              return
+           }
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        MBProgressHUD.hide(for: self.view, animated: true)
+    }
+    
+    
+    func loadValues ()
+    {
+        group.enter()
+        self.closeBtnImg.isHidden = false
+        self.searchTextfield.isHidden = false
+        queue.async {
+            print("#1 started")
+            self.serviceRemoveFromCart(user_master_id: GlobalVariables.shared.user_master_id)
+//            MBProgressHUD.showAdded(to: self.view, animated: true)
+            Thread.sleep(forTimeInterval: 1)
+            print("#1 finished")
+            self.group.leave()
+        }
+
+        group.enter()
+        queue.async {
+            print("#2 started")
+            self.viewBanners()
+            Thread.sleep(forTimeInterval: 1)
+            print("#2 finished")
+            self.group.leave()
+        }
+        
+        group.enter()
+        queue.async {
+            print("#2 started")
+            self.viewMainCategoery()
+            Thread.sleep(forTimeInterval: 1)
+            print("#2 finished")
+            self.group.leave()
+        }
+
+        queue.async {
+//            MBProgressHUD.hide(for: self.view, animated: true)
+            self.group.wait()
+            print("#3 finished")
+        }
+
+        self.categoryCollectionView.isUserInteractionEnabled = true
+        self.hideKeyboardWhenTappedAround()
+        self.searchTextfield.delegate = self
+        self.searchTextfield.addShadowToTextField(cornerRadius: 5.0)
+        self.searchTextfield.addShadowToTextField(color: UIColor.gray, cornerRadius: 5.0)
+        self.preferedLanguage()
+    }
+    
+    
     
     func preferedLanguage()
     {
@@ -60,7 +182,6 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         ]
         self.searchTextfield.attributedPlaceholder = NSAttributedString(string: LocalizationSystem.sharedInstance.localizedStringForKey(key: "homesearchbar_text", comment: ""), attributes:attributes)
         self.categoryCollectionView.reloadData()
-        
     }
     
     
@@ -73,14 +194,14 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
     {
         let url = AFWrapper.BASE_URL + "view_banner_list"
         let parameters = ["user_master_id": GlobalVariables.shared.user_master_id]
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+//        MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
             {
                 do
                 {
                     try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
                         (JSONResponse) -> Void in
-                        MBProgressHUD.hide(for: self.view, animated: true)
+//                        MBProgressHUD.hide(for: self.view, animated: true)
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
@@ -98,7 +219,6 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                                     self.startTimer()
                                     self.bannerCollectionView.reloadData()
                             }
-                            
                         }
                     }) {
                         (error) -> Void in
@@ -115,18 +235,20 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
     func viewMainCategoery()
     {
         let url = AFWrapper.BASE_URL + "view_maincategory"
-        let parameters = ["user_master_id": GlobalVariables.shared.user_master_id]
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        let parameters = ["user_master_id": GlobalVariables.shared.user_master_id,"version_code":"1"]
+//        MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
             {
                 do
                 {
                     try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
                         (JSONResponse) -> Void in
-                        MBProgressHUD.hide(for: self.view, animated: true)
+//                        MBProgressHUD.hide(for: self.view, animated: true)
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "View Category" && status == "success"
                         {
@@ -141,7 +263,36 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                                 }
                                    self.categoryCollectionView.reloadData()
                             }
+                        }
+                        else if msg == "Sorry you have to update latest App!" && status == "error"
+                        {
+                            let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "A new version of SkilEx is available!", preferredStyle: UIAlertController.Style.alert)
                             
+                            
+                            let okAction = UIAlertAction(title: "Get it", style: UIAlertAction.Style.default)
+                            {
+                                UIAlertAction in
+                                self.toAppstore ()
+                            }
+                            
+                            alertController.addAction(okAction)
+                            self.present(alertController, animated: true, completion: nil)
+                        }
+                        else
+                        {
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                }
+                            }
                         }
                     }) {
                         (error) -> Void in
@@ -350,6 +501,7 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                                     
                                     let subCategoery = SubCategories.init(json: json["sub_categories"][i])
                                     let subCategoeryID = subCategoery.sub_cat_id
+                                    
                                     self.subcategoeryID.append(subCategoeryID!)
                                     if LocalizationSystem.sharedInstance.getLanguage() == "en"
                                     {
@@ -362,7 +514,6 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                                         self.subcategoeryArr.append(subCategoeryName!)
                                     }
                                 }
-                                
                                 self.performSegue(withIdentifier: "serviceDetail", sender: self)
                                 
                               }

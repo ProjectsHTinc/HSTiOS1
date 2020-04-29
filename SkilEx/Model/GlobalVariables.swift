@@ -21,4 +21,7 @@ class GlobalVariables: NSObject {
     var Advanceamount = String()
     var payableAmount = String()
     var rowCount = Int()
+    var serviceCount = String()
+    var serviceOrderId = String()
+
 }

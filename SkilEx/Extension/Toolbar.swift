@@ -10,7 +10,8 @@ import UIKit
 
 extension UIViewController
 {
-    func addToolBar(textField: UITextField){
+    func addToolBar(textField: UITextField)
+    {
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true
@@ -22,7 +23,7 @@ extension UIViewController
         toolBar.isUserInteractionEnabled = true
         toolBar.sizeToFit()
         
-//        textField.delegate = self
+        //textField.delegate = self
         textField.inputAccessoryView = toolBar
     }
     
@@ -33,6 +34,6 @@ extension UIViewController
     
     @objc func cancelPressed(textField: UITextField)
     {
-        view.endEditing(true) // or do something
+        view.endEditing(true)// or do something
     }
 }

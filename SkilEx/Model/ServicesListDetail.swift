@@ -9,12 +9,13 @@
 import UIKit
 import SwiftyJSON
 
-class ServicesListDetail: Codable{
+class ServicesListDetail: Codable
+{
 
-    var pic, service_name, estimated_cost, service_address, service_order_id, sub_category, time_slot, person_name, order_date, service_ta_name, main_category, contact_person_number, person_number, contact_person_name, sub_category_ta, provider_name, main_category_ta, order_status, person_id  : String?
+    var pic, service_name, estimated_cost, service_address, service_order_id, sub_category, time_slot, person_name, order_date, service_ta_name, main_category, contact_person_number, person_number, contact_person_name, sub_category_ta, provider_name, main_category_ta, order_status, person_id, resume_date, r_time_slot  : String?
     
-    init(json:JSON) {
-        
+    init(json:JSON)
+    {
         self.pic = json["pic"].stringValue
         self.service_name = json["service_name"].stringValue
         self.estimated_cost = json["estimated_cost"].stringValue
@@ -34,6 +35,8 @@ class ServicesListDetail: Codable{
         self.main_category_ta = json["main_category_ta"].stringValue
         self.order_status = json["order_status"].stringValue
         self.person_id = json["person_id"].stringValue
+        self.resume_date = json["resume_date"].stringValue
+        self.r_time_slot = json["r_time_slot"].stringValue
 
     }
 

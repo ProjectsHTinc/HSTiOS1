@@ -46,8 +46,42 @@ class ServiceDescripition: UIViewController {
     
     @objc public override func backButtonClick()
     {
-        self.navigationController?.popViewController(animated: true)
+        //self.navigationController?.popViewController(animated: true)
+        self.serviceRemoveFromCart(user_master_id: GlobalVariables.shared.user_master_id)
+
     }
+    
+    func serviceRemoveFromCart(user_master_id: String)
+       {
+           let url = AFWrapper.BASE_URL + "clear_cart"
+           let parameters = ["user_master_id": user_master_id]
+           //MBProgressHUD.showAdded(to: self.view, animated: true)
+           DispatchQueue.global().async
+               {
+                   do
+                   {
+                       try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
+                           (JSONResponse) -> Void in
+                           //MBProgressHUD.hide(for: self.view, animated: true)
+                           print(JSONResponse)
+                           let json = JSON(JSONResponse)
+                           let msg = json["msg"].stringValue
+                           let status = json["status"].stringValue
+                           if msg == "All Service removed from cart" && status == "success"
+                           {
+                                self.navigationController?.popViewController(animated: true)
+                           }
+                       }) {
+                           (error) -> Void in
+                           print(error)
+                       }
+                   }
+                   catch
+                   {
+                       print("Unable to load data: \(error)")
+                   }
+           }
+       }
     
     /*
     // MARK: - Navigation

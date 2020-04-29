@@ -17,8 +17,7 @@ class AlertController: NSObject {
         
     }
     
-    //MARK: ALERT
-    
+    //MARK: ALERT  
     func showAlertOnVC(targetVC: UIViewController,title: String,message: String){
         var message = message
         var title = title

@@ -55,20 +55,24 @@ class AdvancePayment: UIViewController {
         self.webRequestCCavenue ()
     }
     
-    
     func webRequestCCavenue ()
     {
         UserDefaults.standard.set("Ap", forKey: "Advance/customer")
         let viewController = self.storyboard!.instantiateViewController(withIdentifier: "CCWebViewController") as! CCWebViewController
         viewController.accessCode = "AVQM86GG76CA98MQAC"
         viewController.merchantId = "225068"
-        viewController.amount = "1.00"
-            // advance_amount
+        viewController.amount = advance_amount
+        // advance_amount
         viewController.currency = "INR"
-        viewController.orderId = GlobalVariables.shared.order_id
-        viewController.redirectUrl = "https://www.skilex.in/development/ccavenue_app/customer_advance.php"
-        viewController.cancelUrl = "https://www.skilex.in/development/ccavenue_app/customer_advance.php"
-        viewController.rsaKeyUrl = "https://www.skilex.in/development/ccavenue_app/GetRSA.php"
+        viewController.orderId = orderId
+        viewController.redirectUrl = String(format: "%@%@", AFWrapper.PaymentBaseUrl,"ccavenue_app/customer_advance.php")
+        viewController.cancelUrl = String(format: "%@%@", AFWrapper.PaymentBaseUrl,"customer_advance.php")
+        viewController.rsaKeyUrl = String(format: "%@%@", AFWrapper.PaymentBaseUrl,"ccavenue_app/GetRSA.php")
+        
+//      viewController.redirectUrl = "https://www.skilex.in/development/ccavenue_app/customer_advance.php"
+//      viewController.cancelUrl = "https://www.skilex.in/development/ccavenue_app/customer_advance.php"
+//      viewController.rsaKeyUrl = "https://www.skilex.in/development/ccavenue_app/GetRSA.php"
+        
         self.present(viewController, animated: true, completion: nil)
     }
 

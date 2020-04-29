@@ -28,7 +28,8 @@ class Tracking: UIViewController, CLLocationManagerDelegate {
     
     let serviceListDetail = UserDefaults.standard.getServicesDetail()
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -44,7 +45,6 @@ class Tracking: UIViewController, CLLocationManagerDelegate {
         self.subView.dropShadow(offsetX: 0, offsetY: 1, color:  UIColor.gray, opacity: 0.5, radius: 6)
         self.webRequestTracking(user_master_id: GlobalVariables.shared.user_master_id, person_id: (serviceListDetail?.person_id!)!)
         self.preferedLanguage()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,7 +60,8 @@ class Tracking: UIViewController, CLLocationManagerDelegate {
         addAnnotation(location: center)
     }
     
-    func addAnnotation(location: CLLocationCoordinate2D){
+    func addAnnotation(location: CLLocationCoordinate2D)
+    {
         GlobalVariables.shared.reuseID = "image"
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
@@ -69,19 +70,18 @@ class Tracking: UIViewController, CLLocationManagerDelegate {
         self.mapView.addAnnotation(annotation)
     }
     
-   
     private func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("Failed to initialize GPS: ", error.description)
     }
     
-    func startTimer() {
+    func startTimer()
+    {
         if timer == nil {
             timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(webRequest), userInfo: nil, repeats: true);
         }
     }
     
-    @objc func webRequest()
-    {
+    @objc func webRequest() {
         self.webRequestTracking(user_master_id: GlobalVariables.shared.user_master_id, person_id: (serviceListDetail?.person_id!)!)
     }
     
@@ -128,8 +128,8 @@ class Tracking: UIViewController, CLLocationManagerDelegate {
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
-                        let msg_en = json["msg_en"].stringValue
-                        let msg_ta = json["msg_ta"].stringValue
+//                      let msg_en = json["msg_en"].stringValue
+//                      let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "Tracking found" && status == "success"{
                             self.latitude = json["track_info"]["lat"].doubleValue
@@ -140,23 +140,28 @@ class Tracking: UIViewController, CLLocationManagerDelegate {
                         else
                         {
                             
-                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
-                            {
-                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
-                                    //Custom action code
-                                    self.navigationController?.popViewController(animated: true)
-
-                                }
-                            }
-                            else
-                            {
-                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
-                                    //Custom action code
-                                    self.navigationController?.popViewController(animated: true)
-
-                                }
-                            }
-                        }
+//                          if LocalizationSystem.sharedInstance.getLanguage() == "en"
+//                          {
+//                             Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+//                             //Custom action code
+//                             self.navigationController?.popViewController(animated: true)
+//
+//                                }
+//                            }
+//                          else
+//                          {
+//                             Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+//                              //Custom action code
+//                              self.navigationController?.popViewController(animated: true)
+//
+//                          }
+                            self.latitude = Double("11.010104")!
+                            self.longitude = Double("76.988069")!
+                            self.startTimer()
+//                          self.locationManager.startUpdatingLocation()
+                            
+                           }
+                        
                     }) {
                         (error) -> Void in
                         print(error)
@@ -177,12 +182,12 @@ class Tracking: UIViewController, CLLocationManagerDelegate {
     func callNumber(phoneNumber:String) {
         
         if let phoneCallURL = URL(string: "telprompt://\(phoneNumber)") {
-            
             let application:UIApplication = UIApplication.shared
             if (application.canOpenURL(phoneCallURL)) {
                 if #available(iOS 10.0, *) {
                     application.open(phoneCallURL, options: [:], completionHandler: nil)
-                } else {
+                }
+                else {
                     // Fallback on earlier versions
                     application.openURL(phoneCallURL as URL)
                     
@@ -193,12 +198,11 @@ class Tracking: UIViewController, CLLocationManagerDelegate {
     
     /*
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destination.
+    // Pass the selected object to the new view controller.
     }
     */
-
 }
+ 

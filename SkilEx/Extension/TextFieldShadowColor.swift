@@ -8,10 +8,10 @@
 
 import UIKit
 
-extension UITextField {
-    
-    func addShadowToTextField(color: UIColor = UIColor.gray, cornerRadius: CGFloat) {
-        
+extension UITextField
+{
+    func addShadowToTextField(color: UIColor = UIColor.gray, cornerRadius: CGFloat)
+    {
         self.backgroundColor = UIColor.white
         self.layer.masksToBounds = false
         self.layer.shadowColor = color.cgColor

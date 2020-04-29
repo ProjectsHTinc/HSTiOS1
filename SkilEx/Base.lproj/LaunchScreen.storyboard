@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,19 +19,43 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G11-2w-Tla">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="splash_logo" translatesAutoresizingMaskIntoConstraints="NO" id="ffG-Q8-u5L">
-                                        <rect key="frame" x="104" y="327" width="207" height="170"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_logo" translatesAutoresizingMaskIntoConstraints="NO" id="ffG-Q8-u5L">
+                                        <rect key="frame" x="82" y="323" width="250" height="160"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="160" id="DkF-aK-z3C"/>
+                                            <constraint firstAttribute="width" constant="250" id="pgp-Bi-ixo"/>
+                                        </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SkilEX" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgL-v5-1sB">
-                                        <rect key="frame" x="75" y="515" width="264" height="39"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="28"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SkilEx" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgL-v5-1sB">
+                                        <rect key="frame" x="75" y="499" width="264" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="TYf-db-0F3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THE ULTIMATE SERVICE APP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYp-Zc-DoS">
+                                        <rect key="frame" x="0.0" y="547" width="414" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="26" id="GEf-nt-YGS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.074509803920000006" green="0.35294117650000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="QgL-v5-1sB" firstAttribute="leading" secondItem="G11-2w-Tla" secondAttribute="leading" constant="75" id="4op-U6-uuM"/>
+                                    <constraint firstItem="ZYp-Zc-DoS" firstAttribute="top" secondItem="QgL-v5-1sB" secondAttribute="bottom" constant="9" id="5bR-pX-LdP"/>
+                                    <constraint firstItem="ffG-Q8-u5L" firstAttribute="centerY" secondItem="G11-2w-Tla" secondAttribute="centerY" constant="-45" id="LBE-8Y-Dak"/>
+                                    <constraint firstItem="QgL-v5-1sB" firstAttribute="top" secondItem="ffG-Q8-u5L" secondAttribute="bottom" constant="16" id="YDg-fr-pNB"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZYp-Zc-DoS" secondAttribute="trailing" id="aWK-Ti-AWB"/>
+                                    <constraint firstItem="ZYp-Zc-DoS" firstAttribute="leading" secondItem="G11-2w-Tla" secondAttribute="leading" id="oc5-v6-ZnM"/>
+                                    <constraint firstItem="ffG-Q8-u5L" firstAttribute="centerX" secondItem="G11-2w-Tla" secondAttribute="centerX" id="pcf-Fl-Jxs"/>
+                                    <constraint firstAttribute="trailing" secondItem="QgL-v5-1sB" secondAttribute="trailing" constant="75" id="rA9-jQ-dOn"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -49,6 +74,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="splash_logo" width="250.5" height="250"/>
+        <image name="splash_logo" width="250.5" height="250.5"/>
     </resources>
 </document>

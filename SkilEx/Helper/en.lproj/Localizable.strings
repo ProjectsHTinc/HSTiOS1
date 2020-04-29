@@ -13,6 +13,7 @@
 "mobilenumberplaceholder_text" = "Mobile Number";
 "login_text" = "Login";
 "skip_text" = "Skip for now";
+"reffreal_text" = "Referral Code";
 
 /*Done Cancel */
 "done" = "Done";
@@ -52,10 +53,12 @@
 
 /* User Profile */
 "userprofilenav_text" = "User Profile";
-"profilesettings_text" = "Profile";
+"profilesettings_text" = "Profile Details";
 "aboutSkilex_text" = "About";
 "shareSkilex_text" = "Share App";
 "languagechange_text" = "Change Language";
+"referEarn_text" = "Refer and Earn";
+"wallet_text" = "SkilEx Wallet";
 "logout_text" = "Log Out";
 
 /* Services text */
@@ -75,6 +78,12 @@
 
 /* ServiceDiscripition text */
 "servicediscripitionnav_text" = "Service Detail";
+"servicediscripitionbooknwBtn_text" = "Book Now";
+"servicediscripitionInclusion_text" = "Inclusions";
+"servicediscripitionExclusion_text" = "Exclusions";
+"servicediscripitionProcedure_text" = "Procedure";
+"servicediscripitionOthers_text" = "Others";
+
 
 /* ViewSummary text */
 "viewsummarynavtitle_text" = "Booking Summary";
@@ -92,6 +101,7 @@
 "customeraddressdate_text" = "Select Date";
 "customeraddresstime_text" = "Select Time";
 "customeraddressproceed_text" = "Book Service";
+"customeraddressnotes_text" = "Add Notes";
 
 /* Searchresult text */
 "searchresultnavtitle_text" = "Search Result";
@@ -111,13 +121,14 @@
 
 /*OngoingservicesDetail text */
 "servicesdetailongoingnavtitle_text" = "Ongoing Service Detail";
-"servicesdetailongoingprovider_text" = "SkilEx Associate";
+"servicesdetailongoingprovider_text" = "SkilEx Commando";
 "servicesdetailongoingtimeslot_text" = "Service Starting Time";
 "servicesdetailongoingestimatedcost_text" = "Estimated Cost";
 "servicesdetailongoingcallserviceperson_text" = "Call SkilEx Expert";
 "servicesdetailongoingtrack_text" = "Track";
-
 "servicesdetailongoingstart_text" = "Start";
+"servicesdetailongoingsResumeDate_text" = "Service Resume Date";
+"servicesdetailongoingsResumeTime_text" = "Service Resume Time";
 
 
 /*RequestedservicesDetail text */
@@ -131,8 +142,8 @@
 
 /*BookingStatus text */
 "bookingstatusnavtitle_text" = "booking Success";
-"bookingsucces_text" = "Succes";
-"bookingsuccesstatus_text" = "Your Service has been booked Successfully";
+"bookingsucces_text" = "Success";
+"bookingsuccesstatus_text" = "Your Service booking completed Successfully";
 "backtohome_text" = "Back to Home";
 "bookingfailed_text" = "Sorry!";
 "bookingfailedstatus_text" = "Your booking has Failed";
@@ -147,7 +158,7 @@
 "servicehistorysummarycustomername_text" = "Customer Name";
 "servicehistorysummaryservicedate_text" = "Service Date";
 "servicehistorysummaryrequestedtime_text" = "Requested Service Time";
-"servicehistorysummaryserviceprovider_text" = "SkilEx Associate";
+"servicehistorysummaryserviceprovider_text" = "SkilEx Commando";
 "servicehistorysummaryserviceperson_text" = "SkilEx Expert";
 "servicehistorysummaryservicestarted_text" = "Service started on";
 "servicehistorysummaryservicecompleted_text" = "Service completed on";
@@ -184,8 +195,8 @@
 
 /*ccresultviewcontroller text */
 "ccresultsucess_text" = "Awesome !";
-"ccresultstatussuces_text" = "You have successfully booked\n a service via SkilEx";
-"ccresultsbuttonsucess_text" = "Back to Home";
+"ccresultstatussuces_text" = "You service order completed \nsuccessfully";
+"ccresultsbuttonsucess_text" = "Rate Your Service";
 
 "ccresultfailure_text" = "Something's Wrong";
 "ccresultstatusfailure_text" = "We are not able to process\n your Payment";
@@ -222,3 +233,21 @@
 "LogOutAccessButtonOK" = "YES";
 "LogOutAccessButtonCancel" = "NO";
 "GuestUSER" = "GUEST";
+
+/* Rate Service text */
+"rateServicenavtitle_text" = "Rate Your Service";
+"rateServicSubmitBtn_text" = "Submit";
+"rateServicSkipBtn_text" = "Skip";
+"rateServicAlertBox_text" = "Rate your service before submitting";
+
+/* Terms And Condition text */
+"termsandConditionnavtitle_text" = "Terms and Condition";
+
+/*ReferAndEarn text */
+"referAndEarnnavtitle_text" = "Refer And Earn";
+
+/*AmountStatus text */
+"amountStatusnavtitle_text" = "Amount Status";
+
+/*SkilexWallet text */
+"SkilexWalletnavtitle_text" = "SkilEx Wallet";

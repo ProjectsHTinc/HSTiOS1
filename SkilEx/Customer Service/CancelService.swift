@@ -157,11 +157,10 @@ class CancelService: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     {
         if advancePayment_Status == "NA"
         {
-            
             let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "advancepamentnotreturn", comment: ""), preferredStyle: UIAlertController.Style.alert)
             
             
-            let okAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "okalert", comment: ""), style: UIAlertAction.Style.default) {
+            let okAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "ok", comment: ""), style: UIAlertAction.Style.default) {
                 UIAlertAction in
                
                 self.webRequestCancelService(user_master_id: GlobalVariables.shared.user_master_id, service_order_id: self.serviceId, cancel_id: self.resonId, comments: self.commentsTextView.text)
@@ -180,12 +179,11 @@ class CancelService: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         {
           self.webRequestCancelService(user_master_id: GlobalVariables.shared.user_master_id, service_order_id: serviceId, cancel_id: resonId, comments: self.commentsTextView.text)
         }
-        
     }
     
     func webRequestCancelService(user_master_id: String, service_order_id: String, cancel_id:String, comments:String){
     
-            let parameters = ["user_master_id": user_master_id, "service_order_id": service_order_id]
+        let parameters = ["user_master_id": user_master_id, "service_order_id": service_order_id, "cancel_id": cancel_id, "comments": comments]
             MBProgressHUD.showAdded(to: self.view, animated: true)
             DispatchQueue.global().async
                 {
@@ -197,42 +195,41 @@ class CancelService: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
                             print(JSONResponse)
                             let json = JSON(JSONResponse)
                             let msg = json["msg"].stringValue
-                            let msg_en = json["msg_en"].stringValue
-                            let msg_ta = json["msg_ta"].stringValue
+//                          let msg_en = json["msg_en"].stringValue
+//                          let msg_ta = json["msg_ta"].stringValue
                             let status = json["status"].stringValue
                             if msg == "Service Cancelled successfully" && status == "success"
                             {
-    
-                                if LocalizationSystem.sharedInstance.getLanguage() == "en"
-                                {
-                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
-                                        //Custom action code
-                                        self.performSegue(withIdentifier: "requestedService", sender: self)
-                                    }
-                                }
-                                else
-                                {
-                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
-                                        //Custom action code
-                                        self.performSegue(withIdentifier: "requestedService", sender: self)
-                                    }
-                                }
-    
+//                                if LocalizationSystem.sharedInstance.getLanguage() == "en"
+//                                {
+//                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+//                                        //Custom action code
+//                                        self.performSegue(withIdentifier: "requestedService", sender: self)
+//                                    }
+//                                }
+//                                else
+//                                {
+//                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+//                                        //Custom action code
+//                                        self.performSegue(withIdentifier: "requestedService", sender: self)
+//                                    }
+//                                }
+                                  self.performSegue(withIdentifier: "dashboard", sender: self)
                             }
                             else
                             {
-                                if LocalizationSystem.sharedInstance.getLanguage() == "en"
-                                {
-                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
-                                        //Custom action code
-                                    }
-                                }
-                                else
-                                {
-                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
-                                        //Custom action code
-                                    }
-                                }
+//                                if LocalizationSystem.sharedInstance.getLanguage() == "en"
+//                                {
+//                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+//                                        //Custom action code
+//                                    }
+//                                }
+//                                else
+//                                {
+//                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+//                                        //Custom action code
+//                                    }
+//                                }
                             }
                         }) {
                             (error) -> Void in

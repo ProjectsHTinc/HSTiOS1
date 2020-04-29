@@ -8,11 +8,12 @@
 
 import UIKit
 
-extension UIView {
-    
+extension UIView
+{    
     /// A property that accesses the backing layer's opacity.
     @IBInspectable
-    open var opacity: Float {
+    open var opacity: Float
+        {
         get {
             return layer.opacity
         }
@@ -20,10 +21,10 @@ extension UIView {
             layer.opacity = value
         }
     }
-    
     /// A property that accesses the backing layer's shadow
     @IBInspectable
-    open var shadowColor: UIColor? {
+    open var shadowColor: UIColor?
+        {
         get {
             guard let v = layer.shadowColor else {
                 return nil
@@ -35,10 +36,10 @@ extension UIView {
             layer.shadowColor = value?.cgColor
         }
     }
-    
     /// A property that accesses the backing layer's shadowOffset.
     @IBInspectable
-    open var shadowOffset: CGSize {
+    open var shadowOffset: CGSize
+        {
         get {
             return layer.shadowOffset
         }
@@ -46,10 +47,10 @@ extension UIView {
             layer.shadowOffset = value
         }
     }
-    
     /// A property that accesses the backing layer's shadowOpacity.
     @IBInspectable
-    open var shadowOpacity: Float {
+    open var shadowOpacity: Float
+        {
         get {
             return layer.shadowOpacity
         }
@@ -57,10 +58,10 @@ extension UIView {
             layer.shadowOpacity = value
         }
     }
-    
     /// A property that accesses the backing layer's shadowRadius.
     @IBInspectable
-    open var shadowRadius: CGFloat {
+    open var shadowRadius: CGFloat
+        {
         get {
             return layer.shadowRadius
         }
@@ -68,10 +69,10 @@ extension UIView {
             layer.shadowRadius = value
         }
     }
-    
     /// A property that accesses the backing layer's shadowPath.
     @IBInspectable
-    open var shadowPath: CGPath? {
+    open var shadowPath: CGPath?
+        {
         get {
             return layer.shadowPath
         }
@@ -79,5 +80,14 @@ extension UIView {
             layer.shadowPath = value
         }
     }
-    
+}
+extension UIView
+{
+   func roundCorners(corners: UIRectCorner, radius: CGFloat)
+   {
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
+    }
 }

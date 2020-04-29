@@ -19,9 +19,14 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var advanceAmountLabel: UILabel!
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var orderSummaryLabel: UILabel!
+    @IBOutlet weak var termsndConditionLabel: UILabel!
+    @IBOutlet weak var checkImg: UIImageView!
+    @IBOutlet weak var checkboxOutlet: UIButton!
     
     var cartListArr = [CartList]()
     var cartListServiceName = [String]()
+    var text = String()
+    var checkboxButtonIsClicked = Bool()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +35,9 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.addBackButton()
         self.webRequestViewCart()
         self.preferedLanguage()
-
+        self.touchableLabel()
+        checkboxButtonIsClicked = true
+        self.disableProceedButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +48,84 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
     override func viewWillLayoutSubviews() {
         
         proceedOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
+    }
+    
+    func touchableLabel()
+    {
+        if LocalizationSystem.sharedInstance.getLanguage() == "en"
+        {
+            text = "I agree to the Terms and Conditions of SkilEx services."
+            termsndConditionLabel.text = text
+            self.termsndConditionLabel.textColor =  UIColor.black
+            let underlineAttriString = NSMutableAttributedString(string: text)
+            let range1 = (text as NSString).range(of: "Terms and Conditions")
+                    //underlineAttriString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range1)
+                    underlineAttriString.addAttribute(NSAttributedString.Key.font, value: UIFont.init(name: "Helvetica-Bold", size: 10.0)!, range: range1)
+            underlineAttriString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(red:19.0/255.0 , green: 90.0/255.0, blue: 160/255.0, alpha: 1.0), range: range1)
+            termsndConditionLabel.attributedText = underlineAttriString
+            termsndConditionLabel.isUserInteractionEnabled = true
+            termsndConditionLabel.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(tapLabel(gesture:))))
+        }
+        else
+        {
+            text = "ஸ்கிலெக்ஸ் சேவைகளின் விதிமுறைகளையும் மற்றும் நிபந்தனைகளையும் நான் ஒப்புக்கொள்கிறேன்."
+            termsndConditionLabel.text = text
+            self.termsndConditionLabel.textColor =  UIColor.black
+            let underlineAttriString = NSMutableAttributedString(string: text)
+            let range1 = (text as NSString).range(of: "விதிமுறைகளையும் மற்றும் நிபந்தனைகளையும்")
+                    //underlineAttriString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range1)
+                    underlineAttriString.addAttribute(NSAttributedString.Key.font, value: UIFont.init(name: "Helvetica-Bold", size: 10.0)!, range: range1)
+            underlineAttriString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(red:19.0/255.0 , green: 90.0/255.0, blue: 160/255.0, alpha: 1.0), range: range1)
+            termsndConditionLabel.attributedText = underlineAttriString
+            termsndConditionLabel.isUserInteractionEnabled = true
+            termsndConditionLabel.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(tapLabel(gesture:))))
+        }
+
+    }
+    
+    func checkbokClicked ()
+    {
+        if checkboxButtonIsClicked == true
+        {
+            checkboxButtonIsClicked = false
+            self.checkImg.image = UIImage(named: "checkbox_select")
+            self.enableProceedButton()
+        }
+        else
+        {
+            checkboxButtonIsClicked = true
+            self.checkImg.image = UIImage(named: "checkbox_unselect")
+            self.disableProceedButton()
+        }
+    }
+    
+    func enableProceedButton()
+    {
+       proceedOutlet.isEnabled = true;
+       proceedOutlet.alpha = 1.0;
+    }
+    
+    func disableProceedButton()
+    {
+        proceedOutlet.isEnabled = false;
+        proceedOutlet.alpha = 0.5;
+    }
+    
+    @IBAction func tapLabel(gesture: UITapGestureRecognizer)
+    {
+       let termsRangeEn = (text as NSString).range(of: "Terms and Conditions")
+       let termsRangeTa = (text as NSString).range(of: "விதிமுறைகளையும் மற்றும் நிபந்தனைகளையும்")
+       // comment for now
+       //let privacyRange = (text as NSString).range(of: "Privacy Policy")
+
+       if gesture.didTapAttributedTextInLabel(label: termsndConditionLabel, inRange: termsRangeEn) {
+           print("Terms and Conditions")
+           self.performSegue(withIdentifier: "termsAndCondition", sender: self)
+       }
+       else if gesture.didTapAttributedTextInLabel(label: termsndConditionLabel, inRange: termsRangeTa)
+       {
+           self.performSegue(withIdentifier: "termsAndCondition", sender: self)
+       }
     }
     
     func preferedLanguage()
@@ -193,8 +278,8 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ServiceDetailTableViewCell
         let cartList = cartListArr[indexPath.row]
-        if LocalizationSystem.sharedInstance.getLanguage() == "en"{
-            
+        if LocalizationSystem.sharedInstance.getLanguage() == "en"
+        {
             cell.serviceName.text = cartList.service_name
             self.advanceAmount.text = String(format: "%@ %@", "Rs.",cartListArr[0].advance_amount!)
             self.totalServiceAmount.text = String(format: "%@ %@", "Rs.",GlobalVariables.shared.Service_amount)
@@ -268,16 +353,25 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }
     }
     
-    @objc public override func backButtonClick() {
+    @objc public override func backButtonClick()
+    {
         
-        if GlobalVariables.shared.viewPage == "ServiceResult"
-        {
-            self.serviceRemoveFromCart(user_master_id: GlobalVariables.shared.user_master_id)
-        }
-        else
-        {
-            self.navigationController?.popViewController(animated: true)
-        }
+        let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicespageBack_text", comment: ""), preferredStyle: UIAlertController.Style.alert)
+                           
+                   
+       let okAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default) {
+           UIAlertAction in
+
+           self.serviceRemoveFromCart(user_master_id: GlobalVariables.shared.user_master_id)
+
+       }
+       let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default) {
+           UIAlertAction in
+       }
+       
+       alertController.addAction(okAction)
+       alertController.addAction(cancelAction)
+       self.present(alertController, animated: true, completion: nil)
     }
     
     func serviceRemoveFromCart(user_master_id: String)
@@ -317,6 +411,11 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.performSegue(withIdentifier: "customerAddress", sender: self)
     }
     
+    @IBAction func checkboxAction(_ sender: Any)
+    {
+        self.checkbokClicked()
+    }
+    
     
     // MARK: - Navigation
 
@@ -328,5 +427,43 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
         if (segue.identifier == "customerAddress"){
             let _ = segue.destination as! CustomerAddress
         }
+        else if (segue.identifier == "termsAndCondition"){
+            let _ = segue.destination as! TermsandCondition
+        }
     }
+}
+
+extension UITapGestureRecognizer {
+
+    func didTapAttributedTextInLabel(label: UILabel, inRange targetRange: NSRange) -> Bool {
+        // Create instances of NSLayoutManager, NSTextContainer and NSTextStorage
+        let layoutManager = NSLayoutManager()
+        let textContainer = NSTextContainer(size: CGSize.zero)
+        let textStorage = NSTextStorage(attributedString: label.attributedText!)
+
+        // Configure layoutManager and textStorage
+        layoutManager.addTextContainer(textContainer)
+        textStorage.addLayoutManager(layoutManager)
+
+        // Configure textContainer
+        textContainer.lineFragmentPadding = 0.0
+        textContainer.lineBreakMode = label.lineBreakMode
+        textContainer.maximumNumberOfLines = label.numberOfLines
+        let labelSize = label.bounds.size
+        textContainer.size = labelSize
+
+        // Find the tapped character location and compare it to the specified range
+        let locationOfTouchInLabel = self.location(in: label)
+        let textBoundingBox = layoutManager.usedRect(for: textContainer)
+        //let textContainerOffset = CGPointMake((labelSize.width - textBoundingBox.size.width) * 0.5 - textBoundingBox.origin.x,
+                                              //(labelSize.height - textBoundingBox.size.height) * 0.5 - textBoundingBox.origin.y);
+        let textContainerOffset = CGPoint(x: (labelSize.width - textBoundingBox.size.width) * 0.5 - textBoundingBox.origin.x, y: (labelSize.height - textBoundingBox.size.height) * 0.5 - textBoundingBox.origin.y)
+
+        //let locationOfTouchInTextContainer = CGPointMake(locationOfTouchInLabel.x - textContainerOffset.x,
+                                                        // locationOfTouchInLabel.y - textContainerOffset.y);
+        let locationOfTouchInTextContainer = CGPoint(x: locationOfTouchInLabel.x - textContainerOffset.x, y: locationOfTouchInLabel.y - textContainerOffset.y)
+        let indexOfCharacter = layoutManager.characterIndex(for: locationOfTouchInTextContainer, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+        return NSLocationInRange(indexOfCharacter, targetRange)
+    }
+
 }

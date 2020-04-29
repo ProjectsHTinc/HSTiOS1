@@ -2,7 +2,8 @@ import UIKit
 
 extension UIView {
 
-    @IBInspectable var borderColor: UIColor? {
+    @IBInspectable var borderColor: UIColor?
+    {
         get {
             return layer.borderColor.map { UIColor(cgColor: $0) }
         }
@@ -11,7 +12,8 @@ extension UIView {
         }
     }
 
-    @IBInspectable var borderWidth: CGFloat {
+    @IBInspectable var borderWidth: CGFloat
+    {
         get {
             return layer.borderWidth
         }
@@ -20,7 +22,8 @@ extension UIView {
         }
     }
 
-    @IBInspectable var cornerRadius: CGFloat {
+    @IBInspectable var cornerRadius: CGFloat
+    {
         get {
             return layer.cornerRadius
         }
@@ -31,8 +34,8 @@ extension UIView {
     }
 }
 
-extension UIView {
-    
+extension UIView
+{
     func findCollectionView() -> UICollectionView? {
         if let collectionView = self as? UICollectionView {
             return collectionView

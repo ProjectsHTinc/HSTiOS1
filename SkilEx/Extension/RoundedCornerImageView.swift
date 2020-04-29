@@ -10,7 +10,8 @@ import UIKit
 
 extension UIImageView
 {
-    func makeRounded() {
+    func makeRounded()
+    {
         layer.borderWidth = 2
         layer.masksToBounds = false
         layer.borderColor = UIColor.white.cgColor

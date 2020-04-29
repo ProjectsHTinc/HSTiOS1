@@ -29,9 +29,9 @@ class BookingSuccess: UIViewController
         self.displayMinute = "1"
         
         let View =  UserDefaults.standard.string(forKey: "Advance/customer")
-
         if View == "CA"
         {
+           // self.callServiceAllocation ()
             self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingstatusnavtitle_text", comment: "")
             self.statusImg.image = UIImage(named: "servicesuccess")
             self.succesLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingsucces_text", comment: "")
@@ -47,7 +47,8 @@ class BookingSuccess: UIViewController
                 self.succesLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingsucces_text", comment: "")
                 self.successStatusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingsuccesstatus_text", comment: "")
                 self.backToHomeOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "backtohome_text", comment: ""), for: .normal)
-                self.serviceProviderAllocation(user_master_id: GlobalVariables.shared.user_master_id, order_id: GlobalVariables.shared.order_id, displayMinute: self.displayMinute)
+                self.serviceProviderAllocation(user_master_id: GlobalVariables.shared.user_master_id, order_id: GlobalVariables.shared.order_id)
+                self.performSegue(withIdentifier: "home", sender: self)
                 self.WebRequesAdvanceamountbooking()
             }
             else
@@ -60,8 +61,7 @@ class BookingSuccess: UIViewController
                 self.WebRequesAdvanceamountbooking()
             }
         }
-        //self.preferedLanguage()
-
+                //self.preferedLanguage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,13 +81,12 @@ class BookingSuccess: UIViewController
     
     @objc func callServiceAllocation()
     {
-        self.serviceProviderAllocation(user_master_id: GlobalVariables.shared.user_master_id, order_id: GlobalVariables.shared.order_id, displayMinute: self.displayMinute)
+        self.serviceProviderAllocation(user_master_id: GlobalVariables.shared.user_master_id, order_id: GlobalVariables.shared.order_id)
     }
     
     override func viewWillLayoutSubviews() {
         backToHomeOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: 20, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
     }
-    
     
     func preferedLanguage ()
     {
@@ -96,48 +95,61 @@ class BookingSuccess: UIViewController
         self.successStatusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingsuccesstatus_text", comment: "")
         self.backToHomeOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "backtohome_text", comment: ""), for: .normal)
     }
-    
-    func serviceProviderAllocation(user_master_id: String, order_id: String, displayMinute: String)
+            
+    func serviceProviderAllocation(user_master_id: String, order_id: String)
     {
-        let parameters = ["user_master_id": user_master_id, "order_id": order_id, "display_minute": displayMinute]
-        //MBProgressHUD.showAdded(to: self.view, animated: true)
+        let parameters = ["user_master_id": user_master_id, "order_id": order_id]
+//        MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
             {
                 do
                 {
                     try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "service_provider_allocation", params: parameters, headers: nil, success: {
                         (JSONResponse) -> Void in
-                        //MBProgressHUD.hide(for: self.view, animated: true)
+ //                       MBProgressHUD.hide(for: self.view, animated: true)
                         print(JSONResponse)
-                        let json = JSON(JSONResponse)
-                        let msg = json["msg"].stringValue
-                        let msg_en = json["msg_en"].stringValue
-                        let status = json["status"].stringValue
-                        if msg == "Mobile OTP" && status == "success"
-                        {
-                            self.stopTimer()
-                            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
-//                                self.performSegue(withIdentifier: "home", sender: self)
-                            }
-                        }
-                        else
-                        {
-                            if self.displayMinute == "1"
-                            {
-                                self.startTimer()
-                                self.displayMinute = "2"
-                            }
-                            else if self.displayMinute == "2"
-                            {
-                                
-                                self.displayMinute = "3"
-                            }
-                            else
-                            {
-                                self.stopTimer()
-//                                self.performSegue(withIdentifier: "home", sender: self)
-                            }
-                        }
+    //                        let json = JSON(JSONResponse)
+    //                        let msg = json["msg"].stringValue
+    //                        let msg_en = json["msg_en"].stringValue
+    //                        let msg_ta = json["msg_ta"].stringValue
+    //                        let status = json["status"].stringValue
+    //                        if msg == "Mobile OTP" && status == "success"
+    //                        {
+    //                            //self.stopTimer()
+    //                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+    //                            {
+    //                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+    //                                    //Custom action code
+    //                                    self.performSegue(withIdentifier: "bookingSuccess", sender: self)
+    //                                }
+    //                            }
+    //                            else
+    //                            {
+    //                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+    //                                    //Custom action code
+    //                                    self.performSegue(withIdentifier: "bookingSuccess", sender: self)
+    //                                }
+    //                            }
+    //                        }
+    //                        else
+    //                        {
+    //
+    //                            if self.displayMinute == "1"
+    //                            {
+    //                                self.startTimer()
+    //                                self.displayMinute = "2"
+    //                            }
+    //                            else if self.displayMinute == "2"
+    //                            {
+    //                                self.displayMinute = "3"
+    //                            }
+    //                            else
+    //                            {
+    //                                self.stopTimer()
+    //                            }
+    //
+    //                            self.performSegue(withIdentifier: "bookingSuccess", sender: self)
+    //                        }
                     }) {
                         (error) -> Void in
                         print(error)
@@ -150,6 +162,59 @@ class BookingSuccess: UIViewController
         }
     }
     
+//    func serviceProviderAllocation(user_master_id: String, order_id: String)
+//    {
+//        let parameters = ["user_master_id": user_master_id, "order_id": order_id]
+//        //MBProgressHUD.showAdded(to: self.view, animated: true)
+//        DispatchQueue.global().async
+//            {
+//                do
+//                {
+//                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "service_provider_allocation", params: parameters, headers: nil, success: {
+//                        (JSONResponse) -> Void in
+//                        //MBProgressHUD.hide(for: self.view, animated: true)
+//                        print(JSONResponse)
+//                        let json = JSON(JSONResponse)
+//                        let msg = json["msg"].stringValue
+//                        let msg_en = json["msg_en"].stringValue
+//                        let status = json["status"].stringValue
+//                        if msg == "Mobile OTP" && status == "success"
+//                        {
+//                            self.stopTimer()
+//                            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+//                                self.performSegue(withIdentifier: "home", sender: self)
+//                            }
+//                        }
+//                        else
+//                        {
+//                            if self.displayMinute == "1"
+//                            {
+//                                self.startTimer()
+//                                self.displayMinute = "2"
+//                            }
+//                            else if self.displayMinute == "2"
+//                            {
+//
+//                                self.displayMinute = "3"
+//                            }
+//                            else
+//                            {
+//                                self.stopTimer()
+//                                self.performSegue(withIdentifier: "home", sender: self)
+//                            }
+//                        }
+//                    }) {
+//                        (error) -> Void in
+//                        print(error)
+//                    }
+//                }
+//                catch
+//                {
+//                    print("Unable to load data: \(error)")
+//                }
+//        }
+//    }
+    
     func WebRequesAdvanceamountbooking ()
     {
         let parameters = ["order_id": GlobalVariables.shared.user_master_id, "advance_amount": GlobalVariables.shared.Advanceamount, "advance_payment_status": transStatus]
@@ -158,7 +223,7 @@ class BookingSuccess: UIViewController
             {
                 do
                 {
-                    try AFWrapper.requestPOSTURL("https://www.skilex.in/development/ccavenue_app/customer_advance.php", params: parameters, headers: nil, success: {
+                    try AFWrapper.requestPOSTURL(String(format: "%@%@", AFWrapper.PaymentBaseUrl,"ccavenue_app/customer_advance.php"), params: parameters, headers: nil, success: {
                         (JSONResponse) -> Void in
                         //MBProgressHUD.hide(for: self.view, animated: true)
                         print(JSONResponse)
@@ -180,7 +245,6 @@ class BookingSuccess: UIViewController
                 }
         }
     }
-    
    
     @objc public override func backButtonClick()
     {
@@ -192,10 +256,7 @@ class BookingSuccess: UIViewController
         self.performSegue(withIdentifier: "toDashboard", sender: self)
     }
     
-
-    
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
@@ -207,5 +268,4 @@ class BookingSuccess: UIViewController
         }
     }
     
-
 }

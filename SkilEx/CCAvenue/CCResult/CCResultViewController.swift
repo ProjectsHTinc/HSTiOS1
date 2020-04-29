@@ -13,6 +13,7 @@ import MBProgressHUD
 class CCResultViewController: UIViewController {
 
     var transStatus = String()
+    var advancePayment = String()
     
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
@@ -34,6 +35,7 @@ class CCResultViewController: UIViewController {
             self.subStatus.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultstatussuces_text", comment: "")
             self.doneButton.backgroundColor = UIColor(red: 63/255.0, green: 170/255.0, blue: 132/255.0, alpha: 1.0)
             self.doneButton.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultsbuttonsucess_text", comment: ""), for: .normal)
+            self.servicePaymentSuccess(order_id: GlobalVariables.shared.order_id)
         }
         else
         {
@@ -47,6 +49,8 @@ class CCResultViewController: UIViewController {
                self.subStatus.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultstatussuces_text", comment: "")
                self.doneButton.backgroundColor = UIColor(red: 63/255.0, green: 170/255.0, blue: 132/255.0, alpha: 1.0)
                self.doneButton.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "ccresultsbuttonsucess_text", comment: ""), for: .normal)
+               self.servicePaymentSuccess(order_id: GlobalVariables.shared.order_id)
+
             }
            else
            {
@@ -74,9 +78,14 @@ class CCResultViewController: UIViewController {
     
     @IBAction func doneAction(_ sender: Any)
     {
+        let paybyCash = UserDefaults.standard.string(forKey: "PaybyCash")
         if transStatus == "Transaction Successful"
         {
-            self.performSegue(withIdentifier: "home", sender: self)
+            self.performSegue(withIdentifier: "rateService", sender: self)
+        }
+        else if (paybyCash == "YES")
+        {
+            self.performSegue(withIdentifier: "rateService", sender: self)
         }
         else
         {
@@ -84,8 +93,44 @@ class CCResultViewController: UIViewController {
         }
     }
     
-    // MARK: - Navigation
+    func servicePaymentSuccess(order_id:String)
+    {
+        let parameters = ["order_id":order_id]
+//                  MBProgressHUD.showAdded(to: self.view, animated: true)
+                  DispatchQueue.global().async
+                      {
+                          do
+                          {
+                              try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "service_payment_success", params: (parameters ), headers: nil, success:
+                              {
+                                  (JSONResponse) -> Void in
+//                                  MBProgressHUD.hide(for: self.view, animated: true)
+//                                  let json = JSON(JSONResponse)
+//                                  let msg = json["msg"].stringValue
+//                                  let msg_en = json["msg_en"].stringValue
+//                                  let msg_ta = json["msg_ta"].stringValue
+//                                  let status = json["status"].stringValue
+//                                  if msg == "Login Successfully" && status == "success"
+//                                  {
+//
+//                                  }
+//                                  else
+//                                  {
+//
+//                                  }
+                              }) {
+                                  (error) -> Void in
+                                  print(error)
+                              }
+                          }
+                          catch
+                          {
+                              print("Unable to load data: \(error)")
+                          }
+                  }
+    }
     
+    // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
@@ -93,6 +138,10 @@ class CCResultViewController: UIViewController {
         if (segue.identifier == "home") {
             let _ = segue.destination as! Tabbarcontroller
         }
+        else if (segue.identifier == "rateService"){
+            let _ = segue.destination as! RateServiceViewController
+
+        }
     }
-    
 }
+

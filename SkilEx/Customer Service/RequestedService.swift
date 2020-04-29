@@ -154,13 +154,12 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
                         let msg_en = json["msg_en"].stringValue
                         let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
-                        if msg == "Service found" && status == "success"{
-                            
+                        if msg == "Service found" && status == "success"
+                        {
                             if json["service_list"].count > 0 {
                             let servicesDetail = ServicesListDetail(json: json["service_list"])
                             UserDefaults.standard.saveServicesDetail(servicesListDetail: servicesDetail)
                             self.performSegue(withIdentifier: "requestedServiceDetail", sender: self)
-                                
                             }
                         }
                         else
@@ -203,7 +202,6 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        
         if (segue.identifier == "requestedServiceDetail"){
             let vc = segue.destination as! RequestedServiceDetail
             vc.service_order_id = self.service_Order_id
