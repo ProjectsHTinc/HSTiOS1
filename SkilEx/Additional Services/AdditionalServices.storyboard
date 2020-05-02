@@ -58,7 +58,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.26746687289999999" green="0.55522423980000002" blue="0.79592204089999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.074509803920000006" green="0.35294117650000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="Qxk-t5-a8p" firstAttribute="centerX" secondItem="gV0-dV-sMI" secondAttribute="centerX" id="AhN-1L-15q"/>
                                             <constraint firstItem="nT7-Be-VQO" firstAttribute="top" secondItem="gV0-dV-sMI" secondAttribute="top" constant="27" id="Rfk-kl-BE6"/>
@@ -105,7 +105,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KmN-Kg-di4">
                                 <rect key="frame" x="51.5" y="499.5" width="272" height="60"/>
-                                <color key="backgroundColor" red="0.26746687289999999" green="0.55522423980000002" blue="0.79592204089999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.074509803921568626" green="0.3529411764705882" blue="0.62745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="pvs-5H-9K2"/>
                                     <constraint firstAttribute="width" constant="272" id="zST-6N-lbx"/>
@@ -238,32 +238,53 @@
             </objects>
             <point key="canvasLocation" x="1477.5999999999999" y="181.25937031484258"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fjg-iZ-dXB">
+            <objects>
+                <navigationController modalPresentationStyle="fullScreen" id="L08-K9-6qO" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="pkW-k1-1he">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.074509803920000006" green="0.35294117650000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Rmp-Q5-K4f" kind="relationship" relationship="rootViewController" id="Qkt-lF-5Az"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s4g-hx-ScK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2516" y="180"/>
+        </scene>
         <!--Web View Controller-->
         <scene sceneID="9LP-xi-Tll">
             <objects>
                 <viewController storyboardIdentifier="CCWebViewController" modalPresentationStyle="fullScreen" id="Rmp-Q5-K4f" customClass="CCWebViewController" customModule="SkilEx" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="luQ-A5-RJb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="7Wq-y5-J3T"/>
                     </view>
+                    <navigationItem key="navigationItem" id="e3g-FN-zqA"/>
+                    <connections>
+                        <segue destination="C8c-G4-Bcq" kind="show" identifier="to_WalletPage" id="sT1-KQ-7CW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zbl-wO-wIg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2380" y="181"/>
+            <point key="canvasLocation" x="3207" y="181"/>
         </scene>
         <!--Wallet-->
         <scene sceneID="snl-ei-TG6">
             <objects>
-                <viewController storyboardIdentifier="wallet" hidesBottomBarWhenPushed="YES" id="XwT-3j-U9s" customClass="Wallet" customModule="SkilEx" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="wallet" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="XwT-3j-U9s" customClass="Wallet" customModule="SkilEx" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t5C-VW-Dj8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Re0-ud-ud1">
                                 <rect key="frame" x="51.5" y="249" width="272" height="60"/>
-                                <color key="backgroundColor" red="0.26746687289999999" green="0.55522423980000002" blue="0.79592204089999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.074509803920000006" green="0.35294117650000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="272" id="QLe-fg-g6u"/>
                                     <constraint firstAttribute="height" constant="60" id="lgn-tW-H7h"/>
@@ -317,7 +338,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QAr-Jl-Rqo">
-                                <rect key="frame" x="0.0" y="325" width="375" height="342"/>
+                                <rect key="frame" x="0.0" y="325" width="375" height="298"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                 <prototypes>
@@ -457,33 +478,45 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LAr-Ce-Z0z"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Vnz-zw-mH7"/>
                     <connections>
                         <outlet property="addMoneyOutlet" destination="Re0-ud-ud1" id="qlT-1Z-6Wd"/>
                         <outlet property="amount" destination="4kL-j6-SVV" id="ojs-2q-nO0"/>
                         <outlet property="skilexWalletLabel" destination="XGH-5g-KZd" id="cK2-yK-ieh"/>
                         <outlet property="tableView" destination="QAr-Jl-Rqo" id="hOE-BH-MZB"/>
-                        <segue destination="C8c-G4-Bcq" kind="show" identifier="to_AddMoneyToWallet" id="LXx-wR-K7N"/>
+                        <segue destination="ay2-a6-7ho" kind="show" identifier="to_UserProfile" id="Nph-08-LfW"/>
+                        <segue destination="C8c-G4-Bcq" kind="show" identifier="to_AddMoneyToWallet" id="epB-9u-kld"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cbI-DQ-HW9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="708" y="884"/>
+            <point key="canvasLocation" x="1727" y="929"/>
+        </scene>
+        <!--userProfile-->
+        <scene sceneID="Mdd-PS-c2n">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MainView" referencedIdentifier="userProfile" id="ay2-a6-7ho" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="GOD-4y-pjJ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sLJ-P7-VIZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1652" y="1361"/>
         </scene>
         <!--Add Money To Wallet-->
         <scene sceneID="I2p-sw-an1">
             <objects>
                 <viewController storyboardIdentifier="addMoneyToWallet" modalPresentationStyle="fullScreen" id="C8c-G4-Bcq" customClass="AddMoneyToWallet" customModule="SkilEx" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZQf-WC-T5l">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HQZ-hN-oKI">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92H-P6-H3R">
                                 <rect key="frame" x="45" y="334" width="285" height="40"/>
-                                <color key="backgroundColor" red="0.26746687289999999" green="0.55522423980000002" blue="0.79592204089999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.074509803920000006" green="0.35294117650000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="285" id="JJR-Pk-f50"/>
                                     <constraint firstAttribute="height" constant="40" id="gLd-uC-1sN"/>
@@ -517,7 +550,7 @@
                                     <constraint firstAttribute="height" constant="43" id="noq-eJ-QSh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="29"/>
-                                <color key="textColor" red="0.26746687289999999" green="0.55522423980000002" blue="0.79592204089999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.074509803920000006" green="0.35294117650000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Money To" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Om-8O-ZoE">
@@ -537,7 +570,7 @@
                                     <constraint firstAttribute="height" constant="110" id="NId-3O-WAZ"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5rk-3h-r5x">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5rk-3h-r5x">
                                 <rect key="frame" x="37" y="258" width="301" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -545,7 +578,7 @@
                                     <constraint firstAttribute="width" constant="301" id="u9n-HZ-TfU"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                         </subviews>
@@ -576,13 +609,17 @@
                         <outlet property="amount" destination="5rk-3h-r5x" id="Hv4-GO-wv3"/>
                         <outlet property="proceedOutlet" destination="92H-P6-H3R" id="aKa-ob-QOT"/>
                         <outlet property="skilexWalletLabel" destination="ICj-aw-Red" id="7wJ-9d-hXy"/>
+                        <segue destination="XwT-3j-U9s" kind="show" identifier="back" id="lIW-mU-cxM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="spD-2a-lQX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1477.5999999999999" y="883.80809595202402"/>
+            <point key="canvasLocation" x="2516" y="929"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="sT1-KQ-7CW"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="AddMoney" width="150.5" height="150.5"/>
         <image name="AddWalletImage" width="150.5" height="150.5"/>

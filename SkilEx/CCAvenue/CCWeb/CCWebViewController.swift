@@ -20,7 +20,8 @@ import MBProgressHUD
  * Once the transaction is done  we will pass the transaction result to the next page (ie CCResultViewController here)
  */
 
-class CCWebViewController: UIViewController,UIWebViewDelegate {
+class CCWebViewController: UIViewController,UIWebViewDelegate
+{
     
     var accessCode = String()
     var merchantId = String()
@@ -58,6 +59,7 @@ class CCWebViewController: UIViewController,UIWebViewDelegate {
         print(advancePayment)
         setupWebView()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         /**
@@ -301,7 +303,7 @@ class CCWebViewController: UIViewController,UIWebViewDelegate {
                     }
                     else if advancePayment == "MW"
                     {
-                        self.navToAddMoney()
+                        self.navToAddMoney(status:"Cancelled")
 
                     }
                     else
@@ -326,7 +328,8 @@ class CCWebViewController: UIViewController,UIWebViewDelegate {
                     }
                     else if advancePayment == "MW"
                     {
-                        self.callWebServiceForAddingmoneyToWallet ()
+                       // self.callWebServiceForAddingmoneyToWallet ()
+                        self.navToAddMoney (status:"Success")
                     }
                     else
                     {
@@ -349,7 +352,7 @@ class CCWebViewController: UIViewController,UIWebViewDelegate {
                     }
                     else if advancePayment == "MW"
                     {
-                        self.navToAddMoney ()
+                        self.navToAddMoney (status:"Failed")
                     }
                     else
                     {
@@ -381,16 +384,16 @@ class CCWebViewController: UIViewController,UIWebViewDelegate {
             {
                 do
                 {
-                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "ccavenue_app/adding_money_to_wallet.php", params: parameters, headers: nil, success: {
+                    try AFWrapper.requestPOSTURL(AFWrapper.PaymentBaseUrl + "ccavenue_app/adding_money_to_wallet.php", params: parameters, headers: nil, success: {
                         (JSONResponse) -> Void in
                         MBProgressHUD.hide(for: self.view, animated: true)
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
-                        let msg = json["msg"].stringValue
+//                        let msg = json["msg"].stringValue
                         let status = json["status"].stringValue
-                        if msg == "Mobile OTP" && status == "success"
+                        if status == ""
                         {
-                            
+                            self.navToAddMoney (status:"Success")
                         }
                     }) {
                         (error) -> Void in
@@ -404,12 +407,35 @@ class CCWebViewController: UIViewController,UIWebViewDelegate {
            }
     }
     
-    func navToAddMoney ()
+    func navToAddMoney (status:String)
     {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "AdditionalService", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "addMoneyToWallet") as! AddMoneyToWallet
-//        nextViewController.transStatus = transStatus
-        self.present(nextViewController, animated:true, completion:nil)
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "AdditionalServices", bundle:nil)
+//        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "wallet") as! Wallet
+//        nextViewController.transStatus = status
+//        self.navigationController?.pushViewController(nextViewController, animated: true)
+//        self.performSegue(withIdentifier: "to_WalletPage", sender: status)
+        if status == "Success"
+        {
+           AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Amount added to Wallet", complition: {
+               self.dismiss(animated: true, completion: nil)
+
+           })
+        }
+        else if status == "Failed"
+        {
+           AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Amount added to Wallet is Failed", complition: {
+               self.dismiss(animated: true, completion: nil)
+
+           })
+        }
+        else if status == "Cancelled"
+        {
+           AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Amount added to Wallet is Cancelled", complition: {
+            self.dismiss(animated: true, completion: nil)
+
+           })
+        }
+        
     }
     
      // MARK: - Navigation
@@ -419,11 +445,12 @@ class CCWebViewController: UIViewController,UIWebViewDelegate {
      // Get the new view controller using segue.destination.
      // Pass the selected object to the new view controller.
         
-//        if (segue.identifier == "bookingPage")
-//        {
-//            let vc = segue.destination as! BookingSuccess
-//            vc.transStatus = self.transStatus
-//        }
+        if (segue.identifier == "to_WalletPage")
+        {
+            let vc = segue.destination as! AddMoneyToWallet
+            //let vc = nav.topViewController as!  Wallet
+            //vc.transStatus = sender as! String
+        }
      }
 
 }

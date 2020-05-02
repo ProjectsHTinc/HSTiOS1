@@ -30,12 +30,12 @@ class Wallet: UIViewController,UITableViewDelegate,UITableViewDataSource {
     override func viewWillAppear(_ animated: Bool) {
         self.preferedLanguage()
         self.addBackButton()
-        addMoneyOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: self.addMoneyOutlet.frame.height / 2, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
+        addMoneyOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: self.addMoneyOutlet.frame.height / 2, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))        
     }
     
     func preferedLanguage()
     {
-        self.navigationItem.title =  LocalizationSystem.sharedInstance.localizedStringForKey(key: "amountStatus_text", comment: "")
+        self.navigationItem.title =  LocalizationSystem.sharedInstance.localizedStringForKey(key: "amountStatusnavtitle_text", comment: "")
     }
     
     @objc public override func backButtonClick() {
@@ -147,14 +147,19 @@ class Wallet: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.performSegue(withIdentifier: "to_AddMoneyToWallet", sender: self)
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+//        if (segue.identifier == "to_UserProfile")
+//        {
+//            let vc = segue.destination as! Tabbarcontroller
+//            vc.selectedIndex = 2
+//        }
     }
-    */
+    
 
 }

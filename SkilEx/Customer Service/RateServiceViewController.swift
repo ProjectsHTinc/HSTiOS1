@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import MBProgressHUD
 
-class RateServiceViewController: UIViewController {
+class RateServiceViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var buttonOneOutlet: UIButton!
     @IBOutlet weak var buttonTwoOutlet: UIButton!
@@ -19,6 +19,7 @@ class RateServiceViewController: UIViewController {
     @IBOutlet weak var buttonFiveOutlet: UIButton!
     @IBOutlet weak var submitOutlet: UIButton!
     @IBOutlet weak var skipOutlet: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     var first = "0"
     var second = "0"
@@ -36,12 +37,12 @@ class RateServiceViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.preferedLanguage()
-
+        self.tableView.isHidden = true
+        self.reviewQuestns ()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.preferedLanguage()
-
     }
     
     func preferedLanguage()
@@ -49,6 +50,91 @@ class RateServiceViewController: UIViewController {
         self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "rateServicenavtitle_text", comment: "")
         submitOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "rateServicSubmitBtn_text", comment: ""), for: .normal)
         skipOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "rateServicSkipBtn_text", comment: ""), for: .normal)
+    }
+    
+    func reviewQuestns ()
+    {
+            let parameters = ["user_master_id": GlobalVariables.shared.user_master_id]
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            DispatchQueue.global().async
+                {
+                    do
+                    {
+                        try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "customer_feedback_answer", params: parameters, headers: nil, success: {
+                            (JSONResponse) -> Void in
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                            print(JSONResponse)
+                            let json = JSON(JSONResponse)
+    //                      let msg = json["msg"].stringValue
+                            let msg_en = json["result_wallet"]["msg_en"].stringValue
+                            let msg_ta = json["result_wallet"]["msg_ta"].stringValue
+                            let status = json["status"].stringValue
+    //                      let result_wallet = json["result_wallet"].stringValue
+                            if  status == "success"{
+//                               let wallet_balance = json["wallet_balance"].stringValue
+                                if msg_en == "wallet history found"
+                                {
+                                    if json["result_wallet"]["wallet_data"].count > 0
+                                    {
+                                        for i in 0..<json["result_wallet"]["wallet_data"].count
+                                        {
+//                                          let Walletdata = WalletData.init(json: json["result_wallet"]["wallet_data"][i])
+//                                          self.WalletDataArr.append(Walletdata)
+                                          self.tableView.isHidden = false
+                                        }
+                                        
+                                          self.tableView.reloadData()
+                                    }
+                                }
+                                                           
+                            }
+                            else
+                            {
+                                if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                                {
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                        //Custom action code
+                                    }
+                                }
+                                else
+                                {
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                        //Custom action code
+                                    }
+                                }
+                            }
+                        }) {
+                            (error) -> Void in
+                            print(error)
+                        }
+                    }
+                    catch
+                    {
+                        print("Unable to load data: \(error)")
+                    }
+            }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WalletDetailCell
+//        let walletdata = WalletDataArr[indexPath.row]
+//
+//        let date = Date()
+//        cell.date.text = date.formattedDateFromString(dateString: walletdata.created_date!, withFormat:"dd MMM YYYY")
+//        cell.addAMountLabel.text = walletdata.notes
+//        cell.addAmountTimeLabel.text = walletdata.created_time
+//        cell.addAmount.text = walletdata.transaction_amt
+//
+//        cell.addView.dropShadow()
+
+        return cell
+    }
+            
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 81
     }
     
     override func viewWillLayoutSubviews() {

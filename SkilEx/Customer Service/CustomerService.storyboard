@@ -2009,7 +2009,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Otz-xC-epZ">
-                                        <rect key="frame" x="53" y="102" width="49" height="52"/>
+                                        <rect key="frame" x="97" y="161" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="ios_icons-32"/>
                                         <state key="selected" backgroundImage="ios_icons-31"/>
@@ -2018,7 +2018,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5J-SC-pE0">
-                                        <rect key="frame" x="114" y="102" width="49" height="52"/>
+                                        <rect key="frame" x="135" y="161" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="ios_icons-32"/>
                                         <state key="selected" backgroundImage="ios_icons-31"/>
@@ -2027,7 +2027,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOl-cW-hCm">
-                                        <rect key="frame" x="175" y="102" width="49" height="52"/>
+                                        <rect key="frame" x="173" y="161" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="ios_icons-32"/>
                                         <state key="selected" backgroundImage="ios_icons-31"/>
@@ -2036,7 +2036,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXj-Dn-0Ss">
-                                        <rect key="frame" x="236" y="102" width="49" height="52"/>
+                                        <rect key="frame" x="211" y="161" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="ios_icons-32"/>
                                         <state key="selected" backgroundImage="ios_icons-31"/>
@@ -2045,7 +2045,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rs-dw-zq6">
-                                        <rect key="frame" x="297" y="102" width="49" height="52"/>
+                                        <rect key="frame" x="249" y="161" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="ios_icons-32"/>
                                         <state key="selected" backgroundImage="ios_icons-31"/>
@@ -2055,7 +2055,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3S-9D-Zbg">
-                                        <rect key="frame" x="115" y="196" width="145" height="40"/>
+                                        <rect key="frame" x="115" y="564" width="145" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.074509803921568626" green="0.3529411764705882" blue="0.62745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
@@ -2068,7 +2068,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewZ-zR-1Aj">
-                                        <rect key="frame" x="115" y="248" width="145" height="40"/>
+                                        <rect key="frame" x="115" y="616" width="145" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                         <state key="normal" title="Skip">
@@ -2078,6 +2078,84 @@
                                             <action selector="skipButton:" destination="tuQ-4d-FQm" eventType="touchUpInside" id="LGf-Yo-ZaL"/>
                                         </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ReviewNew" translatesAutoresizingMaskIntoConstraints="NO" id="C4W-Jj-nXo">
+                                        <rect key="frame" x="129" y="35" width="117" height="106"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="64N-AN-Ztg">
+                                        <rect key="frame" x="0.0" y="211" width="375" height="333"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="81" id="ZTh-vZ-qe6">
+                                                <rect key="frame" x="0.0" y="28" width="375" height="81"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZTh-vZ-qe6" id="ByZ-3H-dko">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMw-xi-Q7l">
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you satisfied with this service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZU-Ai-q6H">
+                                                                    <rect key="frame" x="16" y="8" width="343" height="21"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="21" id="ndh-cO-xfv"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hw5-a9-zIX">
+                                                                    <rect key="frame" x="16" y="43" width="30" height="27"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="27" id="Cqq-mr-eAw"/>
+                                                                        <constraint firstAttribute="width" constant="30" id="VHL-w0-9K8"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
+                                                                    <state key="normal" title="Yes">
+                                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </state>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ge8-cw-wMc">
+                                                                    <rect key="frame" x="56" y="43" width="30" height="27"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="27" id="3Rz-JI-Dc6"/>
+                                                                        <constraint firstAttribute="width" constant="30" id="mBi-hE-sE8"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
+                                                                    <state key="normal" title="No">
+                                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </state>
+                                                                </button>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstItem="eZU-Ai-q6H" firstAttribute="leading" secondItem="RMw-xi-Q7l" secondAttribute="leading" constant="16" id="I3z-ES-JBd"/>
+                                                                <constraint firstItem="eZU-Ai-q6H" firstAttribute="top" secondItem="RMw-xi-Q7l" secondAttribute="top" constant="8" id="SBa-7R-f16"/>
+                                                                <constraint firstItem="ge8-cw-wMc" firstAttribute="top" secondItem="eZU-Ai-q6H" secondAttribute="bottom" constant="14" id="XGi-ea-IFp"/>
+                                                                <constraint firstAttribute="trailing" secondItem="eZU-Ai-q6H" secondAttribute="trailing" constant="16" id="d5J-09-fZK"/>
+                                                                <constraint firstItem="ge8-cw-wMc" firstAttribute="leading" secondItem="Hw5-a9-zIX" secondAttribute="trailing" constant="10" id="gdE-ch-mmV"/>
+                                                                <constraint firstItem="Hw5-a9-zIX" firstAttribute="leading" secondItem="RMw-xi-Q7l" secondAttribute="leading" constant="16" id="hHe-jo-XQw"/>
+                                                                <constraint firstItem="Hw5-a9-zIX" firstAttribute="top" secondItem="eZU-Ai-q6H" secondAttribute="bottom" constant="14" id="jdM-7v-zDN"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="RMw-xi-Q7l" firstAttribute="top" secondItem="ByZ-3H-dko" secondAttribute="top" id="4Ax-As-sLb"/>
+                                                        <constraint firstItem="RMw-xi-Q7l" firstAttribute="leading" secondItem="ByZ-3H-dko" secondAttribute="leading" id="LTN-C3-THz"/>
+                                                        <constraint firstAttribute="bottom" secondItem="RMw-xi-Q7l" secondAttribute="bottom" id="OPt-wd-otd"/>
+                                                        <constraint firstAttribute="trailing" secondItem="RMw-xi-Q7l" secondAttribute="trailing" id="gVI-DC-H60"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="tuQ-4d-FQm" id="6Oe-o5-Asg"/>
+                                            <outlet property="delegate" destination="tuQ-4d-FQm" id="se6-ow-zkO"/>
+                                        </connections>
+                                    </tableView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
@@ -2100,13 +2178,14 @@
                         <outlet property="buttonTwoOutlet" destination="E5J-SC-pE0" id="5eD-tK-gx2"/>
                         <outlet property="skipOutlet" destination="ewZ-zR-1Aj" id="c2p-r6-JBe"/>
                         <outlet property="submitOutlet" destination="q3S-9D-Zbg" id="8j0-eU-Tcn"/>
+                        <outlet property="tableView" destination="64N-AN-Ztg" id="6sm-0u-xGn"/>
                         <segue destination="TT6-MR-aSG" kind="show" identifier="home" id="iLJ-XH-Qhe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9N-LI-Tj7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="IWR-ju-tOE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5030" y="166"/>
+            <point key="canvasLocation" x="5029.6000000000004" y="165.06746626686657"/>
         </scene>
         <!--Service History-->
         <scene sceneID="gUL-zZ-lOd">
@@ -2972,9 +3051,10 @@
         <segue reference="EoP-MN-H1f"/>
         <segue reference="v2h-GF-NT1"/>
         <segue reference="qea-Jb-V3I"/>
-        <segue reference="o8x-xx-DOc"/>
+        <segue reference="iLJ-XH-Qhe"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="ReviewNew" width="150.5" height="150.5"/>
         <image name="cancelservice_notification" width="24" height="24.5"/>
         <image name="cashpay" width="50" height="50.5"/>
         <image name="coupon" width="24.5" height="15"/>

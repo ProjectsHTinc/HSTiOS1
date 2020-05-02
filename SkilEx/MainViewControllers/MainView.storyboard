@@ -895,7 +895,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6XO-Oe-bmY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2376.8000000000002" y="465.51724137931041"/>
+            <point key="canvasLocation" x="2396" y="469"/>
         </scene>
         <!--Service Descripition-->
         <scene sceneID="ZBE-Qj-C4u">
@@ -1235,10 +1235,10 @@
             </objects>
             <point key="canvasLocation" x="2956" y="498"/>
         </scene>
-        <!--wallet-->
+        <!--rateService-->
         <scene sceneID="SLF-dL-wiX">
             <objects>
-                <viewControllerPlaceholder storyboardName="AdditionalServices" referencedIdentifier="wallet" id="sDM-xM-eFv" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="CustomerService" referencedIdentifier="rateService" id="sDM-xM-eFv" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Uxm-gh-k6O"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X7o-4f-FFV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1767,11 +1767,11 @@
         <scene sceneID="0ag-UK-M8Q">
             <objects>
                 <viewController storyboardIdentifier="aboutUs" title="SkilEx" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="8wP-RL-v3g" customClass="AboutUs" customModule="SkilEx" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="weu-Wk-fbq">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="weu-Wk-fbq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkL-R6-ToW">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkL-R6-ToW">
                                 <rect key="frame" x="13" y="47" width="348" height="576"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -2489,7 +2489,7 @@
         <!--Navigation Controller-->
         <scene sceneID="qfl-oW-9jE">
             <objects>
-                <navigationController modalPresentationStyle="fullScreen" id="c5H-WL-SIe" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="profileTab" modalPresentationStyle="fullScreen" id="c5H-WL-SIe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="3" title="" image="ios_icons-45" id="sMC-8T-6TM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="C6k-S1-c2q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

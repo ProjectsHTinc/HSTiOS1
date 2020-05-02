@@ -9,6 +9,7 @@
 import UIKit
 
 class AddMoneyToWallet: UIViewController,UITextFieldDelegate {
+    
 
     @IBOutlet weak var addMoneyToLabel: UILabel!
     @IBOutlet weak var skilexWalletLabel: UILabel!
@@ -20,13 +21,16 @@ class AddMoneyToWallet: UIViewController,UITextFieldDelegate {
         // Do any additional setup after loading the view.
         amount.delegate = self
         self.addToolBar(textField: amount)
-        view.bindToKeyboard()
+        //view.bindToKeyboard()
+        self.hideKeyboardWhenTappedAround()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.preferedLanguage()
         self.addBackButton()
         proceedOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: self.proceedOutlet.frame.height / 2, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
+       
     }
     
     func preferedLanguage()
@@ -36,6 +40,7 @@ class AddMoneyToWallet: UIViewController,UITextFieldDelegate {
     
     @objc public override func backButtonClick() {
         self.navigationController?.popViewController(animated: true)
+        //self.performSegue(withIdentifier: "back", sender: self)
     }
     
     func generateRandomDigits(_ digitNumber: Int) -> String {
@@ -55,7 +60,8 @@ class AddMoneyToWallet: UIViewController,UITextFieldDelegate {
         let randomNumbers = Int(generateRandomDigits(5))
         print(randomNumbers!)
         
-        let concordinateString = "\(String(describing: randomNumbers))" + "-" + GlobalVariables.shared.user_master_id
+        let concordinateString = "\(randomNumbers!)" + "-" + GlobalVariables.shared.user_master_id
+        print(concordinateString)
         UserDefaults.standard.set("MW", forKey: "Advance/customer")
         let viewController = self.storyboard!.instantiateViewController(withIdentifier: "CCWebViewController") as! CCWebViewController
         viewController.accessCode = "AVQM86GG76CA98MQAC"
@@ -65,8 +71,8 @@ class AddMoneyToWallet: UIViewController,UITextFieldDelegate {
         viewController.strAddMoneyToWallet = concordinateString
         viewController.currency = "INR"
         viewController.orderId = concordinateString
-        viewController.redirectUrl = String(format: "%@%@", AFWrapper.PaymentBaseUrl,"ccavenue_app/customer_advance.php")
-        viewController.cancelUrl = String(format: "%@%@", AFWrapper.PaymentBaseUrl,"customer_advance.php")
+        viewController.redirectUrl = String(format: "%@%@", AFWrapper.PaymentBaseUrl,"ccavenue_app/adding_money_to_wallet.php")
+        viewController.cancelUrl = String(format: "%@%@", AFWrapper.PaymentBaseUrl,"ccavenue_app/adding_money_to_wallet.php")
         viewController.rsaKeyUrl = String(format: "%@%@", AFWrapper.PaymentBaseUrl,"ccavenue_app/GetRSA.php")
                 
         self.present(viewController, animated: true, completion: nil)
