@@ -82,6 +82,10 @@
 		6B7FB26E22E817E900B9D9A4 /* RequestedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7FB26D22E817E900B9D9A4 /* RequestedService.swift */; };
 		6B7FB27022E8180900B9D9A4 /* RequestedServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7FB26F22E8180900B9D9A4 /* RequestedServiceTableViewCell.swift */; };
 		6B7FB27222E86B7200B9D9A4 /* OngoingServicesDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7FB27122E86B7200B9D9A4 /* OngoingServicesDetail.swift */; };
+		6B7FE8112460A9280074329C /* FeedBackQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7FE8102460A9280074329C /* FeedBackQuestions.swift */; };
+		6B7FE8132460AC260074329C /* RateServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7FE8122460AC260074329C /* RateServiceTableViewCell.swift */; };
+		6B7FE8152460B8040074329C /* TopTrendingServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7FE8142460B8040074329C /* TopTrendingServices.swift */; };
+		6B7FE8172460CAAA0074329C /* TopTrendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7FE8162460CAAA0074329C /* TopTrendingCollectionViewCell.swift */; };
 		6B8538A022EDCE69001284C4 /* ServiceSummaryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85389F22EDCE69001284C4 /* ServiceSummaryDetail.swift */; };
 		6B86FE8D22E98EB200C1DFC9 /* RequestedServiceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B86FE8C22E98EB200C1DFC9 /* RequestedServiceDetail.swift */; };
 		6B86FE8F22E995A500C1DFC9 /* ServicesListDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B86FE8E22E995A500C1DFC9 /* ServicesListDetail.swift */; };
@@ -253,6 +257,10 @@
 		6B7FB26D22E817E900B9D9A4 /* RequestedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestedService.swift; sourceTree = "<group>"; };
 		6B7FB26F22E8180900B9D9A4 /* RequestedServiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestedServiceTableViewCell.swift; sourceTree = "<group>"; };
 		6B7FB27122E86B7200B9D9A4 /* OngoingServicesDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingServicesDetail.swift; sourceTree = "<group>"; };
+		6B7FE8102460A9280074329C /* FeedBackQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackQuestions.swift; sourceTree = "<group>"; };
+		6B7FE8122460AC260074329C /* RateServiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateServiceTableViewCell.swift; sourceTree = "<group>"; };
+		6B7FE8142460B8040074329C /* TopTrendingServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTrendingServices.swift; sourceTree = "<group>"; };
+		6B7FE8162460CAAA0074329C /* TopTrendingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTrendingCollectionViewCell.swift; sourceTree = "<group>"; };
 		6B85389F22EDCE69001284C4 /* ServiceSummaryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSummaryDetail.swift; sourceTree = "<group>"; };
 		6B86FE8C22E98EB200C1DFC9 /* RequestedServiceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestedServiceDetail.swift; sourceTree = "<group>"; };
 		6B86FE8E22E995A500C1DFC9 /* ServicesListDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesListDetail.swift; sourceTree = "<group>"; };
@@ -481,6 +489,9 @@
 				6BD1356222F068E900E8494F /* AdditionalServiceTableViewcell.swift */,
 				6B774B6722F1B06300D3EC28 /* NotificationAndOffersTableViewCell.swift */,
 				6BCCF78123AA38B7004BC0B4 /* TermsandConditionCell.swift */,
+				6B7FE8122460AC260074329C /* RateServiceTableViewCell.swift */,
+				6B6C96B424586E3C000E6D98 /* WalletDetailCell.swift */,
+				6B7FE8162460CAAA0074329C /* TopTrendingCollectionViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -568,7 +579,6 @@
 				6B6C96AE24571E2B000E6D98 /* ReferAndEarn.swift */,
 				6B6C96B024583A0C000E6D98 /* AmountStatus.swift */,
 				6B6C96B2245864AC000E6D98 /* Wallet.swift */,
-				6B6C96B424586E3C000E6D98 /* WalletDetailCell.swift */,
 				6B160E462458D0D200FB521B /* AddMoneyToWallet.swift */,
 				6B6C96AC24571DDD000E6D98 /* AdditionalServices.storyboard */,
 			);
@@ -619,6 +629,8 @@
 				6BFA5F25230AA6CF00E483D2 /* Bill.swift */,
 				6BB97916237440AB002BF9E9 /* UITextViewWorkaround.swift */,
 				6B160E442458C63A00FB521B /* WalletData.swift */,
+				6B7FE8102460A9280074329C /* FeedBackQuestions.swift */,
+				6B7FE8142460B8040074329C /* TopTrendingServices.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -884,6 +896,8 @@
 				6B6C96AF24571E2B000E6D98 /* ReferAndEarn.swift in Sources */,
 				6B8784F022EC87F800040D7D /* AdditionalService.swift in Sources */,
 				6B645A7A22E5CECB0039935C /* PlaceHolderImageInTextfield.swift in Sources */,
+				6B7FE8132460AC260074329C /* RateServiceTableViewCell.swift in Sources */,
+				6B7FE8152460B8040074329C /* TopTrendingServices.swift in Sources */,
 				6BFA5F26230AA6CF00E483D2 /* Bill.swift in Sources */,
 				6B0756CC22EAF4AC00355C01 /* CCResultViewController.swift in Sources */,
 				6B774B6622F1AFEE00D3EC28 /* NotificationAndOffers.swift in Sources */,
@@ -955,11 +969,13 @@
 				6B30C7A822EF334D00F0FAA8 /* CancelService.swift in Sources */,
 				6B86FE8F22E995A500C1DFC9 /* ServicesListDetail.swift in Sources */,
 				6B160E452458C63A00FB521B /* WalletData.swift in Sources */,
+				6B7FE8112460A9280074329C /* FeedBackQuestions.swift in Sources */,
 				6BCCF78023AA388E004BC0B4 /* TermsandCondition.swift in Sources */,
 				6BB97917237440AB002BF9E9 /* UITextViewWorkaround.swift in Sources */,
 				6B44C8B522CE1C270084A5AB /* UIViewExtension.swift in Sources */,
 				6B0756D622EAF4D900355C01 /* LoadingOverlay.swift in Sources */,
 				6B7F3A3922E74211007139E3 /* DropShadow.swift in Sources */,
+				6B7FE8172460CAAA0074329C /* TopTrendingCollectionViewCell.swift in Sources */,
 				6B774B6822F1B06300D3EC28 /* NotificationAndOffersTableViewCell.swift in Sources */,
 				6B0756D122EAF4C300355C01 /* CCInitView.swift in Sources */,
 				6B4B51DB22C5E5FA00D73166 /* Service.swift in Sources */,

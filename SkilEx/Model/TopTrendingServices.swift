@@ -1,16 +1,16 @@
 //
-//  Services.swift
+//  TopTrendingServices.swift
 //  SkilEx
 //
-//  Created by Happy Sanz Tech on 10/07/19.
-//  Copyright © 2019 Happy Sanz Tech. All rights reserved.
+//  Created by Happy Sanz Tech on 05/05/20.
+//  Copyright © 2020 Happy Sanz Tech. All rights reserved.
 //
 
 import UIKit
 import SwiftyJSON
 
-class Services: Codable {
-    
+class TopTrendingServices: Codable {
+
     var service_id, service_pic_url, main_cat_id, service_ta_name, service_name, sub_cat_id, selected  : String?
     
     init(json:JSON) {
@@ -24,4 +24,5 @@ class Services: Codable {
         self.selected = json["selected"].stringValue
 
     }
+    
 }

@@ -30,14 +30,15 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
     
     
     var selectedValue = String()
+    var feedback_question = [String]()
+    var feedback_question_id = [String]()
+    var feedBackArr = [FeedBackQuestions]()
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.preferedLanguage()
-        self.tableView.isHidden = true
         self.reviewQuestns ()
     }
     
@@ -60,26 +61,24 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
                 {
                     do
                     {
-                        try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "customer_feedback_answer", params: parameters, headers: nil, success: {
+                        try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "customer_feedback_question", params: parameters, headers: nil, success: {
                             (JSONResponse) -> Void in
                             MBProgressHUD.hide(for: self.view, animated: true)
                             print(JSONResponse)
                             let json = JSON(JSONResponse)
-    //                      let msg = json["msg"].stringValue
-                            let msg_en = json["result_wallet"]["msg_en"].stringValue
-                            let msg_ta = json["result_wallet"]["msg_ta"].stringValue
+                            let msg = json["msg"].stringValue
+//                            let msg_en = json["msg_en"].stringValue
+//                            let msg_ta = json["msg_ta"].stringValue
                             let status = json["status"].stringValue
-    //                      let result_wallet = json["result_wallet"].stringValue
                             if  status == "success"{
-//                               let wallet_balance = json["wallet_balance"].stringValue
-                                if msg_en == "wallet history found"
+                                if msg == "Feedback questions found"
                                 {
-                                    if json["result_wallet"]["wallet_data"].count > 0
+                                    if json["feedback_question"].count > 0
                                     {
-                                        for i in 0..<json["result_wallet"]["wallet_data"].count
+                                        for i in 0..<json["feedback_question"].count
                                         {
-//                                          let Walletdata = WalletData.init(json: json["result_wallet"]["wallet_data"][i])
-//                                          self.WalletDataArr.append(Walletdata)
+                                          let feedback_question = FeedBackQuestions.init(json: json["feedback_question"][i])
+                                          self.feedBackArr.append(feedback_question)
                                           self.tableView.isHidden = false
                                         }
                                         
@@ -92,13 +91,13 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
                             {
                                 if LocalizationSystem.sharedInstance.getLanguage() == "en"
                                 {
-                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg) { (action) in
                                         //Custom action code
                                     }
                                 }
                                 else
                                 {
-                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg) { (action) in
                                         //Custom action code
                                     }
                                 }
@@ -116,21 +115,95 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0    }
+        return feedBackArr.count
+        
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WalletDetailCell
-//        let walletdata = WalletDataArr[indexPath.row]
-//
-//        let date = Date()
-//        cell.date.text = date.formattedDateFromString(dateString: walletdata.created_date!, withFormat:"dd MMM YYYY")
-//        cell.addAMountLabel.text = walletdata.notes
-//        cell.addAmountTimeLabel.text = walletdata.created_time
-//        cell.addAmount.text = walletdata.transaction_amt
-//
-//        cell.addView.dropShadow()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RateServiceTableViewCell
+        let feedBack = feedBackArr[indexPath.row]
+        cell.questionText.text = feedBack.feedback_question
+        cell.yesOutlet.addTarget(self, action: #selector(yesButtonClicked(sender:)), for: .touchUpInside)
+        cell.noOutlet.addTarget(self, action: #selector(noButtonClicked), for: .touchUpInside)
+        cell.yesOutlet.tag = indexPath.row
+        cell.noOutlet.tag = indexPath.row
+
 
         return cell
+    }
+    
+    @objc func yesButtonClicked(sender: UIButton){
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
+        let indexPath: IndexPath? = tableView.indexPathForRow(at: buttonPosition)
+        let cell = tableView.cellForRow(at: indexPath! as IndexPath) as! RateServiceTableViewCell
+        cell.yesOutlet.setTitleColor(UIColor.black, for: .normal)
+        cell.noOutlet.setTitleColor(UIColor.lightGray, for: .normal)
+        let buttonTag = sender.tag
+        let feedBack = feedBackArr[buttonTag]
+        let feedbackid = feedBack.id
+        self.feedBackAnswer(id: feedbackid!, feedback_text: "Yes", service_order_id: GlobalVariables.shared.serviceOrderId)
+    }
+    
+    @objc func noButtonClicked(sender: UIButton){
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
+        let indexPath: IndexPath? = tableView.indexPathForRow(at: buttonPosition)
+        let cell = tableView.cellForRow(at: indexPath! as IndexPath) as! RateServiceTableViewCell
+        cell.yesOutlet.setTitleColor(UIColor.lightGray, for: .normal)
+        cell.noOutlet.setTitleColor(UIColor.black, for: .normal)
+        let buttonTag = sender.tag
+        let feedBack = feedBackArr[buttonTag]
+        let feedbackid = feedBack.id
+        self.feedBackAnswer(id: feedbackid!, feedback_text: "Yes", service_order_id: GlobalVariables.shared.serviceOrderId)
+    }
+    
+    func feedBackAnswer (id:String,feedback_text:String,service_order_id:String)
+    {
+        let parameters = ["user_master_id": GlobalVariables.shared.user_master_id,"feedback_id": id,"feedback_text": feedback_text,"service_order_id": service_order_id]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+            {
+                do
+                {
+                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "customer_feedback_answer", params: parameters, headers: nil, success: {
+                        (JSONResponse) -> Void in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print(JSONResponse)
+                        let json = JSON(JSONResponse)
+                        let msg = json["msg"].stringValue
+//                      let msg_en = json["msg_en"].stringValue
+//                      let msg_ta = json["msg_ta"].stringValue
+                        let status = json["status"].stringValue
+                        if  status == "success"{
+                            if msg == "Feedback added successfully"
+                            {
+
+                            }
+                        }
+                        else
+                        {
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                        }
+                    }) {
+                        (error) -> Void in
+                        print(error)
+                    }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
+        }
     }
             
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

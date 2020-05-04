@@ -221,7 +221,7 @@
                 <viewControllerPlaceholder storyboardName="MainView" referencedIdentifier="tabbarcontroller" id="bpi-tk-psA" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1b1-Si-vSR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="113" y="557"/>
+            <point key="canvasLocation" x="84" y="665"/>
         </scene>
         <!--OTP-->
         <scene sceneID="cna-fr-Olh">
