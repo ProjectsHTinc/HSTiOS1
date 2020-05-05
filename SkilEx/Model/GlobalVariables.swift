@@ -23,5 +23,7 @@ class GlobalVariables: NSObject {
     var rowCount = Int()
     var serviceCount = String()
     var serviceOrderId = String()
+    var serviceID = String()
+    var walletAmount = String()
 
 }

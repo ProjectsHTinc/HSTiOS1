@@ -105,7 +105,7 @@ class ServiceDescripitionTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return 6
     }
     
     @IBAction func bookNowAction(_ sender: Any)
@@ -185,6 +185,10 @@ class ServiceDescripitionTableViewController: UITableViewController {
             }
     }
     
+    @IBAction func reviewAction(_ sender: Any)
+    {
+        self.performSegue(withIdentifier: "to_Review", sender: self)
+    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
@@ -241,6 +245,10 @@ class ServiceDescripitionTableViewController: UITableViewController {
         if (segue.identifier == "viewSummary"){
             
             let _ = segue.destination as! ViewSummary
+        }
+        else if (segue.identifier == "to_Review")
+        {
+            let _ = segue.destination as! Review
         }
     }
     

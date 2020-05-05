@@ -136,8 +136,8 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
         let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
         let indexPath: IndexPath? = tableView.indexPathForRow(at: buttonPosition)
         let cell = tableView.cellForRow(at: indexPath! as IndexPath) as! RateServiceTableViewCell
-        cell.yesOutlet.setTitleColor(UIColor.black, for: .normal)
-        cell.noOutlet.setTitleColor(UIColor.lightGray, for: .normal)
+        cell.yesOutlet.setImage(UIImage(named: "radio_buttonselect"), for: UIControl.State.normal)
+        cell.noOutlet.setImage(UIImage(named: "radio_buttonunselect"), for: UIControl.State.normal)
         let buttonTag = sender.tag
         let feedBack = feedBackArr[buttonTag]
         let feedbackid = feedBack.id
@@ -148,8 +148,8 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
         let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
         let indexPath: IndexPath? = tableView.indexPathForRow(at: buttonPosition)
         let cell = tableView.cellForRow(at: indexPath! as IndexPath) as! RateServiceTableViewCell
-        cell.yesOutlet.setTitleColor(UIColor.lightGray, for: .normal)
-        cell.noOutlet.setTitleColor(UIColor.black, for: .normal)
+        cell.yesOutlet.setImage(UIImage(named: "radio_buttonunselect"), for: UIControl.State.normal)
+        cell.noOutlet.setImage(UIImage(named: "radio_buttonselect"), for: UIControl.State.normal)
         let buttonTag = sender.tag
         let feedBack = feedBackArr[buttonTag]
         let feedbackid = feedBack.id

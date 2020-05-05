@@ -255,3 +255,6 @@
 "amountStatusnavtitle_text" = "தொகை நிலைs";
 /*SkilexWallet text */
 "SkilexWalletnavtitle_text" = "ஸ்கிலெக்ஸ் Wallet";
+
+/*ReviewsAndratings text */
+"reviewAndRatingsnavtitle_text" = "மதிப்புரைகள் மற்றும் மதிப்பீடுகள்";

@@ -28,9 +28,12 @@ class Wallet: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+
         self.preferedLanguage()
         self.addBackButton()
-        addMoneyOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: self.addMoneyOutlet.frame.height / 2, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))        
+        addMoneyOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: self.addMoneyOutlet.frame.height / 2, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
+        self.checkWalletBalanceAndHistory ()
+
     }
     
     func preferedLanguage()

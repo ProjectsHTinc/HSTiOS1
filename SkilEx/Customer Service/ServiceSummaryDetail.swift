@@ -51,6 +51,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
     @IBOutlet weak var couponTextField: UITextField!
     @IBOutlet weak var applyCouponOutlet: UIButton!
     @IBOutlet weak var serviceCompletedTime: UILabel!
+    @IBOutlet var walletCheckBoxOutlet: UIButton!
     
     var service_order_id = String()
     var paymentStatus = String()
@@ -63,6 +64,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
     var iscouponApplied = false
     var showRow = Int()
     var viewFrom = String()
+    var walletCheckBoxIsClicked = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,7 +101,8 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
             self.serviceStatusCheck (user_master_id: GlobalVariables.shared.user_master_id, service_order_id: service_order_id)
             self.preferedLanguage()
         }
-     
+        
+        self.walletCheckBoxIsClicked = "No"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -414,7 +417,17 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
     
     @IBAction func payNowAction(_ sender: Any)
     {
-        self.performSegue(withIdentifier: "paymentMethod", sender: self)
+        if walletCheckBoxIsClicked == "Yes"
+        {
+            if GlobalVariables.shared.payableAmount == GlobalVariables.shared.walletAmount
+            {
+                padiOnWallet ()
+            }
+        }
+        else
+        {
+            self.performSegue(withIdentifier: "paymentMethod", sender: self)
+        }
     }
     
     @IBAction func applyCouponAction(_ sender: Any)
@@ -750,7 +763,270 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
                 }
         }
     }
+    @IBAction func walletCheckboxAction(_ sender: Any)
+    {
+        if (walletCheckBoxIsClicked == "No")
+        {
+            walletCheckBoxIsClicked = "Yes"
+            self.walletCheckBoxOutlet.setImage(UIImage(named: "checkbox_select"), for: UIControl.State.normal)
+            self.payUsingWallet ()
+        }
+        else
+        {
+            walletCheckBoxIsClicked = "No"
+            self.walletCheckBoxOutlet.setImage(UIImage(named: "checkbox_unselect"), for: UIControl.State.normal)
+            self.unCheckFromWallet ()
+        }
+    }
     
+    func payUsingWallet ()
+    {
+       let parameters = ["user_master_id": GlobalVariables.shared.user_master_id,"service_order_id":GlobalVariables.shared.serviceOrderId]
+       MBProgressHUD.showAdded(to: self.view, animated: true)
+       DispatchQueue.global().async
+        {
+            do
+            {
+                try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "pay_using_wallet", params: parameters, headers: nil, success: {
+                    (JSONResponse) -> Void in
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    print(JSONResponse)
+                    let json = JSON(JSONResponse)
+                    let msg = json["msg"].stringValue
+                    let msg_en = json["msg_en"].stringValue
+                    let msg_ta = json["msg_ta"].stringValue
+                    let status = json["status"].stringValue
+                    if msg == "Paid from wallet" && status == "success"
+                    {
+                        self.webRequestProceedforPaymentWalletCheck()
+                    }
+                    else
+                    {
+                        if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                        {
+                            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                //Custom action code
+                            }
+                        }
+                        else
+                        {
+                            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                //Custom action code
+                            }
+                        }
+                    }
+                })
+                {
+                    (error) -> Void in
+                    print(error)
+                }
+            }
+            catch
+            {
+                print("Unable to load data: \(error)")
+            }
+        }
+    }
+        
+    func unCheckFromWallet ()
+    {
+       let parameters = ["user_master_id": GlobalVariables.shared.user_master_id,"service_order_id":GlobalVariables.shared.serviceOrderId]
+       MBProgressHUD.showAdded(to: self.view, animated: true)
+       DispatchQueue.global().async
+           {
+               do
+               {
+                   try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "uncheck_from_wallet", params: parameters, headers: nil, success: {
+                       (JSONResponse) -> Void in
+                       MBProgressHUD.hide(for: self.view, animated: true)
+                       print(JSONResponse)
+                       let json = JSON(JSONResponse)
+                       let msg = json["msg"].stringValue
+                       let msg_en = json["msg_en"].stringValue
+                       let msg_ta = json["msg_ta"].stringValue
+                       let status = json["status"].stringValue
+                       if msg == "Amount back to wallet" && status == "success"{
+                           self.webRequestProceedforPaymentWalletUnCheck()
+                       }
+                       else
+                       {
+                           if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                           {
+                               Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                   //Custom action code
+                               }
+                           }
+                           else
+                           {
+                               Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                   //Custom action code
+                               }
+                           }
+                       }
+                   })
+                   {
+                       (error) -> Void in
+                       print(error)
+                   }
+               }
+               catch
+               {
+                   print("Unable to load data: \(error)")
+               }
+        }
+    }
+    
+    func webRequestProceedforPaymentWalletCheck () {
+    let parameters = ["user_master_id": GlobalVariables.shared.user_master_id,"service_order_id": GlobalVariables.shared.serviceOrderId]
+    MBProgressHUD.showAdded(to: self.view, animated: true)
+    DispatchQueue.global().async
+        {
+            do
+            {
+                try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "proceed_for_payment", params: parameters, headers: nil, success: {
+                    (JSONResponse) -> Void in
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    print(JSONResponse)
+                    let json = JSON(JSONResponse)
+                    let msg = json["msg"].stringValue
+                    let msg_en = json["msg_en"].stringValue
+                    let msg_ta = json["msg_ta"].stringValue
+                    let status = json["status"].stringValue
+                    if msg == "Proceed for Payment" && status == "success"
+                    {
+                        GlobalVariables.shared.order_id = json["payment_details"]["order_id"].stringValue
+                        let amount = json["payment_details"]["wallet_amount"].stringValue
+                        GlobalVariables.shared.payableAmount = json["payment_details"]["payable_amount"].stringValue
+                        GlobalVariables.shared.walletAmount = json["payment_details"]["wallet_amount"].stringValue
+                        self.grandTotal.text = amount + ".0"
+
+                    }
+                    else
+                    {
+                        if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                        {
+                            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                //Custom action code
+                            }
+                        }
+                        else
+                        {
+                            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                //Custom action code
+                            }
+                        }
+                    }
+                }) {
+                    (error) -> Void in
+                    print(error)
+                }
+            }
+            catch
+            {
+                print("Unable to load data: \(error)")
+            }
+        }
+    }
+    
+    func webRequestProceedforPaymentWalletUnCheck () {
+       let parameters = ["user_master_id": GlobalVariables.shared.user_master_id,"service_order_id": GlobalVariables.shared.serviceOrderId]
+       MBProgressHUD.showAdded(to: self.view, animated: true)
+       DispatchQueue.global().async
+        {
+            do
+            {
+                try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "proceed_for_payment", params: parameters, headers: nil, success: {
+                    (JSONResponse) -> Void in
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    print(JSONResponse)
+                    let json = JSON(JSONResponse)
+                    let msg = json["msg"].stringValue
+                    let msg_en = json["msg_en"].stringValue
+                    let msg_ta = json["msg_ta"].stringValue
+                    let status = json["status"].stringValue
+                    if msg == "Proceed for Payment" && status == "success"
+                    {
+                        GlobalVariables.shared.order_id = json["payment_details"]["order_id"].stringValue
+                        let amount = json["payment_details"]["payable_amount"].stringValue
+                        GlobalVariables.shared.payableAmount = json["payment_details"]["payable_amount"].stringValue
+                        GlobalVariables.shared.walletAmount = json["payment_details"]["wallet_amount"].stringValue
+                        self.grandTotal.text = amount + ".0"
+
+                    }
+                    else
+                    {
+                        if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                        {
+                            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                //Custom action code
+                            }
+                        }
+                        else
+                        {
+                            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                //Custom action code
+                            }
+                        }
+                    }
+                }) {
+                    (error) -> Void in
+                    print(error)
+                }
+            }
+            catch
+            {
+                print("Unable to load data: \(error)")
+            }
+        }
+    }
+    
+    func padiOnWallet ()
+    {
+        let parameters = ["user_master_id": GlobalVariables.shared.user_master_id,"service_order_id": GlobalVariables.shared.serviceOrderId]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+         {
+             do
+             {
+                 try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "paid_on_wallet", params: parameters, headers: nil, success: {
+                     (JSONResponse) -> Void in
+                     MBProgressHUD.hide(for: self.view, animated: true)
+                     print(JSONResponse)
+                     let json = JSON(JSONResponse)
+                     let msg = json["msg"].stringValue
+                     let msg_en = json["msg_en"].stringValue
+                     let msg_ta = json["msg_ta"].stringValue
+                     let status = json["status"].stringValue
+                     if msg == "Thank you for Payment" && status == "success"
+                     {
+                        self.performSegue(withIdentifier: "payByWallet", sender: self)
+                     }
+                     else
+                     {
+                         if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                         {
+                             Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                 //Custom action code
+                             }
+                         }
+                         else
+                         {
+                             Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                 //Custom action code
+                             }
+                         }
+                     }
+                 }) {
+                     (error) -> Void in
+                     print(error)
+                 }
+             }
+             catch
+             {
+                 print("Unable to load data: \(error)")
+             }
+         }
+    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
@@ -818,6 +1094,11 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
         {
             let vc = segue.destination as! ViewBill
             vc.serviceOrderId = self.service_order_id
+        }
+        else if (segue.identifier == "payByWallet")
+        {
+            let vc = segue.destination as! CCResultViewController
+            vc.transStatus = "Transaction Successful"
         }
     }
     

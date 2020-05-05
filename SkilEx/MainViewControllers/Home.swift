@@ -602,9 +602,9 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         {
             guard topTrendingCollectionView.cellForItem(at: indexPath as IndexPath) != nil else { return }
              let index = toptrendingArr[indexPath.row]
-             cat_id = index.main_cat_id!
+             cat_id = index.service_id!
              print(cat_id)
-             self.viewSubCategoery(categoeryId: cat_id)
+             self.serviceDiscripition(serviceID: cat_id)
         }
     }
     
@@ -679,6 +679,43 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                     print("Unable to load data: \(error)")
                 }
         }
+    }
+    
+    func serviceDiscripition (serviceID:String)
+    {
+            let url = AFWrapper.BASE_URL + "service_details"
+            let parameters = ["service_id": serviceID]
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            DispatchQueue.global().async
+                {
+                    do
+                    {
+                        try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
+                            (JSONResponse) -> Void in
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                            print(JSONResponse)
+                            let json = JSON(JSONResponse)
+                            let msg = json["msg"].stringValue
+                            let status = json["status"].stringValue
+                            if msg == "Service Details" && status == "success"
+                            {
+                                let servicesdescripition = ServicesDescripition(json: json["service_details"])
+                                UserDefaults.standard.saveServicesDescripition(servicesDescripition: servicesdescripition)
+                                GlobalVariables.shared.Service_amount = servicesdescripition.rate_card!
+                                GlobalVariables.shared.serviceID = serviceID
+                                self.performSegue(withIdentifier: "serviceDescrption", sender: self)
+                            
+                            }
+                        }) {
+                            (error) -> Void in
+                            print(error)
+                        }
+                    }
+                    catch
+                    {
+                        print("Unable to load data: \(error)")
+                    }
+             }
     }
 
     
@@ -762,6 +799,9 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         else if (segue.identifier == "notificationOffers")
         {
             let _ = segue.destination as! NotificationAndOffers
+        }
+        else if (segue.identifier == "serviceDescrption") {
+            let _ = segue.destination as! ServiceDescripition
         }
 
     }

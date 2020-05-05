@@ -1413,11 +1413,11 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="435" id="slQ-cc-YZj">
-                                        <rect key="frame" x="0.0" y="590" width="375" height="435"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="437" id="slQ-cc-YZj">
+                                        <rect key="frame" x="0.0" y="590" width="375" height="437"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="slQ-cc-YZj" id="lae-Ww-xpt">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="435"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="437"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Payment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ofh-wA-ppL">
@@ -1434,13 +1434,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Additional Service Charges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Ygd-qN-XgO">
-                                                    <rect key="frame" x="15" y="79" width="202" height="32"/>
+                                                    <rect key="frame" x="15" y="79" width="202" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfm-ve-ffc">
-                                                    <rect key="frame" x="15" y="120" width="344" height="1"/>
+                                                    <rect key="frame" x="15" y="121" width="344" height="1"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1448,13 +1448,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SubTotal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="RaY-DL-11i">
-                                                    <rect key="frame" x="15" y="135" width="168" height="31"/>
+                                                    <rect key="frame" x="15" y="136" width="168" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqa-JZ-h1d">
-                                                    <rect key="frame" x="15" y="176" width="344" height="1"/>
+                                                    <rect key="frame" x="15" y="177" width="344" height="1"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1462,13 +1462,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Advance Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="hvG-aw-NAz">
-                                                    <rect key="frame" x="14" y="263" width="168" height="31"/>
+                                                    <rect key="frame" x="14" y="264" width="168" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bRs-SS-y7z">
-                                                    <rect key="frame" x="15" y="313" width="344" height="1"/>
+                                                    <rect key="frame" x="15" y="336" width="344" height="1"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1476,13 +1476,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Grand Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="gjF-X3-WgF">
-                                                    <rect key="frame" x="15" y="323" width="168" height="31"/>
+                                                    <rect key="frame" x="15" y="343" width="168" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m86-Rl-Qx5">
-                                                    <rect key="frame" x="112" y="378" width="152" height="40"/>
+                                                    <rect key="frame" x="112" y="390" width="152" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.074509803920000006" green="0.35294117650000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
@@ -1506,37 +1506,37 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Cex-ga-Z8S">
-                                                    <rect key="frame" x="247" y="79" width="113" height="32"/>
+                                                    <rect key="frame" x="247" y="79" width="113" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="s23-HK-EoM">
-                                                    <rect key="frame" x="247" y="135" width="113" height="32"/>
+                                                    <rect key="frame" x="247" y="136" width="113" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="sMe-A1-amq">
-                                                    <rect key="frame" x="247" y="263" width="113" height="32"/>
+                                                    <rect key="frame" x="247" y="264" width="113" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Wt8-nN-dUq">
-                                                    <rect key="frame" x="247" y="323" width="113" height="31"/>
+                                                    <rect key="frame" x="247" y="343" width="113" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Discounted Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="ppK-om-VxI">
-                                                    <rect key="frame" x="14" y="240" width="168" height="18"/>
+                                                    <rect key="frame" x="14" y="241" width="168" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter coupon Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0qY-cE-qXN" customClass="DesignableUITextField" customModule="SkilEx" customModuleProvider="target">
-                                                    <rect key="frame" x="14" y="189" width="341" height="39"/>
+                                                    <rect key="frame" x="14" y="190" width="341" height="39"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -1547,7 +1547,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yl-Dd-sHN">
-                                                    <rect key="frame" x="297" y="189" width="57" height="39"/>
+                                                    <rect key="frame" x="297" y="190" width="57" height="39"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="10"/>
                                                     <state key="normal" title="Apply">
@@ -1558,9 +1558,24 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="N0e-IV-SQz">
-                                                    <rect key="frame" x="247" y="240" width="113" height="18"/>
+                                                    <rect key="frame" x="247" y="241" width="113" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vu0-ML-lId">
+                                                    <rect key="frame" x="15" y="303" width="19" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="checkbox_unselect"/>
+                                                    <connections>
+                                                        <action selector="walletCheckboxAction:" destination="rV0-4Q-tcd" eventType="touchUpInside" id="Vac-9A-fNK"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pay Using Wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="cfh-fJ-YMt">
+                                                    <rect key="frame" x="42" y="303" width="168" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1614,14 +1629,16 @@
                         <outlet property="subTotal" destination="s23-HK-EoM" id="6D7-7X-fPM"/>
                         <outlet property="subTotalLabel" destination="RaY-DL-11i" id="Taa-Qn-b3b"/>
                         <outlet property="viewBillLabel" destination="sZm-d5-KjF" id="jM7-4b-So9"/>
+                        <outlet property="walletCheckBoxOutlet" destination="Vu0-ML-lId" id="3hZ-kf-QdB"/>
                         <segue destination="XSF-Hq-evF" kind="show" identifier="paymentMethod" id="jYz-X6-XNu"/>
                         <segue destination="j7H-8d-lEE" kind="show" identifier="additionalService" id="v2h-GF-NT1"/>
                         <segue destination="Jjz-bH-7jT" kind="show" identifier="bill" id="Szk-it-G7K"/>
+                        <segue destination="uhA-cf-YKU" kind="show" identifier="payByWallet" id="tQg-GL-fCq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ga3-Xl-JP1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1145" y="971"/>
+            <point key="canvasLocation" x="1144.8" y="970.16491754122944"/>
         </scene>
         <!--Cash Method-->
         <scene sceneID="iY4-w7-ifE">
@@ -2107,26 +2124,29 @@
                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hw5-a9-zIX">
-                                                                    <rect key="frame" x="16" y="43" width="30" height="27"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hw5-a9-zIX">
+                                                                    <rect key="frame" x="16" y="43" width="65" height="27"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="27" id="Cqq-mr-eAw"/>
-                                                                        <constraint firstAttribute="width" constant="30" id="VHL-w0-9K8"/>
+                                                                        <constraint firstAttribute="width" constant="65" id="VHL-w0-9K8"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                                    <state key="normal" title="Yes">
-                                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
+                                                                    <state key="normal" title="Yes" image="radio_buttonunselect">
+                                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ge8-cw-wMc">
-                                                                    <rect key="frame" x="56" y="43" width="30" height="27"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ge8-cw-wMc">
+                                                                    <rect key="frame" x="87" y="43" width="65" height="27"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="27" id="3Rz-JI-Dc6"/>
-                                                                        <constraint firstAttribute="width" constant="30" id="mBi-hE-sE8"/>
+                                                                        <constraint firstAttribute="width" constant="65" id="mBi-hE-sE8"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                                    <state key="normal" title="No">
-                                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
+                                                                    <inset key="imageEdgeInsets" minX="-4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                    <state key="normal" title="No" image="radio_buttonunselect">
+                                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
                                                                 </button>
                                                             </subviews>
@@ -2136,7 +2156,7 @@
                                                                 <constraint firstItem="eZU-Ai-q6H" firstAttribute="top" secondItem="RMw-xi-Q7l" secondAttribute="top" constant="8" id="SBa-7R-f16"/>
                                                                 <constraint firstItem="ge8-cw-wMc" firstAttribute="top" secondItem="eZU-Ai-q6H" secondAttribute="bottom" constant="14" id="XGi-ea-IFp"/>
                                                                 <constraint firstAttribute="trailing" secondItem="eZU-Ai-q6H" secondAttribute="trailing" constant="16" id="d5J-09-fZK"/>
-                                                                <constraint firstItem="ge8-cw-wMc" firstAttribute="leading" secondItem="Hw5-a9-zIX" secondAttribute="trailing" constant="10" id="gdE-ch-mmV"/>
+                                                                <constraint firstItem="ge8-cw-wMc" firstAttribute="leading" secondItem="Hw5-a9-zIX" secondAttribute="trailing" constant="6" id="gdE-ch-mmV"/>
                                                                 <constraint firstItem="Hw5-a9-zIX" firstAttribute="leading" secondItem="RMw-xi-Q7l" secondAttribute="leading" constant="16" id="hHe-jo-XQw"/>
                                                                 <constraint firstItem="Hw5-a9-zIX" firstAttribute="top" secondItem="eZU-Ai-q6H" secondAttribute="bottom" constant="14" id="jdM-7v-zDN"/>
                                                             </constraints>
@@ -3053,15 +3073,16 @@
     <inferredMetricsTieBreakers>
         <segue reference="E9h-ii-zbO"/>
         <segue reference="Szk-it-G7K"/>
-        <segue reference="EoP-MN-H1f"/>
+        <segue reference="bop-vA-Rvd"/>
         <segue reference="v2h-GF-NT1"/>
         <segue reference="qea-Jb-V3I"/>
-        <segue reference="iLJ-XH-Qhe"/>
+        <segue reference="bah-KZ-D0Y"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ReviewNew" width="150.5" height="150.5"/>
         <image name="cancelservice_notification" width="24" height="24.5"/>
         <image name="cashpay" width="50" height="50.5"/>
+        <image name="checkbox_unselect" width="25.5" height="25.5"/>
         <image name="coupon" width="24.5" height="15"/>
         <image name="dropdown" width="24.5" height="13.5"/>
         <image name="ios_icons-13" width="24.5" height="21.5"/>
@@ -3080,6 +3101,7 @@
         <image name="ios_icons-50" width="24" height="24"/>
         <image name="ios_icons-51" width="24" height="23.5"/>
         <image name="onlinepay" width="42.5" height="80"/>
+        <image name="radio_buttonunselect" width="24.5" height="24"/>
         <image name="servicesuccess" width="50.5" height="50"/>
         <image name="success" width="50.5" height="50"/>
         <image name="user" width="150" height="150"/>
