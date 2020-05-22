@@ -303,7 +303,6 @@ class ServiceHistory: UIViewController,UITableViewDelegate,UITableViewDataSource
                         {
                             GlobalVariables.shared.order_id = json["payment_details"]["order_id"].stringValue
                             GlobalVariables.shared.payableAmount = json["payment_details"]["payable_amount"].stringValue
-
                         }
                         else
                         {

@@ -23,7 +23,7 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
     var subcategoeryID = [String]()
     var cat_id = String()
     var toptrendingArr = [TopTrendingServices]()
-//    var request: Alamofire.Request?
+//  var request: Alamofire.Request?
     
     let queue = DispatchQueue(label: "com.company.app.queue", attributes: .concurrent)
     let group = DispatchGroup()
@@ -186,8 +186,6 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         self.preferedLanguage()
     }
     
-    
-    
     func preferedLanguage()
     {
         self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "homenavtitle_text", comment: "")
@@ -199,7 +197,6 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         self.categoryCollectionView.reloadData()
         self.topTrendingCollectionView.reloadData()
     }
-    
     
     @objc public override func rightButtonClick()
     {
@@ -252,14 +249,14 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
     {
         let url = AFWrapper.BASE_URL + "top_trending_services"
         let parameters = ["user_master_id": GlobalVariables.shared.user_master_id]
-//        MBProgressHUD.showAdded(to: self.view, animated: true)
+//      MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
             {
                 do
                 {
                     try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
                         (JSONResponse) -> Void in
-//                        MBProgressHUD.hide(for: self.view, animated: true)
+//                      MBProgressHUD.hide(for: self.view, animated: true)
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
@@ -312,14 +309,14 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
     {
         let url = AFWrapper.BASE_URL + "view_maincategory"
         let parameters = ["user_master_id": GlobalVariables.shared.user_master_id,"version_code":"1"]
-//        MBProgressHUD.showAdded(to: self.view, animated: true)
+//      MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
             {
                 do
                 {
                     try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
                         (JSONResponse) -> Void in
-//                        MBProgressHUD.hide(for: self.view, animated: true)
+//                      MBProgressHUD.hide(for: self.view, animated: true)
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue

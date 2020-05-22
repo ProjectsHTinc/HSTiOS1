@@ -512,7 +512,23 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HQZ-hN-oKI">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₹" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSb-AX-mqP">
+                                        <rect key="frame" x="29" y="261" width="28" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="DHJ-7V-Y2N"/>
+                                            <constraint firstAttribute="width" constant="28" id="Pyd-Z6-OgI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="YSb-AX-mqP" firstAttribute="leading" secondItem="HQZ-hN-oKI" secondAttribute="leading" constant="29" id="TOh-fP-wSD"/>
+                                    <constraint firstItem="YSb-AX-mqP" firstAttribute="top" secondItem="HQZ-hN-oKI" secondAttribute="top" constant="261" id="U6J-Mc-uJ1"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92H-P6-H3R">
                                 <rect key="frame" x="45" y="334" width="285" height="40"/>
@@ -571,11 +587,11 @@
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5rk-3h-r5x">
-                                <rect key="frame" x="37" y="258" width="301" height="40"/>
+                                <rect key="frame" x="61" y="258" width="277" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Rb0-MJ-bcC"/>
-                                    <constraint firstAttribute="width" constant="301" id="u9n-HZ-TfU"/>
+                                    <constraint firstAttribute="width" constant="277" id="u9n-HZ-TfU"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
@@ -592,10 +608,11 @@
                             <constraint firstItem="HQZ-hN-oKI" firstAttribute="leading" secondItem="DpN-QL-jEZ" secondAttribute="leading" id="FiN-7k-r5Z"/>
                             <constraint firstItem="92H-P6-H3R" firstAttribute="centerX" secondItem="ZQf-WC-T5l" secondAttribute="centerX" id="GDu-Km-lMJ"/>
                             <constraint firstItem="ICj-aw-Red" firstAttribute="centerX" secondItem="ZQf-WC-T5l" secondAttribute="centerX" id="MCC-oX-FQV"/>
-                            <constraint firstItem="5rk-3h-r5x" firstAttribute="centerX" secondItem="ZQf-WC-T5l" secondAttribute="centerX" id="Tc8-na-gbQ"/>
+                            <constraint firstItem="5rk-3h-r5x" firstAttribute="centerX" secondItem="ZQf-WC-T5l" secondAttribute="centerX" constant="12" id="Tc8-na-gbQ"/>
                             <constraint firstItem="HQZ-hN-oKI" firstAttribute="top" secondItem="DpN-QL-jEZ" secondAttribute="top" id="Vtn-qJ-y7J"/>
                             <constraint firstItem="92H-P6-H3R" firstAttribute="top" secondItem="yPa-iX-iwK" secondAttribute="bottom" constant="30" id="Waf-BV-be9"/>
                             <constraint firstItem="BT7-py-hGL" firstAttribute="top" secondItem="DpN-QL-jEZ" secondAttribute="top" constant="39" id="cNN-CF-W7V"/>
+                            <constraint firstItem="5rk-3h-r5x" firstAttribute="leading" secondItem="YSb-AX-mqP" secondAttribute="trailing" constant="4" id="ejH-AZ-92N"/>
                             <constraint firstItem="1Om-8O-ZoE" firstAttribute="top" secondItem="BT7-py-hGL" secondAttribute="bottom" constant="15" id="oyE-mu-3xh"/>
                             <constraint firstItem="HQZ-hN-oKI" firstAttribute="bottom" secondItem="DpN-QL-jEZ" secondAttribute="bottom" id="rSO-ow-AVr"/>
                             <constraint firstItem="1Om-8O-ZoE" firstAttribute="centerX" secondItem="ZQf-WC-T5l" secondAttribute="centerX" id="ugt-ve-7xG"/>
@@ -614,10 +631,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="spD-2a-lQX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2516" y="929"/>
+            <point key="canvasLocation" x="2516" y="928.78560719640188"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="lIW-mU-cxM"/>
         <segue reference="epB-9u-kld"/>
     </inferredMetricsTieBreakers>
     <resources>

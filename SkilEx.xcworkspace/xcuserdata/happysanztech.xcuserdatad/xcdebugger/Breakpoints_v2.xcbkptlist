@@ -270,8 +270,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "165"
             endingLineNumber = "165"
-            landmarkName = "updateProfile(name:gender:email:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -286,8 +286,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "174"
             endingLineNumber = "174"
-            landmarkName = "updateProfile(name:gender:email:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -693,22 +693,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D56A0CD5-A469-45D3-920E-144CE2CEC5F7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SkilEx/MainViewControllers/CustomerAddress.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "594"
-            endingLineNumber = "594"
-            landmarkName = "callServiceAllocation()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "38BCBEFE-263C-4B1B-9F01-55990C44ACA3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -725,54 +709,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F3E6D1BE-CA80-4CD7-BAD0-A5AED353361A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SkilEx/MainViewControllers/CustomerAddress.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "600"
-            endingLineNumber = "600"
-            landmarkName = "serviceProviderAllocation(user_master_id:order_id:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "46215D08-E76B-437D-AF36-48DD3301C705"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SkilEx/MainViewControllers/CustomerAddress.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "609"
-            endingLineNumber = "609"
-            landmarkName = "serviceProviderAllocation(user_master_id:order_id:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "152E0F06-6F3E-4F05-BC7B-81B05959F528"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SkilEx/MainViewControllers/CustomerAddress.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "598"
-            endingLineNumber = "598"
-            landmarkName = "callServiceAllocation()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "8DBC8AED-FCE8-458E-A016-EA2FA228B3C3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -782,22 +718,6 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "538"
             endingLineNumber = "538"
-            landmarkName = "webRequest(user_master_id:contact_person_name:contact_person_number:service_latlon:service_location:service_address:order_date:order_timeslot_id:notes:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1C6C3E0B-4F8C-4515-BDEC-36B7BDA50313"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SkilEx/MainViewControllers/CustomerAddress.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "537"
-            endingLineNumber = "537"
             landmarkName = "webRequest(user_master_id:contact_person_name:contact_person_number:service_latlon:service_location:service_address:order_date:order_timeslot_id:notes:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -972,8 +892,8 @@
             filePath = "SkilEx/Customer Service/ServiceSummaryDetail.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "794"
-            endingLineNumber = "794"
+            startingLineNumber = "799"
+            endingLineNumber = "799"
             landmarkName = "payUsingWallet()"
             landmarkType = "7">
          </BreakpointContent>
@@ -988,8 +908,8 @@
             filePath = "SkilEx/Customer Service/ServiceSummaryDetail.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "785"
-            endingLineNumber = "785"
+            startingLineNumber = "790"
+            endingLineNumber = "790"
             landmarkName = "payUsingWallet()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1004,8 +924,8 @@
             filePath = "SkilEx/Customer Service/ServiceSummaryDetail.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "843"
-            endingLineNumber = "843"
+            startingLineNumber = "848"
+            endingLineNumber = "848"
             landmarkName = "unCheckFromWallet()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1020,8 +940,8 @@
             filePath = "SkilEx/Customer Service/ServiceSummaryDetail.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "834"
-            endingLineNumber = "834"
+            startingLineNumber = "839"
+            endingLineNumber = "839"
             landmarkName = "unCheckFromWallet()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1036,8 +956,8 @@
             filePath = "SkilEx/Customer Service/ServiceSummaryDetail.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "770"
-            endingLineNumber = "770"
+            startingLineNumber = "775"
+            endingLineNumber = "775"
             landmarkName = "walletCheckboxAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1052,8 +972,8 @@
             filePath = "SkilEx/Customer Service/ServiceSummaryDetail.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "880"
-            endingLineNumber = "880"
+            startingLineNumber = "885"
+            endingLineNumber = "885"
             landmarkName = "webRequestProceedforPaymentWalletCheck()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1068,8 +988,8 @@
             filePath = "SkilEx/Customer Service/ServiceSummaryDetail.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "892"
-            endingLineNumber = "892"
+            startingLineNumber = "897"
+            endingLineNumber = "897"
             landmarkName = "webRequestProceedforPaymentWalletCheck()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1084,8 +1004,8 @@
             filePath = "SkilEx/Customer Service/ServiceSummaryDetail.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "424"
-            endingLineNumber = "424"
+            startingLineNumber = "429"
+            endingLineNumber = "429"
             landmarkName = "payNowAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1100,8 +1020,8 @@
             filePath = "SkilEx/Customer Service/ServiceSummaryDetail.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "986"
-            endingLineNumber = "986"
+            startingLineNumber = "991"
+            endingLineNumber = "991"
             landmarkName = "padiOnWallet()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1116,8 +1036,8 @@
             filePath = "SkilEx/Customer Service/ServiceSummaryDetail.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "996"
-            endingLineNumber = "996"
+            startingLineNumber = "1001"
+            endingLineNumber = "1001"
             landmarkName = "padiOnWallet()"
             landmarkType = "7">
          </BreakpointContent>

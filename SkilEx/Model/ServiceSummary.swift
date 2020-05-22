@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class ServiceSummary: Codable {
     
-    var person_number, additional_service_amt, service_order_id, provider_name, service_end_time, service_start_time, order_date, contact_person_number, paid_advance_amt, net_service_amount, material_notes, discount_amt, contact_person_name, time_slot, service_name, service_ta_name, person_name, payable_amount, total_service_cost, coupon_id, additional_service, service_amount, main_category, main_category_ta, sub_category, sub_category_ta, coupon_code : String?
+    var person_number, additional_service_amt, service_order_id, provider_name, service_end_time, service_start_time, order_date, contact_person_number, paid_advance_amt, net_service_amount, material_notes, discount_amt, contact_person_name, time_slot, service_name, service_ta_name, person_name, payable_amount, total_service_cost, coupon_id, additional_service, service_amount, main_category, main_category_ta, sub_category, sub_category_ta, coupon_code, travelling_allowance : String?
     
     init(json:JSON)
     {
@@ -43,5 +43,7 @@ class ServiceSummary: Codable {
         self.sub_category = json["sub_category"].stringValue
         self.sub_category_ta = json["sub_category_ta"].stringValue
         self.coupon_code = json["coupon_code"].stringValue
+        self.travelling_allowance = json["travelling_allowance"].stringValue
+
     }
 }

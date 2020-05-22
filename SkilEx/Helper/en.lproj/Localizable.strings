@@ -176,6 +176,7 @@
 "serviceentercouponcode_text" = "Enter Coupon Code";
 "serviceapply_text" = "Apply";
 "serviceadditional_text" = "Additional Service";
+"serviceTravelAllowance_text" = "Travel Allowance";
 
 
 /*AdditionalService text */

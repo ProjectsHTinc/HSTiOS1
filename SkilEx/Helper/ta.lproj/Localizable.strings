@@ -178,6 +178,7 @@
 "serviceentercouponcode_text" = "கூப்பன் குறியீட்டை உள்ளிடவும்";
 "serviceapply_text" = "விண்ணப்பிக்கவும்";
 "serviceadditional_text" = "கூடுதல் சேவை";
+"serviceTravelAllowance_text" = "பயணப்படி";
 
 
 /*AdditionalService text */

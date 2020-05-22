@@ -52,6 +52,8 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
     @IBOutlet weak var applyCouponOutlet: UIButton!
     @IBOutlet weak var serviceCompletedTime: UILabel!
     @IBOutlet var walletCheckBoxOutlet: UIButton!
+    @IBOutlet var travelAllowanceLabel: UILabel!
+    @IBOutlet var travelAllowance: UILabel!
     
     var service_order_id = String()
     var paymentStatus = String()
@@ -135,6 +137,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
         self.viewBillLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummaryviewbill_text", comment: "")
         self.couponTextField.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "serviceentercouponcode_text", comment: "")
         self.applyCouponOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "serviceapply_text", comment: ""), for: .normal)
+        self.travelAllowanceLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "serviceTravelAllowance_text", comment: "")
         self.paidOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorybutton_text", comment: ""), for: .normal)
     }
     
@@ -209,6 +212,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
             {
                 self.applyCouponOutlet.setTitle("Cancel", for: .normal)
             }
+            self.travelAllowance.text = bookingDetailSummary?.travelling_allowance
         }
         else
         {
@@ -272,6 +276,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
             {
                 self.applyCouponOutlet.setTitle("Cancel", for: .normal)
             }
+            self.travelAllowance.text = bookingDetailSummary?.travelling_allowance
         }
     }
     
