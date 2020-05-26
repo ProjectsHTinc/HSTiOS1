@@ -134,7 +134,20 @@ class Wallet: UIViewController,UITableViewDelegate,UITableViewDataSource {
         cell.date.text = date.formattedDateFromString(dateString: walletdata.created_date!, withFormat:"dd MMM YYYY")
         cell.addAMountLabel.text = walletdata.notes
         cell.addAmountTimeLabel.text = walletdata.created_time
-        cell.addAmount.text = walletdata.transaction_amt
+        
+        let status = walletdata.status
+        if status == "Credited"
+        {
+            cell.addAmount.text = "+" + " " + walletdata.transaction_amt!
+            cell.addAmount.textColor = UIColor(red: 0.0/255, green: 150.0/255, blue: 71.0/255, alpha: 1.0)
+
+        }
+        else
+        {
+            cell.addAmount.text = "+" + " " + walletdata.transaction_amt!
+            cell.addAmount.textColor = UIColor.red
+
+        }
         
         cell.addView.dropShadow()
 

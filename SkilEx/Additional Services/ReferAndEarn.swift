@@ -27,7 +27,7 @@ class ReferAndEarn: UIViewController {
 
         // Do any additional setup after loading the view.
         self.userPointsAndCode()
-        self.referalCodeTextField.isEnabled = true
+        //self.referalCodeTextField.isEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,7 +91,7 @@ class ReferAndEarn: UIViewController {
         }
         else
         {
-            self.points.text = points_to_claim + "" + "Points"
+            self.points?.text = points_to_claim + " " + "Points"
         }
         
         if referral_code.isEmpty
@@ -101,7 +101,7 @@ class ReferAndEarn: UIViewController {
         }
         else
         {
-            self.referalCodeTextField.text = referral_code
+            self.referalCodeTextField?.text = referral_code
         }
     }
     
@@ -124,12 +124,12 @@ class ReferAndEarn: UIViewController {
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
-//                        let msg_en = json["msg_en"].stringValue
-//                        let msg_ta = json["msg_ta"].stringValue
+//                      let msg_en = json["msg_en"].stringValue
+//                      let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if  msg == "Can Claim" && status == "success"{
                            let amount_to_be_claim = json["amount_to_be_claim"].stringValue
-                           //self.showAlertView(totalPoints: amount_to_be_claim)
+                           self.showAlertView(totalPoints: amount_to_be_claim)
                         }
                         else
                         {
@@ -160,23 +160,70 @@ class ReferAndEarn: UIViewController {
     
     func showAlertView (totalPoints:String)
     {
-        let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Your amount for the total point is earned ₹ \(totalPoints) ", preferredStyle: UIAlertController.Style.alert)
-        
-        
-        let okAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "Add amount to wallet", comment: ""), style: UIAlertAction.Style.default) {
-            UIAlertAction in
-            //self.performSegue(withIdentifier: "to_AmountStatus", sender: totalPoints)
-//            self.addToWalletByPaymemtGateway (amount:totalPoints)
+        DispatchQueue.main.async{
+            let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Your amount for point earned is \(totalPoints) ", preferredStyle: UIAlertController.Style.alert)
             
-        }
-        let cancelAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "Cancel", comment: ""), style: UIAlertAction.Style.default) {
-            UIAlertAction in
             
+            let okAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "Proceed to add money", comment: ""), style: UIAlertAction.Style.default) {
+                UIAlertAction in
+                self.ConfrimtoClaim(usermasterId:GlobalVariables.shared.user_master_id)
+            }
+            let cancelAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "Cancel", comment: ""), style: UIAlertAction.Style.default) {
+                UIAlertAction in
+                
+            }
+            
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
         }
-        
-        alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func ConfrimtoClaim (usermasterId:String)
+    {
+        let parameters = ["user_master_id": usermasterId]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+            {
+                do
+                {
+                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "confirm_to_claim", params: parameters, headers: nil, success: {
+                        (JSONResponse) -> Void in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print(JSONResponse)
+                        let json = JSON(JSONResponse)
+                        let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
+                        let status = json["status"].stringValue
+                        if  msg == "Amount added in wallet!" && status == "success"{
+                            self.userPointsAndCode()
+                        }
+                        else
+                        {
+                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                            else
+                            {
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    //Custom action code
+                                }
+                            }
+                        }
+                    }) {
+                        (error) -> Void in
+                        print(error)
+                    }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
+        }
     }
     
         

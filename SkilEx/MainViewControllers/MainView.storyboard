@@ -154,19 +154,43 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P0P-qj-JGi">
                                                                             <rect key="frame" x="0.0" y="0.0" width="129" height="130"/>
                                                                             <subviews>
+                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hML-La-bOu">
+                                                                                    <rect key="frame" x="19" y="1" width="90" height="90"/>
+                                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="90" id="KAu-bj-kDY"/>
+                                                                                        <constraint firstAttribute="width" constant="90" id="l78-ET-CAZ"/>
+                                                                                    </constraints>
+                                                                                    <userDefinedRuntimeAttributes>
+                                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                            <real key="value" value="45"/>
+                                                                                        </userDefinedRuntimeAttribute>
+                                                                                    </userDefinedRuntimeAttributes>
+                                                                                </view>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fy5-oa-FJX">
-                                                                                    <rect key="frame" x="35" y="16" width="59" height="55"/>
+                                                                                    <rect key="frame" x="35" y="19" width="59" height="55"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                                                 </imageView>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="8Dy-g8-94k">
-                                                                                    <rect key="frame" x="8" y="84" width="112" height="30"/>
-                                                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="8Dy-g8-94k">
+                                                                                    <rect key="frame" x="8" y="97" width="112" height="26"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="112" id="X94-4B-6qB"/>
+                                                                                    </constraints>
                                                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
                                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                             </subviews>
                                                                             <color key="backgroundColor" red="0.074509803920000006" green="0.35294117650000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="bottom" secondItem="8Dy-g8-94k" secondAttribute="bottom" constant="7" id="6Nv-1h-GGx"/>
+                                                                                <constraint firstItem="8Dy-g8-94k" firstAttribute="top" secondItem="hML-La-bOu" secondAttribute="bottom" constant="6" id="88L-ak-SnT"/>
+                                                                                <constraint firstItem="8Dy-g8-94k" firstAttribute="leading" secondItem="P0P-qj-JGi" secondAttribute="leading" constant="8" id="Vg8-Ag-ALl"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="hML-La-bOu" secondAttribute="trailing" constant="20" id="cNp-ot-zE5"/>
+                                                                                <constraint firstItem="hML-La-bOu" firstAttribute="top" secondItem="P0P-qj-JGi" secondAttribute="top" constant="1" id="r6p-Pu-t5k"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="8Dy-g8-94k" secondAttribute="trailing" constant="9" id="u8U-XD-g3e"/>
+                                                                                <constraint firstItem="hML-La-bOu" firstAttribute="leading" secondItem="P0P-qj-JGi" secondAttribute="leading" constant="19" id="vdc-yg-Ygr"/>
+                                                                            </constraints>
                                                                         </view>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2688,14 +2712,14 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Advance Payment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aw-4D-Bxm">
-                                                <rect key="frame" x="-9" y="181" width="357" height="17"/>
+                                                <rect key="frame" x="-9" y="180" width="357" height="18"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rs.200" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYD-60-Rnw">
-                                                <rect key="frame" x="89" y="203" width="168" height="27"/>
+                                                <rect key="frame" x="89" y="203" width="168" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                                 <nil key="highlightedColor"/>
@@ -2781,7 +2805,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Rvs-af-qdO"/>
-        <segue reference="1PX-ZQ-xGS"/>
+        <segue reference="ZR5-Rh-ToP"/>
         <segue reference="obf-VG-d2E"/>
         <segue reference="sgv-fL-rBr"/>
     </inferredMetricsTieBreakers>

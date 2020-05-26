@@ -308,7 +308,7 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
     func viewMainCategoery()
     {
         let url = AFWrapper.BASE_URL + "view_maincategory"
-        let parameters = ["user_master_id": GlobalVariables.shared.user_master_id,"version_code":"1"]
+        let parameters = ["user_master_id": GlobalVariables.shared.user_master_id,"version_code":"3"]
 //      MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
             {
