@@ -305,7 +305,6 @@ class UserProfile: UIViewController {
             GlobalVariables.shared.sub_catID = ""
             GlobalVariables.shared.catServicetID = ""
             GlobalVariables.shared.viewPage = ""
-            GlobalVariables.shared.serviceID = ""
             GlobalVariables.shared.walletAmount = ""
             UserDefaults.standard.set("", forKey: "user_master_id")
             UserDefaults.standard.set("", forKey: "phone_no")

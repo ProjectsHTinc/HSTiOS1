@@ -78,7 +78,7 @@ class Profile: UIViewController
                 isMaleButtonClicked = false
                 isFemaleButtonClicked = true
                 self.maleImgView.image = UIImage (named: "radio_buttonselect")
-                self.femaleImgView.image = UIImage (named: "radio_buttonunselect")
+                self.femaleImgView.image = UIImage (named: "radio_Deselect")
                 self.maleLabel.textColor = UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0)
                 self.femaleLabel.textColor = UIColor.gray
                 self.gender = "Male"
@@ -88,7 +88,7 @@ class Profile: UIViewController
                 isFemaleButtonClicked = false
                 isMaleButtonClicked = true
                 self.femaleImgView.image = UIImage (named: "radio_buttonselect")
-                self.maleImgView.image = UIImage (named: "radio_buttonunselect")
+                self.maleImgView.image = UIImage (named: "radio_Deselect")
                 self.femaleLabel.textColor = UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0)
                 self.maleLabel.textColor = UIColor.gray
                 self.gender = "Female"
@@ -122,7 +122,7 @@ class Profile: UIViewController
     {
         self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "profilenavtitle_text", comment: "")
         fullNameLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "fullname_text", comment: "")
-    //    registerMobileNumberLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "address_text", comment: "")
+    //  registerMobileNumberLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "address_text", comment: "")
         mailIdLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "mailid_text", comment: "")
         genderLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "gender_text", comment: "")
         maleLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "male_text", comment: "")
@@ -288,7 +288,7 @@ class Profile: UIViewController
             isMaleButtonClicked = false
             isFemaleButtonClicked = true
             self.maleImgView.image = UIImage (named: "radio_buttonselect")
-            self.femaleImgView.image = UIImage (named: "radio_buttonunselect")
+            self.femaleImgView.image = UIImage (named: "radio_Deselect")
             self.maleLabel.textColor = UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0)
             self.femaleLabel.textColor = UIColor.gray
             self.gender = "Male"
@@ -297,7 +297,7 @@ class Profile: UIViewController
         {
             isMaleButtonClicked = true
             isFemaleButtonClicked = true
-            self.maleImgView.image = UIImage (named: "radio_buttonunselect")
+            self.maleImgView.image = UIImage (named: "radio_Deselect")
             self.maleLabel.textColor = UIColor.gray
             self.gender = ""
 
@@ -311,7 +311,7 @@ class Profile: UIViewController
             isFemaleButtonClicked = false
             isMaleButtonClicked = true
             self.femaleImgView.image = UIImage (named: "radio_buttonselect")
-            self.maleImgView.image = UIImage (named: "radio_buttonunselect")
+            self.maleImgView.image = UIImage (named: "radio_Deselect")
             self.femaleLabel.textColor = UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0)
             self.maleLabel.textColor = UIColor.gray
             self.gender = "Female"
@@ -321,7 +321,7 @@ class Profile: UIViewController
         {
             isFemaleButtonClicked = true
             isMaleButtonClicked = true
-            self.femaleImgView.image = UIImage (named: "radio_buttonunselect")
+            self.femaleImgView.image = UIImage (named: "radio_Deselect")
             self.femaleLabel.textColor = UIColor.gray
             self.gender = ""
 

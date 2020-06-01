@@ -20,6 +20,7 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
     @IBOutlet weak var submitOutlet: UIButton!
     @IBOutlet weak var skipOutlet: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var serviceRateStatusLabel: UILabel!
     
     var first = "0"
     var second = "0"
@@ -39,6 +40,7 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
 
         // Do any additional setup after loading the view.
         self.preferedLanguage()
+        self.serviceRateStatusLabel.text = ""
         self.reviewQuestns ()
     }
     
@@ -137,7 +139,7 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
         let indexPath: IndexPath? = tableView.indexPathForRow(at: buttonPosition)
         let cell = tableView.cellForRow(at: indexPath! as IndexPath) as! RateServiceTableViewCell
         cell.yesOutlet.setImage(UIImage(named: "radio_buttonselect"), for: UIControl.State.normal)
-        cell.noOutlet.setImage(UIImage(named: "radio_buttonunselect"), for: UIControl.State.normal)
+        cell.noOutlet.setImage(UIImage(named: "radio_Deselect"), for: UIControl.State.normal)
         let buttonTag = sender.tag
         let feedBack = feedBackArr[buttonTag]
         let feedbackid = feedBack.id
@@ -148,7 +150,7 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
         let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
         let indexPath: IndexPath? = tableView.indexPathForRow(at: buttonPosition)
         let cell = tableView.cellForRow(at: indexPath! as IndexPath) as! RateServiceTableViewCell
-        cell.yesOutlet.setImage(UIImage(named: "radio_buttonunselect"), for: UIControl.State.normal)
+        cell.yesOutlet.setImage(UIImage(named: "radio_Deselect"), for: UIControl.State.normal)
         cell.noOutlet.setImage(UIImage(named: "radio_buttonselect"), for: UIControl.State.normal)
         let buttonTag = sender.tag
         let feedBack = feedBackArr[buttonTag]
@@ -229,6 +231,7 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
           buttonOneOutlet.setBackgroundImage(UIImage(named: "ios_icons-31"), for: UIControl.State.normal)
           first = "1";
           selectedStars = "1";
+          self.serviceRateStatusLabel.text = "Poor"
       }
       else
       {
@@ -243,6 +246,8 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
           buttonFiveOutlet.setBackgroundImage(UIImage(named: "ios_icons-32"), for: UIControl.State.normal)
           five = "0";
           selectedStars = "0";
+         self.serviceRateStatusLabel.text = ""
+
       }
     }
     
@@ -255,6 +260,8 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
            buttonTwoOutlet.setBackgroundImage(UIImage(named: "ios_icons-31"), for: UIControl.State.normal)
            second = "1";
            selectedStars = "2";
+           self.serviceRateStatusLabel.text = "Average"
+
        }
        else
        {
@@ -267,6 +274,7 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
            buttonFiveOutlet.setBackgroundImage(UIImage(named: "ios_icons-32"), for: UIControl.State.normal)
            five = "0";
            selectedStars = "1";
+           self.serviceRateStatusLabel.text = "Poor"
        }
     }
     
@@ -281,6 +289,7 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
               buttonThreeOutlet.setBackgroundImage(UIImage(named: "ios_icons-31"), for: UIControl.State.normal)
               third = "1";
               selectedStars = "3";
+             self.serviceRateStatusLabel.text = "Good!"
           }
           else
           {
@@ -291,6 +300,7 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
               buttonFiveOutlet.setBackgroundImage(UIImage(named: "ios_icons-32"), for: UIControl.State.normal)
               five = "0";
               selectedStars = "2";
+              self.serviceRateStatusLabel.text = "Average"
           }
     }
     
@@ -307,6 +317,8 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
               buttonFourOutlet.setBackgroundImage(UIImage(named: "ios_icons-31"), for: UIControl.State.normal)
               four = "1";
               selectedStars = "4";
+              self.serviceRateStatusLabel.text = "Very Good!!"
+
           }
           else
           {
@@ -315,6 +327,7 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
               buttonFiveOutlet.setBackgroundImage(UIImage(named: "ios_icons-32"), for: UIControl.State.normal)
               five = "0";
               selectedStars = "3";
+             self.serviceRateStatusLabel.text = "Good!"
           }
     }
     
@@ -333,18 +346,20 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
              buttonFiveOutlet.setBackgroundImage(UIImage(named: "ios_icons-31"), for: UIControl.State.normal)
              five = "1";
              selectedStars = "5";
+             self.serviceRateStatusLabel.text = "Excellent!!!"
          }
          else
          {
-              buttonFiveOutlet.setBackgroundImage(UIImage(named: "ios_icons-32"), for: UIControl.State.normal)
+             buttonFiveOutlet.setBackgroundImage(UIImage(named: "ios_icons-32"), for: UIControl.State.normal)
              five = "0";
              selectedStars = "4";
+             self.serviceRateStatusLabel.text = "Very Good!!!"
+
          }
     }
     
     @IBAction func submitAction(_ sender: Any)
     {
-        
         if (selectedValue == "0")
         {
             
@@ -356,7 +371,6 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
         {
             self.rateTheService(usermasterId:GlobalVariables.shared.user_master_id,service_order_id: GlobalVariables.shared.serviceOrderId,rating:selectedStars,review:"",status:"Pending")
         }
-        
     }
     
     func rateTheService(usermasterId:String,service_order_id:String,rating:String,review:String,status:String)
@@ -433,8 +447,8 @@ class RateServiceViewController: UIViewController,UITableViewDelegate,UITableVie
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if (segue.identifier == "home") {
-                   let _ = segue.destination as! Tabbarcontroller
-               }
+           let _ = segue.destination as! Tabbarcontroller
+        }
     }
     
 

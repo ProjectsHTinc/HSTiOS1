@@ -231,7 +231,7 @@ class ReferAndEarn: UIViewController {
     {
         if !self.referalCodeTextField.text!.isEmpty
         {
-            let text = self.referalCodeTextField.text!
+            let text = "Download SkilEx – The ultimate service app for all you home and office service needs. Enter my code \(self.referalCodeTextField.text!) to earn 50 points worth ₹25 in your SkilEx wallet redeemed during service payment. Download our app now \("https://apps.apple.com/us/app/skilex/id1484596811?ls=1")"
             
             let activityVC = UIActivityViewController(activityItems: [text as Any], applicationActivities: nil)
             activityVC.excludedActivityTypes = [UIActivity.ActivityType.print, UIActivity.ActivityType.postToWeibo, UIActivity.ActivityType.copyToPasteboard, UIActivity.ActivityType.addToReadingList, UIActivity.ActivityType.postToVimeo]

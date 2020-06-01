@@ -101,7 +101,7 @@
 "customeraddressdate_text" = "Select Date";
 "customeraddresstime_text" = "Select Time";
 "customeraddressproceed_text" = "Book Service";
-"customeraddressnotes_text" = "Add Notes";
+"customeraddressnotes_text" = "Notes (Optional)";
 
 /* Searchresult text */
 "searchresultnavtitle_text" = "Search Result";
@@ -209,8 +209,8 @@
 
 
 /*aboutus text */
-"aboutusnavtitle_text" = "SkilEx";
-"aboutLabel_text" = "About";
+"aboutusnavtitle_text" = "About SkilEx";
+"aboutLabel_text" = "About SkilEx";
 
 /*viewbill text */
 "viewbillnavtitle_text" = "View Bill";
@@ -254,4 +254,4 @@
 "SkilexWalletnavtitle_text" = "SkilEx Wallet";
 
 /*ReviewsAndratings text */
-"reviewAndRatingsnavtitle_text" = "Reviews and Ratings";
+"reviewAndRatingsnavtitle_text" = "Reviews";

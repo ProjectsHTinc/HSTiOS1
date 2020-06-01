@@ -135,6 +135,7 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.totalAmountLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "viewsummarytotalamount_text", comment: "")
         proceedOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "viewsummaryproceed_text", comment: ""), for: .normal)
         orderSummaryLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "ordersummary_text", comment: "")
+        
     }
     
     func webRequestViewCart()
@@ -151,8 +152,8 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
-                        let msg_en = json["msg_en"].stringValue
-                        let msg_ta = json["msg_ta"].stringValue
+//                        let msg_en = json["msg_en"].stringValue
+//                        let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         GlobalVariables.shared.Service_amount = json["grand_total"].stringValue
                         
@@ -174,21 +175,23 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
                         }
                         else
                         {
-                            self.cartListArr = []
-                            self.tableView.reloadData()
+//                            self.cartListArr = []
+//                            self.tableView.reloadData()
                             if LocalizationSystem.sharedInstance.getLanguage() == "en"
                             {
-                                self.webRequestViewCart()
-                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+//                                self.webRequestViewCart()
+                                Alert.defaultManager.showOkAlert("Cart", message: "All orders cancelled") { (action) in
                                     //Custom action code
+                                    self.navigationController?.popViewController(animated: true)
+
                                 }
                             }
                             else
                             {
-                                self.webRequestViewCart()
-                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                Alert.defaultManager.showOkAlert("Cart", message: "All orders cancelled") { (action) in
                                     //Custom action code
-                                    
+                                    self.navigationController?.popViewController(animated: true)
+
                                 }
                             }
                             self.advanceAmount.isHidden = true
@@ -230,17 +233,17 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
                         if msg == "Service removed from cart" && status == "success"{
                             if LocalizationSystem.sharedInstance.getLanguage() == "en"
                             {
-                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
-                                    //Custom action code
+//                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+//                                    //Custom action code
                                     self.webRequestViewCart()
-                                }
+//                                }
                             }
                             else
                             {
-                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
-                                    //Custom action code
+//                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+//                                    //Custom action code
                                     self.webRequestViewCart()
-                                }
+//                                }
                             }
                         }
                         else
@@ -281,8 +284,9 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
         if LocalizationSystem.sharedInstance.getLanguage() == "en"
         {
             cell.serviceName.text = cartList.service_name
-            self.advanceAmount.text = String(format: "%@ %@", "Rs.",cartListArr[0].advance_amount!)
-            self.totalServiceAmount.text = String(format: "%@ %@", "Rs.",GlobalVariables.shared.Service_amount)
+            cell.amountLabel.text =  "₹." + cartList.rate_card!
+            self.advanceAmount.text = String(format: "%@ %@", "₹.",cartListArr[0].advance_amount!)
+            self.totalServiceAmount.text = String(format: "%@ %@", "₹.",GlobalVariables.shared.Service_amount)
             GlobalVariables.shared.rowCount = cartListArr.count
             let imgUrl = cartList.service_picture
             if imgUrl!.isEmpty == false
@@ -302,8 +306,9 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
         else
         {
             cell.serviceName.text = cartList.service_ta_name
-            self.advanceAmount.text = String(format: "%@ %@", "Rs.",cartListArr[0].advance_amount!)
-            self.totalServiceAmount.text = String(format: "%@ %@", "Rs.",GlobalVariables.shared.Service_amount)
+            cell.amountLabel.text =  "₹." + cartList.rate_card!
+            self.advanceAmount.text = String(format: "%@ %@", "₹.",cartListArr[0].advance_amount!)
+            self.totalServiceAmount.text = String(format: "%@ %@", "₹.",GlobalVariables.shared.Service_amount)
             GlobalVariables.shared.rowCount = cartListArr.count
             let imgUrl = cartList.service_picture
             if imgUrl!.isEmpty == false
@@ -430,6 +435,10 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
         else if (segue.identifier == "termsAndCondition"){
             let _ = segue.destination as! TermsandCondition
         }
+//        else if (segue.identifier == "home"){
+//          let vc = segue.destination as! Tabbarcontroller
+//            print(vc)
+//        }
     }
 }
 

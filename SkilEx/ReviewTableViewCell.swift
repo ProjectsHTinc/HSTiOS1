@@ -16,7 +16,9 @@ class ReviewTableViewCell: UITableViewCell {
     @IBOutlet var imageThree: UIImageView!
     @IBOutlet var imagefour: UIImageView!
     @IBOutlet var imageFive: UIImageView!
-
+    @IBOutlet var userImgaeiew: UIImageView!
+    @IBOutlet var reviewStatus: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

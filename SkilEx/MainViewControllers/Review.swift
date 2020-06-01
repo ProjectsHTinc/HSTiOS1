@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import MBProgressHUD
+import SDWebImage
 
 class Review: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
@@ -22,8 +23,7 @@ class Review: UIViewController,UITableViewDelegate,UITableViewDataSource {
         // Do any additional setup after loading the view.
         self.addBackButton()
         self.reviewForServices ()
-        tableView.estimatedRowHeight = 68.0
-        tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.tableFooterView = UIView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,7 +34,6 @@ class Review: UIViewController,UITableViewDelegate,UITableViewDataSource {
     func preferedLanguage()
     {
         self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "reviewAndRatingsnavtitle_text", comment: "")
-
     }
     
     @objc public override func backButtonClick()
@@ -45,7 +44,7 @@ class Review: UIViewController,UITableViewDelegate,UITableViewDataSource {
     func reviewForServices ()
     {
         let url = AFWrapper.BASE_URL + "service_rating_and_reviews"
-        let parameters = ["user_master_id": GlobalVariables.shared.user_master_id,"service_id":  GlobalVariables.shared.serviceID]
+        let parameters = ["user_master_id": GlobalVariables.shared.user_master_id,"service_id": GlobalVariables.shared.serviceId]
         MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
             {
@@ -65,15 +64,15 @@ class Review: UIViewController,UITableViewDelegate,UITableViewDataSource {
                             self.reviewArr.removeAll()
 
                             if json["services_reviews"].count > 0 {
-                                
+
                                 for i in 0..<json["services_reviews"].count {
-                                    
+
                                     let categoery = ReviewData.init(json: json["services_reviews"][i])
                                     self.reviewArr.append(categoery)
                                 }
                                    self.tableView.reloadData()
                             }
-                        
+
                         }
                         else
                         {
@@ -100,7 +99,7 @@ class Review: UIViewController,UITableViewDelegate,UITableViewDataSource {
                     print("Unable to load data: \(error)")
                 }
          }
-    
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -111,55 +110,71 @@ class Review: UIViewController,UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ReviewTableViewCell
         let reviews = reviewArr[indexPath.row]
         cell.nameText.text = reviews.customer_name
-        cell.descripition.text = reviews.review
+        cell.descripition.text = reviews.review_date
         let rating = reviews.rating
+        let img = reviews.profile_picture
+        cell.userImgaeiew.sd_setImage(with: URL(string: img!), placeholderImage: UIImage(named: "user"))
         if (rating == "1")
         {
-            cell.imageOne.image = UIImage(named: "RatingBlueStar")
+            cell.imageOne.image = UIImage(named: "ios_icons-31")
             cell.imageTwo.image = UIImage(named: "ios_icons-32")
             cell.imageThree.image = UIImage(named: "ios_icons-32")
             cell.imagefour.image = UIImage(named: "ios_icons-32")
             cell.imageFive.image = UIImage(named: "ios_icons-32")
+            
+            cell.reviewStatus.text = "Poor"
+
 
         }
         else if (rating == "2")
         {
-            cell.imageOne.image = UIImage(named: "RatingBlueStar")
-            cell.imageTwo.image = UIImage(named: "RatingBlueStar")
+            cell.imageOne.image = UIImage(named: "ios_icons-31")
+            cell.imageTwo.image = UIImage(named: "ios_icons-31")
             cell.imageThree.image = UIImage(named: "ios_icons-32")
             cell.imagefour.image = UIImage(named: "ios_icons-32")
             cell.imageFive.image = UIImage(named: "ios_icons-32")
+            
+            cell.reviewStatus.text = "Average"
+
         }
         else if (rating == "3")
         {
-            cell.imageOne.image = UIImage(named: "RatingBlueStar")
-            cell.imageTwo.image = UIImage(named: "RatingBlueStar")
-            cell.imageThree.image = UIImage(named: "RatingBlueStar")
+            cell.imageOne.image = UIImage(named: "ios_icons-31")
+            cell.imageTwo.image = UIImage(named: "ios_icons-31")
+            cell.imageThree.image = UIImage(named: "ios_icons-31")
             cell.imagefour.image = UIImage(named: "ios_icons-32")
             cell.imageFive.image = UIImage(named: "ios_icons-32")
+            
+            cell.reviewStatus.text = "Good!"
+
         }
         else if (rating == "4")
         {
-            cell.imageOne.image = UIImage(named: "RatingBlueStar")
-            cell.imageTwo.image = UIImage(named: "RatingBlueStar")
-            cell.imageThree.image = UIImage(named: "RatingBlueStar")
-            cell.imagefour.image = UIImage(named: "RatingBlueStar")
+            cell.imageOne.image = UIImage(named: "ios_icons-31")
+            cell.imageTwo.image = UIImage(named: "ios_icons-31")
+            cell.imageThree.image = UIImage(named: "ios_icons-31")
+            cell.imagefour.image = UIImage(named: "ios_icons-31")
             cell.imageFive.image = UIImage(named: "ios_icons-32")
+            
+            cell.reviewStatus.text = "Very Good!!"
         }
         else if (rating == "5")
         {
-            cell.imageOne.image = UIImage(named: "RatingBlueStar")
-            cell.imageTwo.image = UIImage(named: "RatingBlueStar")
-            cell.imageThree.image = UIImage(named: "RatingBlueStar")
-            cell.imagefour.image = UIImage(named: "RatingBlueStar")
-            cell.imageFive.image = UIImage(named: "RatingBlueStar")
+            cell.imageOne.image = UIImage(named: "ios_icons-31")
+            cell.imageTwo.image = UIImage(named: "ios_icons-31")
+            cell.imageThree.image = UIImage(named: "ios_icons-31")
+            cell.imagefour.image = UIImage(named: "ios_icons-31")
+            cell.imageFive.image = UIImage(named: "ios_icons-31")
+            
+            cell.reviewStatus.text = "Excellent!!!"
+
         }
         
         return cell
     }
     
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-         return UITableView.automaticDimension
+         return 83
     }
 
     /*

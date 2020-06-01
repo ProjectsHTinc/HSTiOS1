@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="niF-mn-ca8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="niF-mn-ca8">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -118,11 +118,11 @@
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Referral Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vt8-ye-D3R">
-                                                <rect key="frame" x="37" y="414" width="302" height="18"/>
+                                                <rect key="frame" x="36.5" y="414" width="302" height="18"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="18" id="S2D-gp-sVN"/>
-                                                    <constraint firstAttribute="width" constant="302" id="zGe-s8-VCT"/>
+                                                    <constraint firstAttribute="width" constant="302" id="BM5-ff-mus"/>
+                                                    <constraint firstAttribute="height" constant="18" id="sRs-JA-mcg"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -134,8 +134,8 @@
                                                 <rect key="frame" x="36.5" y="438" width="302" height="1"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="1" id="lbT-qZ-lXm"/>
-                                                    <constraint firstAttribute="width" constant="302" id="nhq-pP-kYp"/>
+                                                    <constraint firstAttribute="width" constant="302" id="BdX-fV-1wt"/>
+                                                    <constraint firstAttribute="height" constant="1" id="Ehb-8W-R1b"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -144,20 +144,19 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="Vt8-ye-D3R" firstAttribute="leading" secondItem="B5z-QG-aJd" secondAttribute="leading" constant="37" id="0eX-Tu-n2A"/>
                                             <constraint firstItem="ycD-ac-wph" firstAttribute="centerX" secondItem="B5z-QG-aJd" secondAttribute="centerX" constant="-6" id="2pY-dc-0da"/>
                                             <constraint firstItem="hea-5r-UJ6" firstAttribute="centerX" secondItem="B5z-QG-aJd" secondAttribute="centerX" constant="16" id="3HZ-WI-1RA"/>
                                             <constraint firstItem="XZR-WJ-UnP" firstAttribute="top" secondItem="B5z-QG-aJd" secondAttribute="top" constant="38" id="50j-si-84t"/>
                                             <constraint firstItem="U0S-Ss-dIm" firstAttribute="top" secondItem="4Ia-jR-Iab" secondAttribute="bottom" constant="19.5" id="AQN-0j-lyk"/>
                                             <constraint firstItem="uwL-X3-EVC" firstAttribute="centerX" secondItem="B5z-QG-aJd" secondAttribute="centerX" constant="-138.25" id="BMV-OH-dyw"/>
                                             <constraint firstItem="uwL-X3-EVC" firstAttribute="centerY" secondItem="B5z-QG-aJd" secondAttribute="centerY" constant="38.25" id="BRV-HZ-C5i"/>
+                                            <constraint firstItem="Ymo-sL-enb" firstAttribute="centerX" secondItem="B5z-QG-aJd" secondAttribute="centerX" id="CPj-hg-luX"/>
                                             <constraint firstItem="zqD-yP-5Fa" firstAttribute="centerX" secondItem="B5z-QG-aJd" secondAttribute="centerX" constant="-6" id="DGl-dT-mPD"/>
-                                            <constraint firstItem="ycD-ac-wph" firstAttribute="top" secondItem="Ymo-sL-enb" secondAttribute="bottom" constant="25.5" id="Das-4R-Wac"/>
+                                            <constraint firstItem="Ymo-sL-enb" firstAttribute="top" secondItem="Vt8-ye-D3R" secondAttribute="bottom" constant="6" id="DrK-n5-VvG"/>
                                             <constraint firstItem="7yZ-y9-csl" firstAttribute="centerY" secondItem="B5z-QG-aJd" secondAttribute="centerY" constant="-10" id="IU8-vR-PxK"/>
                                             <constraint firstItem="hea-5r-UJ6" firstAttribute="centerY" secondItem="B5z-QG-aJd" secondAttribute="centerY" constant="39" id="JhM-hV-Y09"/>
                                             <constraint firstItem="zqD-yP-5Fa" firstAttribute="centerY" secondItem="B5z-QG-aJd" secondAttribute="centerY" constant="193" id="KdM-Fu-Ybh"/>
                                             <constraint firstItem="ycD-ac-wph" firstAttribute="centerY" secondItem="B5z-QG-aJd" secondAttribute="centerY" constant="151" id="LFQ-G9-7wS"/>
-                                            <constraint firstItem="Ymo-sL-enb" firstAttribute="leading" secondItem="B5z-QG-aJd" secondAttribute="leading" constant="36.5" id="MLJ-P3-Yze"/>
                                             <constraint firstItem="zqD-yP-5Fa" firstAttribute="top" secondItem="ycD-ac-wph" secondAttribute="bottom" constant="7" id="Q1N-6s-BMt"/>
                                             <constraint firstItem="4Ia-jR-Iab" firstAttribute="centerY" secondItem="B5z-QG-aJd" secondAttribute="centerY" constant="-197" id="WO2-Jd-gk8"/>
                                             <constraint firstItem="ss7-3Q-HUW" firstAttribute="centerY" secondItem="B5z-QG-aJd" secondAttribute="centerY" constant="55" id="X53-6h-83b"/>
@@ -166,15 +165,13 @@
                                             <constraint firstItem="ZMK-I2-76n" firstAttribute="top" secondItem="U0S-Ss-dIm" secondAttribute="bottom" constant="24" id="Zu5-1i-loi"/>
                                             <constraint firstItem="U0S-Ss-dIm" firstAttribute="centerX" secondItem="B5z-QG-aJd" secondAttribute="centerX" id="dAr-Uc-WJ3"/>
                                             <constraint firstItem="4Ia-jR-Iab" firstAttribute="centerX" secondItem="B5z-QG-aJd" secondAttribute="centerX" id="ddJ-ZU-E88"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ymo-sL-enb" secondAttribute="trailing" constant="36.5" id="dp7-6J-c4g"/>
                                             <constraint firstItem="ss7-3Q-HUW" firstAttribute="centerX" secondItem="B5z-QG-aJd" secondAttribute="centerX" id="eFL-x8-aQv"/>
                                             <constraint firstItem="U0S-Ss-dIm" firstAttribute="centerY" secondItem="B5z-QG-aJd" secondAttribute="centerY" constant="-99.75" id="gM2-eL-YFd"/>
                                             <constraint firstItem="hea-5r-UJ6" firstAttribute="top" secondItem="7yZ-y9-csl" secondAttribute="bottom" constant="30" id="iaJ-2c-l7i"/>
-                                            <constraint firstAttribute="trailing" secondItem="Vt8-ye-D3R" secondAttribute="trailing" constant="36" id="n5b-9L-6Q6"/>
+                                            <constraint firstItem="Vt8-ye-D3R" firstAttribute="top" secondItem="ss7-3Q-HUW" secondAttribute="bottom" constant="25" id="p4F-g3-eLi"/>
                                             <constraint firstAttribute="trailing" secondItem="XZR-WJ-UnP" secondAttribute="trailing" constant="21" id="so0-yJ-Ttq"/>
-                                            <constraint firstItem="Vt8-ye-D3R" firstAttribute="top" secondItem="ss7-3Q-HUW" secondAttribute="bottom" constant="25" id="taq-OG-glv"/>
                                             <constraint firstItem="ZMK-I2-76n" firstAttribute="centerY" secondItem="B5z-QG-aJd" secondAttribute="centerY" constant="-53" id="vwu-zo-htT"/>
-                                            <constraint firstItem="Ymo-sL-enb" firstAttribute="top" secondItem="Vt8-ye-D3R" secondAttribute="bottom" constant="6" id="yd8-iR-MPo"/>
+                                            <constraint firstItem="Vt8-ye-D3R" firstAttribute="centerX" secondItem="B5z-QG-aJd" secondAttribute="centerX" id="z5i-9F-qlN"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -528,7 +525,7 @@
                                                     <action selector="femaleradioButton:" destination="4E9-R4-h6L" eventType="touchUpInside" id="xmf-AJ-bFI"/>
                                                 </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="radio_buttonunselect" translatesAutoresizingMaskIntoConstraints="NO" id="r1C-Ye-kXf">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="radio_Deselect" translatesAutoresizingMaskIntoConstraints="NO" id="r1C-Ye-kXf">
                                                 <rect key="frame" x="54" y="487" width="20" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             </imageView>
@@ -540,7 +537,7 @@
                                                     <action selector="maleradioButton:" destination="4E9-R4-h6L" eventType="touchUpInside" id="kfC-X5-eA2"/>
                                                 </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="radio_buttonunselect" translatesAutoresizingMaskIntoConstraints="NO" id="zQV-Ts-7Q8">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="radio_Deselect" translatesAutoresizingMaskIntoConstraints="NO" id="zQV-Ts-7Q8">
                                                 <rect key="frame" x="146" y="487" width="20" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             </imageView>
@@ -603,7 +600,7 @@
         <image name="ios_icons-15" width="44.5" height="50.5"/>
         <image name="login_logo-1" width="250" height="250"/>
         <image name="login_mobile" width="24.5" height="24.5"/>
-        <image name="radio_buttonunselect" width="24.5" height="24"/>
+        <image name="radio_Deselect" width="24.5" height="24.5"/>
         <image name="service_top_bg" width="1853" height="745"/>
         <image name="user" width="150" height="150"/>
     </resources>

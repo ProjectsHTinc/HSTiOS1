@@ -9,9 +9,13 @@
 import UIKit
 import SwiftyJSON
 import MBProgressHUD
+import SDWebImage
 
 class ServiceDescripitionTableViewController: UITableViewController {
     
+    var reviewArr = [ReviewData]()
+    var rows = Int()
+
     @IBOutlet weak var serviceName: UILabel!
     @IBOutlet weak var inclusionText: UILabel!
     @IBOutlet weak var exclusionText: UILabel!
@@ -23,6 +27,15 @@ class ServiceDescripitionTableViewController: UITableViewController {
     @IBOutlet weak var exclusionLabel: UILabel!
     @IBOutlet weak var procedureLabel: UILabel!
     @IBOutlet weak var othertitleLabel: UILabel!
+    @IBOutlet var reviewImageView: UIImageView!
+    @IBOutlet var reviewName: UILabel!
+    @IBOutlet var reviewDate: UILabel!
+    @IBOutlet var reviewStatus: UILabel!
+    @IBOutlet var reviewStarOne: UIImageView!
+    @IBOutlet var reviewStartTwo: UIImageView!
+    @IBOutlet var reviewStartThree: UIImageView!
+    @IBOutlet var reviewStartFour: UIImageView!
+    @IBOutlet var reviewStartFive: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +46,7 @@ class ServiceDescripitionTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+        self.reviewWebserviceCall ()
         
         if LocalizationSystem.sharedInstance.getLanguage() == "en"
         {
@@ -67,32 +81,169 @@ class ServiceDescripitionTableViewController: UITableViewController {
             self.othersLabel.text = serviceDetail?.others_ta
 
         }
+        self.rows = 5
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
       
-        if LocalizationSystem.sharedInstance.getLanguage() == "en"
-        {
-            let serviceDetail = UserDefaults.standard.getServicesDescripition()
-            self.serviceName.text = serviceDetail?.rate_card_details
-            self.amountLabel.text = String(format: "%@ %@","Rs.",(serviceDetail?.rate_card!)!)
-            self.inclusionText.text = serviceDetail?.inclusions
-            self.exclusionText.text = serviceDetail?.exclusions
-            self.procedureText.text = serviceDetail?.service_procedure
-            self.othersLabel.text = serviceDetail?.others
+//        if LocalizationSystem.sharedInstance.getLanguage() == "en"
+//        {
+//            let serviceDetail = UserDefaults.standard.getServicesDescripition()
+//            self.serviceName.text = serviceDetail?.rate_card_details
+//            self.amountLabel.text = String(format: "%@ %@","Rs.",(serviceDetail?.rate_card!)!)
+//            self.inclusionText.text = serviceDetail?.inclusions
+//            self.exclusionText.text = serviceDetail?.exclusions
+//            self.procedureText.text = serviceDetail?.service_procedure
+//            self.othersLabel.text = serviceDetail?.others
+//
+//        }
+//        else
+//        {
+//            let serviceDetail = UserDefaults.standard.getServicesDescripition()
+//            self.serviceName.text = serviceDetail?.rate_card_details_ta
+//            self.amountLabel.text = String(format: "%@ %@","Rs.",(serviceDetail?.rate_card!)!)
+//            self.inclusionText.text = serviceDetail?.inclusions_ta
+//            self.exclusionText.text = serviceDetail?.exclusions_ta
+//            self.procedureText.text = serviceDetail?.service_procedure_ta
+//            self.othersLabel.text = serviceDetail?.others_ta
+//
+//        }
+    }
+    
+    func reviewWebserviceCall ()
+    {
+        let url = AFWrapper.BASE_URL + "service_rating_and_reviews"
+        let parameters = ["user_master_id": GlobalVariables.shared.user_master_id,"service_id": GlobalVariables.shared.serviceId]
+//        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+            {
+                do
+                {
+                    try AFWrapper.requestPOSTURL(url, params: (parameters), headers: nil, success: {
+                        (JSONResponse) -> Void in
+//                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print(JSONResponse)
+                        let json = JSON(JSONResponse)
+                        let msg = json["msg"].stringValue
+//                        let msg_en = json["msg_en"].stringValue
+//                        let msg_ta = json["msg_ta"].stringValue
+                        let status = json["status"].stringValue
+                        if msg == "View Services reviews and rating" && status == "success"
+                        {
+                            self.reviewArr.removeAll()
+                            self.rows = 6
+                            if json["services_reviews"].count > 0 {
+                                
+                                for i in 0..<json["services_reviews"].count {
+                                    
+                                    let servicesReviews = ReviewData.init(json: json["services_reviews"][i])
+                                    UserDefaults.standard.saveReviewDetails(reviewData: servicesReviews)
+                                    self.updateValues ()
 
-        }
-        else
+                                }
+                            }
+                            self.tableView.reloadData()
+                        
+                        }
+                        else
+                        {
+                            self.rows = 5
+                            self.tableView.reloadData()
+//                            if LocalizationSystem.sharedInstance.getLanguage() == "en"
+//                            {
+//                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+//                                    // Custom action code
+//                               }
+//                            }
+//                            else
+//                            {
+//                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+//                                    // Custom action code
+//                                 }
+//                            }
+                        }
+                    }) {
+                        (error) -> Void in
+                        print(error)
+                    }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
+         }
+    }
+    
+    func updateValues ()
+    {
+        let reviewData = UserDefaults.standard.getReviewDetails()
+        self.reviewArr.append(reviewData!)
+        
+        for items in reviewArr
         {
-            let serviceDetail = UserDefaults.standard.getServicesDescripition()
-            self.serviceName.text = serviceDetail?.rate_card_details_ta
-            self.amountLabel.text = String(format: "%@ %@","Rs.",(serviceDetail?.rate_card!)!)
-            self.inclusionText.text = serviceDetail?.inclusions_ta
-            self.exclusionText.text = serviceDetail?.exclusions_ta
-            self.procedureText.text = serviceDetail?.service_procedure_ta
-            self.othersLabel.text = serviceDetail?.others_ta
+            if let userImg = items.profile_picture
+            {
+                self.reviewImageView.sd_setImage(with: URL(string: userImg), placeholderImage: UIImage(named: "user"))
+                self.reviewImageView.clipsToBounds = true
+            }
+            self.reviewName.text = items.customer_name
+            self.reviewDate.text = items.review_date
+            
+            let rating = items.rating
+            if rating == "1"
+            {
+                self.reviewStarOne.image = UIImage(named: "ios_icons-31")
+                self.reviewStartTwo.image = UIImage(named: "ios_icons-32")
+                self.reviewStartThree.image = UIImage(named: "ios_icons-32")
+                self.reviewStartFour.image = UIImage(named: "ios_icons-32")
+                self.reviewStartFive.image = UIImage(named: "ios_icons-32")
+                
+                self.reviewStatus.text = "Poor"
+            }
+            else if rating == "2"
+            {
+                self.reviewStarOne.image = UIImage(named: "ios_icons-31")
+                self.reviewStartTwo.image = UIImage(named: "ios_icons-31")
+                self.reviewStartThree.image = UIImage(named: "ios_icons-32")
+                self.reviewStartFour.image = UIImage(named: "ios_icons-32")
+                self.reviewStartFive.image = UIImage(named: "ios_icons-32")
+                
+                self.reviewStatus.text = "Average"
 
+            }
+            else if rating == "3"
+            {
+                self.reviewStarOne.image = UIImage(named: "ios_icons-31")
+                self.reviewStartTwo.image = UIImage(named: "ios_icons-31")
+                self.reviewStartThree.image = UIImage(named: "ios_icons-31")
+                self.reviewStartFour.image = UIImage(named: "ios_icons-32")
+                self.reviewStartFive.image = UIImage(named: "ios_icons-32")
+                
+                self.reviewStatus.text = "Good!"
+            }
+            else if rating == "4"
+            {
+                self.reviewStarOne.image = UIImage(named: "ios_icons-31")
+                self.reviewStartTwo.image = UIImage(named: "ios_icons-31")
+                self.reviewStartThree.image = UIImage(named: "ios_icons-31")
+                self.reviewStartFour.image = UIImage(named: "ios_icons-31")
+                self.reviewStartFive.image = UIImage(named: "ios_icons-32")
+                
+                self.reviewStatus.text = "Very Good!!"
+            }
+            else if rating == "5"
+            {
+                self.reviewStarOne.image = UIImage(named: "ios_icons-31")
+                self.reviewStartTwo.image = UIImage(named: "ios_icons-31")
+                self.reviewStartThree.image = UIImage(named: "ios_icons-31")
+                self.reviewStartFour.image = UIImage(named: "ios_icons-31")
+                self.reviewStartFive.image = UIImage(named: "ios_icons-31")
+                
+                self.reviewStatus.text = "Excellent!!!"
+
+            }
+            break
         }
     }
 
@@ -105,7 +256,7 @@ class ServiceDescripitionTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 6
+        return rows
     }
     
     @IBAction func bookNowAction(_ sender: Any)

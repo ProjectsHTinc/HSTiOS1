@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class ReviewData: Codable {
     
-    var rating, service_id, review, customer_id, customer_name  : String?
+    var rating, service_id, review, customer_id, customer_name, review_date, profile_picture : String?
     
     init(json:JSON) {
         
@@ -20,6 +20,8 @@ class ReviewData: Codable {
         self.review = json["review"].stringValue
         self.customer_id = json["customer_id"].stringValue
         self.customer_name = json["customer_name"].stringValue
+        self.review_date = json["review_date"].stringValue
+        self.profile_picture = json["profile_picture"].stringValue
 
     }
 

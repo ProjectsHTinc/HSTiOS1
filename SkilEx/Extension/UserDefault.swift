@@ -24,7 +24,7 @@ extension UserDefaults
     
     func getDevicetoken() -> String
     {
-        return string(forKey: UserDefaultsKey.userDeviceTokenKey.rawValue)!
+        return string(forKey: UserDefaultsKey.userDeviceTokenKey.rawValue) ??  ""
     }
     
     func saveUserdata(userdata: UserData)
@@ -128,6 +128,30 @@ extension UserDefaults
         return nil
     }
     
+    func saveReviewDetails(reviewData: ReviewData)
+    {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(reviewData) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: UserDefaultsKey.userSessionKey.rawValue)
+        }
+    }
+    
+    func getReviewDetails()-> ReviewData?
+    {
+        if data(forKey: UserDefaultsKey.userSessionKey.rawValue) != nil
+        {
+            let decodedData = UserDefaults.standard.data(forKey: UserDefaultsKey.userSessionKey.rawValue)
+            var reviewData: ReviewData?
+            if decodedData != nil {
+                reviewData = try! JSONDecoder().decode(ReviewData.self, from: decodedData!)
+            }
+            return reviewData
+        }
+        
+        return nil
+    }
+    
     func saveWalletData(walletData: WalletData)
     {
         let encoder = JSONEncoder()
@@ -155,5 +179,6 @@ extension UserDefaults
     func clearUserData()
     {
         UserDefaults.standard.removeObject(forKey: UserDefaultsKey.userSessionKey.rawValue)
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKey.userDeviceTokenKey.rawValue)
     }
 }

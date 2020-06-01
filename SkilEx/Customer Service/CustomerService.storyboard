@@ -1658,7 +1658,7 @@
                         <segue destination="XSF-Hq-evF" kind="show" identifier="paymentMethod" id="jYz-X6-XNu"/>
                         <segue destination="j7H-8d-lEE" kind="show" identifier="additionalService" id="v2h-GF-NT1"/>
                         <segue destination="Jjz-bH-7jT" kind="show" identifier="bill" id="Szk-it-G7K"/>
-                        <segue destination="uhA-cf-YKU" kind="show" identifier="payByWallet" id="tQg-GL-fCq"/>
+                        <segue destination="uhA-cf-YKU" kind="presentation" identifier="payByWallet" id="tQg-GL-fCq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ga3-Xl-JP1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2125,7 +2125,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="64N-AN-Ztg">
-                                        <rect key="frame" x="0.0" y="211" width="375" height="333"/>
+                                        <rect key="frame" x="0.0" y="232" width="375" height="312"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
@@ -2157,7 +2157,7 @@
                                                                         <constraint firstAttribute="width" constant="65" id="VHL-w0-9K8"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
-                                                                    <state key="normal" title="Yes" image="radio_buttonunselect">
+                                                                    <state key="normal" title="Yes" image="radio_Deselect">
                                                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
                                                                 </button>
@@ -2170,7 +2170,7 @@
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
                                                                     <inset key="imageEdgeInsets" minX="-4" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                                    <state key="normal" title="No" image="radio_buttonunselect">
+                                                                    <state key="normal" title="No" image="radio_Deselect">
                                                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
                                                                 </button>
@@ -2206,6 +2206,13 @@
                                             <outlet property="delegate" destination="tuQ-4d-FQm" id="se6-ow-zkO"/>
                                         </connections>
                                     </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Good!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxs-3W-KK9">
+                                        <rect key="frame" x="24" y="203" width="327" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
@@ -2226,6 +2233,7 @@
                         <outlet property="buttonOneOutlet" destination="Otz-xC-epZ" id="Vjb-Bh-fr5"/>
                         <outlet property="buttonThreeOutlet" destination="bOl-cW-hCm" id="Nlj-dW-w6A"/>
                         <outlet property="buttonTwoOutlet" destination="E5J-SC-pE0" id="5eD-tK-gx2"/>
+                        <outlet property="serviceRateStatusLabel" destination="dxs-3W-KK9" id="2So-RE-bes"/>
                         <outlet property="skipOutlet" destination="ewZ-zR-1Aj" id="c2p-r6-JBe"/>
                         <outlet property="submitOutlet" destination="q3S-9D-Zbg" id="8j0-eU-Tcn"/>
                         <outlet property="tableView" destination="64N-AN-Ztg" id="6sm-0u-xGn"/>
@@ -3101,7 +3109,7 @@
         <segue reference="bop-vA-Rvd"/>
         <segue reference="v2h-GF-NT1"/>
         <segue reference="qea-Jb-V3I"/>
-        <segue reference="bhf-K8-yZw"/>
+        <segue reference="bah-KZ-D0Y"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ReviewNew" width="150.5" height="150.5"/>
@@ -3126,7 +3134,7 @@
         <image name="ios_icons-50" width="24" height="24"/>
         <image name="ios_icons-51" width="24" height="23.5"/>
         <image name="onlinepay" width="42.5" height="80"/>
-        <image name="radio_buttonunselect" width="24.5" height="24"/>
+        <image name="radio_Deselect" width="24.5" height="24.5"/>
         <image name="servicesuccess" width="50.5" height="50"/>
         <image name="success" width="50.5" height="50"/>
         <image name="user" width="150" height="150"/>

@@ -585,6 +585,7 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         GlobalVariables.shared.catServicetID = serviceID
         GlobalVariables.shared.main_catID = main_cat_id
         GlobalVariables.shared.sub_catID = sub_cat_id
+        GlobalVariables.shared.serviceId = serviceID
         if serviceID.isEmpty == false
         {
             let url = AFWrapper.BASE_URL + "service_details"
@@ -607,7 +608,6 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                                 UserDefaults.standard.saveServicesDescripition(servicesDescripition: servicesdescripition)
                                 GlobalVariables.shared.Service_amount = servicesdescripition.rate_card!
                                 self.performSegue(withIdentifier: "serviceDescrption", sender: self)
-                            
                             }
                         }) {
                             (error) -> Void in

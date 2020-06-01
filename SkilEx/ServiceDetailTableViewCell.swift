@@ -17,6 +17,7 @@ class ServiceDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var addLabel: UILabel!
     @IBOutlet weak var cellView: UIView!
+    @IBOutlet var amountLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

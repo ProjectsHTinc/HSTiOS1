@@ -51,20 +51,20 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     @objc func willEnterForeground() {
-       // do what's needed
-//        self.request?.resume()
+        // do what's needed
+//      self.request?.resume()
         self.closeBtnImg.isHidden = true
         self.searchTextfield.isHidden = true
-        self.checkAppVersion(versionCode: "2")
+        self.checkAppVersion(versionCode: "3")
     }
     
     
     override func viewWillAppear(_ animated: Bool)
     {
-//        self.request?.resume()
+//      self.request?.resume()
         self.closeBtnImg.isHidden = true
         self.searchTextfield.isHidden = true
-        self.checkAppVersion(versionCode: "2")
+        self.checkAppVersion(versionCode: "3")
         
     }
     
@@ -155,26 +155,26 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         
         group.enter()
         queue.async {
-            print("#2 started")
+            print("#3 started")
             self.viewMainCategoery()
             Thread.sleep(forTimeInterval: 1)
-            print("#2 finished")
+            print("#3 finished")
             self.group.leave()
         }
         
         group.enter()
         queue.async {
-            print("#3 started")
+            print("#4 started")
             self.topTrendingServices()
             Thread.sleep(forTimeInterval: 1)
-            print("#3 finished")
+            print("#4 finished")
             self.group.leave()
         }
 
         queue.async {
 //            MBProgressHUD.hide(for: self.view, animated: true)
             self.group.wait()
-            print("#4 finished")
+            print("#5 finished")
         }
 
         self.categoryCollectionView.isUserInteractionEnabled = true
@@ -699,7 +699,7 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                                 let servicesdescripition = ServicesDescripition(json: json["service_details"])
                                 UserDefaults.standard.saveServicesDescripition(servicesDescripition: servicesdescripition)
                                 GlobalVariables.shared.Service_amount = servicesdescripition.rate_card!
-                                GlobalVariables.shared.serviceID = serviceID
+                                GlobalVariables.shared.serviceId = serviceID
                                 self.performSegue(withIdentifier: "serviceDescrption", sender: self)
                             
                             }
