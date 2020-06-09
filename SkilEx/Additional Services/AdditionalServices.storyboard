@@ -33,9 +33,9 @@
                                         <rect key="frame" x="18" y="57" width="339" height="156"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nT7-Be-VQO">
-                                                <rect key="frame" x="67.5" y="27" width="204" height="71"/>
+                                                <rect key="frame" x="44" y="27" width="251" height="71"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="204" id="5kv-V3-ufv"/>
+                                                    <constraint firstAttribute="width" constant="251" id="5kv-V3-ufv"/>
                                                     <constraint firstAttribute="height" constant="71" id="iWQ-Mz-wkv"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="35"/>
@@ -114,7 +114,7 @@
                                     <constraint firstAttribute="height" constant="21" id="hEv-yW-2oH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KmN-Kg-di4">
@@ -557,9 +557,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="addMoneyAction:" destination="XwT-3j-U9s" eventType="touchUpInside" id="Xqn-wA-fWs"/>
                                     <action selector="proceedAction:" destination="C8c-G4-Bcq" eventType="touchUpInside" id="5TR-MX-ZPE"/>
-                                    <action selector="referFriendAction:" destination="OBw-Y2-osK" eventType="touchUpInside" id="8nc-Ry-Cui"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPa-iX-iwK">

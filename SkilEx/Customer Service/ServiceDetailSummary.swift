@@ -48,6 +48,8 @@ class ServiceDetailSummary: UITableViewController, UITextViewDelegate
     @IBOutlet weak var shareOutlet: UIButton!
     @IBOutlet weak var viewBillLabel: UILabel!
     @IBOutlet weak var serviceCompletedTime: UILabel!
+    @IBOutlet var travelAllowanceLabel: UILabel!
+    @IBOutlet var travelAllowance: UILabel!
     
     var order_status = String()
     var service_order_id = String()
@@ -95,6 +97,8 @@ class ServiceDetailSummary: UITableViewController, UITextViewDelegate
         self.grandTotalLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummarygrandtotal_text", comment: "")
         self.viewBillLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummaryviewbill_text", comment: "")
         self.shareOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorysummaryshare_text", comment: ""), for: .normal)
+        self.travelAllowanceLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "serviceTravelAllowance_text", comment: "")
+
     }
     
     func webRequestProceedforPayment ()
@@ -277,6 +281,8 @@ class ServiceDetailSummary: UITableViewController, UITextViewDelegate
             {
                 self.serviceCompletedLabel.text = "Service Completed On"
             }
+            self.travelAllowance.text = bookingDetailSummary?.travelling_allowance
+
         }
         else
         {
@@ -339,6 +345,7 @@ class ServiceDetailSummary: UITableViewController, UITextViewDelegate
             {
                 self.serviceCompletedLabel.text = "சேவை முடிந்தது"
             }
+            self.travelAllowance.text = bookingDetailSummary?.travelling_allowance
         }
         
             self.tableView.reloadData()
@@ -359,6 +366,7 @@ class ServiceDetailSummary: UITableViewController, UITextViewDelegate
         // #warning Incomplete implementation, return the number of rows
         return checkSetOrderStatus
     }
+    
     @IBAction func additionalServiceAction(_ sender: Any)
     {
         let additionalService = bookingDetailSummary?.additional_service

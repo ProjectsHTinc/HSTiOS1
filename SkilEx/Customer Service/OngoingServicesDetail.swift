@@ -41,6 +41,7 @@ class OngoingServicesDetail: UIViewController {
     @IBOutlet weak var serviceResumeTimeOutlet: UILabel!
     @IBOutlet weak var serviceResumeDateOutletHeight: NSLayoutConstraint!
     @IBOutlet weak var serviceResumeTimeOutletHeight: NSLayoutConstraint!
+    @IBOutlet var phoneimgView: UIImageView!
     
     var serviceorderId = String()
     let serviceListDetail = UserDefaults.standard.getServicesDetail()
@@ -142,11 +143,13 @@ class OngoingServicesDetail: UIViewController {
         if person_number == ""
         {
             callServicePersonLabel.isHidden = true
+            self.phoneimgView.isHidden = true
             callServiceProviderOutlet.isEnabled = false
         }
         else
         {
             callServicePersonLabel.isHidden = false
+            self.phoneimgView.isHidden = false
             callServiceProviderOutlet.isEnabled = true
         }
 
@@ -217,7 +220,7 @@ class OngoingServicesDetail: UIViewController {
             }
             self.personName.text = serviceListDetail?.person_name
             self.serviceStartTime.text = serviceListDetail?.time_slot
-            self.estimatedCost.text = serviceListDetail?.estimated_cost
+            self.estimatedCost.text = "₹." + (serviceListDetail?.estimated_cost)!
             self.serviceProviderName.text = serviceListDetail?.provider_name
             self.callServiceProviderOutlet.setTitle(serviceListDetail?.person_number, for: .normal)
             self.orderidLabel.text = String(format: "%@ : %@",LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesorderID_text", comment: ""),serviceListDetail!.service_order_id ?? "")
@@ -251,7 +254,7 @@ class OngoingServicesDetail: UIViewController {
             }
             self.personName.text = serviceListDetail?.person_name
             self.serviceStartTime.text = serviceListDetail?.time_slot
-            self.estimatedCost.text = serviceListDetail?.estimated_cost
+            self.estimatedCost.text = "₹." + (serviceListDetail?.estimated_cost)!
             self.serviceProviderName.text = serviceListDetail?.provider_name
             self.callServiceProviderOutlet.setTitle(serviceListDetail?.person_number, for: .normal)
             self.orderidLabel.text = String(format: "%@ : %@",LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesorderID_text", comment: ""),serviceListDetail!.service_order_id ?? "")

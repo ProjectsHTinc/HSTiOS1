@@ -28,11 +28,11 @@ class AFWrapper: NSObject {
      
     //static let BASE_URL = "https://skilex.in/development/apicustomer/"
     
-//static let BASE_URL = "https://skilex.in/development/apicustomerios/"
-//static let PaymentBaseUrl = "https://www.skilex.in/development/"
+static let BASE_URL = "https://skilex.in/development/apicustomerios/"
+static let PaymentBaseUrl = "https://www.skilex.in/development/"
     
-static let BASE_URL = "https://skilex.in/apicustomerios/"
-static let PaymentBaseUrl = "https://skilex.in/"
+//static let BASE_URL = "https://skilex.in/apicustomerios/"
+//static let PaymentBaseUrl = "https://skilex.in/"
     
     
     public static let sharedManager: SessionManager = {
@@ -61,8 +61,7 @@ static let PaymentBaseUrl = "https://skilex.in/"
     
     class func setTimerforPostRequest (_ strURL : String, params : [String:String]?, headers : [String : String]?, success:@escaping (JSON) -> Void, failure:@escaping (Error) -> Void)
    throws {
-    
-    
+
     sharedManager.request(strURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
          
          print(responseObject)

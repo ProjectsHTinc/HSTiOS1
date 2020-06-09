@@ -76,7 +76,8 @@ class Service: UIViewController{
         }
         else if (segue.identifier == "requestedService")
         {
-            let _ = segue.destination as! RequestedService
+            let vc = segue.destination as! RequestedService
+            vc.from = "Service"
         }
         else if (segue.identifier == "serviceHistory"){
             let _ = segue.destination as! ServiceHistory

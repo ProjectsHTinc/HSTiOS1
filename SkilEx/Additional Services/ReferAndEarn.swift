@@ -45,6 +45,12 @@ class ReferAndEarn: UIViewController {
     func preferedLanguage()
     {
         self.navigationItem.title =  LocalizationSystem.sharedInstance.localizedStringForKey(key: "referAndEarnnavtitle_text", comment: "")
+        self.totalRewardsLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "referAndEarnClaimtotalearned_text", comment: "")
+        self.earnAmountLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "referAndEarnClaimEarnAmount_text", comment: "")
+        self.inviteLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "referAndEarnClaimInvite_text", comment: "")
+        referFriendOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "referAndEarnClaimreferfriends_text", comment: ""), for: .normal)
+        rewardBtnOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "referAndEarnClaimbutn_text", comment: ""), for: .normal)
+
     }
     
     @objc public override func backButtonClick() {
@@ -87,11 +93,11 @@ class ReferAndEarn: UIViewController {
     {
         if points_to_claim.isEmpty
         {
-            self.points.text = "0" + "" + "Points"
+            self.points.text = "0" + "" + LocalizationSystem.sharedInstance.localizedStringForKey(key: "referAndEarnpoints_text", comment: "")
         }
         else
         {
-            self.points?.text = points_to_claim + " " + "Points"
+            self.points?.text = points_to_claim + " " + LocalizationSystem.sharedInstance.localizedStringForKey(key: "referAndEarnpoints_text", comment: "")
         }
         
         if referral_code.isEmpty
@@ -161,14 +167,14 @@ class ReferAndEarn: UIViewController {
     func showAlertView (totalPoints:String)
     {
         DispatchQueue.main.async{
-            let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Your amount for point earned is \(totalPoints) ", preferredStyle: UIAlertController.Style.alert)
+            let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "referAndEarnalerttext_text", comment: "") + " " +  totalPoints, preferredStyle: UIAlertController.Style.alert)
             
             
-            let okAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "Proceed to add money", comment: ""), style: UIAlertAction.Style.default) {
+            let okAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "referAndEarnalertoktext_text", comment: ""), style: UIAlertAction.Style.default) {
                 UIAlertAction in
                 self.ConfrimtoClaim(usermasterId:GlobalVariables.shared.user_master_id)
             }
-            let cancelAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "Cancel", comment: ""), style: UIAlertAction.Style.default) {
+            let cancelAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "referAndEarncancel_text", comment: ""), style: UIAlertAction.Style.default) {
                 UIAlertAction in
                 
             }

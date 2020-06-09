@@ -15,6 +15,7 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
     var serviceListArr = [ServiceList]()
     var service_Order_id =  String()
     var advancePaymentStatus = String()
+    var from = String()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -37,7 +38,15 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     @objc public override func backButtonClick() {
-       self.performSegue(withIdentifier: "servicePage", sender: self)
+        
+        if self.from == "Service"
+        {
+            self.performSegue(withIdentifier: "servicePage", sender: self)
+        }
+        else
+        {
+            self.performSegue(withIdentifier: "homePage", sender: self)
+        }
     }
     
     func webRequestRequestedServiceList(user_master_id: String) {
@@ -208,9 +217,13 @@ class RequestedService: UIViewController, UITableViewDelegate, UITableViewDataSo
             vc.advancePayment_Status = self.advancePaymentStatus
 
         }
-        else if (segue.identifier == "requestedServiceDetail")
+        else if (segue.identifier == "servicePage")
         {
             let _ = segue.destination as! Service
+        }
+        else if (segue.identifier == "homePage")
+        {
+            let _ = segue.destination as! Tabbarcontroller
         }
     }
     

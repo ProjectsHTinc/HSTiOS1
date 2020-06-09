@@ -10,7 +10,6 @@ import UIKit
 
 class AddMoneyToWallet: UIViewController,UITextFieldDelegate {
     
-
     @IBOutlet weak var addMoneyToLabel: UILabel!
     @IBOutlet weak var skilexWalletLabel: UILabel!
     @IBOutlet weak var amount: UITextField!
@@ -23,19 +22,25 @@ class AddMoneyToWallet: UIViewController,UITextFieldDelegate {
         self.addToolBar(textField: amount)
         //view.bindToKeyboard()
         self.hideKeyboardWhenTappedAround()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.preferedLanguage()
         self.addBackButton()
         proceedOutlet.addShadowToButton(color: UIColor.gray, cornerRadius: self.proceedOutlet.frame.height / 2, backgroundcolor: UIColor(red: 19.0/255, green: 90.0/255, blue: 160.0/255, alpha: 1.0))
-       
     }
     
     func preferedLanguage()
     {
         self.navigationItem.title =  LocalizationSystem.sharedInstance.localizedStringForKey(key: "SkilexWalletnavtitle_text", comment: "")
+        self.addMoneyToLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "SkilexWalletaddmoney_text", comment: "")
+        self.skilexWalletLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "SkilexWalletnavtitle_text", comment: "")
+        proceedOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "advancepaymentproceed_text", comment: ""), for: .normal)
+        let attributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.gray,
+            NSAttributedString.Key.font : UIFont(name: "Helvetica", size: 13)! // Note the !
+        ]
+        self.amount.attributedPlaceholder = NSAttributedString(string: LocalizationSystem.sharedInstance.localizedStringForKey(key: "SkilexWalletaddmoneyAmount_text", comment: ""), attributes:attributes)
     }
     
     @objc public override func backButtonClick() {
@@ -83,7 +88,7 @@ class AddMoneyToWallet: UIViewController,UITextFieldDelegate {
     {
         if amount.text!.isEmpty
         {
-            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Enter Amount") { (action) in
+            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "advancepaymentproceed_text", comment: "")) { (action) in
                 //Custom action code
             }
         }

@@ -13,4 +13,5 @@ class TopTrendingCollectionViewCell: UICollectionViewCell {
     @IBOutlet var cellView: UIView!
     @IBOutlet var categoeryImage: UIImageView!
     @IBOutlet var categoeryName: UILabel!
+    @IBOutlet var toptrendingCellView: UIView!
 }

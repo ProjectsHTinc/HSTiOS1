@@ -58,7 +58,7 @@ class ServiceDescripitionTableViewController: UITableViewController {
             
             let serviceDetail = UserDefaults.standard.getServicesDescripition()
             self.serviceName.text = serviceDetail?.rate_card_details
-            self.amountLabel.text = String(format: "%@ %@","Rs.",(serviceDetail?.rate_card!)!)
+            self.amountLabel.text = String(format: "%@ %@","₹.",(serviceDetail?.rate_card!)!)
             self.inclusionText.text = serviceDetail?.inclusions
             self.exclusionText.text = serviceDetail?.exclusions
             self.procedureText.text = serviceDetail?.service_procedure
@@ -74,7 +74,7 @@ class ServiceDescripitionTableViewController: UITableViewController {
             
             let serviceDetail = UserDefaults.standard.getServicesDescripition()
             self.serviceName.text = serviceDetail?.rate_card_details_ta
-            self.amountLabel.text = String(format: "%@ %@","Rs.",(serviceDetail?.rate_card!)!)
+            self.amountLabel.text = String(format: "%@ %@","₹.",(serviceDetail?.rate_card!)!)
             self.inclusionText.text = serviceDetail?.inclusions_ta
             self.exclusionText.text = serviceDetail?.exclusions_ta
             self.procedureText.text = serviceDetail?.service_procedure_ta

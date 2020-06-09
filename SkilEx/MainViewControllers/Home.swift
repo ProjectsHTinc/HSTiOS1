@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 import MBProgressHUD
 import Alamofire
+import SDWebImage
 
 class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate
 {
@@ -33,6 +34,10 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
     @IBOutlet weak var closeBtnImg: UIImageView!
     @IBOutlet var topTrendingCollectionView: UICollectionView!
     @IBOutlet var categoryCollectionView: UICollectionView!
+    @IBOutlet var toptrendingHeadingLabel: UILabel!
+    @IBOutlet var popularServiceHeadingLabel: UILabel!
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var collectionViewBaseHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,8 +70,8 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         self.closeBtnImg.isHidden = true
         self.searchTextfield.isHidden = true
         self.checkAppVersion(versionCode: "3")
-        
     }
+        
     
     func checkAppVersion (versionCode:String)
     {
@@ -126,7 +131,7 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
               return
            }
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        MBProgressHUD.hide(for: self.view, animated: true)
+            MBProgressHUD.hide(for: self.view, animated: true)
     }
     
     
@@ -191,9 +196,11 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "homenavtitle_text", comment: "")
         let attributes = [
             NSAttributedString.Key.foregroundColor: UIColor.gray,
-            NSAttributedString.Key.font : UIFont(name: "Helvetica", size: 12)! // Note the !
+            NSAttributedString.Key.font : UIFont(name: "Helvetica", size: 10)! // Note the !
         ]
         self.searchTextfield.attributedPlaceholder = NSAttributedString(string: LocalizationSystem.sharedInstance.localizedStringForKey(key: "homesearchbar_text", comment: ""), attributes:attributes)
+        self.toptrendingHeadingLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "hometoptrendingheading_text", comment: "")
+        self.popularServiceHeadingLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "homemostpopularheading_text", comment: "")
         self.categoryCollectionView.reloadData()
         self.topTrendingCollectionView.reloadData()
     }
@@ -266,15 +273,13 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                         if msg == "View Services" && status == "success"
                         {
                             self.toptrendingArr.removeAll()
-
                             if json["services"].count > 0 {
-                                
                                 for i in 0..<json["services"].count {
                                     
                                     let trending = TopTrendingServices.init(json: json["services"][i])
                                     self.toptrendingArr.append(trending)
                                 }
-                                   self.topTrendingCollectionView.reloadData()
+                                    self.topTrendingCollectionView.reloadData()
                             }
                         }
                         else
@@ -326,15 +331,12 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                         if msg == "View Category" && status == "success"
                         {
                             self.categoeryArr.removeAll()
-
                             if json["categories"].count > 0 {
-                                
                                 for i in 0..<json["categories"].count {
-                                    
                                     let categoery = Categories.init(json: json["categories"][i])
                                     self.categoeryArr.append(categoery)
                                 }
-                                   self.categoryCollectionView.reloadData()
+                                    self.categoryCollectionView.reloadData()
                             }
                         }
                         else if msg == "Sorry you have to update latest App!" && status == "error"
@@ -469,20 +471,20 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
             let cellA = bannerCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! BannerCollectionViewCell
             let bannerImg = banner_Image[indexPath.row]
             let imgUrl = bannerImg.banner_img
-            if imgUrl!.isEmpty == false
-            {
-                let url = URL(string: imgUrl!)
-                DispatchQueue.global().async {
-                    if let data = try? Data(contentsOf: url!) {
-                        if let image = UIImage(data: data) {
-                            DispatchQueue.main.async {
-                                cellA.bannerImageView.image = image
-                            }
-                        }
-                    }
-                }
-            }
-            
+//            if imgUrl!.isEmpty == false
+//            {
+//                let url = URL(string: imgUrl!)
+//                DispatchQueue.global().async {
+//                    if let data = try? Data(contentsOf: url!) {
+//                        if let image = UIImage(data: data) {
+//                            DispatchQueue.main.async {
+//                                cellA.bannerImageView.image = image
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+            cellA.bannerImageView.sd_setImage(with: URL(string: imgUrl!), placeholderImage: UIImage(named: ""))
             return cellA
         }
         else if (collectionView == self.categoryCollectionView)
@@ -494,20 +496,20 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                 let categoery = categoeryArr[indexPath.row]
                 cellC.categoeryName.text =  categoery.cat_name
                 let imgUrl = categoery.cat_pic_url
-                if imgUrl!.isEmpty == false
-                {
-                    let url = URL(string: imgUrl!)
-                    DispatchQueue.global().async {
-                        if let data = try? Data(contentsOf: url!) {
-                            if let image = UIImage(data: data) {
-                                DispatchQueue.main.async {
-                                    cellC.categoeryImage.image = image
-                                }
-                            }
-                        }
-                    }
-                }
-                
+//                if imgUrl!.isEmpty == false
+//                {
+//                    let url = URL(string: imgUrl!)
+//                    DispatchQueue.global().async {
+//                        if let data = try? Data(contentsOf: url!) {
+//                            if let image = UIImage(data: data) {
+//                                DispatchQueue.main.async {
+//                                    cellC.categoeryImage.image = image
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+                cellC.categoeryImage.sd_setImage(with: URL(string: imgUrl!), placeholderImage: UIImage(named: ""))
                 cellC.cellView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.2, radius: 3)
                 return cellC
             }
@@ -518,19 +520,20 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                 let categoery = categoeryArr[indexPath.row]
                 cellC.categoeryName.text =  categoery.cat_ta_name
                 let imgUrl = categoery.cat_pic_url
-                if imgUrl!.isEmpty == false
-                {
-                    let url = URL(string: imgUrl!)
-                    DispatchQueue.global().async {
-                        if let data = try? Data(contentsOf: url!) {
-                            if let image = UIImage(data: data) {
-                                DispatchQueue.main.async {
-                                    cellC.categoeryImage.image = image
-                                }
-                            }
-                        }
-                    }
-                }
+//                if imgUrl!.isEmpty == false
+//                {
+//                    let url = URL(string: imgUrl!)
+//                    DispatchQueue.global().async {
+//                        if let data = try? Data(contentsOf: url!) {
+//                            if let image = UIImage(data: data) {
+//                                DispatchQueue.main.async {
+//                                    cellC.categoeryImage.image = image
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+                cellC.categoeryImage.sd_setImage(with: URL(string: imgUrl!), placeholderImage: UIImage(named: ""))
                 cellC.cellView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.3, radius: 3)
                 return cellC
             }
@@ -543,21 +546,20 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                 let trending = toptrendingArr[indexPath.row]
                 cellB.categoeryName.text =  trending.service_name
                 let imgUrl = trending.service_pic_url
-                if imgUrl!.isEmpty == false
-                {
-                    let url = URL(string: imgUrl!)
-                    DispatchQueue.global().async {
-                        if let data = try? Data(contentsOf: url!) {
-                            if let image = UIImage(data: data) {
-                                DispatchQueue.main.async {
-                                    cellB.categoeryImage.image = image
-                                }
-                            }
-                        }
-                    }
-                }
-                
-                //cell.cellView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.2, radius: 3)
+//                if imgUrl!.isEmpty == false
+//                {
+//                    let url = URL(string: imgUrl!)
+//                    DispatchQueue.global().async {
+//                        if let data = try? Data(contentsOf: url!) {
+//                            if let image = UIImage(data: data) {
+//                                DispatchQueue.main.async {
+//                                    cellB.categoeryImage.image = image
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+                cellB.categoeryImage.sd_setImage(with: URL(string: imgUrl!), placeholderImage: UIImage(named: ""))
                 return cellB
              }
              else
@@ -566,20 +568,20 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                 let trending = toptrendingArr[indexPath.row]
                 cellB.categoeryName.text =  trending.service_ta_name
                 let imgUrl = trending.service_pic_url
-                if imgUrl!.isEmpty == false
-                {
-                    let url = URL(string: imgUrl!)
-                    DispatchQueue.global().async {
-                        if let data = try? Data(contentsOf: url!) {
-                            if let image = UIImage(data: data) {
-                                DispatchQueue.main.async {
-                                    cellB.categoeryImage.image = image
-                                }
-                            }
-                        }
-                    }
-                }
-                //cell.cellView.dropShadow(offsetX: 0, offsetY: 1, color: UIColor.gray, opacity: 0.3, radius: 3)
+//                if imgUrl!.isEmpty == false
+//                {
+//                    let url = URL(string: imgUrl!)
+//                    DispatchQueue.global().async {
+//                        if let data = try? Data(contentsOf: url!) {
+//                            if let image = UIImage(data: data) {
+//                                DispatchQueue.main.async {
+//                                    cellB.categoeryImage.image = image
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+                cellB.categoeryImage.sd_setImage(with: URL(string: imgUrl!), placeholderImage: UIImage(named: ""))
                 return cellB
             }
         }
@@ -699,7 +701,10 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
                                 let servicesdescripition = ServicesDescripition(json: json["service_details"])
                                 UserDefaults.standard.saveServicesDescripition(servicesDescripition: servicesdescripition)
                                 GlobalVariables.shared.Service_amount = servicesdescripition.rate_card!
+                                GlobalVariables.shared.main_catID = servicesdescripition.main_cat_id!
+                                GlobalVariables.shared.sub_catID = servicesdescripition.sub_cat_id!
                                 GlobalVariables.shared.serviceId = serviceID
+                                GlobalVariables.shared.catServicetID = serviceID
                                 self.performSegue(withIdentifier: "serviceDescrption", sender: self)
                             
                             }
@@ -722,12 +727,13 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         {
             let yourWidth = categoryCollectionView.bounds.width/3.0
             let yourHeight = yourWidth
+            
             return CGSize(width: yourWidth, height: yourHeight)
         }
         else if collectionView == topTrendingCollectionView
         {
-            let yourWidth = topTrendingCollectionView.bounds.width/3.0
-            let yourHeight = yourWidth
+            let yourWidth = 250
+            let yourHeight = 170
             return CGSize(width: yourWidth, height: yourHeight)
         }
         else
@@ -738,17 +744,45 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets
     {
-        return UIEdgeInsets(top: 2,left: 0,bottom: 0,right: 0)
+        if collectionView == categoryCollectionView
+        {
+            return UIEdgeInsets(top: 2,left: 0,bottom: 0,right: 0)
+        }
+        else if collectionView == topTrendingCollectionView
+        {
+            return UIEdgeInsets(top: 0,left: 15,bottom: 0,right: 0)
+
+        }
+        else
+        {
+            return UIEdgeInsets(top: 0,left: 0,bottom: 0,right: 0)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat
     {
-        return 0
+        if collectionView == categoryCollectionView
+         {
+             return 0
+
+         }
+         else
+         {
+             return 15.0
+         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat
     {
-       return 0
+          if collectionView == categoryCollectionView
+         {
+             return 0
+
+         }
+         else
+         {
+             return 15.0
+         }
     }
     
     
@@ -776,6 +810,7 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         searchTextfield.resignFirstResponder()
     }
     
+    
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -802,4 +837,84 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         }
 
     }
+}
+
+@IBDesignable
+class RoundedCornerView: UIView {
+
+    var cornerRadiusValue : CGFloat = 0
+    var corners : UIRectCorner = []
+
+    @IBInspectable public override var cornerRadius : CGFloat {
+        get {
+            return cornerRadiusValue
+        }
+        set {
+            cornerRadiusValue = newValue
+        }
+    }
+
+    @IBInspectable public var topLeft : Bool {
+        get {
+            return corners.contains(.topLeft)
+        }
+        set {
+            setCorner(newValue: newValue, for: .topLeft)
+        }
+    }
+
+    @IBInspectable public var topRight : Bool {
+        get {
+            return corners.contains(.topRight)
+        }
+        set {
+            setCorner(newValue: newValue, for: .topRight)
+        }
+    }
+
+    @IBInspectable public var bottomLeft : Bool {
+        get {
+            return corners.contains(.bottomLeft)
+        }
+        set {
+            setCorner(newValue: newValue, for: .bottomLeft)
+        }
+    }
+
+    @IBInspectable public var bottomRight : Bool {
+        get {
+            return corners.contains(.bottomRight)
+        }
+        set {
+            setCorner(newValue: newValue, for: .bottomRight)
+        }
+    }
+
+    func setCorner(newValue: Bool, for corner: UIRectCorner) {
+        if newValue {
+            addRectCorner(corner: corner)
+        } else {
+            removeRectCorner(corner: corner)
+        }
+    }
+
+    func addRectCorner(corner: UIRectCorner) {
+        corners.insert(corner)
+        updateCorners()
+    }
+
+    func removeRectCorner(corner: UIRectCorner) {
+        if corners.contains(corner) {
+            corners.remove(corner)
+            updateCorners()
+        }
+    }
+
+    func updateCorners() {
+        let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: cornerRadiusValue, height: cornerRadiusValue))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        self.layer.mask = mask
+    }
+
 }

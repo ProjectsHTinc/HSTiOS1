@@ -55,6 +55,7 @@ class Login: UIViewController,UITextFieldDelegate {
         welcomeLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "welcome_text", comment: "")
         enterMobileNumberLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "mobilenumber_text", comment: "")
         mobileNumber.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: "mobilenumberplaceholder_text", comment: "")
+        referralCode.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: "reffreal_text", comment: "")
         submitOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "login_text", comment: ""), for: .normal)
         skipforNowPotlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "skip_text", comment: ""), for: .normal)
     }
@@ -145,7 +146,7 @@ class Login: UIViewController,UITextFieldDelegate {
                         let status = json["status"].stringValue
                         if msg == "" && status == ""
                         {
-
+                            
                         }
                     }) {
                         (error) -> Void in
@@ -214,7 +215,7 @@ class Login: UIViewController,UITextFieldDelegate {
         }
         else
         {
-            let maxLength = 10
+            let maxLength = 15
             let currentString: NSString = referralCode.text! as NSString
             let newString: NSString =
                 currentString.replacingCharacters(in: range, with: string) as NSString

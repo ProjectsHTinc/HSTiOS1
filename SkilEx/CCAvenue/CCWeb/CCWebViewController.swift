@@ -20,7 +20,7 @@ import MBProgressHUD
  * Once the transaction is done  we will pass the transaction result to the next page (ie CCResultViewController here)
  */
 
-class CCWebViewController: UIViewController,UIWebViewDelegate
+class CCWebViewController: UIViewController,UIWebViewDelegate, UIViewControllerTransitioningDelegate
 {
     
     var accessCode = String()
@@ -286,7 +286,7 @@ class CCWebViewController: UIViewController,UIWebViewDelegate
             
             let html = htmlTemp
             print("html :: ",html)
- //           var transStatus = "Not Known"
+//         var transStatus = "Not Known"
 //
 //            if ((html ).range(of: "tracking_id").location != NSNotFound) && ((html ).range(of: "bin_country").location != NSNotFound)
 //            {
@@ -295,7 +295,6 @@ class CCWebViewController: UIViewController,UIWebViewDelegate
                     
                     if advancePayment == "Ap"
                     {
-                        //self.performSegue(withIdentifier: "bookingPage", sender: self)
                         let storyBoard : UIStoryboard = UIStoryboard(name: "CustomerService", bundle:nil)
                         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "bookingSuccess") as! BookingSuccess
                         nextViewController.transStatus = transStatus
@@ -304,7 +303,6 @@ class CCWebViewController: UIViewController,UIWebViewDelegate
                     else if advancePayment == "MW"
                     {
                         self.navToAddMoney(status:"Cancelled")
-
                     }
                     else
                     {
@@ -447,9 +445,14 @@ class CCWebViewController: UIViewController,UIWebViewDelegate
         
         if (segue.identifier == "to_WalletPage")
         {
-            let vc = segue.destination as! AddMoneyToWallet
+            let _ = segue.destination as! AddMoneyToWallet
             //let vc = nav.topViewController as!  Wallet
             //vc.transStatus = sender as! String
+        }
+        else if (segue.identifier == "bookingPage")
+        {
+            //let nav = segue.destination as! BookingSuccess
+            //nav.transStatus = transStatus
         }
      }
 

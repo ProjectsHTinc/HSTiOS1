@@ -22,12 +22,13 @@ class OnGoing_Service: UIViewController, UITableViewDelegate, UITableViewDataSou
 
         // Do any additional setup after loading the view.
         self.addBackButton()
-        self.webRequestOngoingServiceList(user_master_id: GlobalVariables.shared.user_master_id)
+        //self.webRequestOngoingServiceList(user_master_id: GlobalVariables.shared.user_master_id)
         self.preferedLanguage()
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.webRequestOngoingServiceList(user_master_id: GlobalVariables.shared.user_master_id)
         self.preferedLanguage()
     }
     
@@ -110,18 +111,40 @@ class OnGoing_Service: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.subCategoery.text = serviceList.service_name
             cell.customerName.text = serviceList.contact_person_name
             cell.serviceDate.text = serviceList.order_date
-            
+                        
             if serviceList.order_status == "Hold"
             {
                 cell.statusView.backgroundColor = UIColor.init(red: 238/255.0, green: 25/255.0, blue: 37/255.0, alpha: 1.0)
                 cell.statusImg.image = UIImage(named: "onhold")
-                cell.statusLabel.text = String(format: "%@ %@", "Service Status : ",serviceList.order_status!)
+                if serviceList.order_status == "Accepted"
+                {
+                    cell.statusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingstatusapproved_text", comment: "")
+                }
+                else if serviceList.order_status == "Assigned"
+                {
+                    cell.statusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingstatusassigned_text", comment: "")
+                }
+                else
+                {
+                    cell.statusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingstatusongoing_text", comment: "")
+                }
             }
             else
             {
                 cell.statusView.backgroundColor = UIColor.init(red: 174/255.0, green: 132/255.0, blue: 187/255.0, alpha: 1.0)
                 cell.statusImg.image = UIImage(named: "ios_icons-27")
-                cell.statusLabel.text = String(format: "%@ %@", "Service Status : ",serviceList.order_status!)
+                if serviceList.order_status == "Accepted"
+                {
+                    cell.statusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingstatusapproved_text", comment: "")
+                }
+                else if serviceList.order_status == "Assigned"
+                {
+                    cell.statusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingstatusassigned_text", comment: "")
+                }
+                else
+                {
+                    cell.statusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingstatusongoing_text", comment: "")
+                }
             }
 
         }
@@ -136,13 +159,36 @@ class OnGoing_Service: UIViewController, UITableViewDelegate, UITableViewDataSou
             {
                cell.statusView.backgroundColor = UIColor.init(red: 238/255.0, green: 25/255.0, blue: 37/255.0, alpha: 1.0)
                cell.statusImg.image = UIImage(named: "onhold")
-               cell.statusLabel.text = String(format: "%@ %@", "சேவை நிலை : ",serviceList.order_status!)
+               if serviceList.order_status == "Accepted"
+               {
+                  cell.statusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingstatusapproved_text", comment: "")
+               }
+               else if serviceList.order_status == "Assigned"
+               {
+                 cell.statusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingstatusassigned_text", comment: "")
+               }
+               else
+               {
+                 cell.statusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingstatusongoing_text", comment: "")
+               }
             }
             else
             {
                cell.statusView.backgroundColor = UIColor.init(red: 174/255.0, green: 132/255.0, blue: 187/255.0, alpha: 1.0)
                cell.statusImg.image = UIImage(named: "ios_icons-27")
-               cell.statusLabel.text = String(format: "%@ %@", "சேவை நிலை : ",serviceList.order_status!)
+               if serviceList.order_status == "Accepted"
+               {
+                  cell.statusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingstatusapproved_text", comment: "")
+               }
+               else if serviceList.order_status == "Assigned"
+               {
+                 cell.statusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingstatusassigned_text", comment: "")
+               }
+               else
+               {
+                 cell.statusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesdetailongoingstatusongoing_text", comment: "")
+               }
+//             cell.statusLabel.text = String(format: "%@ %@", "சேவை நிலை : ",serviceList.order_status!)
             }
             
         }

@@ -54,6 +54,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
     @IBOutlet var walletCheckBoxOutlet: UIButton!
     @IBOutlet var travelAllowanceLabel: UILabel!
     @IBOutlet var travelAllowance: UILabel!
+    @IBOutlet var paybywalletLabel: UILabel!
     
     var service_order_id = String()
     var paymentStatus = String()
@@ -139,6 +140,8 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
         self.applyCouponOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "serviceapply_text", comment: ""), for: .normal)
         self.travelAllowanceLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "serviceTravelAllowance_text", comment: "")
         self.paidOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicehistorybutton_text", comment: ""), for: .normal)
+        self.paybywalletLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicepaybywallet_text", comment: "")
+
     }
     
     

@@ -39,6 +39,8 @@ class Wallet: UIViewController,UITableViewDelegate,UITableViewDataSource {
     func preferedLanguage()
     {
         self.navigationItem.title =  LocalizationSystem.sharedInstance.localizedStringForKey(key: "amountStatusnavtitle_text", comment: "")
+        self.skilexWalletLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "SkilexWalletlabel_text", comment: "")
+        addMoneyOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "SkilexWalletaddmoney_text", comment: ""), for: .normal)
     }
     
     @objc public override func backButtonClick() {
@@ -58,11 +60,11 @@ class Wallet: UIViewController,UITableViewDelegate,UITableViewDataSource {
                         MBProgressHUD.hide(for: self.view, animated: true)
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
-//                        let msg = json["msg"].stringValue
+//                      let msg = json["msg"].stringValue
                         let msg_en = json["result_wallet"]["msg_en"].stringValue
                         let msg_ta = json["result_wallet"]["msg_ta"].stringValue
                         let status = json["status"].stringValue
-//                        let result_wallet = json["result_wallet"].stringValue
+//                      let result_wallet = json["result_wallet"].stringValue
                         if  status == "success"{
                            let wallet_balance = json["wallet_balance"].stringValue
                            self.updateWalletBalance(walletBalance: wallet_balance)
@@ -144,7 +146,7 @@ class Wallet: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }
         else
         {
-            cell.addAmount.text = "+" + " " + walletdata.transaction_amt!
+            cell.addAmount.text = "-" + " " + walletdata.transaction_amt!
             cell.addAmount.textColor = UIColor.red
 
         }

@@ -25,7 +25,7 @@ class AdvancePayment: UIViewController {
 
         // Do any additional setup after loading the view.
         self.addBackButton()
-        self.advanceAmount.text = String(format: "%@ %@", "Rs.", advance_amount)
+        self.advanceAmount.text = String(format: "%@%@", "₹.", advance_amount)
         self.preferedLanguage()
 
     }
@@ -66,7 +66,7 @@ class AdvancePayment: UIViewController {
         viewController.currency = "INR"
         viewController.orderId = orderId
         viewController.redirectUrl = String(format: "%@%@", AFWrapper.PaymentBaseUrl,"ccavenue_app/customer_advance.php")
-        viewController.cancelUrl = String(format: "%@%@", AFWrapper.PaymentBaseUrl,"customer_advance.php")
+        viewController.cancelUrl = String(format: "%@%@", AFWrapper.PaymentBaseUrl,"ccavenue_app/customer_advance.php")
         viewController.rsaKeyUrl = String(format: "%@%@", AFWrapper.PaymentBaseUrl,"ccavenue_app/GetRSA.php")
         
 //      viewController.redirectUrl = "https://www.skilex.in/development/ccavenue_app/customer_advance.php"

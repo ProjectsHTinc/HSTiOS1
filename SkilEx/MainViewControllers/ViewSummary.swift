@@ -22,6 +22,7 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var termsndConditionLabel: UILabel!
     @IBOutlet weak var checkImg: UIImageView!
     @IBOutlet weak var checkboxOutlet: UIButton!
+    @IBOutlet var notesHeadingLabel: UILabel!
     
     var cartListArr = [CartList]()
     var cartListServiceName = [String]()
@@ -135,6 +136,7 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.totalAmountLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "viewsummarytotalamount_text", comment: "")
         proceedOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "viewsummaryproceed_text", comment: ""), for: .normal)
         orderSummaryLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "ordersummary_text", comment: "")
+        self.notesHeadingLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "ordersummarynotesheading_text", comment: "")
         
     }
     
@@ -180,7 +182,7 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
                             if LocalizationSystem.sharedInstance.getLanguage() == "en"
                             {
 //                                self.webRequestViewCart()
-                                Alert.defaultManager.showOkAlert("Cart", message: "All orders cancelled") { (action) in
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "ordersummarycartname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "ordersummarycartempty_text", comment: "")) { (action) in
                                     //Custom action code
                                     self.navigationController?.popViewController(animated: true)
 
@@ -188,7 +190,7 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
                             }
                             else
                             {
-                                Alert.defaultManager.showOkAlert("Cart", message: "All orders cancelled") { (action) in
+                                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "ordersummarycartname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "ordersummarycartempty_text", comment: "")) { (action) in
                                     //Custom action code
                                     self.navigationController?.popViewController(animated: true)
 

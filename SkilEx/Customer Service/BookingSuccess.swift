@@ -25,7 +25,7 @@ class BookingSuccess: UIViewController
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.addBackButton()
+//        self.addBackButton()
         self.displayMinute = "1"
         
         let View =  UserDefaults.standard.string(forKey: "Advance/customer")
@@ -253,7 +253,14 @@ class BookingSuccess: UIViewController
     
     @IBAction func backToHomeAction(_ sender: Any)
     {
-        self.performSegue(withIdentifier: "toDashboard", sender: self)
+        if transStatus == "Transaction Successful"
+        {
+            self.performSegue(withIdentifier: "toRequestedService", sender: self)
+        }
+        else
+        {
+            self.performSegue(withIdentifier: "toDashboard", sender: self)
+        }
     }
     
     // MARK: - Navigation
@@ -262,9 +269,16 @@ class BookingSuccess: UIViewController
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         
-        if (segue.identifier == "toDashboard")
+        if (segue.identifier == "toRequestedService")
         {
-            let _ = segue.destination as! Tabbarcontroller
+            let nav = segue.destination as! UINavigationController
+            let vc = nav.topViewController as! RequestedService
+//          let vc = segue.destination as! RequestedService
+            vc.from = "BookingSucces"
+        }
+        else
+        {
+           let _ = segue.destination as! Tabbarcontroller
         }
     }
     

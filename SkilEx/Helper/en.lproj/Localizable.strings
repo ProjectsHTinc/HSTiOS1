@@ -13,7 +13,7 @@
 "mobilenumberplaceholder_text" = "Mobile Number";
 "login_text" = "Login";
 "skip_text" = "Skip for now";
-"reffreal_text" = "Referral Code";
+"reffreal_text" = "Referral Code(Optional)";
 
 /*Done Cancel */
 "done" = "Done";
@@ -26,16 +26,16 @@
 "notsendOTP_text" = "Didn't Receive  the OTP?";
 
 /* profile text */
-"profilenavtitle_text" = "Update User Profile";
-"fullname_text" = "Full Name";
+"profilenavtitle_text" = "Profile";
+"fullname_text" = "Name";
 "regmobnum_text" = "Enter Mobile Number";
 "address_text" = "Address";
-"mailid_text" = "Enter Email ID (optional)";
+"mailid_text" = "E-mail";
 "city_text" = "City";
 "gender_text" = "Gender";
 "male_text" = "Male";
 "female_text" = "Female";
-"submit_profile_text" = "Save";
+"submit_profile_text" = "Ok";
 
 
 /* tabbarcontroller text */
@@ -50,11 +50,14 @@
 
 /* Home text */
 "homesearchbar_text" = "Search for Services";
+"hometoptrendingheading_text" = "Trending services";
+"homemostpopularheading_text" = "Most popular services from SkilEx";
+
 
 /* User Profile */
 "userprofilenav_text" = "User Profile";
 "profilesettings_text" = "Profile Details";
-"aboutSkilex_text" = "About";
+"aboutSkilex_text" = "About SkilEx";
 "shareSkilex_text" = "Share App";
 "languagechange_text" = "Change Language";
 "referEarn_text" = "Refer and Earn";
@@ -91,6 +94,10 @@
 "viewsummarytotalamount_text" = "Total Service Cost";
 "viewsummaryproceed_text" = "Confirm";
 "ordersummary_text" = "Order Summary";
+"ordersummarycartempty_text" = "All orders cancelled";
+"ordersummarycartname_text" = "Cart";
+"ordersummarynotesheading_text" = "The Prices are exclusive of materials/spares required for the job and the same should be provided by the customer.";
+
 
 
 /* CustomerAddress text */
@@ -102,6 +109,9 @@
 "customeraddresstime_text" = "Select Time";
 "customeraddressproceed_text" = "Book Service";
 "customeraddressnotes_text" = "Notes (Optional)";
+"customeraddressnotesheading_text" = "Any Specific details about the service or
+regarding material";
+
 
 /* Searchresult text */
 "searchresultnavtitle_text" = "Search Result";
@@ -124,12 +134,14 @@
 "servicesdetailongoingprovider_text" = "SkilEx Commando";
 "servicesdetailongoingtimeslot_text" = "Service Starting Time";
 "servicesdetailongoingestimatedcost_text" = "Estimated Cost";
-"servicesdetailongoingcallserviceperson_text" = "Call SkilEx Expert";
+"servicesdetailongoingcallserviceperson_text" = "About SkilEx Expert";
 "servicesdetailongoingtrack_text" = "Track";
 "servicesdetailongoingstart_text" = "Start";
 "servicesdetailongoingsResumeDate_text" = "Service Resume Date";
 "servicesdetailongoingsResumeTime_text" = "Service Resume Time";
-
+"servicesdetailongoingstatusapproved_text" = "Accepted";
+"servicesdetailongoingstatusassigned_text" = "Assigned";
+"servicesdetailongoingstatusongoing_text" = "Ongoing";
 
 /*RequestedservicesDetail text */
 "servicesdetailrequestednavtitle_text" = "Requested Service Detail";
@@ -144,11 +156,10 @@
 "bookingstatusnavtitle_text" = "booking Success";
 "bookingsucces_text" = "Success";
 "bookingsuccesstatus_text" = "Your Service booking completed Successfully";
-"backtohome_text" = "Back to Home";
+"backtohome_text" = "Ok";
 "bookingfailed_text" = "Sorry!";
 "bookingfailedstatus_text" = "Your booking has Failed";
 "backtohomefailed_textt" = "Try Again";
-
 
 /*Tracking text */
 "trackingnavtitle_text" = "Tracking";
@@ -177,11 +188,11 @@
 "serviceapply_text" = "Apply";
 "serviceadditional_text" = "Additional Service";
 "serviceTravelAllowance_text" = "Travel Allowance";
+"servicepaybywallet_text" = "Pay by wallet";
 
 
 /*AdditionalService text */
 "additionalservicenavtitle_text" = "Additional Services";
-
 
 /*AdditionalService text */
 "paymentmethodavtitle_text" = "Payment Method";
@@ -198,19 +209,17 @@
 "ccresultsucess_text" = "Awesome !";
 "ccresultstatussuces_text" = "You service order completed \nsuccessfully";
 "ccresultsbuttonsucess_text" = "Rate Your Service";
-
 "ccresultfailure_text" = "Something's Wrong";
 "ccresultstatusfailure_text" = "We are not able to process\n your Payment";
 "ccresultsbuttonfailure_text" = "Try Again";
 
-
 /*notificationandoffers text */
 "notificationnavtitle_text" = "Notification";
-
 
 /*aboutus text */
 "aboutusnavtitle_text" = "About SkilEx";
 "aboutLabel_text" = "About SkilEx";
+"aboutaddressheadinglabel_text" = "For service related queries or general help please contact us";
 
 /*viewbill text */
 "viewbillnavtitle_text" = "View Bill";
@@ -226,14 +235,15 @@
 "guestclickprofile" = "You need login to access your profile";
 "noinfpormationguest" = "No Information Found";
 "additionalservicealert" = "Additional Service is Empty";
-"servicedetailalertnextcatgoery" = "You need to confirm your selection before going for another category. Else your selection will be discarded.";
-"confirmalert" = "Confirm";
+"servicedetailalertnextcatgoery" = "Kindly select only one service from sub-category , Additional Service will be added by the service expert during the service time.";
+"confirmalert" = "Clear & Proceed";
 "logintoaccess" = "You need to login to book a service";
 "searchtextnotempty" = "what are you looking for?";
 "LogOutAccess" = "Do you really want to logout?";
 "LogOutAccessButtonOK" = "YES";
 "LogOutAccessButtonCancel" = "NO";
 "GuestUSER" = "GUEST";
+"cancelcart" = "OK";
 
 /* Rate Service text */
 "rateServicenavtitle_text" = "Rate Your Service";
@@ -246,12 +256,28 @@
 
 /*ReferAndEarn text */
 "referAndEarnnavtitle_text" = "Refer And Earn";
+"referAndEarnClaimbutn_text" = "Claim Reward";
+"referAndEarnClaimEarnAmount_text" = "Earn Amount";
+"referAndEarnClaimInvite_text" = "Invite your friends to skilex and earn more money!";
+"referAndEarnClaimreferfriends_text" = "Refer Friends";
+"referAndEarnClaimtotalearned_text" = "Total Earned Points";
+"referAndEarnpoints_text" = "Points";
+"referAndEarncancel_text" = "Cancel";
+"referAndEarnalerttext_text" = "Your amount for points earned is";
+"referAndEarnalertoktext_text" = "Proceedd to add Money";
 
 /*AmountStatus text */
-"amountStatusnavtitle_text" = "Amount Status";
+"amountStatusnavtitle_text" = "SkilEx Wallet";
 
 /*SkilexWallet text */
 "SkilexWalletnavtitle_text" = "SkilEx Wallet";
+"SkilexWalletaddmoney_text" = "Add Money to wallet";
+"SkilexWalletlabel_text" = "SkilEx Wallet Balance";
 
 /*ReviewsAndratings text */
 "reviewAndRatingsnavtitle_text" = "Reviews";
+
+/*AddmoneyWallet text */
+"SkilexWalletnavtitle_text" = "SkilEx Wallet";
+"SkilexWalletaddmoney_text" = "Add Money to wallet";
+"SkilexWalletaddmoney_text" = "Enter Amount";

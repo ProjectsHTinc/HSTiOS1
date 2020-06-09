@@ -107,7 +107,7 @@ class AdditionalService: UIViewController, UITableViewDelegate, UITableViewDataS
         {
             cell.serviceName.text = additionalserviceList.service_name
             cell.rateCardDetails.text = additionalserviceList.rate_card_details
-            cell.serviceCharge.text = String(format: "%@ %@", "Rs.",additionalserviceList.rate_card!)
+            cell.serviceCharge.text = String(format: "%@ %@", "₹.",additionalserviceList.rate_card!)
             let imgUrl = additionalserviceList.service_pic
             if imgUrl!.isEmpty == false
             {
@@ -127,7 +127,7 @@ class AdditionalService: UIViewController, UITableViewDelegate, UITableViewDataS
         {
             cell.serviceName.text = additionalserviceList.service_ta_name
             cell.rateCardDetails.text = additionalserviceList.rate_card_details_ta
-            cell.serviceCharge.text = String(format: "%@ %@", "Rs.",additionalserviceList.rate_card!)
+            cell.serviceCharge.text = String(format: "%@ %@", "₹.",additionalserviceList.rate_card!)
             let imgUrl = additionalserviceList.service_pic
             if imgUrl!.isEmpty == false
             {

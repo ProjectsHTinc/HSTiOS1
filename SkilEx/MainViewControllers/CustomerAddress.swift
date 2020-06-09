@@ -27,6 +27,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var addNotesLabel: UILabel!
     @IBOutlet weak var notesTextView: UITextView!
+    @IBOutlet var notesheadingLabel: UILabel!
     
     var points: [MKPointAnnotation] = []
     var lat_ = String()
@@ -110,6 +111,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         self.timeTextField.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddresstime_text", comment: "")
         self.addNotesLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressnotes_text", comment: "")
         proceedOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressproceed_text", comment: ""), for: .normal)
+        self.notesheadingLabel.text =  LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressnotesheading_text", comment: "")
     }
     
     @objc public override func backButtonClick()
@@ -545,6 +547,9 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
+                        let msg_en = json["msg_en"].stringValue
+                        let msg_ta = json["msg_ta"].stringValue
+
                         let status = json["status"].stringValue
                         if msg == "Service done" && status == "success"{
 
@@ -565,6 +570,21 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                                 else
                                 {
                                     self.performSegue(withIdentifier: "advancePayment", sender: self)
+                                }
+                            }
+                            else
+                            {
+                                if LocalizationSystem.sharedInstance.getLanguage() == "en"
+                                {
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+                                        //Custom action code
+                                    }
+                                }
+                                else
+                                {
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                        //Custom action code
+                                    }
                                 }
                             }
                         }
@@ -679,7 +699,9 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         }
         else if (segue.identifier == "bookingSuccess")
         {
-            let _ = segue.destination as! BookingSuccess
+//            let nav = segue.destination as! UINavigationController
+//            let _ = nav.topViewController as! BookingSuccess
+              let _ = segue.destination as! BookingSuccess
         }
     }
 }

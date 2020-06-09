@@ -76,7 +76,7 @@ class RequestedServiceDetail: UIViewController {
             self.time.text = serviceListDetail?.time_slot
             self.customerName.text = serviceListDetail?.contact_person_name
             self.customerNumber.text = serviceListDetail?.contact_person_number
-            self.estimatedCost.text = serviceListDetail?.estimated_cost
+            self.estimatedCost.text = "₹." + (serviceListDetail?.estimated_cost)!
             self.address.text = serviceListDetail?.service_address
             self.orderidLabel.text = String(format: "%@ : %@",LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesorderID_text", comment: ""),serviceListDetail!.service_order_id ?? "")
         }
@@ -89,7 +89,7 @@ class RequestedServiceDetail: UIViewController {
             self.time.text = serviceListDetail?.time_slot
             self.customerNameLabel.text = serviceListDetail?.contact_person_name
             self.customerNumber.text = serviceListDetail?.contact_person_number
-            self.estimatedCost.text = serviceListDetail?.estimated_cost
+            self.estimatedCost.text = "₹." + (serviceListDetail?.estimated_cost)!
             self.address.text = serviceListDetail?.service_address
             self.orderidLabel.text = String(format: "%@ : %@",LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicesorderID_text", comment: ""),serviceListDetail!.service_order_id ?? "")
 

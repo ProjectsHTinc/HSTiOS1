@@ -132,7 +132,7 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                     self.webRequestServiceList(Index:self.sub_cat_id)
 
                 }
-                let cancelAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "cancel", comment: ""), style: UIAlertAction.Style.default) {
+                let cancelAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "cancelcart", comment: ""), style: UIAlertAction.Style.default) {
                     UIAlertAction in
                     self.segmentedControl1?.selectedSegmentIndex = self.lastSelectedIndex
                 }
@@ -537,11 +537,11 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
     {
         if (serviceCount == "0")
         {
-             self.serviceCountLabel.text = "Services"
+             self.serviceCountLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailservice_text", comment: "")
         }
         else
         {
-            self.serviceCountLabel.text = String(format: "%@%@%@ | %@%@", LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailservice_text", comment: ""),":", serviceCount,"Rs.",amount)
+            self.serviceCountLabel.text = String(format: "%@%@%@ | %@%@", LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicedetailservice_text", comment: ""),":", serviceCount,"₹.",amount)
         }
     }
     
