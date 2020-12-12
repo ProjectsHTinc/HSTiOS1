@@ -365,7 +365,7 @@ class ServiceSummaryDetail: UITableViewController,UIPickerViewDataSource,UIPicke
         self.couponTextField.text = couponOffers[row]
         coupon_id = couponID[row]
         print(coupon_id)
-//        self.updateValues()
+        self.updateValues()
         self.couponTextField.resignFirstResponder()
     }
     

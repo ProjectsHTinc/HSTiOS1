@@ -10,6 +10,7 @@ import UIKit
 
 class GlobalVariables: NSObject {
     static let shared: GlobalVariables = GlobalVariables()
+    
     var user_master_id = String()
     var Service_amount = String()
     var main_catID = String()
@@ -25,5 +26,7 @@ class GlobalVariables: NSObject {
     var serviceOrderId = String()
     var walletAmount = String()
     var serviceId = String()
+    var addressArrayCount = [Int]()
+
 
 }

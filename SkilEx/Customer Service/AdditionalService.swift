@@ -101,6 +101,7 @@ class AdditionalService: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AdditionalServiceTableViewcell
         let additionalserviceList = additionalServiceArr[indexPath.row]
         if LocalizationSystem.sharedInstance.getLanguage() == "en"
@@ -152,6 +153,7 @@ class AdditionalService: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 132
     }
+    
     /*
     // MARK: - Navigation
 

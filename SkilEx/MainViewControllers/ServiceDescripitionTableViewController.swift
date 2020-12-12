@@ -126,8 +126,8 @@ class ServiceDescripitionTableViewController: UITableViewController {
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         let msg = json["msg"].stringValue
-//                        let msg_en = json["msg_en"].stringValue
-//                        let msg_ta = json["msg_ta"].stringValue
+//                      let msg_en = json["msg_en"].stringValue
+//                      let msg_ta = json["msg_ta"].stringValue
                         let status = json["status"].stringValue
                         if msg == "View Services reviews and rating" && status == "success"
                         {

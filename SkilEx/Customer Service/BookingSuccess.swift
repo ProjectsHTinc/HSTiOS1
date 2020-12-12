@@ -25,13 +25,13 @@ class BookingSuccess: UIViewController
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-//        self.addBackButton()
+        // self.addBackButton()
         self.displayMinute = "1"
         
         let View =  UserDefaults.standard.string(forKey: "Advance/customer")
         if View == "CA"
         {
-           // self.callServiceAllocation ()
+            // self.callServiceAllocation ()
             self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingstatusnavtitle_text", comment: "")
             self.statusImg.image = UIImage(named: "servicesuccess")
             self.succesLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingsucces_text", comment: "")
@@ -48,7 +48,7 @@ class BookingSuccess: UIViewController
                 self.successStatusLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "bookingsuccesstatus_text", comment: "")
                 self.backToHomeOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "backtohome_text", comment: ""), for: .normal)
                 self.serviceProviderAllocation(user_master_id: GlobalVariables.shared.user_master_id, order_id: GlobalVariables.shared.order_id)
-                self.performSegue(withIdentifier: "home", sender: self)
+                //self.performSegue(withIdentifier: "home", sender: self)
                 self.WebRequesAdvanceamountbooking()
             }
             else
@@ -99,7 +99,7 @@ class BookingSuccess: UIViewController
     func serviceProviderAllocation(user_master_id: String, order_id: String)
     {
         let parameters = ["user_master_id": user_master_id, "order_id": order_id]
-//        MBProgressHUD.showAdded(to: self.view, animated: true)
+//      MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
             {
                 do
@@ -253,13 +253,21 @@ class BookingSuccess: UIViewController
     
     @IBAction func backToHomeAction(_ sender: Any)
     {
-        if transStatus == "Transaction Successful"
+        let View =  UserDefaults.standard.string(forKey: "Advance/customer")
+        if View == "CA"
         {
             self.performSegue(withIdentifier: "toRequestedService", sender: self)
         }
         else
         {
-            self.performSegue(withIdentifier: "toDashboard", sender: self)
+            if transStatus == "Transaction Successful"
+            {
+                self.performSegue(withIdentifier: "toRequestedService", sender: self)
+            }
+            else
+            {
+                self.performSegue(withIdentifier: "toDashboard", sender: self)
+            }
         }
     }
     

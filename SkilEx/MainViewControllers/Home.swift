@@ -60,7 +60,7 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
 //      self.request?.resume()
         self.closeBtnImg.isHidden = true
         self.searchTextfield.isHidden = true
-        self.checkAppVersion(versionCode: "3")
+        self.checkAppVersion(versionCode: "4")
     }
     
     
@@ -69,7 +69,7 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
 //      self.request?.resume()
         self.closeBtnImg.isHidden = true
         self.searchTextfield.isHidden = true
-        self.checkAppVersion(versionCode: "3")
+        self.checkAppVersion(versionCode: "4")
     }
         
     

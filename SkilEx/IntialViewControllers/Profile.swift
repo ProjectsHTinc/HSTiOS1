@@ -147,17 +147,15 @@ class Profile: UIViewController
     func updateProfile(name:String,gender:String,email:String){
         
         if name.isEmpty{
-            
-            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "namefield", comment: "")) { (action) in
-                //Custom action code
-            }
+            AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "namefield", comment: ""), complition: {
+
+            })
         }
         else if self.gender == ""
         {
-            
-            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: "")) { (action) in
-                //Custom action code
-            }
+            AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "namefield", comment: ""), complition: {
+
+            })
         }
         else
         {
@@ -173,15 +171,13 @@ class Profile: UIViewController
                             print(JSONResponse)
                             let json = JSON(JSONResponse)
                             let msg = json["msg"].stringValue
-//                            let msg_en = json["msg_en"].stringValue
-//                            let msg_ta = json["msg_ta"].stringValue
+//                          let msg_en = json["msg_en"].stringValue
+//                          let msg_ta = json["msg_ta"].stringValue
                             let status = json["status"].stringValue
                             if msg == "Profile Updated" && status == "success"
                             {
-                              
                                 if LocalizationSystem.sharedInstance.getLanguage() == "en"
                                 {
-                                    
                                     AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Profile updated", complition: {
                                         self.performSegue(withIdentifier: "userprofile", sender: self)
                                     })

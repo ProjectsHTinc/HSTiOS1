@@ -19,10 +19,10 @@ class ServiceDescripition: UIViewController {
 
         // Do any additional setup after loading the view.
         self.addBackButton()
-         self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicediscripitionnav_text", comment: "")
+        self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "servicediscripitionnav_text", comment: "")
         let serviceDescripition = UserDefaults.standard.getServicesDescripition()
         let imgurl = serviceDescripition?.service_pic_url!
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        //MBProgressHUD.showAdded(to: self.view, animated: true)
         if imgurl?.isEmpty == true
         {
             self.servicePicture.image = UIImage(named: "user.png")
@@ -36,7 +36,7 @@ class ServiceDescripition: UIViewController {
                     if let image = UIImage(data: data) {
                         DispatchQueue.main.async {
                             self!.servicePicture.image = image
-                            MBProgressHUD.hide(for: self!.view, animated: true)
+                            //MBProgressHUD.hide(for: self!.view, animated: true)
                         }
                     }
                 }

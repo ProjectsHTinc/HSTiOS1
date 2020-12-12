@@ -28,6 +28,8 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var cartListServiceName = [String]()
     var text = String()
     var checkboxButtonIsClicked = Bool()
+    var addressArr = [AddressList]()
+    var addressCount = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +41,7 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.touchableLabel()
         checkboxButtonIsClicked = true
         self.disableProceedButton()
+        self.adressList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -415,7 +418,15 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBAction func proceedAction(_ sender: Any)
     {
-        self.performSegue(withIdentifier: "customerAddress", sender: self)
+        
+//        if addressCount.count >= 1
+//        {
+//            self.performSegue(withIdentifier: "to_address", sender: self)
+//        }
+//        else
+//        {
+            self.performSegue(withIdentifier: "customerAddress", sender: self)
+//        }
     }
     
     @IBAction func checkboxAction(_ sender: Any)
@@ -437,10 +448,54 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
         else if (segue.identifier == "termsAndCondition"){
             let _ = segue.destination as! TermsandCondition
         }
+        else if (segue.identifier == "to_address"){
+            let _ = segue.destination as! ChooseAddress
+        }
 //        else if (segue.identifier == "home"){
 //          let vc = segue.destination as! Tabbarcontroller
 //            print(vc)
 //        }
+    }
+    
+    func adressList ()
+    {
+        let parameters = ["cust_id":GlobalVariables.shared.user_master_id ]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+            {
+                do
+                {
+                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "customer_address_list", params: parameters, headers: nil, success: { [self]
+                        (JSONResponse) -> Void in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print(JSONResponse)
+                        let json = JSON(JSONResponse)
+                        
+                        let status = json["status"].stringValue
+                        if  status == "success"
+                        {
+                            if json["address_list"].count > 0 {
+                                
+                                for i in 0..<json["address_list"].count {
+                                    let adress = AddressList.init(json: json["address_list"][i])
+                                    self.addressArr.append(adress)
+                                    let arrayCount = json["address_list"].count
+                                    GlobalVariables.shared.addressArrayCount = [arrayCount]
+                                    print(arrayCount)
+                                }
+                            }
+                        }
+                        
+                    }) {
+                        (error) -> Void in
+                        print(error)
+                    }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
+        }
     }
 }
 

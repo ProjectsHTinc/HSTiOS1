@@ -33,6 +33,7 @@ class Login: UIViewController,UITextFieldDelegate {
         self.addToolBar(textField: mobileNumber)
         view.bindToKeyboard()
         self.hideKeyboardWhenTappedAround()
+        self.referralCode.autocapitalizationType = .allCharacters
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -63,11 +64,6 @@ class Login: UIViewController,UITextFieldDelegate {
     @IBAction func submit(_ sender: Any)
     {
         self.userLogin(mobileNumber: self.mobileNumber.text!)
-        
-        if !self.referralCode.text!.isEmpty
-        {
-            self.referralCodeLogin(referralCode: self.referralCode.text!)
-        }
     }
     
     @IBAction func skipButton(_ sender: Any)
@@ -109,8 +105,8 @@ class Login: UIViewController,UITextFieldDelegate {
                             let phone_no = json["phone_no"].stringValue
                             let otp = json["otp"].stringValue
                             self.user_master_id = json["user_master_id"].stringValue
-                            UserDefaults.standard.set(self.user_master_id, forKey: "user_master_id")
-                            GlobalVariables.shared.user_master_id = UserDefaults.standard.string(forKey: "user_master_id") ?? ""
+//                            UserDefaults.standard.set(self.user_master_id, forKey: "user_master_id")
+//                            GlobalVariables.shared.user_master_id = UserDefaults.standard.string(forKey: "user_master_id") ?? ""
                             UserDefaults.standard.set(phone_no, forKey: "phone_no")
                             UserDefaults.standard.set(otp, forKey: "otp_key")
                             self.performSegue(withIdentifier: "to_OTP", sender: self)
@@ -128,37 +124,6 @@ class Login: UIViewController,UITextFieldDelegate {
            }
         }
     }
-    
-    func referralCodeLogin (referralCode:String)
-    {
-        let parameters = ["referral_code": referralCode]
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        DispatchQueue.global().async
-            {
-                do
-                {
-                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "login", params: parameters, headers: nil, success: {
-                        (JSONResponse) -> Void in
-                        MBProgressHUD.hide(for: self.view, animated: true)
-                        print(JSONResponse)
-                        let json = JSON(JSONResponse)
-                        let msg = json["msg"].stringValue
-                        let status = json["status"].stringValue
-                        if msg == "" && status == ""
-                        {
-                            
-                        }
-                    }) {
-                        (error) -> Void in
-                        print(error)
-                    }
-                }
-                catch
-                {
-                    print("Unable to load data: \(error)")
-                }
-           }
-        }
     
     func skipLogin (unique_number: String, mobile_key: String, mobile_type: String, user_stat:String)
     {
@@ -217,8 +182,7 @@ class Login: UIViewController,UITextFieldDelegate {
         {
             let maxLength = 15
             let currentString: NSString = referralCode.text! as NSString
-            let newString: NSString =
-                currentString.replacingCharacters(in: range, with: string) as NSString
+            let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
             return newString.length <= maxLength
         }
 
@@ -228,9 +192,10 @@ class Login: UIViewController,UITextFieldDelegate {
     {
         if (segue.identifier == "to_OTP") {
             let vc = segue.destination as! OTP
-            vc.user_master_id = GlobalVariables.shared.user_master_id
+            vc.user_master_id = self.user_master_id
             vc.mobileNumber = UserDefaults.standard.string(forKey: "phone_no") ?? ""
             vc.otp = UserDefaults.standard.string(forKey: "otp_key") ?? ""
+            vc.referlCode = self.referralCode.text ?? ""
             print(vc.otp)
         }
         else if (segue.identifier == "guest_Home")
@@ -239,6 +204,7 @@ class Login: UIViewController,UITextFieldDelegate {
             print(vc)
         }
     }
+    
     
     @IBAction func changeLanguageButton(_ sender: Any)
     {

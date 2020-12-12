@@ -13,8 +13,10 @@ import MBProgressHUD
 import SwiftyJSON
 import Alamofire
 
-class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate {
+class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate,addressListDelegate, UIPopoverPresentationControllerDelegate {
+    
 
+    @IBOutlet var popView: UIView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var address: UITextField!
     @IBOutlet weak var name: UITextField!
@@ -28,16 +30,24 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     @IBOutlet weak var addNotesLabel: UILabel!
     @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet var notesheadingLabel: UILabel!
+    @IBOutlet weak var streetNameLabel: UILabel!
+    @IBOutlet weak var streetName: UITextField!
     
     var points: [MKPointAnnotation] = []
     var lat_ = String()
     var long_ = String()
+    var lat1_ = String()
+    var long1_ = String()
+    var latLongFromSelect = String()
+     
     var time_range = [String]()
     var timeslot_id = [String]()
     var timeslotID = String()
     var location = String()
     var advancepaymentStatus = String()
     var fromDidupDateLocation = Bool()
+    var fromTappingMapView = Bool()
+    var endLocation = CLLocation()
 
     var locationManager = CLLocationManager()
     let datePicker = UIDatePicker()
@@ -46,14 +56,34 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     var timer: Timer?
     var displayMinute = String()
     var task: URLSessionTask? = nil
-
-
+    var startLocation = CLLocation()
+    var lastLocation = CLLocation()
+    let geoCoder = CLGeocoder()
+    var availableDistance = false
+     
+    var AddressArr = String()
+    var contact_Name = String()
+    var Phone_Number = String()
+    var seviceId = String()
+    var serviceLocation = String()
+    var seviceAdress = String()
+    var seviceLatLong = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        
+        if GlobalVariables.shared.addressArrayCount.count >= 1 {
+            self.popOver(sender:popView)
+        }
+        
+        AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressfirstalert", comment: ""), complition: {
+
+        })
         mapView.delegate = self
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy =  kCLLocationAccuracyBestForNavigation
+        //locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled()
         {
@@ -91,20 +121,81 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         }
         self.displayMinute = "1"
         self.preferedLanguage()
+        self.getGPAddress(givenAddress: "Gandhipuram Town Bus Stand Coimbatore")
+        fromTappingMapView = false
+
+    }
+    
+    func popOver(sender : UIView) {
+        
+    let chooseAddress = storyboard?.instantiateViewController(withIdentifier: "chooseAddress") as! ChooseAddress
+        chooseAddress.delegate = self
+        chooseAddress.strconName = self.name.text! as NSString
+        chooseAddress.strconNum = self.phoneNumber.text! as NSString
+        chooseAddress.strconLoc = self.address.text! as NSString
+        chooseAddress.strconAddress = self.streetName.text! as NSString
+        chooseAddress.strconLat_Long = self.latLongFromSelect  as NSString
+           
+        chooseAddress.modalPresentationStyle = .popover
+         if let popoverController = chooseAddress.popoverPresentationController {
+            popoverController.sourceView = sender
+            popoverController.sourceRect = sender.bounds
+            popoverController.permittedArrowDirections = .any
+            popoverController.delegate = self
+            }
+            present(chooseAddress, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.preferedLanguage()
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
+  
+    func saveText(conName: String, conNum: String, conLoc: String,conAddress:String,conLat_Long:String)
+    {
+        
+        self.name.text = conName
+        self.phoneNumber.text = conNum
+        self.address.text = conLoc
+        self.streetName.text = conAddress
+        self.latLongFromSelect = conLat_Long
+        print(lat_)
+        print(long_)
+        print(lat_ + long_)
+        print(latLongFromSelect)
+        
+        let numbers = latLongFromSelect.components(separatedBy: [","])
+        print(numbers)
+        
+        self.lat_ = numbers[0]
+        self.long_ = numbers[1]
+        print(lat_)
+        let latitude1_ = Double(lat_)
+        let longitude1_ = Double(long_)
+        print(latitude1_!)
+        print(longitude1_!)
+
+        self.startLocation = CLLocation(latitude:  11.016683, longitude:  76.969040)
+        self.endLocation = CLLocation(latitude: latitude1_!, longitude:longitude1_!)
+        fromTappingMapView = true
+        print(endLocation)
+        print(startLocation)
+        self.calculateDistance (startLocation: startLocation, EndLocation: endLocation)
         
     }
-    
+
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController!) -> UIModalPresentationStyle {
+      return .fullScreen
+    }
+
+    private func presentationController(controller: UIPresentationController!, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController! {
+        return UINavigationController(rootViewController: controller.presentedViewController)
+    }
+
     func preferedLanguage()
     {
         self.navigationItem.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressnavtitle_text", comment: "")
         self.locationLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "locationaddress_text", comment: "")
+        self.streetNameLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "locationaddressStreetName_text", comment: "")
         self.nameLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressname_text", comment: "")
         self.phoneNumberLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressphonenumber_text", comment: "")
         self.dateTextField.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressdate_text", comment: "")
@@ -157,9 +248,9 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
 
         datePicker.datePickerMode = .date
         let now = Date();
-        
         datePicker.minimumDate = now
         datePicker.maximumDate = threeDaysfromNow
+        
         //ToolBar
         let toolbar = UIToolbar();
         toolbar.tintColor = UIColor.black
@@ -279,6 +370,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
             lat_ = String(format:"%f", locationCoordinate.latitude)
             long_ = String(format:"%f", locationCoordinate.longitude)
             fromDidupDateLocation = false
+            fromTappingMapView = true
             self.getAddressFromLatLon(pdblLatitude: lat_, withLongitude: long_)
             print("Tapped at lat: \(locationCoordinate.latitude) long: \(locationCoordinate.longitude)")
         }
@@ -334,10 +426,14 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                     print(pm.thoroughfare as Any)
                     print(pm.postalCode as Any)
                     print(pm.subThoroughfare as Any)
+                    print(pm.administrativeArea as Any)
+                    print(pm.subAdministrativeArea as Any)
+                    print(pm.subThoroughfare as Any)
                     var addressString : String = ""
                     if pm.subLocality != nil {
                         addressString = addressString + pm.subLocality! + ", "
                         self.location = addressString
+                        self.address.text = addressString
                     }
                     if pm.thoroughfare != nil {
                         addressString = addressString + pm.thoroughfare! + ", "
@@ -351,15 +447,21 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                         addressString = addressString + pm.country! + ", "
                         print(addressString)
                     }
-                     MBProgressHUD.hide(for: self.view, animated: true)
+
+                    MBProgressHUD.hide(for: self.view, animated: true)
                     if (self.fromDidupDateLocation == true)
                     {
-                        self.address.text = ""
+                        self.address.text = self.seviceAdress
                     }
                     else
                     {
-                        self.address.text = addressString
+                        if pm.thoroughfare != nil {
+                            self.address.text = pm.thoroughfare! + ", "
+                        }
+                        self.streetName.text = addressString
+                        self.ConvertAddressToLatLon(givenAddress: self.address.text!)
                     }
+                    
                 }
         })
     }
@@ -384,6 +486,9 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {   
         let nextTag = textField.tag + 1
+        if nextTag == 2{
+            self.ConvertAddressToLatLon(givenAddress: self.address.text!)
+        }
         // Try to find next responder
         let nextResponder = textField.superview?.viewWithTag(nextTag) as UIResponder?
         
@@ -394,7 +499,6 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
             // Not found, so remove keyboard
             textField.resignFirstResponder()
         }
-        
         return false
     }
     
@@ -408,8 +512,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                 currentString.replacingCharacters(in: range, with: string) as NSString
             return newString.length <= maxLength
         }
-        
-            return true
+        return true
     }
     
     func timeSlot (user_master_id: String, service_date: String)
@@ -495,41 +598,111 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     
     @IBAction func proceedAction(_ sender: Any)
     {
-        
         if address.text == ""
         {
-            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "addressfield", comment: "")) { (action) in
-            }
+            AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "addressfield", comment: ""), complition: {
+
+            })
         }
         else if name.text == ""
         {
-            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "namefield", comment: "")) { (action) in 
-            }
+            AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "namefield", comment: ""), complition: {
+
+            })
         }
         else if phoneNumber.text == ""
         {
-            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "mobilefield", comment: "")) { (action) in
-            }
+            AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "mobilefield", comment: ""), complition: {
+
+            })
         }
         else if phoneNumber.text?.count != 10
         {
-            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "mobilefield", comment: "")) { (action) in
-            }
+            AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "mobilefield", comment: ""), complition: {
+
+            })
         }
         else if dateTextField.text == ""
         {
-            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "datefield", comment: "")) { (action) in
-            }
+            AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "datefield", comment: ""), complition: {
+
+            })
+            
         }
         else if timeTextField.text == ""
         {
-            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "timefield", comment: "")) { (action) in
-            }
+            AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "timefield", comment: ""), complition: {
+
+            })
+        }
+        else if availableDistance == false {
+            AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "We don't provide this service in your area currently", complition: {
+
+            })
+        }
+        else if fromTappingMapView == false{
+            AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressfirstalert", comment: ""), complition: {
+
+            })
         }
         else
         {
             let date = Date()
-            self.webRequest(user_master_id: GlobalVariables.shared.user_master_id,contact_person_name: self.name.text!,contact_person_number: self.phoneNumber.text!, service_latlon: String(format: "%@%@%@", lat_,",",long_), service_location: self.location, service_address: self.address.text!, order_date: date.formattedDateFromString(dateString: self.dateTextField.text!, withFormat:"yyyy-MM-dd")!, order_timeslot_id: timeslotID,notes:self.notesTextView.text!)
+            self.webRequest(user_master_id: GlobalVariables.shared.user_master_id,contact_person_name: self.name.text!,contact_person_number: self.phoneNumber.text!, service_latlon: String(format: "%@%@%@", lat_,",",long_), service_location: self.streetName.text!, service_address:self.address.text!, order_date: date.formattedDateFromString(dateString: self.`dateTextField`.text!, withFormat:"yyyy-MM-dd")!, order_timeslot_id: timeslotID,notes:self.notesTextView.text!)
+            
+            print(GlobalVariables.shared.user_master_id)
+            print(self.phoneNumber.text!)
+            print(String(format: "%@%@%@", lat_,",",long_))
+            print(self.streetName.text!)
+            print(self.address.text!)
+            print(self.`dateTextField`.text!)
+            print(GlobalVariables.shared.user_master_id)
+      
+            
+            self.webRequestAdressAdd(user_master_id: GlobalVariables.shared.user_master_id,contact_person_name: self.name.text!,contact_person_number: self.phoneNumber.text!, service_latlon: String(format: "%@%@%@", lat_,",",long_), service_location: self.streetName.text!, service_address:self.address.text!)
+        }
+    }
+    
+    func calculateDistance (startLocation: CLLocation, EndLocation:CLLocation){
+        let distanceMeters: CLLocationDistance  = (startLocation.distance(from: EndLocation))
+        let distance =  Int(distanceMeters / 1000.0)
+        if distance <= 20{
+            availableDistance = true
+        }
+        else{
+            availableDistance = false
+        }
+    }
+    
+    func ConvertAddressToLatLon(givenAddress:String)
+    {
+        geoCoder.geocodeAddressString(givenAddress) {
+            placemarks, error in
+            let placemark = placemarks?.last
+            let startLatitude = placemark?.location?.coordinate.latitude
+            let endLongitude = placemark?.location?.coordinate.longitude
+            if startLatitude != nil && endLongitude != nil{
+                self.lastLocation = CLLocation(latitude:  startLatitude!, longitude:  endLongitude!)
+            }
+            else
+            {
+                AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Invalid Address", complition: {
+
+                })
+            }
+            print(placemark?.location?.coordinate.latitude as Any,placemark?.location?.coordinate.longitude as Any)
+            self.calculateDistance(startLocation: self.startLocation, EndLocation: self.lastLocation)
+//          print("Lat: \(startLatitude), Lon: \(EndLongitude)")
+        }
+    }
+        
+    func getGPAddress(givenAddress:String)
+    {
+        geoCoder.geocodeAddressString(givenAddress) {
+            placemarks, error in
+            let placemark = placemarks?.first
+            self.startLocation = CLLocation(latitude:  11.016683, longitude:  76.969040)
+            print(placemark?.location?.coordinate.latitude as Any,placemark?.location?.coordinate.longitude as Any)
         }
     }
     
@@ -582,12 +755,38 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                                 }
                                 else
                                 {
-                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem                                                                                                                                                                                                              .sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
                                         //Custom action code
                                     }
                                 }
                             }
                         }
+                    }) {
+                        (error) -> Void in
+                        print(error)
+                    }
+                }
+                catch
+                {
+                    print("Unable to load data: \(error)")
+                }
+        }
+    }
+    
+    func webRequestAdressAdd(user_master_id: String, contact_person_name: String, contact_person_number: String, service_latlon: String, service_location: String, service_address: String)
+    {
+        let parameters = ["cust_id": user_master_id, "contact_name": contact_person_name, "contact_no": contact_person_number, "serv_lat_lon": service_latlon, "serv_loc": service_location, "serv_address": service_address]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async
+            {
+                do
+                {
+                    try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "customer_address_add", params: parameters, headers: nil, success: {
+                        (JSONResponse) -> Void in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        print(JSONResponse)
+                        _ = JSON(JSONResponse)
+                       
                     }) {
                         (error) -> Void in
                         print(error)
@@ -654,16 +853,13 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                         }
                         else
                         {
-                            if self.displayMinute == "1"
-                            {
+                            if self.displayMinute == "1"{
                                 self.displayMinute = "2"
                             }
-                            else if self.displayMinute == "2"
-                            {
+                            else if self.displayMinute == "2"{
                                 self.displayMinute = "3"
                             }
-                            else
-                            {
+                            else{
                                 self.stopTimer()
                             }
 //                          self.performSegue(withIdentifier: "bookingSuccess", sender: self)
@@ -699,9 +895,15 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         }
         else if (segue.identifier == "bookingSuccess")
         {
-//            let nav = segue.destination as! UINavigationController
-//            let _ = nav.topViewController as! BookingSuccess
-              let _ = segue.destination as! BookingSuccess
+//          let nav = segue.destination as! UINavigationController
+//          let _ = nav.topViewController as! BookingSuccess
+            let _ = segue.destination as! BookingSuccess
+        }
+        else if (segue.identifier == "choose_address")
+        {
+//          let nav = segue.destination as! UINavigationController
+//          let _ = nav.topViewController as! BookingSuccess
+            let _ = segue.destination as! ChooseAddress
         }
     }
 }
@@ -718,7 +920,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
 //        .data(using: .utf8)
 //    }
 //}
-//
+
 //extension CharacterSet
 //{
 //    static let urlQueryValueAllowed: CharacterSet =

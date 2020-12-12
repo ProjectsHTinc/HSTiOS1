@@ -95,6 +95,9 @@
 		6B8784F022EC87F800040D7D /* AdditionalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8784EF22EC87F800040D7D /* AdditionalService.swift */; };
 		6B972D7522DEFF5F00665546 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B972D7422DEFF5F00665546 /* GlobalVariables.swift */; };
 		6B9BF3B422DDF2630006F602 /* TimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9BF3B322DDF2630006F602 /* TimeSlot.swift */; };
+		6B9CE2C9257DFE020044E16D /* ChooseAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9CE2C8257DFE020044E16D /* ChooseAddress.swift */; };
+		6B9CE2CF257DFE260044E16D /* ChooseAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9CE2CE257DFE260044E16D /* ChooseAddressCell.swift */; };
+		6B9CE2D5257E0A020044E16D /* CustomerAddressList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9CE2D4257E0A020044E16D /* CustomerAddressList.swift */; };
 		6BA06CCE22EC2979000A0508 /* ServiceHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA06CCD22EC2979000A0508 /* ServiceHistory.swift */; };
 		6BA06CD022EC2998000A0508 /* ServiceHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA06CCF22EC2998000A0508 /* ServiceHistoryTableViewCell.swift */; };
 		6BA06CD222EC3E02000A0508 /* ServiceSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA06CD122EC3E02000A0508 /* ServiceSummary.swift */; };
@@ -120,6 +123,9 @@
 		6BB97917237440AB002BF9E9 /* UITextViewWorkaround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB97916237440AB002BF9E9 /* UITextViewWorkaround.swift */; };
 		6BCCF78023AA388E004BC0B4 /* TermsandCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCF77F23AA388E004BC0B4 /* TermsandCondition.swift */; };
 		6BCCF78223AA38B7004BC0B4 /* TermsandConditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCF78123AA38B7004BC0B4 /* TermsandConditionCell.swift */; };
+		6BCDCF15257A469B00AAB824 /* AddressSelectList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCDCF14257A469A00AAB824 /* AddressSelectList.swift */; };
+		6BCDCF1B257A46C300AAB824 /* CustomerAdressEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCDCF1A257A46C300AAB824 /* CustomerAdressEdit.swift */; };
+		6BCDCF21257A46FE00AAB824 /* CustomerAdressEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCDCF20257A46FE00AAB824 /* CustomerAdressEditCell.swift */; };
 		6BD1356122F0653500E8494F /* AdditionalServiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD1356022F0653500E8494F /* AdditionalServiceList.swift */; };
 		6BD1356322F068E900E8494F /* AdditionalServiceTableViewcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD1356222F068E900E8494F /* AdditionalServiceTableViewcell.swift */; };
 		6BF7E24A22E055F00083FF49 /* AdvancePayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF7E24922E055F00083FF49 /* AdvancePayment.swift */; };
@@ -273,6 +279,9 @@
 		6B8784EF22EC87F800040D7D /* AdditionalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalService.swift; sourceTree = "<group>"; };
 		6B972D7422DEFF5F00665546 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		6B9BF3B322DDF2630006F602 /* TimeSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlot.swift; sourceTree = "<group>"; };
+		6B9CE2C8257DFE020044E16D /* ChooseAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAddress.swift; sourceTree = "<group>"; };
+		6B9CE2CE257DFE260044E16D /* ChooseAddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAddressCell.swift; sourceTree = "<group>"; };
+		6B9CE2D4257E0A020044E16D /* CustomerAddressList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAddressList.swift; sourceTree = "<group>"; };
 		6BA06CCD22EC2979000A0508 /* ServiceHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHistory.swift; sourceTree = "<group>"; };
 		6BA06CCF22EC2998000A0508 /* ServiceHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		6BA06CD122EC3E02000A0508 /* ServiceSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSummary.swift; sourceTree = "<group>"; };
@@ -299,6 +308,9 @@
 		6BB97916237440AB002BF9E9 /* UITextViewWorkaround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewWorkaround.swift; sourceTree = "<group>"; };
 		6BCCF77F23AA388E004BC0B4 /* TermsandCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsandCondition.swift; sourceTree = "<group>"; };
 		6BCCF78123AA38B7004BC0B4 /* TermsandConditionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsandConditionCell.swift; sourceTree = "<group>"; };
+		6BCDCF14257A469A00AAB824 /* AddressSelectList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSelectList.swift; sourceTree = "<group>"; };
+		6BCDCF1A257A46C300AAB824 /* CustomerAdressEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAdressEdit.swift; sourceTree = "<group>"; };
+		6BCDCF20257A46FE00AAB824 /* CustomerAdressEditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAdressEditCell.swift; sourceTree = "<group>"; };
 		6BD1356022F0653500E8494F /* AdditionalServiceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalServiceList.swift; sourceTree = "<group>"; };
 		6BD1356222F068E900E8494F /* AdditionalServiceTableViewcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalServiceTableViewcell.swift; sourceTree = "<group>"; };
 		6BF7E24922E055F00083FF49 /* AdvancePayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancePayment.swift; sourceTree = "<group>"; };
@@ -478,6 +490,9 @@
 				6B4B51DC22C5E60600D73166 /* UserProfile.swift */,
 				6B5C13A9230842EF00F5358F /* AboutUs.swift */,
 				6BCCF77F23AA388E004BC0B4 /* TermsandCondition.swift */,
+				6BCDCF14257A469A00AAB824 /* AddressSelectList.swift */,
+				6BCDCF1A257A46C300AAB824 /* CustomerAdressEdit.swift */,
+				6B9CE2C8257DFE020044E16D /* ChooseAddress.swift */,
 				6B4B51D222C5D9C400D73166 /* MainView.storyboard */,
 			);
 			path = MainViewControllers;
@@ -500,6 +515,8 @@
 				6B6C96B424586E3C000E6D98 /* WalletDetailCell.swift */,
 				6B7FE8162460CAAA0074329C /* TopTrendingCollectionViewCell.swift */,
 				6B099840246182AF002ACC4A /* ReviewTableViewCell.swift */,
+				6BCDCF20257A46FE00AAB824 /* CustomerAdressEditCell.swift */,
+				6B9CE2CE257DFE260044E16D /* ChooseAddressCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -640,6 +657,7 @@
 				6B7FE8102460A9280074329C /* FeedBackQuestions.swift */,
 				6B7FE8142460B8040074329C /* TopTrendingServices.swift */,
 				6B09984424618DE8002ACC4A /* ReviewData.swift */,
+				6B9CE2D4257E0A020044E16D /* CustomerAddressList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -914,6 +932,7 @@
 				6BB3453C229FD8D000547817 /* Profile.swift in Sources */,
 				6B645A7622E5C4850039935C /* NavigationButtons.swift in Sources */,
 				6BD1356122F0653500E8494F /* AdditionalServiceList.swift in Sources */,
+				6B9CE2CF257DFE260044E16D /* ChooseAddressCell.swift in Sources */,
 				6B5C13AA230842EF00F5358F /* AboutUs.swift in Sources */,
 				6BB34539229FD8D000547817 /* Login.swift in Sources */,
 				6B07591F22EB1CDA00355C01 /* Tracking.swift in Sources */,
@@ -923,7 +942,9 @@
 				6BB3452C229FD89E00547817 /* UserDefault.swift in Sources */,
 				6BA06CD622EC6D77000A0508 /* ServiceDetailSummary.swift in Sources */,
 				6BB3452E229FD89E00547817 /* Toolbar.swift in Sources */,
+				6BCDCF15257A469B00AAB824 /* AddressSelectList.swift in Sources */,
 				6B0756D522EAF4D900355C01 /* CCWebViewController.swift in Sources */,
+				6B9CE2D5257E0A020044E16D /* CustomerAddressList.swift in Sources */,
 				6BB34540229FD93700547817 /* ReachabilityManager.swift in Sources */,
 				6BA06CD022EC2998000A0508 /* ServiceHistoryTableViewCell.swift in Sources */,
 				6BA06CCE22EC2979000A0508 /* ServiceHistory.swift in Sources */,
@@ -934,6 +955,7 @@
 				6B9BF3B422DDF2630006F602 /* TimeSlot.swift in Sources */,
 				6B7F3A2D22E704E7007139E3 /* SearchResult.swift in Sources */,
 				6B6C96B124583A0C000E6D98 /* AmountStatus.swift in Sources */,
+				6BCDCF1B257A46C300AAB824 /* CustomerAdressEdit.swift in Sources */,
 				6B07591D22EB0E5F00355C01 /* BookingSuccess.swift in Sources */,
 				6BFFE4FB22E19F8E00943263 /* AlertController.swift in Sources */,
 				6BB34542229FD93700547817 /* AFWrapper.swift in Sources */,
@@ -957,6 +979,7 @@
 				6B709F9622D601B7003E22EB /* ServiceDescripition.swift in Sources */,
 				6B6AECEB22CC664E00192683 /* CategoryCollectionViewCell.swift in Sources */,
 				6B3E652D22DC828C0098D4C4 /* CustomerAddress.swift in Sources */,
+				6BCDCF21257A46FE00AAB824 /* CustomerAdressEditCell.swift in Sources */,
 				6BD1356322F068E900E8494F /* AdditionalServiceTableViewcell.swift in Sources */,
 				6B7FB26E22E817E900B9D9A4 /* RequestedService.swift in Sources */,
 				6B6AECED22CC736000192683 /* Categories.swift in Sources */,
@@ -966,6 +989,7 @@
 				6BA06CD222EC3E02000A0508 /* ServiceSummary.swift in Sources */,
 				6B6C96B3245864AC000E6D98 /* Wallet.swift in Sources */,
 				6BF8FB2022D3527A005DB209 /* SubCategories.swift in Sources */,
+				6B9CE2C9257DFE020044E16D /* ChooseAddress.swift in Sources */,
 				6B774B6A22F1B4BA00D3EC28 /* Notifications.swift in Sources */,
 				6B1E0B8522C4A2C4006A0EF5 /* RoundCornerButtons.swift in Sources */,
 				6B07591722EAFC9A00355C01 /* CCTool.m in Sources */,
@@ -1207,7 +1231,7 @@
 				CODE_SIGN_ENTITLEMENTS = SkilEx/SkilEx.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.21;
+				CURRENT_PROJECT_VERSION = 1.25;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = V6CV8B3X47;
 				ENABLE_BITCODE = NO;
@@ -1219,7 +1243,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SSL/lib\"";
-				MARKETING_VERSION = 1.0.20;
+				MARKETING_VERSION = 1.0.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.customer.SkilEx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1241,7 +1265,7 @@
 				CODE_SIGN_ENTITLEMENTS = SkilEx/SkilEx.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.21;
+				CURRENT_PROJECT_VERSION = 1.25;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = V6CV8B3X47;
 				ENABLE_BITCODE = NO;
@@ -1253,7 +1277,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SSL/lib\"";
-				MARKETING_VERSION = 1.0.20;
+				MARKETING_VERSION = 1.0.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.customer.SkilEx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1350,16 +1374,16 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.21;
+				CURRENT_PROJECT_VERSION = 1.25;
 				DEVELOPMENT_TEAM = V6CV8B3X47;
 				INFOPLIST_FILE = NotificationService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.20;
+				MARKETING_VERSION = 1.0.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.customer.SkilEx.NotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1374,16 +1398,16 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.21;
+				CURRENT_PROJECT_VERSION = 1.25;
 				DEVELOPMENT_TEAM = V6CV8B3X47;
 				INFOPLIST_FILE = NotificationService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.20;
+				MARKETING_VERSION = 1.0.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.customer.SkilEx.NotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -64,14 +64,14 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         segmentedControl1?.addTarget(self, action: #selector(segmentedControlChangedValue(_:)), for: .valueChanged)
         view.addSubview(segmentedControl1!)
         
-//        sub_cat_id = self.subcategoeryIDArr[0]
-//        self.webRequestServiceList(Index: sub_cat_id)
+//      sub_cat_id = self.subcategoeryIDArr[0]
+//      self.webRequestServiceList(Index: sub_cat_id)
         lastSelectedIndex = 0
         self.indexArray = []
         GlobalVariables.shared.viewPage = "ServiceDetail"
         self.preferedLanguage()
         self.serviceCount = "0"
-
+        
     }
     
     func hideNavigationBarBorderLine ()
@@ -79,7 +79,6 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.layoutIfNeeded()
-
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -228,7 +227,7 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                         print("Unable to load data: \(error)")
                     }
             }
-      }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -238,7 +237,6 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ServiceDetailTableViewCell
-        
         if (self.indexArray?.contains(indexPath as NSIndexPath))!
         {
             if LocalizationSystem.sharedInstance.getLanguage() == "en"
@@ -289,7 +287,6 @@ class ServiceDetail: UIViewController,UITableViewDelegate,UITableViewDataSource 
                         }
                     }
                 }
-
                 cell.selectionBackgroundView.backgroundColor =  UIColor(red: 142.0/255, green: 198.0/255, blue: 65.0/255, alpha: 1.0)
                 cell.addButton.tag = indexPath.row
                 cell.addButton.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)

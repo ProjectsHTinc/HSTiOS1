@@ -36,6 +36,7 @@
 "male_text" = "Male";
 "female_text" = "Female";
 "submit_profile_text" = "Ok";
+"profile_backNav" = "Profile Settings";
 
 
 /* tabbarcontroller text */
@@ -63,6 +64,7 @@
 "referEarn_text" = "Refer and Earn";
 "wallet_text" = "SkilEx Wallet";
 "logout_text" = "Log Out";
+"manage_Address" = "Manage Address";
 
 /* Services text */
 "servicestitle_text" = "Services";
@@ -102,7 +104,8 @@
 
 /* CustomerAddress text */
 "customeraddressnavtitle_text" = "Address";
-"locationaddress_text" = "Location (Address)";
+"locationaddressStreetName_text" = "Door No / Building Name / Street Name";
+"locationaddress_text" = "Area/Locality";
 "customeraddressname_text" = "Name";
 "customeraddressphonenumber_text" = "Phone Number";
 "customeraddressdate_text" = "Select Date";
@@ -111,6 +114,7 @@
 "customeraddressnotes_text" = "Notes (Optional)";
 "customeraddressnotesheading_text" = "Any Specific details about the service or
 regarding material";
+"customeraddressfirstalert" = "Pin location on map to get address";
 
 
 /* Searchresult text */
@@ -281,3 +285,8 @@ regarding material";
 "SkilexWalletnavtitle_text" = "SkilEx Wallet";
 "SkilexWalletaddmoney_text" = "Add Money to wallet";
 "SkilexWalletaddmoney_text" = "Enter Amount";
+
+/* choose Address */
+"choose_yourAddress" = "Choose Your Address";
+"save_Address" = "Save Address";
+"address_update_Alert" = "Address Updated Successfully";

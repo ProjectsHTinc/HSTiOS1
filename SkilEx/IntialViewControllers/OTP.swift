@@ -26,6 +26,7 @@ class OTP: UIViewController,UITextFieldDelegate {
     var mobileNumber = String()
     var otp = String()
     var user_master_id = String()
+    var referlCode = String()
 
     
     override func viewDidLoad() {
@@ -33,12 +34,13 @@ class OTP: UIViewController,UITextFieldDelegate {
 
         // Do any additional setup after loading the view.
         view.bindToKeyboard()
-        self.mobileNumberLabel.text = String(format: "%@ %@", "+91", mobileNumber)
+        self.mobileNumberLabel.text = String(format: "%@", mobileNumber)
         self.textfiledOne.delegate = self
         self.textfieldTwo.delegate = self
         self.textfieldThree.delegate = self
         self.textfieldFour.delegate = self
         
+        self.addBackButton()
 //      self.textfiledOne.tag = 1
         
         self.addToolBar(textField:textfiledOne)
@@ -54,7 +56,6 @@ class OTP: UIViewController,UITextFieldDelegate {
         textfieldThree.addShadowToTextField(color: UIColor.gray, cornerRadius: self.textfiledOne.frame.height / 2)
         textfieldFour.addShadowToTextField(cornerRadius: self.textfiledOne.frame.height / 2)
         textfieldFour.addShadowToTextField(color: UIColor.gray, cornerRadius: self.textfiledOne.frame.height / 2)
-       
         textfiledOne.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         textfieldTwo.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         textfieldThree.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
@@ -63,6 +64,11 @@ class OTP: UIViewController,UITextFieldDelegate {
         self.hideKeyboardWhenTappedAround()
        
     }
+    
+    @objc public override func backButtonClick() {
+        self.navigationController?.popViewController(animated: true)
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         self.preferedLanguage()
@@ -81,7 +87,6 @@ class OTP: UIViewController,UITextFieldDelegate {
         notReciveOTPLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "notsendOTP_text", comment: "")
     }
     
-  
     @objc func textFieldDidChange(_ textField: UITextField)
     {
         let text = textField.text
@@ -136,20 +141,33 @@ class OTP: UIViewController,UITextFieldDelegate {
     {
         if OTP.isEmpty{
 
-            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Otp cannot be Empty") { (action) in
-                //Custom action code
+            DispatchQueue.main.async{
+//                Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Otp cannot be Empty") { (action) in
+//                        //Custom action code
+//                    }
+                  AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Otp cannot be Empty", complition: {
+
+                  })
             }
+
         }
         else if OTP != otp
         {
-            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Otp is Wrong") { (action) in
-                //Custom action code
+            DispatchQueue.main.async {
+//                 Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Otp is Wrong") { (action) in
+//                     //Custom action code
+//                 }
+                   
+                   AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: "Otp is Wrong", complition: {
+
+                   })
             }
+
         }
         else
         {
             let deviceToken = UserDefaults.standard.getDevicetoken()
-            let parameters = ["user_master_id":user_master_id, "phone_no": mobileNumber, "otp":OTP, "device_token": deviceToken , "mobile_type": "2", "uniqueNumber": uniqueNumber]
+            let parameters = ["user_master_id":user_master_id, "phone_no": mobileNumber, "otp":OTP, "device_token": deviceToken , "mobile_type": "2", "uniqueNumber": uniqueNumber,"referral_code":referlCode.uppercased()]
             MBProgressHUD.showAdded(to: self.view, animated: true)
             DispatchQueue.global().async
                 {
@@ -164,23 +182,40 @@ class OTP: UIViewController,UITextFieldDelegate {
                             let msg_ta = json["msg_ta"].stringValue
                             let status = json["status"].stringValue
                             if msg == "Login Successfully" && status == "success"{
+                                
+                                UserDefaults.standard.set(self.user_master_id, forKey: "user_master_id")
+                                GlobalVariables.shared.user_master_id = UserDefaults.standard.string(forKey: "user_master_id") ?? ""
                                 let userdata = UserData(json: json["userData"])
                                 UserDefaults.standard.saveUserdata(userdata: userdata)
-                                self.performSegue(withIdentifier: "toDashboard", sender: self)
+                                DispatchQueue.main.async{
+                                    self.performSegue(withIdentifier: "toDashboard", sender: self)
+                                }
                             }
                             else
                             {
                                 if LocalizationSystem.sharedInstance.getLanguage() == "en"
                                 {
-                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
-                                        //Custom action code
+                                    DispatchQueue.main.async{
+//                                        Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en) { (action) in
+//                                            //Custom action code
+//                                        }
+                                          AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_en, complition: {
+
+                                          })
                                     }
+
                                 }
                                 else
                                 {
-                                    Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
-                                        //Custom action code
+                                    DispatchQueue.main.async{
+//                                        Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+//                                            //Custom action code
+//                                        }
+                                          AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta, complition: {
+
+                                          })
                                     }
+
                                 }
                             }
                         }) {

@@ -321,7 +321,7 @@ class CCWebViewController: UIViewController,UIWebViewDelegate, UIViewControllerT
                         //self.performSegue(withIdentifier: "bookingPage", sender: self)
                         let storyBoard : UIStoryboard = UIStoryboard(name: "CustomerService", bundle:nil)
                         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "bookingSuccess") as! BookingSuccess
-                        nextViewController.transStatus = transStatus
+                        nextViewController.transStatus = self.transStatus
                         self.present(nextViewController, animated:true, completion:nil)
                     }
                     else if advancePayment == "MW"

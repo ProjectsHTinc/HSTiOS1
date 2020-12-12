@@ -23,6 +23,7 @@ class UserProfile: UIViewController {
     @IBOutlet weak var changeLangugaeLabel: UILabel!
     @IBOutlet weak var referLabel: UILabel!
     @IBOutlet weak var walletLabel: UILabel!
+    @IBOutlet weak var manageAddressLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +38,7 @@ class UserProfile: UIViewController {
             self.userName.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "GuestUSER", comment: "")
             self.userMobileNumber.text = "-"
             self.userMailId.text = "-"
-            self.preferedLanguage()
-            
-            
+            self.preferedLanguage()         
         }
         else
         {
@@ -61,6 +60,7 @@ class UserProfile: UIViewController {
         referLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "referEarn_text", comment: "")
         walletLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "wallet_text", comment: "")
         logoutLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "logout_text", comment: "")
+        manageAddressLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: "manage_Address", comment: "")
         self.changeTabbarTitle ()
     }
     
@@ -329,12 +329,61 @@ class UserProfile: UIViewController {
     
     @IBAction func referandEarn(_ sender: Any)
     {
-        self.performSegue(withIdentifier: "to_ReferAndEarn", sender: self)
+        if GlobalVariables.shared.user_master_id == ""
+        {
+            let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "guestclickprofile", comment: ""), preferredStyle: UIAlertController.Style.alert)
+            
+            
+            let okAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "login_text", comment: ""), style: UIAlertAction.Style.default) {
+                UIAlertAction in
+                self.performSegue(withIdentifier: "to_Login", sender: self)
+                
+            }
+            let cancelAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "cancel", comment: ""), style: UIAlertAction.Style.default) {
+                UIAlertAction in
+                
+            }
+            
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else
+        {
+            self.performSegue(withIdentifier: "to_ReferAndEarn", sender: self)
+        }
     }
     
     @IBAction func wallet(_ sender: Any)
     {
-        self.performSegue(withIdentifier: "to_AddWallet", sender: self)
+        if GlobalVariables.shared.user_master_id == ""
+        {
+            let alertController = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "guestclickprofile", comment: ""), preferredStyle: UIAlertController.Style.alert)
+            
+            
+            let okAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "login_text", comment: ""), style: UIAlertAction.Style.default) {
+                UIAlertAction in
+                self.performSegue(withIdentifier: "to_Login", sender: self)
+                
+            }
+            let cancelAction = UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "cancel", comment: ""), style: UIAlertAction.Style.default) {
+                UIAlertAction in
+                
+            }
+            
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else
+        {
+            self.performSegue(withIdentifier: "to_AddWallet", sender: self)
+        }
+    }
+    
+    @IBAction func manageAdressAction(_ sender: Any) {
+        
+        
     }
     
     // MARK: - Navigation
