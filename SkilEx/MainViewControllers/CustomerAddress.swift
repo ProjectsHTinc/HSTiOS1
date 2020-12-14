@@ -158,9 +158,6 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         self.address.text = conLoc
         self.streetName.text = conAddress
         self.latLongFromSelect = conLat_Long
-        print(lat_)
-        print(long_)
-        print(lat_ + long_)
         print(latLongFromSelect)
         
         let numbers = latLongFromSelect.components(separatedBy: [","])

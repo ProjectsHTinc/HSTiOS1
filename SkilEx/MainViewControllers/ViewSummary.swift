@@ -460,14 +460,13 @@ class ViewSummary: UIViewController,UITableViewDelegate,UITableViewDataSource {
     func adressList ()
     {
         let parameters = ["cust_id":GlobalVariables.shared.user_master_id ]
-        MBProgressHUD.showAdded(to: self.view, animated: true)
         DispatchQueue.global().async
             {
                 do
                 {
                     try AFWrapper.requestPOSTURL(AFWrapper.BASE_URL + "customer_address_list", params: parameters, headers: nil, success: { [self]
                         (JSONResponse) -> Void in
-                        MBProgressHUD.hide(for: self.view, animated: true)
+                       
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         

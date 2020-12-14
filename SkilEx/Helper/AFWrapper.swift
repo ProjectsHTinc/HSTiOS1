@@ -28,12 +28,11 @@ class AFWrapper: NSObject {
      
     //static let BASE_URL = "https://skilex.in/development/apicustomer/"
     
-static let BASE_URL = "https://skilex.in/development/apicustomerios/"
-static let PaymentBaseUrl = "https://www.skilex.in/development/"
-    
-//static let BASE_URL = "https://skilex.in/apicustomerios/"
-//static let PaymentBaseUrl = "https://skilex.in/"
-    
+//static let BASE_URL = "https://skilex.in/development/apicustomerios/"
+//static let PaymentBaseUrl = "https://www.skilex.in/development/"
+
+static let BASE_URL = "https://skilex.in/apicustomerios/"
+static let PaymentBaseUrl = "https://skilex.in/"
     
     public static let sharedManager: SessionManager = {
         let configuration = URLSessionConfiguration.default
@@ -48,7 +47,6 @@ static let PaymentBaseUrl = "https://www.skilex.in/development/"
         let manager = Alamofire.SessionManager(configuration: configuration, delegate: SessionManager.default.delegate)
         return manager
     }()
-    
 
     class func cancelAllRequests() {
         let sessionManager = Alamofire.SessionManager.default
@@ -65,13 +63,13 @@ static let PaymentBaseUrl = "https://www.skilex.in/development/"
     sharedManager.request(strURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
          
          print(responseObject)
-         
+  
          if responseObject.result.isSuccess
          {
              let resJson = JSON(responseObject.result.value!)
              success(resJson)
          }
-         
+ 
          if responseObject.result.isFailure
          {
              let error : Error = responseObject.result.error!
@@ -123,7 +121,7 @@ static let PaymentBaseUrl = "https://www.skilex.in/development/"
             }
         }
     }
-    
+     
     class func uploadMultipartFormData(_ strURL : String, params : [String : AnyObject]?, imageDataArray: [Data],imageNamesArray: [String], headers : [String : String]?, success:@escaping (JSON) -> Void, failure:@escaping (NSError) -> Void) throws {
         Alamofire.upload(multipartFormData: { (MultipartFormData) in
             var secondCounter = 0
