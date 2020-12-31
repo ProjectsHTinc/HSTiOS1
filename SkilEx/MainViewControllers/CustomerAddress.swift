@@ -160,11 +160,11 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         self.latLongFromSelect = conLat_Long
         print(latLongFromSelect)
         
-        let numbers = latLongFromSelect.components(separatedBy: [","])
-        print(numbers)
+        let latlong = latLongFromSelect.components(separatedBy: [","])
+        print(latlong)
         
-        self.lat_ = numbers[0]
-        self.long_ = numbers[1]
+        self.lat_ = latlong[0]
+        self.long_ = latlong[1]
         print(lat_)
         let latitude1_ = Double(lat_)
         let longitude1_ = Double(long_)
@@ -655,7 +655,6 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
             print(self.`dateTextField`.text!)
             print(GlobalVariables.shared.user_master_id)
       
-            
             self.webRequestAdressAdd(user_master_id: GlobalVariables.shared.user_master_id,contact_person_name: self.name.text!,contact_person_number: self.phoneNumber.text!, service_latlon: String(format: "%@%@%@", lat_,",",long_), service_location: self.streetName.text!, service_address:self.address.text!)
         }
     }
@@ -760,7 +759,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                         }
                     }) {
                         (error) -> Void in
-                        print(error)
+                        print(error.localizedDescription)
                     }
                 }
                 catch

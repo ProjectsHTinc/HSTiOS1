@@ -290,3 +290,4 @@ regarding material";
 "choose_yourAddress" = "Choose Your Address";
 "save_Address" = "Save Address";
 "address_update_Alert" = "Address Updated Successfully";
+"no_address" = "No Address Found";

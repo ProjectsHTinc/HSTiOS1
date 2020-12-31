@@ -62,6 +62,8 @@ class OTP: UIViewController,UITextFieldDelegate {
         textfieldFour.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
 
         self.hideKeyboardWhenTappedAround()
+        let deviceToken = UserDefaults.standard.getDevicetoken()
+        print(deviceToken)
        
     }
     
@@ -168,6 +170,7 @@ class OTP: UIViewController,UITextFieldDelegate {
         {
             let deviceToken = UserDefaults.standard.getDevicetoken()
             let parameters = ["user_master_id":user_master_id, "phone_no": mobileNumber, "otp":OTP, "device_token": deviceToken , "mobile_type": "2", "uniqueNumber": uniqueNumber,"referral_code":referlCode.uppercased()]
+            print("The Device Token is: \(deviceToken)")
             MBProgressHUD.showAdded(to: self.view, animated: true)
             DispatchQueue.global().async
                 {

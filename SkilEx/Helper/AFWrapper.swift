@@ -28,12 +28,12 @@ class AFWrapper: NSObject {
      
     //static let BASE_URL = "https://skilex.in/development/apicustomer/"
     
-//static let BASE_URL = "https://skilex.in/development/apicustomerios/"
-//static let PaymentBaseUrl = "https://www.skilex.in/development/"
+static let BASE_URL = "https://skilex.in/development/apicustomerios/"
+static let PaymentBaseUrl = "https://www.skilex.in/development/"
+//
+//static let BASE_URL = "https://skilex.in/apicustomerios/"
+//static let PaymentBaseUrl = "https://skilex.in/"
 
-static let BASE_URL = "https://skilex.in/apicustomerios/"
-static let PaymentBaseUrl = "https://skilex.in/"
-    
     public static let sharedManager: SessionManager = {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 0
@@ -164,3 +164,4 @@ static let PaymentBaseUrl = "https://skilex.in/"
         })
     }
 }
+

@@ -42,8 +42,8 @@ class AddressSelectList: UIViewController,UITableViewDelegate,UITableViewDataSou
     
     func preferedLanguage()
     {
-       
-    }
+        
+     }
     
     func adressList ()
     {
@@ -60,7 +60,7 @@ class AddressSelectList: UIViewController,UITableViewDelegate,UITableViewDataSou
                         print(JSONResponse)
                         let json = JSON(JSONResponse)
                         
-                        let msg = json["msg"].stringValue
+                        _ = json["msg"].stringValue
                         let status = json["status"].stringValue
                         if  status == "success"
                         {
@@ -91,7 +91,13 @@ class AddressSelectList: UIViewController,UITableViewDelegate,UITableViewDataSou
                                     self.tableView.reloadData()
                             }
                         }
-                        
+                        else {
+                            
+                            Alert.defaultManager.showOkAlert(LocalizationSystem.sharedInstance.localizedStringForKey(key: "no_address", comment: ""), message: "") { (action) in
+                                
+                                self.navigationController?.popViewController(animated: true)
+                        }
+                    }
                     }) {
                         (error) -> Void in
                         print(error)

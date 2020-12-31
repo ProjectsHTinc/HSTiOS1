@@ -10,7 +10,6 @@ import UIKit
 import SwiftyJSON
 import MBProgressHUD
 
-
 class Login: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var appNameLabel: UILabel!
@@ -185,7 +184,6 @@ class Login: UIViewController,UITextFieldDelegate {
             let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
             return newString.length <= maxLength
         }
-
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
