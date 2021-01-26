@@ -153,8 +153,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
             endingLineNumber = "43"
-            landmarkName = "webRequestNotificationAndOffers()"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -170,8 +170,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "104"
             endingLineNumber = "104"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -252,8 +252,8 @@
             filePath = "SkilEx/IntialViewControllers/Profile.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "updateProfile(name:gender:email:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -268,8 +268,8 @@
             filePath = "SkilEx/IntialViewControllers/Profile.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "updateProfile(name:gender:email:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -288,70 +288,6 @@
             endingLineNumber = "215"
             landmarkName = "BookingSuccess"
             landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0E0CA7F0-C812-454A-9F3A-6855E078CAD8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NotificationService/NotificationService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "didReceive(_:withContentHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "84ECA353-A377-4C9D-B987-9621D6F5C9E3"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SkilEx/IntialViewControllers/AppDelegate.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "userNotificationCenter(_:didReceive:withCompletionHandler:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "84ECA353-A377-4C9D-B987-9621D6F5C9E3 - ab54efe0bc73be27"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SkilEx.AppDelegate.userNotificationCenter(_: __C.UNUserNotificationCenter, didReceive: __C.UNNotificationResponse, withCompletionHandler: () -&gt; ()) -&gt; ()"
-                  moduleName = "SkilEx"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/happysanztech/Documents/HSTiOS1/SkilEx/IntialViewControllers/AppDelegate.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "104"
-                  endingLineNumber = "104"
-                  offsetFromSymbolStart = "548">
-               </Location>
-               <Location
-                  uuid = "84ECA353-A377-4C9D-B987-9621D6F5C9E3 - 12cb6562052d0b9d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "$defer #1 () -&gt; () in SkilEx.AppDelegate.userNotificationCenter(_: __C.UNUserNotificationCenter, didReceive: __C.UNNotificationResponse, withCompletionHandler: () -&gt; ()) -&gt; ()"
-                  moduleName = "SkilEx"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/happysanztech/Documents/HSTiOS1/SkilEx/IntialViewControllers/AppDelegate.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "105"
-                  endingLineNumber = "105"
-                  offsetFromSymbolStart = "68">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -418,7 +354,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "EA96FBF7-B838-4D1A-8F23-CE9658F88678 - c118607a79d1c017"
+                  uuid = "EA96FBF7-B838-4D1A-8F23-CE9658F88678 - 4df1f46916569302"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -430,10 +366,10 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "107"
                   endingLineNumber = "107"
-                  offsetFromSymbolStart = "52">
+                  offsetFromSymbolStart = "64">
                </Location>
                <Location
-                  uuid = "EA96FBF7-B838-4D1A-8F23-CE9658F88678 - 106bcccfede49ed1"
+                  uuid = "EA96FBF7-B838-4D1A-8F23-CE9658F88678 - 9c8258dc8263cd27"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -445,25 +381,9 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "110"
                   endingLineNumber = "110"
-                  offsetFromSymbolStart = "48">
+                  offsetFromSymbolStart = "56">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "38BCBEFE-263C-4B1B-9F01-55990C44ACA3"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SkilEx/MainViewControllers/CustomerAddress.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "683"
-            endingLineNumber = "683"
-            landmarkName = "CustomerAddress"
-            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -495,22 +415,6 @@
             startingLineNumber = "389"
             endingLineNumber = "389"
             landmarkName = "callWebServiceForAddingmoneyToWallet()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0812F236-683B-4EF4-8E3D-2FA1681D9013"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SkilEx/CCAvenue/CCWeb/CCWebViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "341"
-            endingLineNumber = "341"
-            landmarkName = "webViewDidFinishLoad(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -636,8 +540,8 @@
             filePath = "SkilEx/MainViewControllers/ViewSummary.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "webRequestRemoveFromCart(cartId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -661,54 +565,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "472F8F79-7362-4A6F-AD6E-C09BB1D7C056"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SkilEx/MainViewControllers/ServiceDescripitionTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "301"
-            endingLineNumber = "301"
-            landmarkName = "serviceAddToCart(user_master_id:category_id:sub_category_id:service_id:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BACF68A5-B5C4-426B-983D-1DF7E9D507E0"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SkilEx/MainViewControllers/ServiceDescripitionTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292"
-            landmarkName = "serviceAddToCart(user_master_id:category_id:sub_category_id:service_id:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CAAEA14A-D06B-40B5-84A5-B30D4816DB4B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SkilEx/MainViewControllers/ServiceDescripitionTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
-            landmarkName = "bookNowAction(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "8D1D674A-3C8D-4FBD-97D5-DA9C4DF1FAAF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -725,16 +581,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "25874D35-6EE7-46BE-B8DA-D71779EEEB7B"
+            uuid = "16C5A2F2-F086-4F1A-B343-E63885B2FF3F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SkilEx/Customer Service/BookingSuccess.swift"
+            filePath = "SkilEx/Customer Service/CashMethod.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "payOnlineAction(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "87A60E8F-7CD8-4053-9416-EEB82249F17F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SkilEx/IntialViewControllers/OTP.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "webRequest(OTP:uniqueNumber:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
