@@ -15,7 +15,6 @@ import Alamofire
 
 class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate,addressListDelegate, UIPopoverPresentationControllerDelegate {
     
-
     @IBOutlet var popView: UIView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var address: UITextField!
@@ -158,18 +157,13 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         self.address.text = conLoc
         self.streetName.text = conAddress
         self.latLongFromSelect = conLat_Long
-        print(latLongFromSelect)
         
         let latlong = latLongFromSelect.components(separatedBy: [","])
-        print(latlong)
-        
+   
         self.lat_ = latlong[0]
         self.long_ = latlong[1]
-        print(lat_)
         let latitude1_ = Double(lat_)
         let longitude1_ = Double(long_)
-        print(latitude1_!)
-        print(longitude1_!)
 
         self.startLocation = CLLocation(latitude:  11.016683, longitude:  76.969040)
         self.endLocation = CLLocation(latitude: latitude1_!, longitude:longitude1_!)
@@ -458,7 +452,6 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                         self.streetName.text = addressString
                         self.ConvertAddressToLatLon(givenAddress: self.address.text!)
                     }
-                    
                 }
         })
     }
@@ -660,8 +653,11 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     }
     
     func calculateDistance (startLocation: CLLocation, EndLocation:CLLocation){
+      
         let distanceMeters: CLLocationDistance  = (startLocation.distance(from: EndLocation))
         let distance =  Int(distanceMeters / 1000.0)
+        print("Test\(distanceMeters)")
+        print("Test\(distance)")
         if distance <= 20{
             availableDistance = true
         }

@@ -40,7 +40,7 @@ static let PaymentBaseUrl = "https://www.skilex.in/development/"
         let manager = Alamofire.SessionManager(configuration: configuration, delegate: SessionManager.default.delegate)
         return manager
     }()
-    
+     
     public static let almosharedManager: SessionManager = {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 20
@@ -98,7 +98,7 @@ static let PaymentBaseUrl = "https://www.skilex.in/development/"
                 }
             }
         }
-        
+         
     }
     
     class func requestPOSTURL(_ strURL : String, params : [String:String]?, headers : [String : String]?, success:@escaping (JSON) -> Void, failure:@escaping (Error) -> Void)

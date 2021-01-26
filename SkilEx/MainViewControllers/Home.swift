@@ -63,7 +63,6 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         self.checkAppVersion(versionCode: "4")
     }
     
-    
     override func viewWillAppear(_ animated: Bool)
     {
 //      self.request?.resume()
@@ -72,7 +71,6 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         self.checkAppVersion(versionCode: "4")
     }
         
-    
     func checkAppVersion (versionCode:String)
     {
         let url = AFWrapper.BASE_URL + "version_check"
