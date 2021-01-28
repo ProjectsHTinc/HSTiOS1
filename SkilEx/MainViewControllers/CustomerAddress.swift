@@ -71,7 +71,6 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        
         if GlobalVariables.shared.addressArrayCount.count >= 1 {
             self.popOver(sender:popView)
         }
