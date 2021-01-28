@@ -76,8 +76,11 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         }
         
         AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressfirstalert", comment: ""), complition: {
-
+            self.streetName.isUserInteractionEnabled = false
+            self.address.isUserInteractionEnabled = false
         })
+        
+        
         mapView.delegate = self
         locationManager.delegate = self
         locationManager.desiredAccuracy =  kCLLocationAccuracyBestForNavigation
@@ -121,11 +124,9 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         self.preferedLanguage()
         self.getGPAddress(givenAddress: "Gandhipuram Town Bus Stand Coimbatore")
         fromTappingMapView = false
-
     }
     
     func popOver(sender : UIView) {
-        
     let chooseAddress = storyboard?.instantiateViewController(withIdentifier: "chooseAddress") as! ChooseAddress
         chooseAddress.delegate = self
         chooseAddress.strconName = self.name.text! as NSString
@@ -170,7 +171,6 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         print(endLocation)
         print(startLocation)
         self.calculateDistance (startLocation: startLocation, EndLocation: endLocation)
-        
     }
 
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController!) -> UIModalPresentationStyle {
@@ -354,6 +354,8 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         }
         if gestureReconizer.state != UIGestureRecognizer.State.began
         {
+            self.streetName.isUserInteractionEnabled = true
+            self.address.alpha = 0.5
             let touchLocation = gestureReconizer.location(in: mapView)
             let locationCoordinate = mapView.convert(touchLocation,toCoordinateFrom: mapView)
             addAnnotation(location: locationCoordinate)
@@ -653,11 +655,12 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     
     func calculateDistance (startLocation: CLLocation, EndLocation:CLLocation){
       
-        let distanceMeters: CLLocationDistance  = (startLocation.distance(from: EndLocation))
-        let distance =  Int(distanceMeters / 1000.0)
-        print("Test\(distanceMeters)")
-        print("Test\(distance)")
-        if distance <= 20{
+        let distanceKM: CLLocationDistance  = (startLocation.distance(from: EndLocation)) / 1000.0
+        //let distance =  Int(distanceMeters / 1000.0)
+        //print("Test\(distanceMeters)")
+        print(distanceKM)
+        let distance = String(format: "%.01f", distanceKM)
+        if distance <= "20.0"{
             availableDistance = true
         }
         else{
@@ -746,7 +749,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                                 }
                                 else
                                 {
-                                    Alert.defaultManager.showOkAlert(LocalizationSystem                                                                                                                                                                                                              .sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
+                                    Alert.defaultManager.showOkAlert(LocalizationSystem .sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: msg_ta) { (action) in
                                         //Custom action code
                                     }
                                 }
