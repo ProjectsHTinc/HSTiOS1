@@ -386,7 +386,6 @@
 			isa = PBXGroup;
 			children = (
 				6B07590A22EAF71F00355C01 /* SSL */,
-				6B0756D722EAF4DE00355C01 /* CommonFiles */,
 				6B0756D222EAF4C900355C01 /* CCWeb */,
 				6B0756CD22EAF4B000355C01 /* CCInitial */,
 				6B0756CA22EAF49C00355C01 /* CCResult */,
@@ -434,13 +433,6 @@
 			path = CCWeb;
 			sourceTree = "<group>";
 		};
-		6B0756D722EAF4DE00355C01 /* CommonFiles */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CommonFiles;
-			sourceTree = "<group>";
-		};
 		6B07590A22EAF71F00355C01 /* SSL */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,13 +443,6 @@
 			);
 			name = SSL;
 			path = ../../SSL;
-			sourceTree = "<group>";
-		};
-		6B075A9822E9E4D600A7B17F /* Utilites */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utilites;
 			sourceTree = "<group>";
 		};
 		6B193EB6227FF08D0015BD8E /* IntialViewControllers */ = {
@@ -550,7 +535,6 @@
 			children = (
 				6B0756C122EAF3BC00355C01 /* CCAvenue */,
 				6BB34544229FD95C00547817 /* Model */,
-				6B075A9822E9E4D600A7B17F /* Utilites */,
 				6BB34545229FD96A00547817 /* Extension */,
 				6B65344722813E720079F5AC /* Helper */,
 				6B193EB6227FF08D0015BD8E /* IntialViewControllers */,

@@ -35,8 +35,7 @@ class Login: UIViewController,UITextFieldDelegate {
         self.referralCode.autocapitalizationType = .allCharacters
     }
     
-    override func viewWillAppear(_ animated: Bool)
-    {
+    override func viewWillAppear(_ animated: Bool) {
        self.preferedLanguage()
     }
     
