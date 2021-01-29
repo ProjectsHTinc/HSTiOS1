@@ -662,7 +662,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         let distance =  Int(distanceKM / 1000.0)
         //print("Test\(distanceMeters)")
         //print(distanceKM)
-        //let distance = String(format: "%.01f", distanceKM)
+        //let distance = String(format: "%.01f", distanceKM) //
         if distance <= 20 {
             availableDistance = true
         }
