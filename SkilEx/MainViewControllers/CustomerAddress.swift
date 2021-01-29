@@ -73,15 +73,11 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     
         if GlobalVariables.shared.addressArrayCount.count >= 1 {
             self.popOver(sender:popView)
-            self.streetName.isUserInteractionEnabled = true
-            self.address.isUserInteractionEnabled = true
+            
         }
-        else
-        {
-            self.streetName.isUserInteractionEnabled = false
-            self.address.isUserInteractionEnabled = false
-        }
-                
+        self.streetName.isUserInteractionEnabled = false
+        self.address.isUserInteractionEnabled = false
+        
         AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressfirstalert", comment: ""), complition: {
 
         })
@@ -177,6 +173,8 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         fromTappingMapView = true
         print(endLocation)
         print(startLocation)
+        self.streetName.isUserInteractionEnabled = true
+        self.address.isUserInteractionEnabled = true
         self.calculateDistance (startLocation: startLocation, EndLocation: endLocation)
     }
 
@@ -362,6 +360,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         if gestureReconizer.state != UIGestureRecognizer.State.began
         {
             self.streetName.isUserInteractionEnabled = true
+            self.address.isUserInteractionEnabled = true
             self.address.alpha = 0.5
             let touchLocation = gestureReconizer.location(in: mapView)
             let locationCoordinate = mapView.convert(touchLocation,toCoordinateFrom: mapView)
