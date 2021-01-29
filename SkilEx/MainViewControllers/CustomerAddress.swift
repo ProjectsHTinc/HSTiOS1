@@ -73,11 +73,15 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     
         if GlobalVariables.shared.addressArrayCount.count >= 1 {
             self.popOver(sender:popView)
+            self.streetName.isUserInteractionEnabled = true
+            self.address.isUserInteractionEnabled = true
         }
-        
-        self.streetName.isUserInteractionEnabled = false
-        self.address.isUserInteractionEnabled = false
-        
+        else
+        {
+            self.streetName.isUserInteractionEnabled = false
+            self.address.isUserInteractionEnabled = false
+        }
+                
         AlertController.shared.showAlert(targetVC: self, title: LocalizationSystem.sharedInstance.localizedStringForKey(key: "appname_text", comment: ""), message: LocalizationSystem.sharedInstance.localizedStringForKey(key: "customeraddressfirstalert", comment: ""), complition: {
 
         })
