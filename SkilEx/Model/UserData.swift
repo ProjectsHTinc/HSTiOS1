@@ -14,7 +14,6 @@ class UserData: Codable {
     var fullName, userType, emailVerify, usermasterId, phoneNumber, profilePic, address, mobileVerify, email, gender : String?
     
     init(json:JSON) {
-        
         self.address = json["address"].stringValue
         self.fullName = json["full_name"].stringValue
         self.userType = json["user_type"].stringValue
@@ -29,3 +28,4 @@ class UserData: Codable {
         
     }
 }
+

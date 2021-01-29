@@ -83,7 +83,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         
         mapView.delegate = self
         locationManager.delegate = self
-        locationManager.desiredAccuracy =  kCLLocationAccuracyBestForNavigation
+        //locationManager.desiredAccuracy =  kCLLocationAccuracyBestForNavigation
         //locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled()
@@ -124,6 +124,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         self.preferedLanguage()
         self.getGPAddress(givenAddress: "Gandhipuram Town Bus Stand Coimbatore")
         fromTappingMapView = false
+        self.mapView.delegate = self
     }
     
     func popOver(sender : UIView) {
@@ -355,20 +356,22 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
         if gestureReconizer.state != UIGestureRecognizer.State.began
         {
             self.streetName.isUserInteractionEnabled = true
-            self.address.alpha = 0.5
+//            self.address.alpha = 0.5
             let touchLocation = gestureReconizer.location(in: mapView)
             let locationCoordinate = mapView.convert(touchLocation,toCoordinateFrom: mapView)
             addAnnotation(location: locationCoordinate)
             lat_ = String(format:"%f", locationCoordinate.latitude)
             long_ = String(format:"%f", locationCoordinate.longitude)
+            self.endLocation = CLLocation(latitude: locationCoordinate.latitude, longitude:locationCoordinate.longitude)
             fromDidupDateLocation = false
             fromTappingMapView = true
+            self.calculateDistance(startLocation: self.startLocation, EndLocation: self.endLocation)
             self.getAddressFromLatLon(pdblLatitude: lat_, withLongitude: long_)
             print("Tapped at lat: \(locationCoordinate.latitude) long: \(locationCoordinate.longitude)")
         }
             return
     }
-    
+        
     func addAnnotation(location: CLLocationCoordinate2D)
     {
         GlobalVariables.shared.reuseID = "pin"
@@ -451,7 +454,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
                             self.address.text = pm.thoroughfare! + ", "
                         }
                         self.streetName.text = addressString
-                        self.ConvertAddressToLatLon(givenAddress: self.address.text!)
+                        //self.ConvertAddressToLatLon(givenAddress: self.address.text!)
                     }
                 }
         })
@@ -478,7 +481,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     {   
         let nextTag = textField.tag + 1
         if nextTag == 2{
-            self.ConvertAddressToLatLon(givenAddress: self.address.text!)
+            //self.ConvertAddressToLatLon(givenAddress: self.address.text!)
         }
         // Try to find next responder
         let nextResponder = textField.superview?.viewWithTag(nextTag) as UIResponder?
@@ -655,8 +658,8 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     
     func calculateDistance (startLocation: CLLocation, EndLocation:CLLocation){
       
-        let distanceKM: CLLocationDistance  = (startLocation.distance(from: EndLocation)) / 1000.0
-        //let distance =  Int(distanceMeters / 1000.0)
+        let distanceKM: CLLocationDistance  = (startLocation.distance(from: EndLocation))  / 1000.0
+        //let distance =  Int(distanceKM )
         //print("Test\(distanceMeters)")
         print(distanceKM)
         let distance = String(format: "%.01f", distanceKM)
