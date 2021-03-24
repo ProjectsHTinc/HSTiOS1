@@ -160,6 +160,7 @@ class Profile: UIViewController
         else
         {
             let parameters = ["user_master_id": GlobalVariables.shared.user_master_id, "full_name": name, "gender": gender, "email": email]
+            print(parameters)
             MBProgressHUD.showAdded(to: self.view, animated: true)
             DispatchQueue.global().async
                 {

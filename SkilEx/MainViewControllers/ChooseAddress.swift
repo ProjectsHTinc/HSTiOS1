@@ -31,7 +31,6 @@ class ChooseAddress: UIViewController,UITableViewDelegate,UITableViewDataSource 
     var serviceLocation = [String]()
     var addresses = [String]()
     
-    
     var delegate : addressListDelegate?
     var strconName : NSString!
     var strconNum : NSString!

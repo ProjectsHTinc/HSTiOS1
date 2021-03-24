@@ -341,7 +341,7 @@ class CustomerAddress: UIViewController, CLLocationManagerDelegate, UIGestureRec
     func setMapview()
     {
         let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gestureReconizer:)))
-        lpgr.minimumPressDuration = 0.1
+        lpgr.minimumPressDuration = 0.0
         lpgr.delaysTouchesBegan = true
         lpgr.delegate = self
         self.mapView.addGestureRecognizer(lpgr)

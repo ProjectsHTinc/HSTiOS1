@@ -60,7 +60,7 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
 //      self.request?.resume()
         self.closeBtnImg.isHidden = true
         self.searchTextfield.isHidden = true
-        self.checkAppVersion(versionCode: "4")
+        self.checkAppVersion(versionCode: "5")
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -68,7 +68,7 @@ class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
 //      self.request?.resume()
         self.closeBtnImg.isHidden = true
         self.searchTextfield.isHidden = true
-        self.checkAppVersion(versionCode: "4")
+        self.checkAppVersion(versionCode: "5")
     }
         
     func checkAppVersion (versionCode:String)
