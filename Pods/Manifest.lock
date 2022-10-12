@@ -45,19 +45,18 @@ DEPENDENCIES:
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Alamofire
+    - Bolts
+    - Facebook-iOS-SDK
+    - FBSDKCoreKit
+    - FBSDKMarketingKit
     - HMSegmentedControl
     - MBProgressHUD
     - OpenSSL-Universal
     - ReachabilitySwift
     - SDWebImage
     - SwiftyJSON
-  trunk:
-    - Bolts
-    - Facebook-iOS-SDK
-    - FBSDKCoreKit
-    - FBSDKMarketingKit
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
@@ -74,4 +73,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: c4e49fd178e0f7ccfbe07efeede58ef166b0eb3a
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.11.2
